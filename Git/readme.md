@@ -1,5 +1,5 @@
 # Git
-**Definition**: Git is a distributed version control system used to track changes in source code and coordinate work among developers during software development.
+**Definition**: Git is a distributed version control system used to track changes in source code and coordinate work among developers during software development. It runs locally and handles things like commits, branches, merges, and history.
 
 Brief **Description**:
 Git allows developers to save versions of their code, track modifications, create branches for new features, and merge changes safely. Because it is distributed, every user has a full copy of the project history, which makes collaboration faster and more reliable.It is created by Linus Torvalds.
