@@ -18,3 +18,5 @@ Types of Git repositories
 
 2.Remote repository
 Hosted online on services like GitHub, GitLab, or Bitbucket, Used for collaboration and backup.
+
+**Commit** means making a change or modifying the current code
