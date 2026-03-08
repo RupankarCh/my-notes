@@ -36,5 +36,5 @@ Example triggers:
 
 
 ## Disadvantages of using Github
-- It doesn't directly provide repository **mirroring**.
+- It doesn't directly provide repository **mirroring**(keeping a copy of the source code of a perticular repository).
 - Microsoft uses Github to train AI models.
