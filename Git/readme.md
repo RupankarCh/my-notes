@@ -12,6 +12,7 @@ A repo usually contains:
 - Configuration files – stored inside the hidden .git folder
 
 Types of Git repositories
+
 1.Local repository
 - Stored on your computer
 - You work and commit changes locally
