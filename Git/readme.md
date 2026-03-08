@@ -5,7 +5,8 @@ Brief **Description**:
 Git allows developers to save versions of their code, track modifications, create branches for new features, and merge changes safely. Because it is distributed, every user has a full copy of the project history, which makes collaboration faster and more reliable.It is created by Linus Torvalds.
 
 Brief **History**:
-```Git (2005)
+```
+Git (2005)
    │
    ├── GitHub (2008) → biggest hosting platform
    │
