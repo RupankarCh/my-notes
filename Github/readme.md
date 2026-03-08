@@ -9,6 +9,7 @@ A **pull request** in GitHub is a request to review and merge your code changes 
 an automation tool inside GitHub that lets you automatically build, test, and deploy your code when certain events happen in a repository.
 
 How it words (When a trigger is initiated):
+
 1.like You push code to a Git repository on GitHub
 2.A workflow file (written in YAML) gets triggered
 3.GitHub runs automated jobs like:
