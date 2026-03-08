@@ -8,8 +8,13 @@ Developers frequently push code to a shared repository (like GitHub). The system
 After the code passes tests, it can be automatically prepared for release or deployed to production.
 
 Simple flow of a CI/CD pipeline:
+
 1.Developer pushes code to Git repo
+
 2.Platform (e.g., GitHub Actions, Jenkins, GitLab CI/CD) triggers the pipeline
+
 3.Code is built
+
 4.Automated tests run
+
 5.If tests pass → code is deployed to staging or production
