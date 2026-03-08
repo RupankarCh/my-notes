@@ -11,7 +11,9 @@ an automation tool inside GitHub that lets you automatically build, test, and de
 How it words (When a trigger is initiated):
 
 1.like You push code to a Git repository on GitHub
+
 2.A workflow file (written in YAML) gets triggered
+
 3.GitHub runs automated jobs like:
  - Installing dependencies
  - Running tests
