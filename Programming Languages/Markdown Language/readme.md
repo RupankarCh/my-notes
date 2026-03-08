@@ -70,7 +70,7 @@ Result:
 Use `print()` function
 ```
 
-### Code Block
+### Code Block (use 3 or more Backticks to show code block)
 
 ````markdown
 ```python
