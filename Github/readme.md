@@ -8,7 +8,7 @@ A **pull request** in GitHub is a request to review and merge your code changes 
 ## GitHub Actions:
 an automation tool inside GitHub that lets you automatically build, test, and deploy your code when certain events happen in a repository.
 
-How it words (When a trigger is initiated):
+How it works (When a trigger is initiated):
 
 1.like You push code to a Git repository on GitHub
 
