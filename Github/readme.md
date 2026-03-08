@@ -5,6 +5,14 @@ Description: It records everything that has been changed and by whom it was chan
 
 A **pull request** in GitHub is a request to review and merge your code changes from one branch into another branch of a repository.
 
+## Access
+| Feature           | Public Repo       | Private Repo             |
+| ----------------- | ----------------- | ------------------------ |
+| Storage           | Free              | Free                     |
+| GitHub Actions    | Unlimited minutes | ~2000 free minutes/month |
+| Security scanning | Available         | Available                |
+
+
 ## GitHub Actions:
 an automation tool inside GitHub that lets you automatically build, test, and deploy your code when certain events happen in a repository.
 
@@ -25,3 +33,8 @@ Example triggers:
 - Pull request opened
 - Scheduled time
 - Manual trigger
+
+
+## Disadvantages of using Github
+- It doesn't directly provide repository **mirroring**.
+- Microsoft uses Github to train AI models.
