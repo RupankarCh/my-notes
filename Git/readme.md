@@ -4,7 +4,7 @@
 Brief **Description**:
 Git allows developers to save versions of their code, track modifications, create branches for new features, and merge changes safely. Because it is distributed, every user has a full copy of the project history, which makes collaboration faster and more reliable.It is created by Linus Torvalds.
 
-A Git **repository** is a folder that contains your project files and the complete history of all changes made to those filesand it is managed by Git.
+A Git **repository** is a folder that contains your project files and the complete history of all changes made to those files and it is managed by Git.
 A repo usually contains:
 - Project files – source code, images, documentation, etc.
 - Version history – every change (called commits) saved over time
