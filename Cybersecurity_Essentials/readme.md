@@ -74,6 +74,18 @@ Al Solution: Cylance's Al analyzes file behavior rather than signatures, predict
 
 Impact: When a new ransomware strain appeared, Cylance's Al immediately blocked it based on abnormal behavior, safeguarding the organization's data.
 
+3.**Microsoft's** Al in Phishing Detection
+
+Challenge: Phishing attacks are increasingly sophisticated, tricking users into revealing sensitive
+information.
+
+Al Solution: Microsoft employs machine learning to analyze email content and metadata, detecting
+phishing attempts even in seemingly legitimate messages.
+
+Impact: After implementing AI, Microsoft significantly reduced successful phishing attempts,
+successfully flagging a targeted campaign against a healthcare provider.
+
+
 
 
 
