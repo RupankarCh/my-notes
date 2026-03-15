@@ -59,6 +59,7 @@ Al in Response:
 - Incident Management: Al assists security teams in analyzing attacks and preventing future incidents.
 
 AI Solutions:
+
 1.**Darktrace** — Al-Powered Threat Detection
 Challenge: Organizations face advanced cyber threats that traditional methods struggle to detect.
 Al Solution: Darktrace employs machine learning to establish a baseline of normal network behavior, allowing it to identify anomalies that indicate potential threats.
