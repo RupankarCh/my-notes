@@ -1,4 +1,4 @@
-#Cisco Proprietary Protocols Exclusive networking protocols designed by Cisco: 
+# Cisco Proprietary Protocols Exclusive networking protocols designed by Cisco: 
 
 ✔ EIGRP – Efficient routing for enterprise networks  
 ✔ HSRP – Ensures high availability for routers  
@@ -6,7 +6,7 @@
 ✔ VTP – Simplifies VLAN management across Cisco switches  
 ✔ PVST – Optimizes network traffic per VLAN 
 
-#STP (Spanning Tree Protocol):
+# STP (Spanning Tree Protocol):
 **Prevents network loops in switched networks** by dynamically selecting the best data transmission path while blocking redundant links. 
 
 ✔ Prevents broadcast storms & data duplication  
@@ -14,7 +14,7 @@
 ✔ Variants like RSTP provide faster convergence 
 
 
-#TLS (Transport Layer Security):
+# TLS (Transport Layer Security):
 A cryptographic **protocol securing communication over the internet.** Successor to SSL, TLS ensures **data encryption, integrity, and authentication** in web browsing, email, and secure transactions. 
 
 ✔ Used for HTTPS (port 443), secure emails (IMAPS, SMTPS)
