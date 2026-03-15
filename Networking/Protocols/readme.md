@@ -17,6 +17,6 @@
 #TLS (Transport Layer Security):
 A cryptographic **protocol securing communication over the internet.** Successor to SSL, TLS ensures **data encryption, integrity, and authentication** in web browsing, email, and secure transactions. 
 
-✔ Used for HTTPS (port 443), secure emails (IMAPS, SMTPS) 
-✔ Enhances security over older SSL versions 
+✔ Used for HTTPS (port 443), secure emails (IMAPS, SMTPS)
+✔ Enhances security over older SSL versions
 ✔ Latest versions (TLS 1.2 & TLS 1.3) offer stronger encryption 
