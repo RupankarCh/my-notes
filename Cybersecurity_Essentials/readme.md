@@ -1,3 +1,10 @@
+# Vulnerability, Threat & Risk  
+✔ Vulnerability – A weakness that can be exploited (e.g., unpatched software).  
+✔ Threat – Potential danger exploiting a vulnerability (e.g., malware, insider attack).  
+✔ Risk – The likelihood of a threat successfully exploiting a vulnerability.     
+Real-World Scenario: • Leaving a door unlocked = Vulnerability • A thief targeting the house = Threat • Likelihood of break-in based on crime rate = Risk 
+
+
 ## Encryption & Decryption: 
 
 ✔ Encryption: Converts readable plaintext into unreadable ciphertext using cryptographic algorithms to ensure confidentiality.  
@@ -16,3 +23,10 @@ Real-World Scenario: Base64 encoding is used in emails to ensure smooth transmis
 ## SIEM (Security Information and Event Management): 
 Collects, analyzes, and correlates security logs in real time to detect cyber threats. 
 Popular SIEM Tools: Splunk, IBM QRadar, ArcSight, Microsoft Sentinel, LogRhythm. 
+
+
+# CIA Triad:
+A model that defines three core principles of information security.
+✔ Confidentiality – Protects sensitive data from unauthorized access.  
+✔ Integrity – Ensures data remains unaltered.  
+✔ Availability – Ensures data is accessible when needed. 
