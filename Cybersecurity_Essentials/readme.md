@@ -43,7 +43,8 @@ Usecase:
 7. Vulnerability Assessment
 8. Security Chatbots
 
-1. AI-Powered Threat Detection and Prevention Your Intelligent Security Sentinel)
+
+1.AI-Powered Threat Detection and Prevention Your Intelligent Security Sentinel)
 
 Behavioral Analytics and Anomaly Detection
 AI systems now continuously monitor network traffic, user behavior, and system logs to identify deviations from normal patterns that may indicate compromised credentials, insider threats, or advanced persistent threats (APTs).
