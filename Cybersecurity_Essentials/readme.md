@@ -30,3 +30,46 @@ A model that defines three core principles of information security.
 ✔ Confidentiality – Protects sensitive data from unauthorized access.  
 ✔ Integrity – Ensures data remains unaltered.  
 ✔ Availability – Ensures data is accessible when needed. 
+
+# AI in Cybersecurity
+Usecase:
+1. Threat Detection and Prevention
+2. Malware Detection
+3. Phishing Detection
+4. User Behavior Analytics (UBA)
+5. Automated Incident Response
+6. Predictive Analysis
+7. Vulnerability Assessment
+8. Security Chatbots
+
+AI in Threat Prediction:
+- Historical Data Analysis: Al identifies trends from past attacks to predict future vulnerabilities.
+- Proactive Defense: Al helps strengthen defenses before vulnerabilities are exploited.
+- Anticipating Attack Vectors: Al predicts likely attack methods, allowing targeted defenses.
+
+Al in Threat Detection:
+- Real-Time Monitoring: Al scans massive data streams continuously, identifying suspicious activity instantly.
+- Pattern Recognition: Al detects subtle deviations in user behavior to catch sophisticated attacks.
+- Advanced Detection: Al identifies a wide range of threats, including complex zero-day attacks.
+
+Al in Response:
+- Automated Responses: Al isolates threats and initiates real-time remediation without human input.
+- Instant Containment: Al blocks access or shuts down compromised systems to prevent further damage.
+- Learning and Adapting: Al continuously improves by learning from each attack, staying ahead of new threats.
+- Incident Management: Al assists security teams in analyzing attacks and preventing future incidents.
+
+AI Solutions:
+1.**Darktrace** — Al-Powered Threat Detection
+Challenge: Organizations face advanced cyber threats that traditional methods struggle to detect.
+Al Solution: Darktrace employs machine learning to establish a baseline of normal network behavior, allowing it to identify anomalies that indicate potential threats.
+Impact: Darktrace's Al detected a data exfiltration attempt by recognizing unusual data flow patterns, preventing a breach that traditional systems would have missed.
+
+2.**Cylance** — Al in Malware Detection
+Challenge: Traditional antivirus systems rely on constant updates and can miss new malware variants.
+Al Solution: Cylance's Al analyzes file behavior rather than signatures, predicting malicious intent based on patterns in massive datasets.
+Impact: When a new ransomware strain appeared, Cylance's Al immediately blocked it based on abnormal behavior, safeguarding the organization's data.
+
+
+
+
+
