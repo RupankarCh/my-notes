@@ -61,6 +61,7 @@ Al in Response:
 AI Solutions:
 
 1.**Darktrace** — Al-Powered Threat Detection
+
 Challenge: Organizations face advanced cyber threats that traditional methods struggle to detect.
 
 Al Solution: Darktrace employs machine learning to establish a baseline of normal network behavior, allowing it to identify anomalies that indicate potential threats.
@@ -68,6 +69,7 @@ Al Solution: Darktrace employs machine learning to establish a baseline of norma
 Impact: Darktrace's Al detected a data exfiltration attempt by recognizing unusual data flow patterns, preventing a breach that traditional systems would have missed.
 
 2.**Cylance** — Al in Malware Detection
+
 Challenge: Traditional antivirus systems rely on constant updates and can miss new malware variants.
 
 Al Solution: Cylance's Al analyzes file behavior rather than signatures, predicting malicious intent based on patterns in massive datasets.
