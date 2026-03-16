@@ -16,4 +16,5 @@ Earlier people used single server for a single service. **A virtual computer sys
     - Runs a software
     - Learn & test
     - E:g Oracle virtualbox. Vmware server
-! [Types of Hypervisor](Images/Hypervisor Types.png)
+  
+![Types of Hypervisor](Images/Hypervisor Types.png)
