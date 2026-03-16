@@ -17,4 +17,4 @@ Earlier people used single server for a single service. **A virtual computer sys
     - Learn & test
     - E:g Oracle virtualbox. Vmware server
   
-![Types of Hypervisor](Images/Hypervisor%20Types.png)
+![Types of Hypervisor]([Images/Hypervisor%20Types.png](https://github.com/RupankarCh/my-notes/blob/main/Images/Hypervisor%20Types.png?raw=true))
