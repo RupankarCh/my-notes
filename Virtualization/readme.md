@@ -18,3 +18,16 @@ Earlier people used single server for a single service. **A virtual computer sys
     - E:g Oracle virtualbox. Vmware server
   
 ![Types of Hypervisor](https://github.com/RupankarCh/my-notes/blob/main/Images/Hypervisor%20Types.png)
+
+# Vagrant:
+A tool used to create and manage reproducible development environments using virtual machines.
+
+* **Vagrant Box**: A pre-built base image of an operating system used by Vagrant to quickly create virtual machines.
+
+* **Vagrantfile**: A configuration file that defines how the Vagrant environment and virtual machine should be set up.
+
+* **Provisioning**: The process of automatically installing software and configuring the VM after it is created.
+
+**Commands**:
+vagrant init <vagrant box name> (To initializes the current directory as a Vagrant environment and creates a configuration file called a Vagrantfile.)
+vagrant up (To create, configure, and power on a virtual machine (VM) based on the settings specified in the Vagrantfile)
