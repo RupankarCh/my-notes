@@ -15,12 +15,12 @@ Debian Based: Ubuntu Server, Kali Linux (Debian based means The software packagi
 
 Some I mportant Directories
 - Home Directories: /root, /home/username
-- User Executable: /bin, /usr/bin, /usr/local/bin
-- System Executables: /sbin, /usr/sbin, /usr/local/sbin
-- Other Mountpoints: /media, /mnt
-- Configuration: /etc
-- Temporary Files: /tmp
-- Kernels and Bootloader: /boot
-- Server Data: /var, /srv
-- System Information: /proc, /sys
-- Shared Libraries: /lib, /usr/lib, /usr/local/lib
+- User Executable: /bin, /usr/bin, /usr/local/bin (Binaries or the user executable commands)
+- System Executables: /sbin, /usr/sbin, /usr/local/sbin (Binaries or the user executable commands)
+- Other Mountpoints: /media, /mnt (External Physical Media)
+- Configuration: /etc (System Config)
+- Temporary Files: /tmp (Temporary data which will get deleted when system boots)
+- Kernels and Bootloader: /boot 
+- Server Data: /var, /srv (Running server's data)
+- System Information: /proc, /sys (Current System Utilzation details)
+- Shared Libraries: /lib, /usr/lib, /usr/local/lib (Installed Programming Language Library)
