@@ -48,6 +48,7 @@ What is Cloud Computing?
 
 **Software as a Service (SaaS)**
 - Completed product that is run and managed by the service provider
+<img width="1653" height="1026" alt="Screenshot 2026-03-20 214919" src="https://github.com/user-attachments/assets/08f2873c-13fc-426e-8e5c-3c10985c8faa" />
 
 
 ## Pricing
