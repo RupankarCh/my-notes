@@ -55,3 +55,13 @@ What is Cloud Computing?
 - Storage: Pay for data stored in the Cloud
 - Data transfer OUT of the Cloud: is charged, Data transfer IN is free
 
+Terms AWS Regions: A region is a **cluster of Datacenters.**
+
+#Scinario Based Questions:
+How to Choose Best Region for your task?
+Based on Factors: 1.Compliance of the Country. 2.Proximity(Latency): if most users will be Indian then region my be India. 3.Available Service based on Regions(Not all regions have all services). 4.Pricing varies in each region.
+or you can check Regional Service Table: 
+
+Terms Availability zone: Each availability zone (AZ) is **one or more discrete data centers with redundant power,networking, and connectivity.** (each region has minimum 3 and maximum 6 AZ). They're separate from each other, so that they're isolated from disasters.
+
+
