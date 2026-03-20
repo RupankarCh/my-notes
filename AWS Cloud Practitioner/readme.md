@@ -31,4 +31,27 @@ What is Cloud Computing?
 
 ## Hybrid:
 - Keep some servers on premises and extend some capabilities to the Cloud.
+- Control over sensitive assets in your private infrastructure
+- Flexibility and cost-effectiveness of the public cloud.
+
+### Types of Cloud Computing:
+
+**Infrastructure as a Service (IaaS)**
+- Provide Building Blocks for cloud IT
+- **Provides networking, computers, data storage space**
+- Highest level of flexibility
+- Easy parallel with traditional on-premises IT and easily adaptable from a on premise to cloud
+
+**Platform as a Service (PaaS)**
+- **Removes the need for your organization to manage the underlying infrastructure**
+- Focus on the deployment and management of your applications
+
+**Software as a Service (SaaS)**
+- Completed product that is run and managed by the service provider
+
+
+## Pricing
+- Compute: Pay for compute time
+- Storage: Pay for data stored in the Cloud
+- Data transfer OUT of the Cloud: is charged, Data transfer IN is free
 
