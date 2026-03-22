@@ -1,6 +1,11 @@
 
 # Virtualization:
-Earlier people used single server for a single service. **A virtual computer system is known as a "virtual machine" (VM)**, a tightly **isolated software container with an operating system and application inside**. Each self-contained VM is completely independent. Putting multiple VMs on a single computer enables several operating systems and applications to run on just one physical server, or "host".
+
+Definition:
+**Virtualization is the technology that allows a single piece of hardware to run multiple operating systems simultaneously.**
+
+Description
+A Virtual Machine (VM) is a complete, **self-contained operating system (OS) and its applications running on top of a hypervisor**. The **hypervisor is a piece of software that creates and runs VMs**, abstracting the underlying hardware.
 
 # Terms
 - Host OS: The main OS my machine uses.
@@ -18,6 +23,13 @@ Earlier people used single server for a single service. **A virtual computer sys
     - E:g Oracle virtualbox. Vmware server
   
 ![Types of Hypervisor](https://github.com/RupankarCh/my-notes/blob/main/Images/Hypervisor%20Types.png)
+
+Containers:
+A Container is a lightweight, portable, and self-sufficient **executable package that contains everything needed to run a software application**: the code, runtime, libraries, and settings.
+
+- How They Differ from VMs: Unlike VMs, containers share the host machine's OS kernel. They don't have a separate guest OS. This makes them much smaller (megabytes), faster to start, and more resource-efficient.
+- The Analogy: Think of a VM as a full-sized house with its own foundation, plumbing, and electricity. A container is a portable apartment that shares the foundation and infrastructure of a large building, making it much easier to move and scale.
+- Docker: Docker is the most popular tool for **creating and managing containers**. It has become the de-facto standard in the industry.
 
 # Vagrant:
 A tool used to create and manage reproducible development environments using virtual machines.
