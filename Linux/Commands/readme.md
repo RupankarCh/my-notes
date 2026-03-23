@@ -1,18 +1,97 @@
-whoami
-pwd
-ls
-mkdir -p /path/ (To 
-cat <file/path>
-clear
-sudo -i (To switch from a vagrant user to a root user)
-cd (To return to the home directory)
-cd / (To go to the root directory of the OS)
-cd .. (To return to the upper directory)
 
+
+sudo -i (To switch from a vagrant user to a root user)
+
+# 🐚 Basic Shell Knowledge (Linux)
+
+## 🧑‍💻 Prompt Symbols
+
+```text
+#  → Superuser (root) prompt, means you are running commands as **root (administrator)** → full system access ⚠️
+$  → Normal user prompt, means you are a **regular user** → limited permissions
+~  → Refers to the current user's home directory
+```
+
+---
+
+## ▶️ Running Executables
+
+```bash
+./program_name   You need to use ./program_name to run an program existing on the same directory as you, If you downloaded that program in your current folder but didn’t move it to a PATH directory, typing `beef` alone will NOT work.
+```
+---
+
+## 🏃‍♂️ Directory Traversal
 Absolute Path:
 ls /usr/sbin/
+
 Relative Path:
 ls sbin/
+
+## 📦 to run without ./ (Why `./` is needed)
+
+```text
+move the program to PATH, the list of directories where the system looks for executable files "echo $PATH" to see the paths or move to the following directories
+python
+ls
+nano
+```
+
+### Common PATH directories:
+
+```text
+/usr/bin
+/bin
+/usr/local/bin
+```
+
+## 📁 File & Directory Basics
+
+```bash
+pwd        # Show current directory
+ls         # List files
+cd         # return to the home directory of the current user)
+cd /       # go to the root directory of the OS)
+cd ..      # return to the upper directory
+cd folder  # Change directory
+```
+
+---
+
+## 🔐 Permissions (Very Important)
+
+```bash
+ls -l
+```
+
+Example output:
+
+```text
+-rwxr-xr-x  1 user user  1234 file.sh
+```
+
+### Meaning:
+
+```text
+r = read
+w = write
+x = execute
+```
+
+### Make a file executable:
+
+```bash
+chmod +x file.sh
+```
+
+---
+
+## ⚡ Useful Tips
+
+```bash
+./script.sh     # Run script in current folder
+bash script.sh  # Run using bash interpreter
+```
 
 ---
 
@@ -98,3 +177,5 @@ history            # Show command history
 !!                 # Run last command again
 !n                 # Run command number n
 ```
+
+---
