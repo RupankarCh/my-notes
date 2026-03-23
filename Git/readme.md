@@ -57,7 +57,7 @@ Types of Git repositories
 2.Remote repository
 Hosted online on services like GitHub, GitLab, or Bitbucket, Used for collaboration and backup.
 
-**Commit** means making a change or modifying the current code
+**Commit** is a snapshot of a project at a specific time.
 
 ## Git Storage
 .git directory contains all the internal Git data — including your commits, branches, logs, config, and other versioning information.It’s essentially the database Git uses to track changes in your project.After this, you can start committing versions using git add and git commit.
