@@ -67,3 +67,45 @@ Terms Availability zone: Each availability zone (AZ) is **one or more discrete d
 
 <img width="1746" height="813" alt="Screenshot 2026-03-20 212330" src="https://github.com/user-attachments/assets/9e2f0c6e-1e57-4d12-a79e-a27b066327f9" />
 
+# IAM 
+Identity and Access Management, Global service
+
+## Users and Groups:
+- Root account created by default, shouldn't be used or shared
+- Users are people within your organization, and can be grouped
+- Groups only contain users, not other groups
+- Users don't have to belong to a group, and user can belong to multiple groups
+
+## IAM Permissions:
+- Users and Groups can be assigned a JSON documents called policies
+- These policies define the permissions of the users
+- In AWS you apply the least privilege principle: don't give more permissions than a user needs
+
+## Multi-Session Support
+It is used to **login to different accounts simultaniously on same window** of a browser.
+
+## IAM Policies
+- Inline Policies: Policies for a Single user.
+- Group Policies: Policies for users of a perticular group
+
+<img width="1233" height="593" alt="Screenshot 2026-03-23 225741" src="https://github.com/user-attachments/assets/494f9eab-47e6-4a89-88c7-c4f77c187e3f" />
+
+### IAM Password Policy (IAM>Account Settings>Edit Password Policy)
+- Strong passwords = higher security for your account
+- In AWS, you can setup a password policy:
+    - Set a minimum password length
+    - Require specific character types:
+      - including uppercase letters
+      - lowercase letters
+      - numbers
+      - non-alphanumeric characters
+    - Allow all IAM users to change their own passwords
+    - Require users to change their password after some time (password expiration)
+    - Prevent password re-use
+
+### Multi Factor Authentication MFA (IAM>Security Credentials)
+- Users who have root access to your account and can possibly change configurations or delete resources in your AWS account.To be safe you want to protect your Root Accounts and IAM users, Use MFA = password you know + security device you own. Main benefit of MFA: if a password is stolen or hacked. the account is not compromised
+- MFA Device Options in AWS: Virtual MFA Device(Authy,Google Authenticator), Universal 2nd Factor (U2F) Security Key, Hardware Key Fob MFA Device.
+
+
+  
