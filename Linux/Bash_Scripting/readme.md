@@ -16,7 +16,16 @@ Bash scripts often use **.sh**, but this is just a convention. What really matte
 
 ```text
 vim <file_name.sh>   #To start creating a script using vim editor
+bash </file.sh>      #To run the script
+$(command)           #It print the output of the command
 ```
 
+
+#Variables: 
+$ symbol is used as a variable for reading, variable don't require parenthesis to access them.
+$0 holds the name of the current shell
+$SHELL contains the path to our current interpreter.
+$USER will output current username ($USER is an environment variable which holds current user’s username)
+$HOME will show the home directory of the current user
 
 
