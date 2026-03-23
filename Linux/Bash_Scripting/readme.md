@@ -21,7 +21,7 @@ $(command)           #It print the output of the command
 ```
 
 
-#Variables: 
+# Variables: 
 
 $ symbol is used as a variable for reading, variable don't require parenthesis to access them.
 
