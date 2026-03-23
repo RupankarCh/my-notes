@@ -43,3 +43,5 @@ A tool used to create and manage reproducible development environments using vir
 **Commands**:
 vagrant init <vagrant box name> (To initializes the current directory as a Vagrant environment and creates a configuration file called a Vagrantfile.)
 vagrant up (To create, configure, and power on a virtual machine (VM) based on the settings specified in the Vagrantfile)
+vagrant ssh (To login the VM using the Vagrant user created automatically)
+
