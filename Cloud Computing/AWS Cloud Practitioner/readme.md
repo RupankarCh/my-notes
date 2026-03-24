@@ -70,6 +70,27 @@ Terms Availability zone: Each availability zone (AZ) is **one or more discrete d
 # IAM 
 Identity and Access Management, Global service
 
+## IAM Guidelines & Best Practices
+- Don't use the root account except for AWS account setup
+- One physical user = One AWS user
+- Assign users to groups and assign permissions to groups
+- Create a strong password policy
+- Use and enforce the use of Multi Factor Authentication (MFA)
+- Create and use Roles for giving permissions to AWS services
+- Use Access Keys for Programmatic Access (CLI / SDK)
+- Audit permissions of your account using IAM Credentials Report & IAM Access Advisor
+- Never Share IAM users and Access Advisors
+
+## Shared Responsibility Model for IAM
+AWS Responsible for:
+- Infrastructure (global network security)
+- Configuration and vulnerability analysis
+- Compliance validation
+User Responsible for:
+- Users, Groups, Roles, Policies management and monitoring
+- Enable MFA on all accounts
+- Rotate all your keys often Use IAM tools to apply appropriate permissions
+- Analyze access patterns & review ermissions
 ## Users and Groups:
 - Root account created by default, shouldn't be used or shared
 - Users are people within your organization, and can be grouped
@@ -90,7 +111,7 @@ It is used to **login to different accounts simultaniously on same window** of a
 
 <img width="1233" height="593" alt="Screenshot 2026-03-23 225741" src="https://github.com/user-attachments/assets/494f9eab-47e6-4a89-88c7-c4f77c187e3f" />
 
-### IAM Password Policy (IAM>Account Settings>Edit Password Policy)
+## IAM Password Policy (IAM>Account Settings>Edit Password Policy)
 - Strong passwords = higher security for your account
 - In AWS, you can setup a password policy:
     - Set a minimum password length
@@ -103,17 +124,17 @@ It is used to **login to different accounts simultaniously on same window** of a
     - Require users to change their password after some time (password expiration)
     - Prevent password re-use
 
-### Multi Factor Authentication MFA (IAM>Security Credentials)
+## Multi Factor Authentication MFA (IAM>Security Credentials)
 - Users who have root access to your account and can possibly change configurations or delete resources in your AWS account.To be safe you want to protect your Root Accounts and IAM users, Use MFA = password you know + security device you own. Main benefit of MFA: if a password is stolen or hacked. the account is not compromised
 - MFA Device Options in AWS: Virtual MFA Device(Authy,Google Authenticator), Universal 2nd Factor (U2F) Security Key, Hardware Key Fob MFA Device.
 
-# How can users access AWS ?
+### How can users access AWS ?
 - To access AWS, you have three options:
   - AWS Management Console (protected by password + MFA)
   - AWS Command Line Interface (CLI): protected by access keys
   - AWS Software Developer Kit (SDK) - for code: protected by access keys
 
-# Access Key Generation
+## Access Key Generation
 - Access Key ID = username
 - Secret Access Key = password
 
@@ -138,14 +159,43 @@ It is used to **login to different accounts simultaniously on same window** of a
   IAM>Users>username>Create Access Key
   
 ## Configuration of AWS CLI:
-    [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+[Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
   on CMD type 'aws configure'
   enter credentials
 
-# Commands AWS CLI
+## Commands AWS CLI
 ```
 aws --version     #To see the version of AWS CLI
 aws configure     #To configure AWS CLI
 aws iam list-users    #To list all users
+```
 
-#AWS CloudShell is a browser based terminal provided by AWS to 
+**AWS CloudShell** is a browser based terminal provided by AWS to manage AWS console
+
+## IAM Roles and Services: 
+- Some AWS service will need to perform actions on your behalf
+- To do so, we will assign permissions to AWS services with IAM Roles
+Common roles:
+- EC2 Instance Roles
+- Lambda Function Roles
+- Roles for CloudFormation
+
+## Creating a Role
+
+IAM> Roles> Create Role>AWS Service> Select Service> Next> Attach Policy> Next> Name Role> Create Role
+
+## IAM Security Tools
+- IAM Credentials Report (account-level)
+    - a report that lists all your account's users and the status of their various credentials
+
+- IAM Access Advisor (user-level)
+    - Access advisor shows the service permissions granted to a user and when those services were last accessed.
+    - You can use this information to revise your policies.
+
+## Creating a Credential Report
+
+IAM> Credential Report> Download Credential Report>
+
+## Creating IAM Access Advisor
+
+IAM> users> username> Access Advisor
