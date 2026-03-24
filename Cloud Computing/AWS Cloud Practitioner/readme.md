@@ -107,5 +107,45 @@ It is used to **login to different accounts simultaniously on same window** of a
 - Users who have root access to your account and can possibly change configurations or delete resources in your AWS account.To be safe you want to protect your Root Accounts and IAM users, Use MFA = password you know + security device you own. Main benefit of MFA: if a password is stolen or hacked. the account is not compromised
 - MFA Device Options in AWS: Virtual MFA Device(Authy,Google Authenticator), Universal 2nd Factor (U2F) Security Key, Hardware Key Fob MFA Device.
 
+# How can users access AWS ?
+- To access AWS, you have three options:
+  - AWS Management Console (protected by password + MFA)
+  - AWS Command Line Interface (CLI): protected by access keys
+  - AWS Software Developer Kit (SDK) - for code: protected by access keys
 
+# Access Key Generation
+- Access Key ID = username
+- Secret Access Key = password
+
+**AWS CLI** A tool that enables you to interact with AWS services using commands in your command-line shell
+- Direct access to the public APIs of AWS services
+- You can develop scripts to manage your resources
+- [AWS CLI](https://github.com/aws/aws-cli)
+
+**AWS SDK** AWS Software Development Kit (AWS SDK)
+- Language-specific APIs (set of libraries)
+- Enables you to access and manage AWS services programmatically
+- Embedded within your application
+- AWS CLI is built on AWS SDK for Python
+- It Supports
+  - JavaScript, Python, PHP, .NET, Ruby, Java, Go, Node.js, C++
+  - Mobile SDK (Android, iOS, ...)
+  - IoT Device SDK (Embeded C, Arduino, ...)
+ 
+
+
+## Create Access Keys:
+  IAM>Users>username>Create Access Key
   
+## Configuration of AWS CLI:
+    [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+  on CMD type 'aws configure'
+  enter credentials
+
+# Commands AWS CLI
+```
+aws --version     #To see the version of AWS CLI
+aws configure     #To configure AWS CLI
+aws iam list-users    #To list all users
+
+#AWS CloudShell is a browser based terminal provided by AWS to 
