@@ -248,6 +248,7 @@ echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
 [**EC2 Instance Types**](https://aws.amazon.com/ec2/instance-types/)
 [EC2 Instances Info](https://instances.vantage.sh/)
+
 **EC2 Naming Conventions**: m5.2xlarge
 m: Instance Class
 5: Generation (AWS improves them over time)
@@ -257,5 +258,3 @@ m: Instance Class
 - Compute Optimized-Compute Intensive Tasks (Starting with C mainly)
 - Memory Optimized-Fast Performance to handle Large Data Sets
 - Storage Optimized-Storage intensive tasks that require high, sequencial read write access to large data sets on local storage.
-- 
-- 
