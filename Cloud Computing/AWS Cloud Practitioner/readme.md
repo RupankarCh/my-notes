@@ -247,7 +247,8 @@ systemctl enable httpd
 echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
 [**EC2 Instance Types**](https://aws.amazon.com/ec2/instance-types/)
-[EC2 Instances Info](https://instances.vantage.sh/)
+
+[**EC2 Instances Info**](https://instances.vantage.sh/)
 
 **EC2 Naming Conventions**: m5.2xlarge
 m: Instance Class
