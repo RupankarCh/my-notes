@@ -56,6 +56,20 @@ What is Cloud Computing?
 - Storage: Pay for data stored in the Cloud
 - Data transfer OUT of the Cloud: is charged, Data transfer IN is free
 
+## Billing and Cost Management:
+### to allow it on IAM users:
+Billing and Cost Management> Account> IAM user and role access to Billing information (Edit)> Activate IAM Access Update.
+
+### Charges By Service:
+Billing and Cost Management> Bills> Charges By Service
+
+### See forecast wether you are going to pass the free tire:
+Billing and Cost Management> Free Tire
+
+### Budget: (Billing and Cost Management> Budget)
+It is set to get alert whenever you reach threashold budget.
+
+
 Terms AWS Regions: A region is a **cluster of Datacenters.**
 
 #Scinario Based Questions:
@@ -196,6 +210,52 @@ IAM> Roles> Create Role>AWS Service> Select Service> Next> Attach Policy> Next> 
 
 IAM> Credential Report> Download Credential Report>
 
+
 ## Creating IAM Access Advisor
 
 IAM> users> username> Access Advisor
+
+
+# EC2 (Elastic Compute Cloud/Infrastructure as a Service)
+It mainly consists in the capability of :
+• Renting virtual machines (EC2)
+• Storing data on virtual drives (EBS)
+• Distributing load across machines (ELB)
+• Scaling the services using an auto-scaling group (ASG)
+
+## EC2 User Data
+- It is possible to bootstrap our instances using an EC2 User data script.
+- **bootstrapping means launching commands when a machine starts**
+- That script is only run once at the instance first start
+- EC2 user data is used to automate boot tasks such as:
+ - Installing updates
+ - Installing software
+ - Downloading common files from the internet
+ - Anything you can think of The EC2 User Data Script runs with the root user
+### User Data
+Advanced Detail> User Data (When Creating a new instance)
+
+A Simple Bash Script to run a website on AWS's instance's public IP a static website using User Data
+```
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+```
+[**EC2 Instance Types**](https://aws.amazon.com/ec2/instance-types/)
+[EC2 Instances Info](https://instances.vantage.sh/)
+**EC2 Naming Conventions**: m5.2xlarge
+m: Instance Class
+5: Generation (AWS improves them over time)
+2xlarge: size within the instance class
+
+- General Purpose-Web Servers/Code Repositories
+- Compute Optimized-Compute Intensive Tasks (Starting with C mainly)
+- Memory Optimized-Fast Performance to handle Large Data Sets
+- Storage Optimized-Storage intensive tasks that require high, sequencial read write access to large data sets on local storage.
+- 
+- 
