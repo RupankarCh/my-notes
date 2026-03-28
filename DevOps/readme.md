@@ -1,5 +1,5 @@
 # Definition
-DevOps is combination of Development and Operations which helps to deliver applications and services at a high velocity.
+DevOps is combination of Development and Operations which helps to deliver applications and services at a high velocity. It’s a perspective that eliminates barriers between people, processes, and technologies so IT can deliver fast and compliant software to the customer.
 DevOps = Development (Dev) and Operations (Ops)
 - **Development** teams focus on writing code, building features, and creating software.
 - **Operations** teams are responsible for the infrastructure, maintaining systems, and ensuring reliability.
