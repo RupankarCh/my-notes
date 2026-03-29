@@ -93,7 +93,9 @@ Options:
 -p <port_number(8123:80)> (This option is used to map a port, first port number is outside the computer and 2nd one is inside the computer)
 
 ```
+
 # Wordpress Website Making:
+```
 mkdir wp_site
 cd wp_site/
 nano docker-compose.yml (nano gives us syntax highlighting)
@@ -105,7 +107,7 @@ nano docker-compose.yml (nano gives us syntax highlighting)
 	ports:
 	volumes:
    -   <directoryonourhostmachine>:<directory inside the container>
-
+```
    <img width="355" height="326" alt="image" src="https://github.com/user-attachments/assets/fda154bb-01ae-4da9-8b6e-572d4b73aa0c" />
 
 
