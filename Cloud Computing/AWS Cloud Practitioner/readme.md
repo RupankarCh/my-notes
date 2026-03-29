@@ -81,6 +81,18 @@ Terms Availability zone: Each availability zone (AZ) is **one or more discrete d
 
 <img width="1746" height="813" alt="Screenshot 2026-03-20 212330" src="https://github.com/user-attachments/assets/9e2f0c6e-1e57-4d12-a79e-a27b066327f9" />
 
+# Classic Ports to know
+- 22 = SSH (Secure Shell) - log into a Linux instance
+- 21 = FTP (File Transfer Protocol) — upload files into a file share
+- 22 = SFTP (Secure File Transfer Protocol) — upload files using SSH
+- 80 = HTTP — access unsecured websites
+- 443 = HTTPS — access secured websites
+- 3389 = RDP (Remote Desktop Protocol) — log into a Windows instance
+
+# Errors
+- If your application is not accessible (time out), then it's a security group issue
+- If your application gives a "connection refused" error, then it's an application error or it's not launched
+
 # IAM 
 Identity and Access Management, Global service
 
@@ -259,3 +271,19 @@ m: Instance Class
 - Compute Optimized-Compute Intensive Tasks (Starting with C mainly)
 - Memory Optimized-Fast Performance to handle Large Data Sets
 - Storage Optimized-Storage intensive tasks that require high, sequencial read write access to large data sets on local storage.
+
+## Security Groups:
+control how traffic is allowed into or out of our EC2 Instances.
+They regulate:
+- Access to Ports
+- Authorised IP ranges — IPv4 and IPv6
+- Control of inbound network (from other to the instance)
+- Control of outbound network (from the instance to other)
+- Can be attached to multiple instances
+
+###Good to Know Security Groups:
+- Locked down to a region /VPC combination
+- Does live "outside" the EC2 — if traffic is blocked the EC2 instance won't see it
+- It's good to maintain one separate security group for SSH access
+- All inbound traffic is blocked by default
+- All outbound traffic is authorised by default
