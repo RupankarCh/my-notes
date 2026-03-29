@@ -47,9 +47,13 @@ A central storage **where docker images are stored**.e.g., **Docker hub**.
 ```
 #docker –help (To see the help menu and see if docker is installed in your system)
 
+#apt install docker-compose (To install docker compose infrastructure)
+
 #apt install docker.io (To install docker)
 
-#search (To search for an image in Docker Hub)
+#docker search <container_name> (To search for an image in Docker Hub)
+
+#docker images (To check all docker images stored locally on your system)
 
 #pull (To download image from Docker Hub)
 
@@ -61,17 +65,19 @@ A central storage **where docker images are stored**.e.g., **Docker hub**.
 
 #exec (To execute command inside container)
 
-#docker images (To check all docker images stored locally on your system)
-
 #docker build -t <imagename> <path> (To create a new image)(If u r in the path of the Dockerfile then u can use dot(.))(U can directly run an image without the need of pulling it)
 
 #docker pull <Image_name> (To pull a image from docker hub)
 
 #docker run <image_name(hello-world)> (To run a docker image which is already downloaded locally, If not then this command will automatically contact the docker daemon,pull the image, docker daemon will create a new container from that image then the docker daemon streamed that output to the docker client which is sent to the terminal)
 
-#docker exec -it <container_name> /bin/bash (To run a command in a running container, container name can be found on “docker ps” command)
+#docker run nginx -d -p 8123:80 (To launch container from nginx image with forwarded port and in detach mode. On outside the container on any machine connected to the network on browser go to localhost:<portname_Outside_one(8123)> nginx web page will open to us and using curl http://localhost:<Listening_port(80)> On the container terminal will open that same web page and if you somehow installed a browser which is GUI the same command will show the same webpage to you.)
 
-#docker ps (To see history of started containers, we can add -a option shows all containers we ever launched, adding -q  shows only container IDs,  )
+
+#docker exec -it <container_name> /bin/bash (To  run a bash terminal in a running container, container name can be found on “docker ps” command)
+
+#docker ps (To to list all currently running Docker containers.)
+#docker ps -aq (To see history of started containers, we can add -a option shows all containers we ever launched, adding -q  shows only container IDs)
 
 #docker stop <CONTAINER_ID> (To stop a container u can see container ID using sudo docker ps command)
 
@@ -87,3 +93,31 @@ Options:
 -p <port_number(8123:80)> (This option is used to map a port, first port number is outside the computer and 2nd one is inside the computer)
 
 ```
+# Wordpress Website Making:
+mkdir wp_site
+cd wp_site/
+nano docker-compose.yml (nano gives us syntax highlighting)
+<projectname>:
+	image: <project_image>
+	links:
+	  -  <Other_project/container_name>:mysql
+	environment:
+	ports:
+	volumes:
+   -   <directoryonourhostmachine>:<directory inside the container>
+
+   <img width="355" height="326" alt="image" src="https://github.com/user-attachments/assets/fda154bb-01ae-4da9-8b6e-572d4b73aa0c" />
+
+
+#docker-compose up -d (To run a docker compose file in the background)(U can open it on browser “localhost:80”
+
+Images:
+wordpress:
+mariadb: 
+
+environment variable lets us define various parameters environment variables, logins, passwords and so on.
+
+
+YML extension is a type of text file format where we write instructions in the form key colon value, indentation is crucial.You can create multiple container inside an yml file.
+
+MariaDB:Using MYSQL takes subscription as it's owned by Oracle while MariaDB is an free and open source alternative 
