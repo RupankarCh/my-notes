@@ -1,3 +1,9 @@
+# Containerization Definition:
+It is a **lightweight virtualization method that packages applications and their dependencies into isolated units** called containers, enabling consistent and efficient deployment across environments.container is an application.
+
+## Benefits of Docker in compared to VM:
+Containerization using Docker offers significant advantages over traditional Virtual Machines (VMs) by being more **lightweight, faster, and efficient**. Unlike VMs that require a full guest operating system, **Docker containers share the host OS kernel**, allowing them to start in seconds and use far fewer system resources. This leads to higher density on a single machine and better performance. Docker also ensures consistency across development, testing, and production environments, making it ideal for CI/CD pipelines. Additionally, **containers are highly portable and easier to manage, enabling faster deployment and scaling of applications compared to VMs.**
+
 # Docker Definition:
 is an open-source platform that enables developers to **build, package, and run applications in containers**.
 
@@ -7,7 +13,7 @@ With Docker we **containerize OS, External Dependency, Application Dependency , 
 Docker file + Docker image = container
 
 ## Docker file:
-A Dockerfile is **a text file that contains a set of instructions used by Docker to automatically build a container image**.
+A Dockerfile is **a text file that contains a set of instructions used by Docker to automatically build a container image**. From that image we can run our containers.
 
 ## Docker Image:
 A Docker image is a **lightweight, standalone, and executable package that includes everything needed to run an application using Docker, such as code, runtime, libraries, and dependencies.**
@@ -21,3 +27,57 @@ We create a file where we need to list all the instructions on a dockerfile then
 
 ## Docker Repository/Registry: 
 A central storage **where docker images are stored**.e.g., **Docker hub**. 
+
+# Usage Tips:
+- You can add the current user to the docker group to avoid typing sudo prefix.
+- Images:(A binary/hepty file)
+- hello-world (It is hello world docker image)
+- docker/getting-started (It is Docker documentation image)
+- debian (It’s a type of dependency In the context of Docker and a Dockerfile, a Debian dependency typically refers to a software package or library that is required for your application to run, and it's installed from Debian's package repositories. U can think of it like an library to install tools and libraries)
+
+
+# Commands
+
+```
+#docker –help (To see the help menu and see if docker is installed in your system)
+
+#apt install docker.io (To install docker)
+
+#search (To search for an image in Docker Hub)
+
+#pull (To download image from Docker Hub)
+
+#rm (To remove container)
+
+#rmi (To remove image)
+
+#build (To build the image according to the instructions in the Dockerfile)
+
+#exec (To execute command inside container)
+
+#docker images (To check all docker images stored locally on your system)
+
+#docker build -t <imagename> <path> (To create a new image)(If u r in the path of the Dockerfile then u can use dot(.))(U can directly run an image without the need of pulling it)
+
+#docker pull <Image_name> (To pull a image from docker hub)
+
+#docker run <image_name(hello-world)> (To run a docker image which is already downloaded locally, If not then this command will automatically contact the docker daemon,pull the image, docker daemon will create a new container from that image then the docker daemon streamed that output to the docker client which is sent to the terminal)
+
+#docker exec -it <container_name> /bin/bash (To run a command in a running container, container name can be found on “docker ps” command)
+
+#docker ps (To see history of started containers, we can add -a option shows all containers we ever launched, adding -q  shows only container IDs,  )
+
+#docker stop <CONTAINER_ID> (To stop a container u can see container ID using sudo docker ps command)
+
+#docker rm <container_ID> (To delete a container from ps -a, A running container can’t be deleted, U can add -f to delete an container forcefully)
+
+#docker rm $(docker ps -aq) (To delete all containers, Here command in parenthesis outputs container IDs and it go thought deletion one by one)
+
+#docker rmi <Imagename/ImageID> (To delete an image)
+
+Options:
+-dp 80:80 (this option is used with the run command when we want to run a docker image on our local host like a website in a browser.In the background)
+-d (this option detach or run the process in the background)
+-p <port_number(8123:80)> (This option is used to map a port, first port number is outside the computer and 2nd one is inside the computer)
+
+```
