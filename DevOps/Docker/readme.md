@@ -34,6 +34,12 @@ A central storage **where docker images are stored**.e.g., **Docker hub**.
 - hello-world (It is hello world docker image)
 - docker/getting-started (It is Docker documentation image)
 - debian (It’s a type of dependency In the context of Docker and a Dockerfile, a Debian dependency typically refers to a software package or library that is required for your application to run, and it's installed from Debian's package repositories. U can think of it like an library to install tools and libraries)
+- FROM: Lets us create a new build stage from a base image(Imagine each image adds something new then base image is the Previous image)
+- RUN: Lets us execute commands before starting the container.(remember to add -y to those command which asks for permissions)
+- VOLUME: Lets us create a mount point where we can later connect a folder from the host machine.
+- EXPOSE <port_number>: Lets us determine which port to listen on for our application.
+- CMD: It lets specify default commands when the container starts to run.
+- ADD, COPY: These allows us to copy data from our main machine to our container.
 
 
 # Commands
