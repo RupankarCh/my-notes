@@ -272,7 +272,8 @@ m: Instance Class
 - Memory Optimized-Fast Performance to handle Large Data Sets
 - Storage Optimized-Storage intensive tasks that require high, sequencial read write access to large data sets on local storage.
 
-## Security Groups:
+## Security Groups: 
+EC2> Network Security> Secrity Groups
 control how traffic is allowed into or out of our EC2 Instances.
 They regulate:
 - Access to Ports
@@ -287,3 +288,5 @@ They regulate:
 - It's good to maintain one separate security group for SSH access
 - All inbound traffic is blocked by default
 - All outbound traffic is authorised by default
+- A new security group is created everytime we create a new EC2 Instance
+- 0.0.0.0/0 means anywhere 
