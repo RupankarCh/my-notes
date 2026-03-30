@@ -20,3 +20,7 @@ A cryptographic **protocol securing communication over the internet.** Successor
 ✔ Used for HTTPS (port 443), secure emails (IMAPS, SMTPS)
 ✔ Enhances security over older SSL versions
 ✔ Latest versions (TLS 1.2 & TLS 1.3) offer stronger encryption 
+
+
+# SSH
+It allows to connect to a remote machine all using the CLI.
