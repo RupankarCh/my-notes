@@ -329,5 +329,6 @@ There is no SSH key option because when we connect to it It's going to upload a 
 <img width="1022" height="479" alt="image" src="https://github.com/user-attachments/assets/ccb58285-b15f-4bbc-a91e-739e72dc57a8" />
 <img width="1717" height="919" alt="image" src="https://github.com/user-attachments/assets/908d607a-c270-4702-999a-7b1c3be9be06" />
 <img width="837" height="487" alt="image" src="https://github.com/user-attachments/assets/68d9d21b-2a50-420b-9d5d-301860c21afc" />
+<img width="1581" height="816" alt="image" src="https://github.com/user-attachments/assets/f21b289a-ad6c-44cb-aaea-d58b38de3d85" />
 
 
