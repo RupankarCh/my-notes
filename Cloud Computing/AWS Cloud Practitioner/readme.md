@@ -290,3 +290,14 @@ They regulate:
 - All outbound traffic is authorised by default
 - A new security group is created everytime we create a new EC2 Instance
 - 0.0.0.0/0 means anywhere 
+
+
+## SSH (Secure Shell):
+It allows you to control a remote machine all using the command line.
+
+Usage:
+- Make sure the instance has SSH access (port 22) enabled on Security Groups.
+- Remove if there is any space in the .pem file 
+- Open the Terminal on the folder/directory where the .pem file is located
+- chmod 0400 <file.pem>
+- ssh -i <file.pem > ec2-user@<Public_IPoftheInstance>
