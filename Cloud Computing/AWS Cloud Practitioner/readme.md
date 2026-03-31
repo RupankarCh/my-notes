@@ -230,11 +230,11 @@ IAM> users> username> Access Advisor
 
 # EC2 (Elastic Compute Cloud/Infrastructure as a Service)
 It mainly consists in the capability of :
-• Renting virtual machines (EC2)
-• Storing data on virtual drives (EBS)
-• Distributing load across machines (ELB)
-• Scaling the services using an auto-scaling group (ASG)
-• you have stopped your EC2 instance and then started it again today. When you do so, **the public IP of your EC2 instance will change**. Therefore, in your command, or Putty configuration, please make sure to edit and save the new public IP.
+- Renting virtual machines (EC2)
+- Storing data on virtual drives (EBS)
+- Distributing load across machines (ELB)
+- Scaling the services using an auto-scaling group (ASG)
+- you have stopped your EC2 instance and then started it again today. When you do so, **the public IP of your EC2 instance will change**. Therefore, in your command, or Putty configuration, please make sure to edit and save the new public IP.
 
 ## EC2 User Data
 - It is possible to bootstrap our instances using an EC2 User data script.
