@@ -207,8 +207,10 @@ Common roles:
 - Roles for CloudFormation
 
 ## Creating a Role
-
 IAM> Roles> Create Role>AWS Service> Select Service> Next> Attach Policy> Next> Name Role> Create Role
+
+## Attaching a Role to a Instance
+Select the instance Actions> Security> Modify> Select the Role and Update IAM role
 
 ## IAM Security Tools
 - IAM Credentials Report (account-level)
@@ -294,7 +296,7 @@ They regulate:
 - 0.0.0.0/0 means anywhere 
 
 
-## SSH (Secure Shell):
+## Connecting to Instance SSH (Secure Shell):
 
 ### On Linux or Mac
 It allows you to control a remote machine all using the command line.
@@ -320,3 +322,7 @@ Save the session
 ### On Windows <11 
 ssh -i .\file.pem <hostname@Public_IPoftheInstance>  
 If any permission error then change the permission of the file on properties.
+
+### EC2 Instance Connect:
+There is no SSH key option because when we connect to it It's going to upload a temporary SSH key and establish a connection this way.
+
