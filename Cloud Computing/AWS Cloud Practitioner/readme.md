@@ -293,6 +293,8 @@ They regulate:
 
 
 ## SSH (Secure Shell):
+
+### On Linux or Mac
 It allows you to control a remote machine all using the command line.
 
 Usage:
@@ -300,4 +302,19 @@ Usage:
 - Remove if there is any space in the .pem file 
 - Open the Terminal on the folder/directory where the .pem file is located
 - chmod 0400 <file.pem>
-- ssh -i <file.pem > ec2-user@<Public_IPoftheInstance>
+- ssh -i <file.pem > <hostname@Public_IPoftheInstance>
+
+### On Windows >10 (PuTTY)
+
+#### PuTTY Key Generation:
+Open PuTTY gen load the .pem file> Save the Private Key> Save Key without Passphrase> Name It and Save.
+
+#### PuTTY login
+<hostname@Public_IPoftheInstance>
+Name a Session 
+SSH> Auth> Credentials> Upload the .ppk file under (Private key file for authentication)
+Save the session 
+
+### On Windows <11 
+ssh -i .\file.pem <hostname@Public_IPoftheInstance>  
+If any permission error then change the permission of the file on properties.
