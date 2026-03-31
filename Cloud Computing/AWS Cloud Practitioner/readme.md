@@ -234,6 +234,7 @@ It mainly consists in the capability of :
 • Storing data on virtual drives (EBS)
 • Distributing load across machines (ELB)
 • Scaling the services using an auto-scaling group (ASG)
+• you have stopped your EC2 instance and then started it again today. When you do so, **the public IP of your EC2 instance will change**. Therefore, in your command, or Putty configuration, please make sure to edit and save the new public IP.
 
 ## EC2 User Data
 - It is possible to bootstrap our instances using an EC2 User data script.
@@ -244,6 +245,7 @@ It mainly consists in the capability of :
  - Installing software
  - Downloading common files from the internet
  - Anything you can think of The EC2 User Data Script runs with the root user
+
 ### User Data
 Advanced Detail> User Data (When Creating a new instance)
 
