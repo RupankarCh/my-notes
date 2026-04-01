@@ -331,4 +331,34 @@ There is no SSH key option because when we connect to it It's going to upload a 
 <img width="837" height="487" alt="image" src="https://github.com/user-attachments/assets/68d9d21b-2a50-420b-9d5d-301860c21afc" />
 <img width="1581" height="816" alt="image" src="https://github.com/user-attachments/assets/f21b289a-ad6c-44cb-aaea-d58b38de3d85" />
 
+## EBS(Elastic Block Store) Volumes
+- A **network drive you can attach to your instances while they run**. **Instances> Storage**
+- For a Instance By Default the root EBS volume is deleted and by default any other attached volume is not deleted after the instance is deleted they persist Data even after termination.
+- They can only be **mounted to one instances at a time** except io1 and io2 volume types: this is called the EBS Multi-Attach feature. but **two EBS volumes can be attached to one instance simultaniously**. It is also possible to create a EBS Volume and keep it unattached to any instance.
+- They are bound to a specific AZ (To move a volume accross zones you need to snapshot it)
+- It has a **scalable** capacity
 
+### Creating a Volume and Attach to a Instance:
+EBS> Volumes> Create Volume 
+Select the volume> Actions> Attach a Volume> Select The Instance> Attach Volume
+
+### EBS Backups:
+- Makes a **backup of your EBS volume** a point in time
+- Not Necessery to detach volume when doing snapshot but it is recomended
+- You can copy snapshots accross AZ or regeions
+
+### EBS Snapshot Features:
+- EBS snapshot archive: to store a snapshot at cheaper cost, but takes 24-72 Hours to restore those snapshots
+- EBS Recycle Bin:  You can configure recycle bin to restore deleting snapshots
+
+### Creating a Snapshot and Archiving It:
+Select> Actions> Create snapshot
+Select the snapshot> Actions> Archive the snapshot> 
+
+### Retrieving a Snapshot and Creating a Volume from a snapshot:
+Select the snapshot> Right Click> Copy snapshot> Select Regeion> Copy snapshot
+Select the snapshot> Actions> Create volume from snapshot
+
+### Recycle Bin Config and Recover:
+Snapshots> Recycle Bin> Create Retention Rule> Name it> Select Resource Type (EBS Snapshot)> Create Retention Rule.
+Select The resource> Recover Resources
