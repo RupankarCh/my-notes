@@ -231,6 +231,12 @@ IAM> users> username> Access Advisor
 
 
 # EC2 (Elastic Compute Cloud/Infrastructure as a Service)
+This is the **core compute service** on AWS. When you launch an EC2 instance, you follow a specific process:
+
+- Choose an AMI (Amazon Machine Image): This is a **pre-configured template** for your instance, including the **operating system** (e.g., Linux, Windows) and any **pre-installed software**.
+- Select an Instance Type: This determines the virtual hardware of your instance, such as the number of vCPUs and the amount of RAM. AWS has a wide variety of instance types optimized for different workloads (e.g., general purpose, compute-optimized, memory-optimized).
+- Configure Security and Networking: You must configure a **security group**, which acts as a virtual firewall, defining which inbound and outbound network traffic is allowed. You also manage a key pair for secure SSH access to your Linux instances.
+
 It mainly consists in the capability of :
 - Renting virtual machines (EC2)
 - Storing data on virtual drives (EBS)
