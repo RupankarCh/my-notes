@@ -54,6 +54,9 @@ What is Cloud Computing?
 - Completed product that is run and managed by the service provider
 <img width="1653" height="1026" alt="Screenshot 2026-03-20 214919" src="https://github.com/user-attachments/assets/08f2873c-13fc-426e-8e5c-3c10985c8faa" />
 
+<img width="1115" height="279" alt="image" src="https://github.com/user-attachments/assets/7d1da321-70ab-40c2-9718-a5a1f9902364" />
+<img width="947" height="610" alt="image" src="https://github.com/user-attachments/assets/65d11996-122b-438d-be90-d1fed7229845" />
+
 
 ## Pricing
 - Compute: Pay for compute time
