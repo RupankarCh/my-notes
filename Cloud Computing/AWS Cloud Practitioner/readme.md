@@ -22,7 +22,7 @@ What is Cloud Computing?
 - Complete control
 - Security for sensitive applications
 - Meet specific business needs
-- e.g., rackspace
+- e.g., rackspace, bank system
 
 
 ## Public Cloud:
@@ -30,9 +30,13 @@ What is Cloud Computing?
 - e.g., GCP, AWS, Azure
 
 ## Hybrid:
+- Public + Private + On Premises
 - Keep some servers on premises and extend some capabilities to the Cloud.
 - Control over sensitive assets in your private infrastructure
 - Flexibility and cost-effectiveness of the public cloud.
+
+<img width="1136" height="334" alt="image" src="https://github.com/user-attachments/assets/86ac24fd-c8e9-4f96-9353-99106206cda1" />
+
 
 ### Types of Cloud Computing:
 
