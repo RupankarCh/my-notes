@@ -375,3 +375,21 @@ Select the snapshot> Actions> Create volume from snapshot
 ### Recycle Bin Config and Recover:
 Snapshots> Recycle Bin> Create Retention Rule> Name it> Select Resource Type (EBS Snapshot)> Create Retention Rule.
 Select The resource> Recover Resources
+
+## AMI (Amazon Machine Image)
+AMIs are customization of EC2 Instance where you can add your own software, configuration, OS, Monitoring. It will boot faster because all your software in pre packaged.
+- AMIs are built for a specific regeion, later it can be copied accross regions.
+
+### Types AMI EC2 Instances:
+- A Public AMI: AWS provided
+- Your customized AMI: You make and maintain them yourself
+- An AWS Marketplace AMI: An AMI which is made by someone else. (It can also be sold)
+
+### AMI Setup Process(From an EC2 Instance):
+- Start an EC2 instance and customize it.
+- Stop the Instance (for data intefrity)
+- Build an AMI (this will also create EBS snapshot)
+-     Right Click the on the Instance> Image and Template> Create Image
+-     Name It> Create Image 
+- We can launch instances from other AMI
+
