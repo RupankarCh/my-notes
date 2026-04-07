@@ -386,10 +386,54 @@ AMIs are customization of EC2 Instance where you can add your own software, conf
 - An AWS Marketplace AMI: An AMI which is made by someone else. (It can also be sold)
 
 ### AMI Setup Process(From an EC2 Instance):
-- Start an EC2 instance and customize it.
-- Stop the Instance (for data intefrity)
-- Build an AMI (this will also create EBS snapshot)
--     Right Click the on the Instance> Image and Template> Create Image
--     Name It> Create Image 
-- We can launch instances from other AMI
+1. Start an EC2 instance and customize it.
+2. Stop the Instance (for data intefrity)
+3. Build an AMI (this will also create EBS snapshot)
+  - Right Click the on the Instance> Image and Template> Create Image
+  - Name It> Create Image 
+4. We can launch instances from other AMI
+
+## EC2 Image Builder:
+Automate the creation of VM or container Images.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/59de08f0-ce15-43b0-8494-1646503a7c31" />
+
+
+## EC2 Instance Store: 
+A type of temporary storage that comes physically attached to the host machine running your EC2 instance.
+
+### Use Case:
+⚡ Temporary high-speed storage – For cache and short-term data
+🧠 Big data processing – Fast handling of large datasets (Hadoop, Spark)
+🔁 Scratch space – Working area for tasks like rendering or compiling
+🚀 High I/O workloads – Applications needing very fast read/write speeds
+
+
+| Feature     | Instance Store   | EBS           |
+| ----------- | ---------------- | ------------- |
+| Speed       | Very Fast ⚡      | Fast          |
+| Persistence | ❌ Temporary      | ✅ Permanent   |
+| Use Case    | Cache, temp data | OS, databases |
+
+## EFS (Elastic File System):
+- It is managed NFS (Network File System) that can be mounted on 100s of EC2 instances.
+- It can only be used with Linux EC2 instances and can be attached multiple instanced situated in myltiple Availability Zone.
+- Highly Available, Scalable, Expensive, Pay per use, No capacity planning.
+
+| Feature        | EBS                                       | EFS                                       |
+| -------------- | ----------------------------------------- | ----------------------------------------- |
+| 🧩 Type        | Block storage                             | File storage                              |
+| 🔗 Attachment  | Attached to **one EC2 instance** (mostly) | Can be used by **multiple EC2 instances** |
+| 📁 Access      | Like a hard disk (you format it)          | Like a shared network folder              |
+| ⚡ Performance  | Very high (low latency)                   | Scales automatically                      |
+| 📈 Scalability | Manual resizing                           | Auto scaling                              |
+| 🌐 Use Case    | OS, databases                             | Shared files, web apps                    |
+| 💾 Persistence | Permanent                                 | Permanent                                 |
+
+### EFS Infrequent Access (EFS-IA):
+- Storage class that is cost optimized for files that are not accessed everyday. upto 92% lower cost compared to other EFS standard.
+- If EFS-IA is enabled it will automatically move data to it based on access on last time they were accessed and Lifecycle policy.
+
+
+
+
 
