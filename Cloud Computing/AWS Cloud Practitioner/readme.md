@@ -458,7 +458,6 @@ FSx for NetApp ONTAP
 
 
 ## EC2 Summary:
-- EC2 Instance Storage - Summary
 - EBS volumes:
     - network drives attached to one EC2 instance at a time
     - Mapped to an Availability Zones
