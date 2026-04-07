@@ -434,6 +434,43 @@ A type of temporary storage that comes physically attached to the host machine r
 - If EFS-IA is enabled it will automatically move data to it based on access on last time they were accessed and Lifecycle policy.
 
 
+## EC2 Shared Responsibility Model:
+
+AWS Manages:
+- Infrastructure
+- Replication of data for EFS drives and EBS volumes.
+- Replacing faulty hardware
+- Ensureing their employees can't access your data.
+
+You Manage:
+- Setting for Backup/Snapshot procedues.
+- Setting up data encryption.
+- Responsibility of any data on drives.
+- Understanding the risks of using EC2 Instance store.
+
+## Amazon FSx:
+Launch 3rd Party high performance file system.
+Fully managed service.
+Types:
+FSx for Lustre (Linux + Cluster= Luster): Fully managed, high performance, scalable, low latency, fast used for High Performance Computing (HPC), used for ML, Analytics, Video Processing...
+FSx for Windows file server: Fully managed, highly reliable, shared windows native shared file system, built on Windows file server.It supports all windows native protocols and Active Directory integrated.
+FSx for NetApp ONTAP
 
 
+## EC2 Summary:
+- EC2 Instance Storage - Summary
+- EBS volumes:
+    - network drives attached to one EC2 instance at a time
+    - Mapped to an Availability Zones
+    - Can use EBS Snapshots for backups / transferring EBS volumes across AZ
 
+- AMI: create ready-to-use EC2 instances with our customizations
+- EC2 Image Builder: automatically build, test and distribute AMIS
+- EC2 Instance Store:
+    - High performance hardware disk attached to our EC2 instance
+    - Lost if our instance is stopped / terminated
+
+- EFS: network file system, can be attached to 100s of instances in a region
+- EFS-IA: cost-optimized storage class for infrequent accessed files
+- FSx for Windows: Network File System for Windows servers
+- FSx for Lustre: High Performance Computing Linux file system
