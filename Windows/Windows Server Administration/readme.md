@@ -61,10 +61,10 @@ www.example.com Domain name
 
 
 
-## Name Resolution Step-by-step process: (recursive resolution, **Without Forwarders and without configuring local zones**)
+## **Name Resolution Step-by-step process**: (recursive resolution, **Without Forwarders and without configuring local zones**)
 Even if your **Preferred DNS = 127.0.0.1**, your DNS server can still resolve internet names using Root Hints
 
-**1. You type google.com
+1. You type google.com
 2. Your PC asks DNS server (127.0.0.1)
 3. DNS checks local zones → ❌ not found
 4. DNS checks cache → ❌ not found (you missed this step)
@@ -74,5 +74,5 @@ Even if your **Preferred DNS = 127.0.0.1**, your DNS server can still resolve in
 8. Queries .com TLD server
 9. Gets referral to Google’s authoritative DNS server
 10. Queries Google’s DNS server
-11. Gets IP address → returns to your PC**
+11. Gets IP address → returns to your PC
 
