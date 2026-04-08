@@ -59,3 +59,20 @@ www.example.com Domain name
 - example → Second-Level Domain 
 - www → Subdomain (For Web)/ Child Domain (For Active Directory environment)
 
+
+
+## Name Resolution Step-by-step process: (recursive resolution, **Without Forwarders and without configuring local zones**)
+Even if your **Preferred DNS = 127.0.0.1**, your DNS server can still resolve internet names using Root Hints
+
+**1. You type google.com
+2. Your PC asks DNS server (127.0.0.1)
+3. DNS checks local zones → ❌ not found
+4. DNS checks cache → ❌ not found (you missed this step)
+5. DNS checks forwarders (if configured)
+6. If no forwarder / no response → uses Root Hints
+7. Contacts root server → gets referral to .com TLD
+8. Queries .com TLD server
+9. Gets referral to Google’s authoritative DNS server
+10. Queries Google’s DNS server
+11. Gets IP address → returns to your PC**
+
