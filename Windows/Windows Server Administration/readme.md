@@ -56,8 +56,8 @@ organized structure of all domain names
 www.example.com Domain name
 - . → Root
 - com → TLD (2 Types Basic and Country code)
-- example → Second-Level Domain 
-- www → Subdomain (For Web)/ Child Domain (For Active Directory environment)
+- example → **Second-Level Domain **
+- www → **Subdomain (For Web)/ Child Domain (For Active Directory environment)**
 
 
 
