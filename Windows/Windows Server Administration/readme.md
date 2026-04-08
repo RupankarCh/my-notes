@@ -42,7 +42,20 @@ The process of translating  human-friendly hostnames into IP addresses and vise 
 
 3. **NetBIOS (Protocol):** Lets Windows computers find each other by name, Works mainly inside a local network, Uses broadcasts like  “Who is PC-01?”. **NetBIOS name refers to Device Name on This PC> Properties**.
 4. **WINS (Windows Internet Name Service):** 
- - A server that **stores NetBIOS names and IP addresses**
+ - legacy name resolution service.
+ - only for NetBIOS so other OSs which don't use NetBIOS can’t use WINS.
+ - A server that **stores NetBIOS names and IP addresses**, Clients directly query the WINS server, The WINS server responds with the IP address 
  - WINS **uses unicast communication because broadcast can’t cross routers**, Works across different networks/subnets
- - Clients directly query the WINS server, The WINS server responds with the IP address
+ - still supported in modern Windows Server versions for backward compatibility.
+ - replication process synchronizes the databases across all WINS servers in the network,  In larger networks with multiple WINS servers.
+
+<img width="609" height="309" alt="image" src="https://github.com/user-attachments/assets/5570167b-1909-4223-9bd8-84047259d4c0" />
+
+## DNS Name Space: 
+organized structure of all domain names
+www.example.com Domain name
+- . → Root
+- com → TLD (2 Types Basic and Country code)
+- example → Second-Level Domain 
+- www → Subdomain (For Web)/ Child Domain (For Active Directory environment)
 
