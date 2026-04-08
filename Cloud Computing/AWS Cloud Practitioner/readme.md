@@ -377,7 +377,7 @@ Snapshots> Recycle Bin> Create Retention Rule> Name it> Select Resource Type (EB
 Select The resource> Recover Resources
 
 ## AMI (Amazon Machine Image)
-AMIs are customization of EC2 Instance where you can add your own software, configuration, OS, Monitoring. It will boot faster because all your software in pre packaged.
+Amazon Machine Images (AMIs) in Amazon EC2 are **pre-configured, customizable templates** that include the** operating system, software, and settings**. They allow users to quickly launch instances without manual installation, ensuring faster boot time and consistent environments.
 - AMIs are built for a specific regeion, later it can be copied accross regions.
 
 ### Types AMI EC2 Instances:
