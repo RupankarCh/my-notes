@@ -51,15 +51,6 @@ The process of translating  human-friendly hostnames into IP addresses and vise 
 
 <img width="609" height="309" alt="image" src="https://github.com/user-attachments/assets/5570167b-1909-4223-9bd8-84047259d4c0" />
 
-## DNS Name Space: 
-organized structure of all domain names
-www.example.com Domain name
-- . → Root
-- com → TLD (2 Types Basic and Country code)
-- example → **Second-Level Domain **
-- www → **Subdomain (For Web)/ Child Domain (For Active Directory environment)**
-
-
 
 ## **Name Resolution Step-by-step process**: (recursive resolution, **Without Forwarders and without configuring local zones**)
 Even if your **Preferred DNS = 127.0.0.1**, your DNS server can still resolve internet names using Root Hints
@@ -75,4 +66,81 @@ Even if your **Preferred DNS = 127.0.0.1**, your DNS server can still resolve in
 9. Gets referral to Google’s authoritative DNS server
 10. Queries Google’s DNS server
 11. Gets IP address → returns to your PC
+
+## Advantages of DNS Server:
+- Single point of failure
+- Additional DNS servers can be added as needed to handle increased query loads and accommodate  network expansion.
+- Caching mechanisms within DNS servers help speed up resolution by storing  previously resolved queries locally. 
+- Distributing client requests across multiple servers or providing failover mechanisms in case of  server failures.
+
+## DNS Name Space: 
+organized structure of all domain names
+www.example.com Domain name
+- . → Root
+- com → TLD (2 Types Basic and Country code)
+- example → **Second-Level Domain **
+- www → **Subdomain (For Web)/ Child Domain (For Active Directory environment)**
+
+## DNS Zone:
+**A portion of the domain that a DNS server is responsible for managing. Zone name and Domain name are mostly same**
+
+1. A DNS zone is a **portion of the DNS namespace managed by a specific authority**
+2. It defines the administrative boundary of control in DNS
+3. **Each zone contains DNS records for domains and subdomains**
+4. DNS zones are organized in a hierarchical tree structure
+5. **A zone can contain one domain or multiple subdomains**
+6. Authority over a zone is delegated to an organization or individual
+7. **Subdomains can be kept in the same zone or delegated to separate zones**
+8. Delegation requires NS records pointing to authoritative servers
+9. Each zone has an SOA record defining its core settings
+10. Zones allow distributed management of the global DNS system
+
+**Dynamic Updates: DNS records are automatically updated without manual changes**
+**DNS Delegation: Giving control of a subdomain to another DNS server**
+**DNS Zone File: A file that stores all DNS records (A, MX, NS, etc.) for that zone**
+
+## DNS Zone Types
+1. Primary Zone
+👉 **Main (original) copy of zone data, First and Single in a zone**
+✔ Stored in file or AD DS
+✔ Fully **editable**
+When the zone is stored in a file, by default the primary zone file is named zone_name.dns and it is located in the %windir%\System32\Dns folder on the server. 
+
+3. Secondary Zone
+👉 Read-only copy of primary zone
+✔ Data comes from another DNS server
+✔ Used for backup & load sharing, Multiple in a zone
+❌ Cannot be edited
+This DNS server must have network access to the remote DNS server that supplies this server with updated information about the zone.
+
+5. Stub Zone
+👉 Contains SOA, NS, A record
+✔ Helps locate authoritative DNS servers
+✔ Not full data, only references
+ This DNS server must have network access to the remote DNS server to copy the authoritative name server information about the zone.
+
+7. Active Directory Integrated Zone
+👉 Stored in Active Directory (not in file)
+✔ Data replicates automatically
+✔ More secure
+✔ Works like a primary zone, uses the security feature of active directory.
+
+## DNS Resource Records:
+**Zone DNS database is a collection of resource records** and each of the records provides information about a specific object. 
+
+| Record    | Full Form          | Main Purpose             | Easy Meaning                |
+| --------- | ------------------ | ------------------------ | --------------------------- |
+| **A**     | Address            | Maps domain → IPv4       | 🌐 Name → IPv4              |
+| **AAAA**  | IPv6 Address       | Maps domain → IPv6       | 🌐 Name → IPv6              |
+| **CNAME** | Canonical Name     | Alias to another domain  | 🔁 Domain → Domain          |
+| **MX**    | Mail Exchanger     | Mail server for domain   | 📧 Email routing            |
+| **NS**    | Name Server        | Authoritative DNS server | 🧭 Who manages domain       |
+| **PTR**   | Pointer            | IP → Domain              | 🔄 Reverse lookup           |
+| **SOA**   | Start of Authority | Zone’s main info         | 🏢 Zone identity            |
+| **TXT**   | Text               | Stores text data         | 📝 Info (SPF, verification) |
+| **SRV**   | Service Record     | Service + port info      | ⚙️ Service locator          |
+| **HINFO** | Host Info          | CPU & OS details         | 💻 System info              |
+| **ISDN**  | ISDN Address       | Telephone-based address  | ☎️ Rare/legacy              |
+
+
 
