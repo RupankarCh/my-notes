@@ -32,7 +32,7 @@ Server: a computer or system that provides resources, data, services, or program
 
 
 # Name Resolution: 
-The process of translating  human-friendly hostnames into IP addresses that computers and other network devices can  understand.
+The process of translating  human-friendly hostnames into IP addresses and vise versa,so that computers and other network devices can  understand.
 
 1. **Host File:** Name Resolution begins at the local level with the hosts file, situated in **%SystemRoot%\system32\drivers\etc**. It contains mappings of IP  addresses to hostnames. Administrators can manually edit this file to add static mappings.
 2. **DNS (Domain Name System):** The primary name resolution service used vy microsoft server environments. DNS operates based on a distributed database  system where various DNS servers store information about different domains.
