@@ -1,0 +1,30 @@
+# OS:
+- Base(Desktop Experience): GUI
+- Core: CLI
+- Standard Edition: normal gaming PC
+- Datacenter Edition: supercomputer running hundreds of systems. It offers unlimited virtualization(You can create as many virtual machines as your hardware can handle). It includes features like Shielded VMs (It protect VMs even from the system administrator It Encrypts VM data, Preventing copying or tampering, Only trusted servers can run them, Protect against insider attacks EVAL(Evaluation): This is a trial version that is free to use for 180 days for testing and development before it must be activated with a full license.
+- 14393: The OS Build Number. This identifies the specific build of the operating system.
+
+Workgroup: Windows based peer- to-peer  computer network
+Domain: a client/server network in which the security and resource management is  centralized. 
+<img width="443" height="599" alt="image" src="https://github.com/user-attachments/assets/8f2c779b-2845-45e5-b9a3-d77b14da031a" />
+
+Server: a computer or system that provides resources, data, services, or programs to  other computers, known as clients, over a network.
+<img width="442" height="498" alt="image" src="https://github.com/user-attachments/assets/78afe1e3-c476-4d44-8283-d9d44bfccb2a" />
+
+# History
+| Version                 | Key Features (Keywords)                                                  | Easy Meaning                                           |
+| ----------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------ |
+| **Windows Server 2003** | AD Improvements, IIS 6.0, Firewall, Group Policy, Backup                 | 🔐 Security started improving + basic web & AD support |
+| **Windows Server 2008** | Server Manager, IIS 7.0, Hyper-V, PowerShell, RODC, NAP                  | ⚙️ Automation + Virtualization begins                  |
+| **Windows Server 2012** | Advanced AD (ADDS, ADCS), BitLocker, IPAM, NIC Teaming, Hyper-V improved | 🚀 Enterprise features + better networking & security  |
+| **Windows Server 2016** | Nano Server, Containers, ReFS, Shielded VMs, Nested Virtualization       | ☁️ Cloud-ready + lightweight + strong security         |
+| **Windows Server 2019** | Windows Admin Center, ATP Security, Kubernetes, SDN, Storage Services    | 🤖 Hybrid cloud + AI insights + modern security        |
+
+| Version  | Processor        | RAM (Min → Rec) | Disk (Min → Rec) | Display  |
+| -------- | ---------------- | --------------- | ---------------- | -------- |
+| **2008** | 1.4 GHz → 2+ GHz | 512 MB → 2 GB+  | 10 GB → 40 GB+   | 800×600  |
+| **2012** | 1.4 GHz → 2+ GHz | 512 MB → 16 GB+ | 32 GB → 256 GB+  | 800×600  |
+| **2016** | 1.4 GHz → 2+ GHz | 512 MB → 2 GB+  | 32 GB → 40 GB+   | 1024×768 |
+| **2019** | 1.4 GHz → 2+ GHz | 2 GB → 8 GB+    | 1.5 GB → 2 GB+*  | 1024×768 |
+
