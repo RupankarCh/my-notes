@@ -11,7 +11,7 @@ Tricking users into clicking something harmful without their knowledge.
  2. X-Frame-Options (It is a response header used to control whether your site can be loaded inside an <iframe>)
  3. A frame buster script is code that detects if your webpage is loaded inside an <iframe> and forces it to break out and open normally.
 
-Lab 1: Basic Clickjacking with CSRF token protection:
+## Lab 1: Basic Clickjacking with CSRF token protection:
 1. Login using the credentials provided.
 2. Go to exploit server
 3. On the Exploit server's body paste
@@ -43,6 +43,5 @@ Lab 1: Basic Clickjacking with CSRF token protection:
 
 when user can only sees click button on the exploit website it clicks and it deletes the user's account on the legitimate website.
 
-Lab 2:
+## Lab 2: Clickjacking with form input data prefilled from a URL parameter
 
-just because the user wont be able to see the legitimate link 
