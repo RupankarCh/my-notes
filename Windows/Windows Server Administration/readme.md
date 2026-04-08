@@ -9,7 +9,8 @@ Workgroup: Windows based peer- to-peer  computer network
 Domain: a client/server network in which the security and resource management is  centralized. 
 <img width="443" height="599" alt="image" src="https://github.com/user-attachments/assets/8f2c779b-2845-45e5-b9a3-d77b14da031a" />
 
-Server: a computer or system that provides resources, data, services, or programs to  other computers, known as clients, over a network.
+Server: a computer or system that provides resources, data, services, or programs to  other computers, known as clients,over a network.
+
 <img width="442" height="498" alt="image" src="https://github.com/user-attachments/assets/78afe1e3-c476-4d44-8283-d9d44bfccb2a" />
 
 # History
@@ -38,6 +39,7 @@ The process of translating  human-friendly hostnames into IP addresses that comp
 <img width="850" height="529" alt="image" src="https://github.com/user-attachments/assets/195fbcb3-408c-4f16-a94d-cac6b69dac6a" />
   - **Forward Lookup Zone:** A DNS zone that **translates hostnames to IP addresses.** 
   - **Reverse Lookup Zone:** A DNS zone that **translates IP addresses to hostnames.**
+
 3. **NetBIOS (Protocol):** Lets Windows computers find each other by name, Works mainly inside a local network, Uses broadcasts like  “Who is PC-01?”. **NetBIOS name refers to Device Name on This PC> Properties**.
 4. **WINS (Windows Internet Name Service):** 
  - A server that **stores NetBIOS names and IP addresses**
