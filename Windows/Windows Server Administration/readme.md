@@ -135,12 +135,16 @@ This DNS server must have network access to the remote DNS server that supplies 
 | **CNAME** | Canonical Name     | Alias to another domain  | 🔁 whatever.example.com → example.com |
 | **MX**    | Mail Exchanger     | Mail server for domain   | 📧 Domain → Mail Server     |
 | **NS**    | Name Server        | Authoritative DNS server | 🧭 Domain → DNS Server(Who Manages it) |
-| **PTR**   | Pointer            | IP → Domain              | 🔄 Reverse lookup           |
-| **SOA**   | Start of Authority | Zone’s main info         | 🏢 Zone identity            |
-| **TXT**   | Text               | Stores text data         | 📝 Info (SPF, verification) |
-| **SRV**   | Service Record     | Service + port info      | ⚙️ Service locator          |
-| **HINFO** | Host Info          | CPU & OS details         | 💻 System info              |
+| **PTR**   | Pointer            | IP → Domain              | 🔄 Reverse lookup (IP → Domain) |
+| **SOA**   | Start of Authority | Lists primary DNS server's info | 🏢 Zone's identity/Information |
+| **TXT**   | Text               | Stores text data         | 📝 Info (**SPF**, verification) |
+| **SRV**   | Service Record     | Service + port info      | ⚙️ where to find a specific service |
+| **HINFO** | Host Info          | CPU & OS details         | 💻obsolete nowdays for sensitive information exposure |
 | **ISDN**  | ISDN Address       | Telephone-based address  | ☎️ Rare/legacy              |
 
+**SPF (Sender Policy Framework)** records – define which mail servers are allowed to send email on behalf of your domain.
 
+## DNS Query Types:
+**Iterative Query:** The DNS client sends a query to a DNS server and expects either a response with the **requested information or a referral to another DNS server** that might have the information. If the DNS server has the information, it responds with the requested data. 
 
+**Recursive Query:** The DNS client sends a query to a DNS server and expects the DNS server to either provide the **requested information or handle the entire resolution process on behalf of the client**. The DNS server receiving the recursive query is responsible for either providing the requested information **from its cache** or contacting other DNS servers on the client's behalf to resolve the query
