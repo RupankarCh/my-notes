@@ -148,3 +148,11 @@ This DNS server must have network access to the remote DNS server that supplies 
 **Iterative Query:** The DNS client sends a query to a DNS server and expects either a response with the **requested information or a referral to another DNS server** that might have the information. If the DNS server has the information, it responds with the requested data. 
 
 **Recursive Query:** The DNS client sends a query to a DNS server and expects the DNS server to either provide the **requested information or handle the entire resolution process on behalf of the client**. The DNS server receiving the recursive query is responsible for either providing the requested information **from its cache** or contacting other DNS servers on the client's behalf to resolve the query
+
+## DNS Zone Transfer:
+A DNS zone transfer is a process where **data about a specific domain's DNS records is copied from one DNS server to another**. This is primarily used to keep multiple servers **synchronized and maintain redundancy in case one server goes down.**
+
+• **To replicate DNS records across multiple servers for redundancy and improved performance.**
+• To allow **changes made on one server (primary) to be automatically reflected on other servers (secondary).** 
+• Full Zone Transfer (AXFR): **Transfers all records in the zone**, even if only one record has changed. 
+• Incremental Zone Transfer (IXFR): **Transfers only the records that have changed since the last synchronization**. More efficient for frequent updates. 
