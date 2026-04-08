@@ -132,9 +132,9 @@ This DNS server must have network access to the remote DNS server that supplies 
 | --------- | ------------------ | ------------------------ | --------------------------- |
 | **A**     | Address            | Maps domain → IPv4       | 🌐 Name → IPv4              |
 | **AAAA**  | IPv6 Address       | Maps domain → IPv6       | 🌐 Name → IPv6              |
-| **CNAME** | Canonical Name     | Alias to another domain  | 🔁 Domain → Domain          |
-| **MX**    | Mail Exchanger     | Mail server for domain   | 📧 Email routing            |
-| **NS**    | Name Server        | Authoritative DNS server | 🧭 Who manages domain       |
+| **CNAME** | Canonical Name     | Alias to another domain  | 🔁 whatever.example.com → example.com |
+| **MX**    | Mail Exchanger     | Mail server for domain   | 📧 Domain → Mail Server     |
+| **NS**    | Name Server        | Authoritative DNS server | 🧭 Domain → DNS Server(Who Manages it) |
 | **PTR**   | Pointer            | IP → Domain              | 🔄 Reverse lookup           |
 | **SOA**   | Start of Authority | Zone’s main info         | 🏢 Zone identity            |
 | **TXT**   | Text               | Stores text data         | 📝 Info (SPF, verification) |
