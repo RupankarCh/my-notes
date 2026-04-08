@@ -28,3 +28,19 @@ Server: a computer or system that provides resources, data, services, or program
 | **2016** | 1.4 GHz → 2+ GHz | 512 MB → 2 GB+  | 32 GB → 40 GB+   | 1024×768 |
 | **2019** | 1.4 GHz → 2+ GHz | 2 GB → 8 GB+    | 1.5 GB → 2 GB+*  | 1024×768 |
 
+
+
+# Name Resolution: 
+The process of translating  human-friendly hostnames into IP addresses that computers and other network devices can  understand.
+
+1. **Host File:** Name Resolution begins at the local level with the hosts file, situated in **%SystemRoot%\system32\drivers\etc**. It contains mappings of IP  addresses to hostnames. Administrators can manually edit this file to add static mappings.
+2. **DNS (Domain Name System):** The primary name resolution service used vy microsoft server environments. DNS operates based on a distributed database  system where various DNS servers store information about different domains.
+<img width="850" height="529" alt="image" src="https://github.com/user-attachments/assets/195fbcb3-408c-4f16-a94d-cac6b69dac6a" />
+  - **Forward Lookup Zone:** A DNS zone that **translates hostnames to IP addresses.** 
+  - **Reverse Lookup Zone:** A DNS zone that **translates IP addresses to hostnames.**
+3. **NetBIOS (Protocol):** Lets Windows computers find each other by name, Works mainly inside a local network, Uses broadcasts like  “Who is PC-01?”. **NetBIOS name refers to Device Name on This PC> Properties**.
+4. **WINS (Windows Internet Name Service):** 
+ - A server that **stores NetBIOS names and IP addresses**
+ - WINS **uses unicast communication because broadcast can’t cross routers**, Works across different networks/subnets
+ - Clients directly query the WINS server, The WINS server responds with the IP address
+
