@@ -9,3 +9,6 @@ GCP's **VM service**. The provisioning process is, you choose a machine type and
 - CI/CD builds
 - Rendering or simulations
 Example: Running large-scale experiments where restarting isn’t a big deal.
+
+# Vertex AI: 
+Fully managed by ML, for building and training AI, vertex AI will be good choice.
