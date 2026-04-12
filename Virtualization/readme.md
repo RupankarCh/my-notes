@@ -51,3 +51,5 @@ vagrant init <vagrant box name> (To initializes the current directory as a Vagra
 vagrant up (To create, configure, and power on a virtual machine (VM) based on the settings specified in the Vagrantfile)
 vagrant ssh (To login the VM using the Vagrant user created automatically)
 
+# Orchestration: 
+Manage and control many containers, e.g., Kubernetes is Orchastration tool, Kubernetes (often used with Docker containers) → uses .yaml files for deployments, services, etc.
