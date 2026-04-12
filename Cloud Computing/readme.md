@@ -36,3 +36,6 @@ GCP (Google Cloud Platform): Leveraging Google's own internal infrastructure, GC
 - Databases: A wide range of **database services**, from relational databases (RDS, Azure SQL DB, Cloud SQL) to NoSQL databases (DynamoDB, Cosmos DB, Cloud Firestore).
 - Networking: **Services to connect and secure resources**, such as virtual private clouds (VPC, VNet), load balancers, and DNS.
 
+# Serverless computing:
+a cloud-native model where developers deploy code without managing servers, as the cloud provider automatically provisions, scales, and manages the infrastructure.
+
