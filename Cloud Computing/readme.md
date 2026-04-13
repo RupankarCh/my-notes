@@ -36,6 +36,22 @@ GCP (Google Cloud Platform): Leveraging Google's own internal infrastructure, GC
 - Databases: A wide range of **database services**, from relational databases (RDS, Azure SQL DB, Cloud SQL) to NoSQL databases (DynamoDB, Cosmos DB, Cloud Firestore).
 - Networking: **Services to connect and secure resources**, such as virtual private clouds (VPC, VNet), load balancers, and DNS.
 
+# Object Storage:
+Object storage = **scalable, internet-accessible storage for large files and unstructured data**, Unlike traditional file systems that organize data in a hierarchy of folders, **object storage manages data as objects in a flat structure**, which makes it ideal for handling massive amounts o funsttuctured data.
+
+## Why it’s used for these
+- Accessible via HTTP/HTTPS (perfect for browsers)
+- Virtually unlimited storage
+- Cheap compared to disks
+- Built-in redundancy and durability
+
+• **Amazon S3 (Simple Storage Service):** This is incredibly durable because of **data replication across multiple devices** and facilities. An object in S3 consists of **data, a unique key (its name), and metadata**. **Data is stored in buckets, which are containers in a specific AWS region**. S3 is highly scalable, and you can store viitually unlimited data.
+
+• **Azure Blob Storage**: "Blob" stands for **Binary Large Object**. Azure Blob has different **access tiers Hot, Cool, and Archive**, which allows you to optimtze costs based on how frequently you need to access the data, Data is stored in containers within an Azure storage account.
+
+• **Google Cloud Storage (GCS):** It also offers **a range of storage classes**, from high-performance to long-term archiving, which **automatically move objects between tiers to optimize cost**. GCS is deeply integrated with Google's other services, making it a **powerfull solution for data analytics and machine learning pipelines.**
+
+
 # Serverless computing:
 a cloud-native model where developers deploy code without managing servers, as the cloud provider automatically provisions, scales, and manages the infrastructure.
 
