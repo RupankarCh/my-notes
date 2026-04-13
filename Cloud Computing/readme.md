@@ -51,6 +51,19 @@ Object storage = **scalable, internet-accessible storage for large files and uns
 
 • **Google Cloud Storage (GCS):** It also offers **a range of storage classes**, from high-performance to long-term archiving, which **automatically move objects between tiers to optimize cost**. GCS is deeply integrated with Google's other services, making it a **powerfull solution for data analytics and machine learning pipelines.**
 
+## Data lifecycle management:
+How data is handled from creation to eventual deletion.
+
+### Data Classification and Tiering: \
+Not all data is equally valuable or accessed with the same frequency. Cloud providers offer **different storage tiers to match your data's access patterns with the right cost**. Storage cost decreases and retieval cost increases for less frequently accessed data. 
+
+- **Hot Tier**: For **frequently accessed data** that requires low latency. It has the highest storage cost but the lowest access cost.
+- **Cool/Infrequent Access Tier**: For data that is **accessed infrequently but must be available quickly**. It has a lower storage cost than the hot tier but a higher retrieval cost.
+- **Archive Tier**: For data that is **rarely accessed and can tolerate a retrieval delay of hours**. This tier has the lowest storage cost, making it **ideal for long-term backups and regulatory archives**.
+
+### Lifecycle Policies:
+You can **automate the movement of data between these tiers** using lifecycle policies. These are **rule-based policies that automatically transfer or delete objects based on a set of criteria**. For example, you can set a rule to move a file from a hot tier to a cool tier after 30 days and then to an archive tier after 90 days. This automation ensures that you are always using the most cost-effective storage class for your data, without any manual intervention. Effective data lifecycle management is critical for **cost optimization**, as it prevents you from paying for expensive, high-performance storage for data that is rarely used.
+
 
 # Serverless computing:
 a cloud-native model where developers deploy code without managing servers, as the cloud provider automatically provisions, scales, and manages the infrastructure.
