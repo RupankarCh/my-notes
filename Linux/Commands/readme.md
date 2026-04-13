@@ -179,3 +179,10 @@ history            # Show command history
 ```
 
 ---
+
+## File Usage Tips:
+
+1. If a filename is '-' then 'cat ./-' can open it meaning you are telling cat to search for a file name '-' in the current directory './'
+2. To exit from ssh shell "exit"
+3. file ./-* (This command can be used for finding human readable text in a bunch of files where which file contains text is not specified because, ./-* means all files whose names start with -, The file command tells you the type of each file, e.g., ASCII text (human-readable), binary data.)
+4. find . -type f -size 1033c ! -executable -exec file {} + | grep "text" (find . (searches in the current directory and all subdirectories), -type f (looks for regular files only), -size 1033c (looks for files that are exactly 1033 bytes (c = bytes)), ! -executable (keep non executables files), -exec (lets you run a command on each file that found), file (determines file type), {} (is a placeholder that gets replaced with the current file's path/name for each match), + (passes multiple files at once), | grep "text" (filters the output to only show lines containing "text" i.e., human-readable files.)
