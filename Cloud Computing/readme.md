@@ -82,9 +82,18 @@ These are the primary mechanisms for controlling traffic to your cloud resources
   - A **firewall rule** (e.g., in Google Cloud) or a Network Access Control List (NACL) (in AWS) is an additional layer of security that **controls traffic at the subnet level**. These are **stateless firewalls, so** you must explicitly allow both inbound and outbound traffc.
 
 # Database
+Choosing between a relational and a NoSQL database **depends on your application's specific needs**. **Relational databases** are best for applications that require **structured data and transactional integrity**. while **NoSQL databases** are ideal for flexible, scalable **applications that handle large amounts of unstructured data**.
 
 ## RDS (Relational Database Service): 
 AWS RDS is a fully managed relational database setvice. Instead of installing: patching, and maintaining a database on a VM. you can simply provision an RDS instance in minutes. **RDS handles the tedious tasks of backups, patching, and scaling**. It **supports** several popular database engines: including **MySQL, PostgreSQL: Oracle, and Microsoft SQL Server**.
 
-## 
+## Azure SQL Database: 
+This is a fully managed relational database-as-a-service from Microsoft. It is built on the SQL Server engine and offers the same powerful features without the need for manual administration It's ideal for developers and enterprises already familiar with SQL Server. It also offers features like **automated backups**, built-in **high availability** and **intelligent performance tuning**.
+
+## NoSQL Databases: 
+Unlike relational databases that use a rigid, tabular structure, NoSQL databases are **schema-less and more flexible**. They are designed for **handling large volumes of unstructured data** and offer high performance for specific use cases.
+- **AWS DynamoDB**: A fully managed, serverless key-value and document **NoSQL database that delivers single-digit millisecond performance at any scale**.
+- **Azure Cosmos DB**: Microsoft's **globally distributed, multi-model database service**. It **supports several popular NoSQL APIs including MongoDB, Cassandra and Gremlim**.
+- **Google Cloud Firestore**: A flexible, scalable **NoSQL document database for mobile, web, and server development**.
+
   
