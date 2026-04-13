@@ -68,3 +68,23 @@ You can **automate the movement of data between these tiers** using lifecycle po
 # Serverless computing:
 a cloud-native model where developers deploy code without managing servers, as the cloud provider automatically provisions, scales, and manages the infrastructure.
 
+# Networking
+
+## VPC (Virtual Private Cloud): 
+A VPC is a **logically isolated virtual network** that you define within the public cloud. It provides you with complete control over your network environment, including your **own IP address range, subnets, route tables, and network gateways**. A VPC is a foundational component that gives you the security and isolation you need to run your applications. It's like having your own private data center in the cloud.
+
+## Subnets: 
+A subnet is a **logical subdivision of a VPC's IP address range**. You create subnets to organize your resources and **apply different security rules to them**. A VPC can have both **public subnets (where resources can be accessed from the internet) and private subnets (where resources are isolated from the intemet)** For **example**, you would place your public-facing web servers in a public subnet and your private databases in a private subnet.
+
+## Security Groups & Firewalls: 
+These are the primary mechanisms for controlling traffic to your cloud resources.
+  - A **security group** **acts as a virtual firewall** for your virtual machines. It is a **stateful firewall, meaning** that if you allow inbound traffic, the corresponding outbound response is automatically allowed. You define rules that allow or deny traffic based on protocol (e.g., TCP UDP). port number (e.g.: 80 for HTTP. 443 for HTTPS). and source IP address_
+  - A **firewall rule** (e.g., in Google Cloud) or a Network Access Control List (NACL) (in AWS) is an additional layer of security that **controls traffic at the subnet level**. These are **stateless firewalls, so** you must explicitly allow both inbound and outbound traffc.
+
+# Database
+
+## RDS (Relational Database Service): 
+AWS RDS is a fully managed relational database setvice. Instead of installing: patching, and maintaining a database on a VM. you can simply provision an RDS instance in minutes. **RDS handles the tedious tasks of backups, patching, and scaling**. It **supports** several popular database engines: including **MySQL, PostgreSQL: Oracle, and Microsoft SQL Server**.
+
+## 
+  
