@@ -473,3 +473,17 @@ FSx for NetApp ONTAP
 - EFS-IA: cost-optimized storage class for infrequent accessed files
 - FSx for Windows: Network File System for Windows servers
 - FSx for Lustre: High Performance Computing Linux file system
+
+
+# Object Storage
+
+## S3:
+
+### Static Website Hosting on S3:
+1. Create a bucket with default settngs
+2. Add the HTML file, and any media folder if there is any in the static website and Upload
+3. Click on that HTML file you will see Object URL where you can access the file
+4. Bucket> Bucket_name> Properties> Static Website Hosting> Edit> Enable> Name the Index Document> Save Changes.
+5. Bucket> Permissions> Uncheck block all public access> Save Changes
+6. Bucket> Permissions> Object Ownership> Edit> ACLs enabled>
+7. Select all the objects> Actions> Make Public using ACL> Make Public
