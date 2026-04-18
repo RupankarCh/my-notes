@@ -109,8 +109,8 @@ These are the primary mechanisms for controlling traffic to your cloud resources
 
 ### Types of Cloud Firewall
 - AWS Networking Firewall (Advanced Protection)
-- NACL (Subnet Level)
-- Security Groups (Instance Level)
+- NACL (Subnet Level) NACLs are stateless; **stateless so allow and deny traffic must be explicitly defined**.
+- Security Groups (Instance Level) stateful **supporting only allow rules, automatically permitting return traffic**.
 
 <img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
 
