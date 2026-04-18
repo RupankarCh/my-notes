@@ -96,4 +96,13 @@ Unlike relational databases that use a rigid, tabular structure, NoSQL databases
 - **Azure Cosmos DB**: Microsoft's **globally distributed, multi-model database service**. It **supports several popular NoSQL APIs including MongoDB, Cassandra and Gremlim**.
 - **Google Cloud Firestore**: A flexible, scalable **NoSQL document database for mobile, web, and server development**.
 
-  
+# Firewall
+A system that controls incoming and outgoing traffic.
+
+## Types of Cloud Firewall
+- AWS Networking Firewall (Advanced Protection)
+- NACL (Subnet Level)
+- Security Groups (Instance Level)
+
+<img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
+
