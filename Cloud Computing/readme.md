@@ -70,10 +70,10 @@ a cloud-native model where developers deploy code without managing servers, as t
 
 # Networking
 
-## VPC (Virtual Private Cloud): 
+## VPC (Virtual Private Cloud, Regional): 
 A VPC is a **logically isolated virtual network** that you define within the public cloud.It's your private network inside the cloud. It provides you with complete control over your network environment, including your **own IP address range, subnets, route tables, and network gateways**. A VPC is a foundational component that gives you the security and isolation you need to run your applications. It's like having your own private data center in the cloud.
 
-## Subnets: 
+## Subnets (Zonal): 
 A subnet is a **logical subdivision of a VPC's IP address range**. You create subnets to organize your resources and **apply different security rules to them**. A VPC can have both **public subnets (where resources can be accessed from the internet) and private subnets (where resources are isolated from the intemet)** For **example**, you would place your public-facing web servers in a public subnet and your private databases in a private subnet.
 
 ### Types of Subnet
@@ -100,6 +100,13 @@ EC2> NAT Gateway> Internet
 | Used by                           | Public subnets                         | Private subnets                                                 |
 
 NAT gateway> Internet Gateway> Internet
+
+## Practical
+### Creating VPC
+Create VPC> VPC only> Name tag> IPv4 CIDR manual input(You decide the CIDR)/IPAM allocated IPv4 CIDR block(AWS IP Address Manager (IPAM) automatically allocates a CIDR block from a predefined IP pool.)> No IPv6 CIDR  block(resources inside that VPC cannot receive private/public IPv6 addresses from that VPC subnetting model.)>  Create VPC.
+
+### Creating Subnet
+Create Subnet> Select VPC> Subnet Name> Select Availability Zone> Selct IPv4 Subnet CIDR block> Create Subnet
 
 ## Security Groups & Firewalls: 
 These are the primary mechanisms for controlling traffic to your cloud resources.
