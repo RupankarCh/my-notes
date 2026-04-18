@@ -71,15 +71,48 @@ a cloud-native model where developers deploy code without managing servers, as t
 # Networking
 
 ## VPC (Virtual Private Cloud): 
-A VPC is a **logically isolated virtual network** that you define within the public cloud. It provides you with complete control over your network environment, including your **own IP address range, subnets, route tables, and network gateways**. A VPC is a foundational component that gives you the security and isolation you need to run your applications. It's like having your own private data center in the cloud.
+A VPC is a **logically isolated virtual network** that you define within the public cloud.It's your private network inside the cloud. It provides you with complete control over your network environment, including your **own IP address range, subnets, route tables, and network gateways**. A VPC is a foundational component that gives you the security and isolation you need to run your applications. It's like having your own private data center in the cloud.
 
 ## Subnets: 
 A subnet is a **logical subdivision of a VPC's IP address range**. You create subnets to organize your resources and **apply different security rules to them**. A VPC can have both **public subnets (where resources can be accessed from the internet) and private subnets (where resources are isolated from the intemet)** For **example**, you would place your public-facing web servers in a public subnet and your private databases in a private subnet.
 
+### Types of Subnet
+- Private Subnet - No direct internet access, Stateless application, Database, Backend services.
+- Public Subnet - Has route to internet, Stateful Application,  web servers, Load balancers. Its route table has a route to an Internet Gateway (IGW)
+Example: 0.0.0.0/0 -> igw-xxxx
+[Subnetting in seconds](https://cidr.xyz/)
+
+## CIDR: A method to define IP address ranges.
+
+## Internet Gateway:
+Allows VPC to connect to internet
+EC2> Subnet> Route Table> IGW> Internet
+
+## NAT Gateway:
+allows private subnet to access internet (Outbound Traffic Only)
+EC2> NAT Gateway> Internet
+
+| Feature                           | Internet Gateway (IGW)                 | NAT Gateway                                                     |
+| --------------------------------- | -------------------------------------- | --------------------------------------------------------------- |
+| Purpose                           | Connect VPC directly to internet       | Allow private subnet instances to access internet outbound only |
+| Public IP needed?                 | Yes (instance usually needs public IP) | NAT Gateway has public IP, private instances don’t              |
+| Inbound internet traffic allowed? | Yes (if security rules allow)          | No                                                              |
+| Used by                           | Public subnets                         | Private subnets                                                 |
+
+NAT gateway> Internet Gateway> Internet
+
 ## Security Groups & Firewalls: 
 These are the primary mechanisms for controlling traffic to your cloud resources.
-  - A **security group** **acts as a virtual firewall** for your virtual machines. It is a **stateful firewall, meaning** that if you allow inbound traffic, the corresponding outbound response is automatically allowed. You define rules that allow or deny traffic based on protocol (e.g., TCP UDP). port number (e.g.: 80 for HTTP. 443 for HTTPS). and source IP address_
+  - A **security group** **acts as a virtual firewall** for your virtual machines. It is a **stateful firewall, meaning** that if you allow inbound traffic, the corresponding outbound response is automatically allowed. You define rules that allow or deny traffic based on protocol (e.g., TCP UDP). port number (e.g.: 80 for HTTP. 443 for HTTPS). and source IP address. Security Group Diagram: Internet> Security Group> EC2 Instance  
+  
   - A **firewall rule** (e.g., in Google Cloud) or a Network Access Control List (NACL) (in AWS) is an additional layer of security that **controls traffic at the subnet level**. These are **stateless firewalls, so** you must explicitly allow both inbound and outbound traffc.
+
+### Types of Cloud Firewall
+- AWS Networking Firewall (Advanced Protection)
+- NACL (Subnet Level)
+- Security Groups (Instance Level)
+
+<img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
 
 # Database
 Choosing between a relational and a NoSQL database **depends on your application's specific needs**. **Relational databases** are best for applications that require **structured data and transactional integrity**. while **NoSQL databases** are ideal for flexible, scalable **applications that handle large amounts of unstructured data**.
@@ -95,14 +128,3 @@ Unlike relational databases that use a rigid, tabular structure, NoSQL databases
 - **AWS DynamoDB**: A fully managed, serverless key-value and document **NoSQL database that delivers single-digit millisecond performance at any scale**.
 - **Azure Cosmos DB**: Microsoft's **globally distributed, multi-model database service**. It **supports several popular NoSQL APIs including MongoDB, Cassandra and Gremlim**.
 - **Google Cloud Firestore**: A flexible, scalable **NoSQL document database for mobile, web, and server development**.
-
-# Firewall
-A system that controls incoming and outgoing traffic.
-
-## Types of Cloud Firewall
-- AWS Networking Firewall (Advanced Protection)
-- NACL (Subnet Level)
-- Security Groups (Instance Level)
-
-<img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
-
