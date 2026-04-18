@@ -108,6 +108,10 @@ Create VPC> VPC only> Name tag> IPv4 CIDR manual input(You decide the CIDR)/IPAM
 ### Creating Subnet
 Create Subnet> Select VPC> Subnet Name> Select Availability Zone> Selct IPv4 Subnet CIDR block> Create Subnet
 
+### Creating and Connecting Internet Gateway with VPC
+Creating Internet Gateway> Name Tag> Create Internet Gateway
+Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
+
 ## Security Groups & Firewalls: 
 These are the primary mechanisms for controlling traffic to your cloud resources.
   - A **security group** **acts as a virtual firewall** for your virtual machines. It is a **stateful firewall, meaning** that if you allow inbound traffic, the corresponding outbound response is automatically allowed. You define rules that allow or deny traffic based on protocol (e.g., TCP UDP). port number (e.g.: 80 for HTTP. 443 for HTTPS). and source IP address. Security Group Diagram: Internet> Security Group> EC2 Instance  
