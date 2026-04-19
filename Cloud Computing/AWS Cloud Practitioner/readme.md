@@ -487,3 +487,17 @@ FSx for NetApp ONTAP
 5. Bucket> Permissions> **Uncheck block all public access**> Save Changes
 6. Bucket> Permissions> **Object Ownership**> Edit> **ACLs enabled**>
 7. Select all the objects> **Actions> Make Public using ACL> Make Public**
+or after step 5 enter the add the bucket policy under permissions
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::BUCKET_NAME/*"
+        }
+    ]
+}
+```
