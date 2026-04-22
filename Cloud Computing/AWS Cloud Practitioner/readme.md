@@ -479,6 +479,12 @@ FSx for NetApp ONTAP
 
 ## S3:
 
+### Terms: 
+- Cross_Origin Resource sharing: Sharing Resource between multiple buckets.
+
+### configuring access permissions
+Product bucket> Bucket Policy> enter a bucket policy from aws given example
+
 ### Static Website Hosting on S3:
 1. Create a bucket with default settngs
 2. Add the HTML file, and any media folder if there is any in the static website and Upload
@@ -501,3 +507,8 @@ or after step 5 enter the add the bucket policy under permissions
     ]
 }
 ```
+
+# AWS Lambda
+
+- **ECR (Elastic Container Registry)** is a private repository that **stores and manages Docker container images**.
+- **ECS(Elastic Container Service)** is the **orchestration service** that deploys, runs, and scales those containers. 
