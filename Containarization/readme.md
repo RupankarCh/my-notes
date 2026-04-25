@@ -19,3 +19,21 @@ The software that actually runs containers on a computer or server.
 2. Creates an isolated environment (So the app thinks it has its own mini-computer)
 3. Limits resources (Example: only 1GB RAM, only 1 CPU core)
 4. Starts the app process (Keeps it separate from other apps)
+
+# Vagrant:
+A tool used to create and manage reproducible development environments using virtual machines.
+
+* **Vagrant Box**: A pre-built base image of an operating system used by Vagrant to quickly create virtual machines.
+
+* **Vagrantfile**: A configuration file that defines how the Vagrant environment and virtual machine should be set up.
+
+* **Provisioning**: The process of automatically installing software and configuring the VM after it is created.
+
+**Commands**:
+vagrant init <vagrant box name> (To initializes the current directory as a Vagrant environment and creates a configuration file called a Vagrantfile.)
+vagrant up (To create, configure, and power on a virtual machine (VM) based on the settings specified in the Vagrantfile)
+vagrant ssh (To login the VM using the Vagrant user created automatically)
+
+
+# Orchestration: 
+Manage and control many containers, e.g., Kubernetes is Orchastration tool, Kubernetes (often used with Docker containers) → uses .yaml files for deployments, services, etc.
