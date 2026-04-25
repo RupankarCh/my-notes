@@ -46,3 +46,7 @@ It consists of Nodes, Nodes are servers either bare metal or virtual, Nodes can 
 
 ## Command Line Tools
 - kubectl/kubecontrol allows you to connect to a specific kubernetes cluster and manage it remotely (It uses REST API to connect to master node using HTTPS 
+
+# Minikube 
+Creates Kubernetes cluster with single node and that node will work like both the worker node and master node.
+
