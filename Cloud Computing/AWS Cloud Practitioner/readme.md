@@ -236,6 +236,9 @@ IAM> Credential Report> Download Credential Report>
 
 IAM> users> username> Access Advisor
 
+# Scaling
+- Vertical Scaling: Upgrading the resources, the process of increasing the capacity of an existing resource, such as a virtual machine (VM) or database, by adding more power to it.
+- Horizontal Scaling: the process of adding more machines or instances to your infrastructure to handle increased traffic or workloads.
 
 # EC2 (Elastic Compute Cloud/Infrastructure as a Service)
 This is the **core compute service** on AWS. When you launch an EC2 instance, you follow a specific process:
@@ -308,6 +311,8 @@ They regulate:
 - A new security group is created everytime we create a new EC2 Instance
 - 0.0.0.0/0 means anywhere 
 
+## AWS Key Management Service:
+It is a managed service from Amazon Web Services used to create, store, manage, and control cryptographic keys that protect your data through encryption. KMS manages those keys safely.
 
 ## Connecting to Instance SSH (Secure Shell):
 
@@ -474,10 +479,66 @@ FSx for NetApp ONTAP
 - FSx for Windows: Network File System for Windows servers
 - FSx for Lustre: High Performance Computing Linux file system
 
+# Networking
+## VPC 
+### Creating VPC
+VPC> Create VPC> VPC only> Name tag> IPv4 CIDR manual input> 
+Create Subnet> 
+Create EC2 instance with the VPC and Subnet created
 
-# Object Storage
+### AWS Internet Access Flow for a VPC
+Create internet gateway> Name tag> create > attach to VPC> Auto assign public IP> Name the security group>
 
-## S3:
+# Network Security
+- AWS-Security Groups
+- Azure-NSG
+- GCP-Firewall Rules
+
+
+# Database
+Database is a place where data is stored, organized and accessed. 
+
+## Types of Database based on storage
+- SQL data is stored in a structure. Features Tables(rows, columns), Fixed Schema, Relationships. e.g., MySQL, PostgreSQL
+- NoSQL data is stored in the form of Objects without an structure. Represented in JSON format. e.g., MongoDB, DynamoDB (for Flexible Large Scale Data)
+
+
+### SQL Databases Across Cloud (Features-Automated Backups, Scaling, No Server Management)
+- AWS-RDS
+- Azure-Azure SQL Database
+- GCP-Cloud SQL
+
+### NoSQL Databases Across Cloud (Features- Flexible Schema, High Scalability, Used in real-time apps)
+- AWS-DynamoDB
+- Azure-Cosmos DB
+- GCP-Firestore/Bigtable
+
+## Data Access Flow
+App>Firewall/Security Group> Database
+
+## AWS RDS: 
+Managed Database service in AWS.(Features Multi-AZ, Server setup, Automated Backups, Scaling, Security patches, Monitoring) 
+
+### Supported Engines by AWS:
+MySQL, PostgreSQL, MariaDB, Oracle, SQL Server
+
+## Types of Database Instance
+- Master Database Instance: Read, Write Permission
+- Slave Database Instance: Read Permission
+
+## How to create a Database 
+RDS> Create Database, Full Configuration, 
+
+## Engine use case based on needs
+| Use Case                 | Good Choice         |
+| ------------------------ | ------------------- |
+| Simple web app           | MySQL               |
+| Complex analytics app    | PostgreSQL          |
+| Enterprise legacy app    | Oracle / SQL Server |
+| High-scale cloud app     | Aurora              |
+| Serverless key-value app | DynamoDB            |
+
+## Object Storage S3:
 
 ### Terms: 
 - Cross_Origin Resource sharing: Sharing Resource between multiple buckets.
@@ -507,6 +568,8 @@ or after step 5 enter the add the bucket policy under permissions
     ]
 }
 ```
+
+
 
 # AWS Lambda
 
