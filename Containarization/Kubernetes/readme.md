@@ -25,9 +25,24 @@ It consists of Nodes, Nodes are servers either bare metal or virtual, Nodes can 
 # Kubernetes creates Pods inside different Nodes automatically.
 # We create such Nodes and Kubernetes Cluster based on that nodes.
 
-# Master Node features
+# Master Node Features 
 - distribute tasks to other nodes (e.g., Load Balancing)
 - runs only system pods which are responsible for actual work of the Kubernetes cluster in general. 
 
-# Worker Node features
+# Worker Node Features 
 - All pods related to your application are deployed to worker nodes
+
+# Node Anatomy
+
+# Services running on Nodes
+- **kebelet** services on each Worker Node communicates with API Server on the Master Node (Master Node, Worker Node)
+- **Kube-Proxy** is responsible for network communication inside of each nodes and each node (Master Node, Worker Node)
+- **Scheduler** is responsible for planning and distribution of load between different nodes in the cluster. (Master Node)
+- **API Server** helps to establish communication between Nodes (Master Node)
+- **Kube Controller Manager** controlls everything in the Kubernetes cluster on each Nodes.
+- **Cloud Controller Manager** helps to interact with cloud service provider where you run your kubernetes cluster.
+- **etcd** stores all logs related to operation of entire cluster as key value pairs.
+- **DNS** provides name resolution in the entire kubernetes cluster.
+
+## Command Line Tools
+- kubectl/kubecontrol allows you to connect to a specific kubernetes cluster and manage it remotely (It uses REST API to connect to master node using HTTPS 
