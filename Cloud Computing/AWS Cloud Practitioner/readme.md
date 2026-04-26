@@ -572,6 +572,79 @@ or after step 5 enter the add the bucket policy under permissions
 
 
 # AWS Lambda
+Serverless
+Instead of managing servers, operating systems, scaling, or deployment infrastructure, you just upload a function and define what should trigger it.
+- No server management
+- Auto scaling
+- Pay per execution (You don't need to pay even when nobody is using your app)
 
-- **ECR (Elastic Container Registry)** is a private repository that **stores and manages Docker container images**.
-- **ECS(Elastic Container Service)** is the **orchestration service** that deploys, runs, and scales those containers. 
+## When to Use Serverless:
+- Event-driven apps
+- APIs
+- Automation
+- File processing
+
+## When not to use Serverless:
+- Long running tasks
+- Full control needed
+- Constant Workloads
+
+## CSP's Serverless Service Names
+- AWS-Lambda
+- Azure-Functions
+- GCP-Cloud Functions
+
+## Terms
+- **ECR (Elastic Container Registry)** is a private repository that **stores and manages Docker container images**.Similar to Docker Hub, but managed by AWS.
+- **ECS(Elastic Container Service)** is the **orchestration service** that deploys, runs, and scales those containers.
+- **FaaS (Function as a Service)** cloud computing model where you **write and deploy small pieces of code called functions**, and the **cloud provider runs them only when triggered by an event**.
+- **Ephemeral storage** in AWS Lambda is temporary local /tmp disk space used during function execution for intermediate files and processing, after process is done, temporary storage is deleted.
+- **SQS Simple Queue Service** A managed message queuing service that acts as a buffer and event source for serverless functions
+- **SNS Simple Notification Service**-One to many
+- **EventBridge** executes at a perticular time
+- GCP **Pub/Sub** Public means send message, Subscribe means receive message
+
+## AWS Lambda Function Creation Flow (Practical)
+Lambda> Create function> Name it> select runtime> Create Function> Configuration> Triggers> Add trigger> Select Trigger, Bucket Name, Event Type, click I acknowledge, Add > Permissions> Resource-based policy statements, Add permissions> Enter Statement ID> Enter Principal> Select Action> Save> Code, Write Code> Deploy> Test 
+
+## Scenario: If you build a WhatsApp notification system, which would you choose and why?
+
+### Why AWS Lambda
+- Deep integrations (API Gateway, SQS, SNS, EventBridge)
+- Highly scalable & reliable
+- Strong IAM security
+- Widely used in production systems
+
+#### Architecture:
+User Action> API Gateway> Lambda> SQS> Lambda> WhatsApp API
+
+### Why Azure Functions 
+- Easy to develop (especially .NET)
+- Built-in bindings (less code)
+- Great for enterprise/internal tools
+
+#### Architecture:
+HTTP Trigger> Function> Queue> Function> WhatsApp API
+
+### Why Google Cloud Functions
+- Fast deployment
+- Cost-effective
+- Strong event-driven model (Pub/Sub)
+
+#### Architeqture:
+Event> Pub/Sub> Function> WhatsApp API
+
+GCP Generation 1 (Gen 1) and Generation 2 (Gen 2) refer to two different runtimes/architectures for serverless functions.
+| Feature              | Gen 1                            | Gen 2                                     |
+| -------------------- | -------------------------------- | ----------------------------------------- |
+| Platform             | Original Cloud Functions runtime | Built on Cloud Run                        |
+| Scaling              | Basic autoscaling                | Better autoscaling + more control         |
+| Concurrency          | 1 request per instance           | Multiple concurrent requests per instance |
+| Performance          | Good                             | Faster startup / better throughput        |
+| Event Triggers       | Limited set                      | Broader via Eventarc                      |
+| Timeout Limits       | Lower                            | Higher                                    |
+| CPU / Memory Control | Basic                            | More flexible                             |
+| Networking           | Simpler                          | Better VPC/network integration            |
+| Traffic Handling     | Less customizable                | More production-grade                     |
+
+
