@@ -1,15 +1,28 @@
 
 # KUBERNETES TAKES CARE OF THE ...
 - Automatic **deployment of the containerized applications across different servers.**
-- Distribution of the **load** across multiple servers
-- Auto-**scaling** of the deployed applications
-- **Monitoring** and health check of the containers
-- **Replacement** of the failed containers
+- Distribution of the **load** across multiple servers, It can also create container.
+- Auto-**scaling** of the deployed applications.
+- **Monitoring** and health check of the containers.
+- **Replacement** of the failed containers.
+- **Self-healing** automatically restarts failed containers, reschedules crashed pods, replaces unhealthy instances, and maintains the desired state via health checks/controllers.
+- **rolling updates** gradually replaces old pod versions with new ones while keeping the application available and enabling easy rollback if issues occur.
+
+# Kubernetes Behaviour
+Kubernetes uses layered controllers, a **Deployment defines the desired app version/state**, it creates and manages a ReplicaSet, and the **ReplicaSet ensures the required number of Pods are always running**. So You don't manage pods deployment does. You usually manage Pods indirectly through a Deployment, and the **Deployment automatically creates, replaces, scales, and updates Pods for you instead of managing Pods manually.**
 
 # Supported Container Runtimes:
 - Docker
 - CRI-O
 - Containerd
+
+# Terms:
+- **Control Plane** – The brain of Kubernetes; **makes scheduling and cluster management decisions**.
+- **Deployment** – **Manages app updates, scaling, and desired number of Pods**.
+- **Service** – Provides stable **networking/load balancing** so Pods can be reached.
+- **Pod** – **Smallest deployable unit**; runs one or more containers for your app.
+- **Node** – Worker machine (VM or physical server) **where Pods run**.
+- **Cluster** – **Entire Kubernetes environment**: Control Plane + worker Nodes.
 
 # PODS
 Smalles possible unit in the Kubernetes world:
@@ -48,5 +61,10 @@ It consists of Nodes, Nodes are servers either bare metal or virtual, Nodes can 
 - kubectl/kubecontrol allows you to connect to a specific kubernetes cluster and manage it remotely (It uses REST API to connect to master node using HTTPS 
 
 # Minikube 
-Creates Kubernetes cluster with single node and that node will work like both the worker node and master node.
+Minikube automates cration of local Kubernetes cluster with single node and that node will work like both the worker node and master node.
 
+## Docker vs Virtualization Technologies for using Minikube
+Minikube creates a local Kubernetes cluster, but the driver decides where that cluster runs: **Docker runs nodes as containers**, while **VMware/VirtualBox run nodes as full virtual machines.** Docker driver = **lighter, faster, lower resource usage**; VM drivers = **heavier, slower, but stronger isolation** and more full-OS-like environment.
+
+# kubectl
+The Kubernetes CLI tool used to communicate with the cluster’s API server to deploy apps, inspect resources, scale workloads, and manage the cluster.**manage and interact with any Kubernetes cluster**.
