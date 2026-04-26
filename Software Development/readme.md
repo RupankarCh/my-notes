@@ -11,3 +11,9 @@ A monolithic architecture is a traditional **software development model where al
 ## Microservice Architecture: 
 A microservice architecture is a **software development model's design approach that structures an application as a collection of small, loosely coupled, and independently deployable services** organized around specific business capabilities. 
 
+## Communication between microservices:
+- **Synchronous Connection**: From one service, Request goes to API endpoint.
+- **Asynchronous Connection**: **Middleware Between Microservices** (Message Broker) (**e.g., RabitMQ,Apache Kafka**) It uses it's brain and serves the request to dedicated service.
+
+## Usage: 
+Microservice architecture-**Large Application**, Monolithic Architecture-**Small projects**
