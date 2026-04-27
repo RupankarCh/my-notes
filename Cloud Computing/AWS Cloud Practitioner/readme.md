@@ -648,3 +648,32 @@ GCP Generation 1 (Gen 1) and Generation 2 (Gen 2) refer to two different runtime
 | Traffic Handling     | Less customizable                | More production-grade                     |
 
 
+# Load Balancer:
+servers that forward internet traffic to multiple servers downstream.
+
+## ELB (Elastic Load Balancer) Service
+managed load balancer.
+
+### Why ELB
+- **auto upgrades, maintenance, high availability**
+- **Less Configuration** but more costly compared to load balancer configuration on EC2 Instances.
+
+
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e56cd2f0-ccd5-42b0-b6d8-0c2f91114e66" />
+
+
+### Types of load balancer in AWS
+- Application Load Balancer (HTTP/HTTPS only) - Layer 7
+- Network Load Balancer (TCP/UDP) - Layer 4
+- Gateway Load Balancer (GENEVE protocol on IP Packets) - Layer 3
+- Classic Load Balancer (retired in 2023) -Layer 4,7
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/457282ea-1a9a-4151-affc-4e9091ec1d98" />
+
+| Load Balancer Type                  | Layer                 | Best For                               | Protocols Supported          | Key Features                                                   |
+| ----------------------------------- | --------------------- | -------------------------------------- | ---------------------------- | -------------------------------------------------------------- |
+| **Application Load Balancer (ALB)** | Layer 7 (Application) | Web apps, APIs, microservices          | HTTP, HTTPS, WebSocket, gRPC | Path-based routing, host-based routing, SSL termination        |
+| **Network Load Balancer (NLB)**     | Layer 4 (Transport)   | High-performance apps, TCP/UDP traffic | TCP, UDP, TLS                | Ultra-low latency, static IP, handles millions of requests/sec |
+| **Gateway Load Balancer (GWLB)**    | Layer 3 + 4           | Security appliances, firewalls         | IP packets (GENEVE)          | Routes traffic through virtual firewalls / IDS / IPS           |
+
