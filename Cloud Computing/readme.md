@@ -19,6 +19,18 @@ Cloud services are delivered in different ways to suit various business needs.
 - **Private Cloud**: A **cloud environment dedicated to a single organization**. It can be physically located on the company's premises or hosted by a third-party provider. This model offers greater control and security but comes with higher costs.
 - **Hybrid Cloud**: A **mix of public and private cloud environments**. It allows data and applications to be shared between them. A common use case is running mission-critical applications on a private cloud while using the public cloud for less sensitive tasks like web development or big data analytics.
 
+# Scalability:
+**Ability to accommodate a greater load** by making the hardware stronger or by adding nodes.
+  
+## Types of Scalability:
+- Vertical Scalability: Increase in the **power of current infrastructure**.
+- Horizontal Scalability: Increase in the **number of current infrastructure**. example service-**Auto Scaling Group, Load Balancer**
+
+# High Availability: 
+Running your application/system in at least 2 availability zones. The main goal is to servive a data center loss. example services **Auto Scaling Group multi AZ**
+
+# Elasticity: 
+Once a system is scalable, elasticity means that **there will be some "auto-scaling" so that the system can scale based on the load.**  
 
 # CSP (Cloud Service Providers)
 The cloud is not a single technology; it's a vast ecosystem of services. The three market leaders AWS, Azure, and GCP each have a unique philosophy but offer similar core functionalities.
@@ -139,3 +151,15 @@ Unlike relational databases that use a rigid, tabular structure, NoSQL databases
 - **AWS DynamoDB**: A fully managed, serverless key-value and document **NoSQL database that delivers single-digit millisecond performance at any scale**.
 - **Azure Cosmos DB**: Microsoft's **globally distributed, multi-model database service**. It **supports several popular NoSQL APIs including MongoDB, Cassandra and Gremlim**.
 - **Google Cloud Firestore**: A flexible, scalable **NoSQL document database for mobile, web, and server development**.
+
+# Load Balancing:
+servers that forward internet traffic to multiple servers downstream.
+
+## Why to use
+- Spread load across multiple downstream instances
+- Expose a single point of access (DNS) to your application
+- Seamlessly handle failures of downstream instances
+- Do regular health checks to your instances
+- Provide SSL termination (HTTPS) for your website
+- High availability across zones
+
