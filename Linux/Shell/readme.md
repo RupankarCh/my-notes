@@ -7,8 +7,8 @@
 | -------- | ------------------------------------------------------- | ---------------------------------------- | -------------------------------------- |
 | `&`      | Run command in background                               | `python app.py &`                        | Starts process in background           |
 | `&&`     | Run command2 only if command1 exits with status 0 (success). | `mkdir test && cd test`             | `cd` runs only if `mkdir` worked       |
-| `|`      | pass output to next command                             | `ls | grep txt`                          | `ls`'s output is piped into grep txt, grep txt filters and shows only lines containing txt |
-| `||`     | Run command2 only if command1 exits with non-zero status (failure). | `mkdir myfolder || echo "Failed to create folder"` |   If `mkdir` fails to create the directory then the message is shown |
+| `\|` | pass output to next command | `ls \| grep txt` | `ls` output is piped into `grep txt`, which filters lines containing txt |
+| `\|\|` | Run command2 only if command1 fails | `mkdir myfolder \|\| echo "Failed to create folder"` | If `mkdir` fails, the message is shown |
 | `;`      | Run commands sequentially regardless of success/failure | `pwd; ls`                                | Both run                               |
 | `()`     | Run commands in subshell                                | `(cd dir && ls)`                         | Runs inside temporary shell            |
 | `{}`     | Group commands in current shell                         | `{ echo hi; echo bye; }`                 | Runs grouped commands                  |
