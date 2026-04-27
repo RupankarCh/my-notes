@@ -1,7 +1,3 @@
-
-
-sudo -i (To switch from a vagrant user to a root user)
-
 # 🐚 Basic Shell Knowledge (Linux)
 
 ## 🧑‍💻 Prompt Symbols
@@ -186,3 +182,15 @@ history            # Show command history
 2. To exit from ssh shell "exit"
 3. file ./-* (This command can be used for finding human readable text in a bunch of files where which file contains text is not specified because, ./-* means all files whose names start with -, The file command tells you the type of each file, e.g., ASCII text (human-readable), binary data.)
 4. find . -type f -size 1033c ! -executable -exec file {} + | grep "text" (find . (searches in the current directory and all subdirectories), -type f (looks for regular files only), -size 1033c (looks for files that are exactly 1033 bytes (c = bytes)), ! -executable (keep non executables files), -exec (lets you run a command on each file that found), file (determines file type), {} (is a placeholder that gets replaced with the current file's path/name for each match), + (passes multiple files at once), | grep "text" (filters the output to only show lines containing "text" i.e., human-readable files.)
+
+
+sudo -i (To switch from a vagrant user to a root user)
+mkdir folder1 folder2 folder3 (To make multiple directories at a time)
+touch file{1..5}.txt (To make multiple files at a time)
+cd /tmp/ (To move to temp directory from anywhre)
+cp <coping_file_path> <destination_directory> (To copy, paste a file from one directory to another while not being present to the coping file directory)
+cp -r <coping_directory_name> <destination_directory_name> (To copy a directory recursively)
+mv <moving_directory_name> <destination_directory_name> (To move a directory from one place to another)
+mv <file_name.txt> <file_new_name.txt> (To rename a file)
+rm <file_name.txt> (To remove a file)
+rm -r <directory_name> (To remove a directory)
