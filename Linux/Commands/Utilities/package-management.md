@@ -1,5 +1,5 @@
 Note: 
-**APT / DNF / Pacman / Zypper manage system software** on Linux distros.
+**APT / DNF / Pacman / Zypper manage system software** on Linux distros and to manage **application software snap** like package manager is used.
 Go Modules manages Go libraries and Go-based tools for Go development.
 
 | Command / Tool    | Meaning                                        | Example                     | Result                                              |
@@ -21,20 +21,22 @@ Go Modules manages Go libraries and Go-based tools for Go development.
 | ----------------------- | ----------------------------- | ---------------------------- | --------------------------------- |
 | `apt update`            | Refresh package list          | `sudo apt update`            | Downloads latest package metadata |
 | `apt upgrade`           | Upgrade installed packages    | `sudo apt upgrade`           | Updates installed software        |
-| `apt search text`       | Search package                | `apt search editor`          | Finds matching packages           |
+| `apt search <text>`     | Search package                | `apt search editor`          | Finds matching packages           |
 | `apt list`              | List packages                 | `apt list`                   | Shows all known packages          |
 | `apt list --upgradable` | Show upgradeable packages     | `apt list --upgradable`      | Lists outdated installed packages |
-| `apt install pkg`       | Install package               | `sudo apt install tree`      | Installs `tree`                   |
-| `apt remove pkg`        | Remove package                | `sudo apt remove tree`       | Removes package                   |
-| `apt purge pkg`         | Remove package + config files | `sudo apt purge tree`        | Deletes package fully             |
-| `apt source pkg`        | Download source code          | `apt source bash`            | Downloads source package          |
-| `apt download pkg`      | Download `.deb` only          | `apt download htop`          | Saves package file locally        |
-| `apt show pkg`          | Show package info             | `apt show tree`              | Displays version/details          |
+| `apt install <pkg>`     | Install package               | `sudo apt install tree`      | Installs `tree`                   |
+| `apt remove <pkg>`      | Remove package                | `sudo apt remove tree`       | Removes package                   |
+| `apt purge <pkg>`       | Remove package + config files | `sudo apt purge tree`        | Deletes package fully             |
+| `apt source <pkg>`      | Download source code          | `apt source bash`            | Downloads source package          |
+| `apt download <pkg>`    | Download `.deb` only          | `apt download htop`          | Saves package file locally        |
+| `apt show <pkg>`        | Show package info             | `apt show tree`              | Displays version/details          |
+| `apt search <pkg>`      | Search package                | `apt search editor`          | Finds packages                    |
 | `apt install golang-go` | Install Go language           | `sudo apt install golang-go` | Installs Go compiler              |
 
 ---
 
-# DPKG (Local Debian Packages)
+# DPKG 
+(**Local Debian** Packages, means it can’t access other repositories outside the machine.But it can install packages by downloading the file with a deb extension.)
 
 | Command            | Meaning                   | Example                  | Result                          |
 | ------------------ | ------------------------- | ------------------------ | ------------------------------- |
@@ -46,7 +48,7 @@ Go Modules manages Go libraries and Go-based tools for Go development.
 
 ---
 
-# Snap Package Manager
+# Snap Package Manager (Manage application softwares in a universal package format across multiple Linux distributions)
 
 | Command             | Meaning              | Example                   | Result                |
 | ------------------- | -------------------- | ------------------------- | --------------------- |
@@ -82,11 +84,11 @@ Go Modules manages Go libraries and Go-based tools for Go development.
 
 ---
 
-# Downloading Packages
+# Downloading Packages (In your current directory)
 
 | Command    | Meaning                     | Example                          | Result                 |
 | ---------- | --------------------------- | -------------------------------- | ---------------------- |
-| `wget URL` | Download file from internet | `wget https://site.com/file.deb` | Downloads package file |
+| `wget <URL>` | Download file from internet | `wget https://site.com/file.deb` | Downloads package file |
 
 ---
 
