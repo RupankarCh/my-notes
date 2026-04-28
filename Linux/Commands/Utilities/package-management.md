@@ -8,8 +8,8 @@
 | `mandb`           | Update manual page database                    | `sudo mandb`                | Rebuilds man page index                             |
 | `go` / Go Modules | Go dependency/package manager                  | `go install package@latest` | Installs Go package                                 |
 
-Note: Use Go when creating software, especially fast CLI tools, servers, cloud tools, or portable binaries.
-Use APT/Pacman/DNF when installing software.
+Note: Use Go when creating software, especially fast CLI tools, servers, cloud tools, or portable binaries, Use APT/Pacman/DNF when installing software.
+
 ---
 
 # APT (Debian / Kali / Ubuntu)
