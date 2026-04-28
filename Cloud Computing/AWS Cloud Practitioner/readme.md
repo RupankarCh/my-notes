@@ -677,3 +677,22 @@ managed load balancer.
 | **Network Load Balancer (NLB)**     | Layer 4 (Transport)   | High-performance apps, TCP/UDP traffic | TCP, UDP, TLS                | Ultra-low latency, static IP, handles millions of requests/sec |
 | **Gateway Load Balancer (GWLB)**    | Layer 3 + 4           | Security appliances, firewalls         | IP packets (GENEVE)          | Routes traffic through virtual firewalls / IDS / IPS           |
 
+Load Balancer Creation Practical:
+Create 2 Instances with Amzon Linux> Don't select key pair because we dont need SSH capability we can use EC2 Instance Connect if we ever need to> Select existing security group, launch wizard 1(which will allows HTTP traffic and SSH traffic into our EC2 Instance> Add EC2 User Data in Advanced details
+```
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+```
+Go to Load Balancers> Create Load Balancer> Select load balancer type as Application Load Balancer, Create> Name it> Internet-facing> IPv4> Deploy in all AZ> Create a new security group to only allow HTTP traffic, Name it, Inbound Rules-Type HTTP  Source 0.0.0.0/0(anywhere), create security group> Select the security group created> Listeners and routing, protocol HTTP, Create target group, Instances, Name group, Next> Select both Instances, Include as pending below, create target> Select the target group on Listeners and routing> Create Load Balancer> View Load Balancer
+
+Note: You can check your instance heath by going to EC2> Target groups> Specific Target Group> Health Checks.
+
+Outcome: Now you can access the website using the DNS name of the load balancer each time you refresh the website is switched between those two different instances.
+
