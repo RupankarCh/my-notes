@@ -1,6 +1,10 @@
+# linux-commands-repo
+
+```text
 linux-commands-repo/
 │── README.md
-│── Utilities/
+│
+├── Utilities/
 │   ├── file-commands.md
 │   ├── text-processing.md
 │   ├── system-monitoring.md
@@ -8,21 +12,20 @@ linux-commands-repo/
 │   ├── cron-crontab.md
 │   └── package-management.md
 │
-│── Shells/
+├── Shells/
 │   ├── bash.md
 │   ├── zsh.md
 │   ├── fish.md
 │   ├── shell-scripting.md
 │   └── shell-differences.md
 │
-│── Permissions/
+├── Permissions/
 │   ├── chmod.md
-│   ├── chown.md
+│   └── chown.md
 │
-│── Cheatsheets/
-│   ├── utilities-table.md
-│   └── beginner-cheatsheet.md
-
+└── Cheatsheets/
+    ├── utilities-table.md
+    └── beginner-cheatsheet.md
 
 
 
