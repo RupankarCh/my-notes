@@ -3,7 +3,7 @@ VI Visual display editor
 VIM Visual display editor improved
 
 This is command mode editor for files. It has 3 modes:
-- Command Mode ( :w to save the file, :q to exit from the file, :q! exit forcefully, ':se nu' to set line numbers on the file for viewing current time only)
+- Command Mode
 - Insert mode (edit mode) (Press 'i' or 'o' to enter in the insert mode, Esc to get back to command mode)
 - extended command mode ( : to enter extended mode)
 
