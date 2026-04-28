@@ -1,3 +1,7 @@
+Note: 
+**APT / DNF / Pacman / Zypper manage system software** on Linux distros.
+Go Modules manages Go libraries and Go-based tools for Go development.
+
 | Command / Tool    | Meaning                                        | Example                     | Result                                              |
 | ----------------- | ---------------------------------------------- | --------------------------- | --------------------------------------------------- |
 | `.rpm`            | RPM package file used in Red Hat-based systems | `package.rpm`               | Installable software package for **Fedora/RHEL/CentOS** |
@@ -8,7 +12,6 @@
 | `mandb`           | Update manual page database                    | `sudo mandb`                | Rebuilds man page index                             |
 | `go` / Go Modules | Go dependency/package manager                  | `go install package@latest` | Installs Go package                                 |
 
-Note: Use Go when creating software, especially fast CLI tools, servers, cloud tools, or portable binaries, Use APT/Pacman/DNF when installing software.
 
 ---
 
