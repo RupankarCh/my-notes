@@ -1,13 +1,15 @@
 | Command / Tool    | Meaning                                        | Example                     | Result                                              |
 | ----------------- | ---------------------------------------------- | --------------------------- | --------------------------------------------------- |
-| `.rpm`            | RPM package file used in Red Hat-based systems | `package.rpm`               | Installable software package for Fedora/RHEL/CentOS |
-| `apt`             | Package manager for Debian-based distros       | `sudo apt update`           | Updates package lists                               |
-| `pacman`          | Package manager for Arch Linux                 | `sudo pacman -Syu`          | Sync + update system                                |
-| `dnf`             | Modern RPM package manager                     | `sudo dnf install htop`     | Installs package                                    |
-| `yum`             | Legacy RPM package manager                     | `sudo yum update`           | Updates packages                                    |
+| `.rpm`            | RPM package file used in Red Hat-based systems | `package.rpm`               | Installable software package for **Fedora/RHEL/CentOS** |
+| `apt`             | Package manager for **Debian**-based distros   | `sudo apt update`           | Updates package lists                               |
+| `pacman`          | Package manager for **Arch** Linux             | `sudo pacman -Syu`          | Sync + update system                                |
+| `dnf`             | **Modern RPM** package manager                 | `sudo dnf install htop`     | Installs package                                    |
+| `yum`             | **Legacy RPM** package manager                 | `sudo yum update`           | Updates packages                                    |
 | `mandb`           | Update manual page database                    | `sudo mandb`                | Rebuilds man page index                             |
 | `go` / Go Modules | Go dependency/package manager                  | `go install package@latest` | Installs Go package                                 |
 
+Note: Use Go when creating software, especially fast CLI tools, servers, cloud tools, or portable binaries.
+Use APT/Pacman/DNF when installing software.
 ---
 
 # APT (Debian / Kali / Ubuntu)
