@@ -25,3 +25,17 @@ file <filename> (To know what kind of file it is)
 | Socket                 | `s`                             | A special file that provides inter-process networking protected by file system access control              |
 | Pipe (FIFO)            | `p`                             | A special file that allows processes to communicate with each other without using network socket semantics |
 | Block special file     | `b`                             | Special file used for block devices such as disks and storage devices                                      |
+
+
+
+Command which can be used without options
+| Command            | Description                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `visudo`           | Edit the `sudoers` file safely                                                 |
+| `updatedb`         | Update the file index database used by `locate`                                |
+| `pwd`              | Print the current/working directory                                            |
+| `whereis bash`     | Show location of the `bash` interpreter and related files                      |
+| `which pwd`        | Show the path of the `pwd` command                                             |
+| `cmp file1 file2`  | Compare two files byte by byte and show first difference                       |
+| `diff file1 file2` | Compare two files line by line and show differences                            |
+| `comm file1 file2` | Compare two sorted files line by line and display differences in three columns |
