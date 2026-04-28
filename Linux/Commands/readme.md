@@ -1,3 +1,36 @@
+linux-commands-repo/
+│── README.md
+│── Utilities/
+│   ├── file-commands.md
+│   ├── text-processing.md
+│   ├── system-monitoring.md
+│   ├── networking.md
+│   ├── cron-crontab.md
+│   └── package-management.md
+│
+│── Shells/
+│   ├── bash.md
+│   ├── zsh.md
+│   ├── fish.md
+│   ├── shell-scripting.md
+│   └── shell-differences.md
+│
+│── Permissions/
+│   ├── chmod.md
+│   ├── chown.md
+│
+│── Cheatsheets/
+│   ├── utilities-table.md
+│   └── beginner-cheatsheet.md
+
+
+
+
+
+
+
+
+
 # 🐚 Basic Shell Knowledge (Linux)
 
 ## 🧑‍💻 Prompt Symbols
