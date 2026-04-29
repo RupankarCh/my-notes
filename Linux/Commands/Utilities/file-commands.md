@@ -1,21 +1,3 @@
-file <filename> (To know what kind of file it is)
-
-| Option | Description                                                |
-| ------ | ---------------------------------------------------------- |
-| `-l`   | Long listing format of files and directories, one per line |
-| `-a`   | List all hidden files and directories starting with `.`    |
-| `-F`   | Add a file type classification at the end of each entry    |
-| `-g`   | List all files and directories with the group name         |
-| `-i`   | Print index number (inode) of each file and directory      |
-| `-m`   | List all files and directories separated by commas         |
-| `-n`   | List numeric UID and GID of owners and groups              |
-| `-r`   | List all files and directories in reverse order            |
-| `-R`   | Recursively list all subdirectories                        |
-| `-t`   | Sort by modified time, starting with the newest file       |
-
-
-
-
 | File Type              | First Character in File Listing | Description                                                                                                |
 | ---------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | Regular file           | `-`                             | Normal files such as text, data, executable files                                                          |
@@ -25,6 +7,28 @@ file <filename> (To know what kind of file it is)
 | Socket                 | `s`                             | A special file that provides inter-process networking protected by file system access control              |
 | Pipe (FIFO)            | `p`                             | A special file that allows processes to communicate with each other without using network socket semantics |
 | Block special file     | `b`                             | Special file used for block devices such as disks and storage devices                                      |
+
+# ls <directory_path(Optional)> 
+(To see directories and files list-wise in the current directory or in other directories)
+
+| Option | Description                                                |
+| ------ | ---------------------------------------------------------- |
+| `-l`   | Long **listing format of files** and directories, one per line, with **permissions, size, owner etc.** |
+| `-a`   | List all **hidden files** and directories starting with `.`    |
+| `-F`   | Add a file type classification at the end of each entry    |
+| `-g`   | List all files and directories with the group name         |
+| `-i`   | Print **index number (inode)** of each file and directory      |
+| `-m`   | List all files and directories separated by commas         |
+| `-n`   | List numeric UID and GID of owners and groups              |
+| `-r`   | List all files and directories in reverse order            |
+| `-R`   | Recursively list all subdirectories                        |
+| `-t`   | Sort by **modified time**, starting with the newest file   |
+| `-h`   | Human-readable format with file sizes in KB, MB, etc.      |
+| `-d <directory_path>`   | view permissions of a directory/file      |     
+
+
+
+
 
 
 
@@ -39,3 +43,4 @@ Command which can be used without options
 | `cmp file1 file2`  | Compare two files byte by byte and show first difference                       |
 | `diff file1 file2` | Compare two files line by line and show differences                            |
 | `comm file1 file2` | Compare two sorted files line by line and display differences in three columns |
+| `file <filename>`  | To know what kind of file it is                                                |
