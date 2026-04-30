@@ -19,6 +19,12 @@ Simple flow of a CI/CD pipeline:
 
 5.If tests pass → code is deployed to staging or production
 
+Create a github repo.
+Create another branch.
+Create an folder ".github/workflow/name.yml". 
+write the Github Actions Workflow Configuration and commit it.
+
+
 
 # **GitHub Actions workflow** configuration (YAML) designed to automate the deployment of a website to **GitHub Pages**.
 <img width="342" height="420" alt="image" src="https://github.com/user-attachments/assets/36687de1-8af5-401f-aa20-ae7eab31e3fb" />
@@ -46,3 +52,5 @@ Each "step" is an individual task performed in order:
 4.  **`Deploy to GitHub Pages`**: Takes that uploaded artifact and pushes it live to your public URL.
 
 ---
+
+
