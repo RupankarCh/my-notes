@@ -78,7 +78,7 @@ Copy
 | `cp file1 file2 file3 /path/` | **Copy multiple files to folder**                       | Many files at once       |
 
 
-#mv
+# mv
 move/rename
 
 | Task                            | Command                        |
@@ -92,7 +92,7 @@ move/rename
 | **Ask before overwrite**        | `mv -i file.txt docs/`         |
 
 
-#rm 
+# rm 
 remove
 
 | Command                   | What It Does                                          | Easy Way to Remember                |
@@ -123,7 +123,9 @@ remove
 | `echo -e "Path:\\home"`        | Prints backslash                  | `\\` = one backslash              |
 | `echo *`                       | Shows all files in current folder | `*` = everything                  |
 | `echo .*`                      | Shows hidden files too            | `.` = hidden files start with dot |
+
 Escape Sequences
+
 | Escape | Meaning        | Easy Way      |
 | ------ | -------------- | ------------- |
 | `\n`   | New line       | **next line** |
