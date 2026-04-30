@@ -18,3 +18,5 @@ Simple flow of a CI/CD pipeline:
 4.Automated tests run
 
 5.If tests pass → code is deployed to staging or production
+
+
