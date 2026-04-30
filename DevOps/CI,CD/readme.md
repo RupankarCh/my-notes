@@ -54,3 +54,7 @@ Each "step" is an individual task performed in order:
 ---
 
 
+How to see the Triggers:
+
+Repository> Settings> Pages> Select Deploy from Branch to Github Action> Actions> Select the .yml file and you can see all the steps defined in the .yml file of the Github Actions Workflow file.
+
