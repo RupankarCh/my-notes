@@ -134,5 +134,22 @@ Escape Sequences
 | `\a`   | Alert bell     | alarm         |
 | `\b`   | Backspace      | move back     |
 
-#
+# cat
+| Command                              | What It Does                                                  | Easy Way to Remember       |
+| ------------------------------------ | ------------------------------------------------------------- | -------------------------- |
+| `cat file.txt`                       | Displays file contents                                        | cat = show file            |
+| `cat file1.txt file2.txt`            | Displays multiple files one after another                     | Join views together        |
+| `cat r*`                             | Shows all files starting with `r`                             | `r*` = starts with r       |
+| `cat > file.txt`                     | Creates **new file and lets you type content** (`Ctrl+D` to save) | `>` = create/**overwrite** |
+| `cat >> file.txt`                    | **Appends** text to existing file                             | `>>` = **add more**        |
+| `cat file1 file2 > combined.txt`     | Combines files into new file                                  | **Merge into one**         |
+| `cat -n file.txt`                    | Numbers all lines                                             | `n = number`               |
+| `cat -b file.txt`                    | Numbers only non-empty lines                                  | `b = blank lines skipped`  |
+| `cat -s file.txt`                    | Removes repeated blank lines                                  | `s = squeeze spaces`       |
+| `cat -E file.txt`                    | Shows `$` at end of each line                                 | `E = End of line`          |
+| `cat -T file.txt`                    | Shows tabs as `^I`                                            | `T = Tabs`                 |
+| `cat -v file.txt`                    | Shows hidden/non-printing characters                          | `v = visible hidden chars` |
+| `cat /etc/passwd \| grep Rick`       | **Shows lines containing `Rick`**                             | `grep` filters text        |
+| `cat abc.txt tiger.txt 2> error.log` | Sends errors to file                                          | `2>` = **error output**    |
+
 
