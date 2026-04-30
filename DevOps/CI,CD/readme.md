@@ -21,6 +21,7 @@ Simple flow of a CI/CD pipeline:
 
 
 # **GitHub Actions workflow** configuration (YAML) designed to automate the deployment of a website to **GitHub Pages**.
+<img width="342" height="420" alt="image" src="https://github.com/user-attachments/assets/36687de1-8af5-401f-aa20-ae7eab31e3fb" />
 
 ---
 
