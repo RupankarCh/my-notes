@@ -78,6 +78,59 @@ Copy
 | `cp file1 file2 file3 /path/` | **Copy multiple files to folder**                       | Many files at once       |
 
 
+#mv
+move/rename
+
+| Task                            | Command                        |
+| ------------------------------- | ------------------------------ |
+| **Rename** file/folder          | `mv old.txt new.txt`           |
+| **Move folder** into another folder | `mv project backup/`       |
+| Move one file                   | `mv file.txt /home/user/docs/` |
+| **Move multiple files**         | `mv file1.txt file2.txt docs/` |
+| **Move all `.txt` files**       | `mv *.txt docs/`               |
+| Creates **backup before overwriting** | mv -b file.txt docs/     |
+| **Ask before overwrite**        | `mv -i file.txt docs/`         |
 
 
+#rm 
+remove
+
+| Command                   | What It Does                                          | Easy Way to Remember                |
+| ------------------------- | ----------------------------------------------------- | ----------------------------------- |
+| `rm file.txt`             | Deletes a single file                                 | **rm = remove file**                |
+| `rm file1.txt file2.txt`  | **Deletes multiple files**                            | Remove many files together          |
+| `rm *`                    | Deletes **all files in current folder** (not directories) | `*` = everything                |
+| `rm -f file.txt`          | Force delete without asking                           | `f = force`                         |
+| `rm -r folder/`           | Deletes folder and all contents                       | `r = recursive`                     |
+| `rm -rf folder/`          | **Force delete folder + contents**                    | Dangerous combo: remove all fast    |
+| `rm -d folder/`           | Deletes **empty folder only**                         | `d = directory`                     |
+| `rm -v file.txt`          | Shows what is being deleted                           | `v = verbose / visible`             |
+| `rm -I *`                 | Prompts once before deleting many files               | Capital `I` = one Important warning |
+| `rmdir folder/`           | Removes empty directory                               | `rmdir = remove dir`                |
+
+#echo
+| Command                        | What It Does                      | Easy Way to Remember              |
+| ------------------------------ | --------------------------------- | --------------------------------- |
+| `echo Hello`                   | **Displays** `Hello` on screen    | Echo repeats what you say         |
+| echo "Hello World"             | Displays text with spaces         | Quotes **keep words together**    |
+| `echo $HOME`                   | Shows **value of variable**       | `$` = variable value              |
+| `echo > file.txt`              | Creates blank file                | Empty echo + `>` makes file       |
+| `echo "Text" > file.txt`       | **Writes text to file** (overwrite)| `>` = send into file             |
+| `echo "More text" >> file.txt` | Adds text to end of file (**Append**) | `>>` = append more            |
+| `echo -n "Hello"`              | Prints without new line           | `n = no new line`                 |
+| `echo -e "Line1\nLine2"`       | Enables escapes like new lines    | `e = enable escapes`              |
+| `echo -e "A\tB"`               | Inserts tab space                 | `\t` = tab                        |
+| `echo -e "Path:\\home"`        | Prints backslash                  | `\\` = one backslash              |
+| `echo *`                       | Shows all files in current folder | `*` = everything                  |
+| `echo .*`                      | Shows hidden files too            | `.` = hidden files start with dot |
+Escape Sequences
+| Escape | Meaning        | Easy Way      |
+| ------ | -------------- | ------------- |
+| `\n`   | New line       | **next line** |
+| `\t`   | Horizontal tab | tab space     |
+| `\\`   | Backslash      | escaped slash |
+| `\a`   | Alert bell     | alarm         |
+| `\b`   | Backspace      | move back     |
+
+#
 
