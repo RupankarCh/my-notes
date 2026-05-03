@@ -696,3 +696,28 @@ Note: You can check your instance heath by going to EC2> Target groups> Specific
 
 Outcome: Now you can access the website using the DNS name of the load balancer each time you refresh the website is switched between those two different instances.
 
+# Auto Scaling Groups (Saves Cost)
+- Scale Out (Add EC2 instances) to match an increased load
+- Scale in (remove EC2 instances) to match a decreased load
+- Automatically register new instances to a load balancer
+- Replace unhealthy instances
+
+Types of Scaling Strategies for ASG:
+- Manual Scaling
+- Dynamic Scaling: Respond to changing demand (e.g., Simple/Step Scaling: when a CloudWatch alarm is triggered (example CPU>70%) then add 2 units, Target Tracking Scaling: I want the average ASG CPU to stay at around 40%, Scheduled Scaling: Anticipate a scaling based on known usage patterns)
+- Predictive Scaling: Uses ML to predict future traffic ahead of time based on past records.
+
+
+## Pratical
+EC2> Auto Scaling Groups, Create an Auto Scaling Group> Name It, Create a Launch Template> Name It, Select Instance Configuration, Enter the User Data, Create Launch Template> Select the Launch template, Next> Select the AZ you want the instances to be, and Balanced best effort, Next> Attach to an existing load balancer if load balancer already created, select target groups, Turn on Elastic Load Balancing health checks, Next> Desired capacity 2, max capacity can be hire than desired capacity, Next> Next> Next> Create Auto Scaling Group.
+
+EC2> Target Group> Click on the ASG> Health checks> Edit, (To change the health check timings)
+
+EC2> Load balancer> Copy the DNS Name and open that on browser (To check if the both load balancer is working, It will only work if the User data of these instances are for web hosting)
+
+EC2> Auto Scaling groups> ASG_name> Click on one Instance, Terminate Instance (To see if the ASG is adding the desired number of instances go to Activity of the ASG)
+
+EC2> Auto Scaling groups> ASG_name> Details, Edit (To change the capacity of the ASG)
+
+EC2> Auto Scaling groups, Select the ASG and Delete (To terminate the instances)
+
