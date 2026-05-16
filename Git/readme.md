@@ -57,7 +57,6 @@ Types of Git repositories
 2.Remote repository
 Hosted online on services like GitHub, GitLab, or Bitbucket, Used for collaboration and backup.
 
-**Commit** means making a change or modifying the current code
 
 ## Git Storage
 .git directory contains all the internal Git data — including your commits, branches, logs, config, and other versioning information.It’s essentially the database Git uses to track changes in your project.After this, you can start committing versions using git add and git commit.
@@ -76,7 +75,7 @@ Here are some of the **most commonly used commands in Git** when working in **Gi
 git init
 ```
 
-**Clone a remote repo**
+**Clone a remote repo to your local system**
 
 ```bash
 git clone <repository-url>
@@ -132,7 +131,7 @@ This moves files to the **staging area**.
 
 **4️⃣ Commit changes**
 
-Save staged changes to repository history.
+Save staged changes to repository history.**Commit** is a snapshot of a project at a specific time, It records file changes with a descriptive message.
 
 ```bash
 git commit -m "your commit message"
@@ -176,7 +175,7 @@ git checkout -b new-branch
 
 **6️⃣ Push & pull (remote repositories)**
 
-Push changes to remote:
+Push uploads **local commits to a remote repository**. So that others can also collaborate in the project.
 
 ```bash
 git push origin branch-name
