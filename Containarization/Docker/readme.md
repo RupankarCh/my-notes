@@ -34,7 +34,7 @@ FROM ubuntu:latest (To Use the latest version of Ubuntu as the base image)
 RUN apt update && apt install -y nginx (To Updates package lists and installs Nginx )
 
 COPY . /app (To Copy all files from your local directory into /app inside the container.)
-
+```
 
 
 
@@ -149,7 +149,8 @@ nano docker-compose.yml (nano gives us syntax highlighting)
 	volumes:
    -   <directoryonourhostmachine>:<directory inside the container>
 ```
-   <img width="355" height="326" alt="image" src="https://github.com/user-attachments/assets/fda154bb-01ae-4da9-8b6e-572d4b73aa0c" />
+   <img width="355" height="326" alt="image" src="https://github.com/user-attachments/assets/139cc803-2150-482c-9875-9124dbcd8b82" />
+
 
 
 #docker-compose up -d (To run a docker compose file in the background)(U can open it on browser “localhost:80”
