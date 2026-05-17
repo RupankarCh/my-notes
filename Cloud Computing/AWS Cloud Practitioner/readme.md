@@ -1,3 +1,6 @@
+
+<img width="394" height="568" alt="image" src="https://github.com/user-attachments/assets/bd77e3b5-3aa5-4510-aa7b-6abe2044e48e" />
+
 # Server:
 A server consists of Compute, Memory, Storage, Database, Network. 
 
