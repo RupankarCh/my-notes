@@ -11,4 +11,7 @@
 
 **Step 3: Modify Web Page** 
 1. Run: sudo nano /usr/share/nginx/html/index.html 
-2. Replace content with: <h1>Hello from EC2 Nginx</h1>
+2. Replace content with:
+```
+<h1>Hello from EC2 Nginx</h1>
+```
