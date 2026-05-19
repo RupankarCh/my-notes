@@ -53,6 +53,94 @@ Add:
 No internet route.
 **Associate: Private subnet**
 
+## Phase 2 — Launch Application Server
+### Step 5: Create Security Group for EC2
+
+Allow Inbound Rules:
+
+| Type  | Port |
+| ----- | ---- |
+| SSH   | 22   |
+| HTTP  | 80   |
+| HTTPS | 443  |
+
+Restrict SSH to your IP if possible.
+
+### Step 6: Launch EC2 Instance
+
+Use:
+Ubuntu Server
+t2.micro (free tier)
+
+Place it in Public subnet
+
+Attach: EC2 security group
+
+### Step 7: Install Application Stack
+
+Example for Node.js:
+```
+sudo apt update
+sudo apt install nodejs npm -y
+sudo nano app.js
+```
+paste and save
+```
+const http = require('http');
+
+// We use port 80 because your security group is open to HTTP (Port 80)
+const port = 80;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end(`
+    <h1>🚀 Hello from your AWS Application Server!</h1>
+    <p>Your public route table, subnet, and security group configurations are working perfectly.</p>
+  `);
+});
+
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+```
+
+Run:
+```
+node app.js
+```
+
+## Phase 3 — Create Cloud Database
+### Step 8: Create RDS MySQL
+
+Create 2 Subnet Groups first
+Create Database:
+MySQL
+Free tier
+Private subnet only 
+Disable: Public access
+
+### Step 9: Create Database Security Group
+Allow MySQL access from EC2 app instance:
+
+Inbound add and select MySQL/Aurora	port 3306 and Source as EC2 security group ONLY.
+Outbound leave default.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
