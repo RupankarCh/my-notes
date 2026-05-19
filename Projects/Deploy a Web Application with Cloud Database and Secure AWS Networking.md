@@ -105,11 +105,6 @@ server.listen(port, () => {
 });
 ```
 
-Run:
-```
-node app.js
-```
-
 ## Phase 3 — Create Cloud Database
 ### Step 8: Create RDS MySQL
 
