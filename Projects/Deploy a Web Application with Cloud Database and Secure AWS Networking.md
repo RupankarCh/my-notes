@@ -120,15 +120,36 @@ Free tier
 Private subnet only 
 Disable: Public access
 
-### Step 9: Create Database Security Group
+### Step 9: Edit previously created Database Security Group
 Allow MySQL access from EC2 app instance:
 
 Inbound add and select MySQL/Aurora	port 3306 and Source as EC2 security group ONLY.
 Outbound leave default.
 
+## Phase 4 — Connect App to Database
+### Step 10: Get RDS Endpoint
+- In the left-hand navigation sidebar, click on Databases.
+- You will see a list of your database instances. Click directly on the DB identifier (the name you gave your database) of your MySQL instance.
+- Scroll down slightly to the Connectivity & security tab (this tab is usually open by default).
+- Under the Endpoint & port section, you will see your endpoint. It looks like a long string of text, for example: project-database.c123456789.us-east-1.rds.amazonaws.com
 
+create a .env file and enter these credentials 
+Example:
+```
+DB_HOST=mydb.xxxxxx.ap-south-1.rds.amazonaws.com
+DB_USER=admin
+DB_PASSWORD=password
+DB_NAME=bookstore
+```
 
+## Phase 5 — Deploy Application
+### Step 12: Run Application
 
+Example:
+```
+node app.js
+```
+Access: http://EC2-PUBLIC-IP
 
 
 
