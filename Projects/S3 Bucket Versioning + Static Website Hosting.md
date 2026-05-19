@@ -8,6 +8,7 @@
   1. In bucket Properties, enable Bucket Versioning. 
 **Step 3: Upload Website Files**
   1. In bucket Properties, enable Bucket Versioning. 
+
 HTML 
 ```
 <!DOCTYPE html> 
@@ -25,6 +26,7 @@ HTML
   1. In Properties, enable Static Website Hosting and set the index document to index.html. 
 **Step 5: Make Files Public **
   1. Under Permissions, add the following Bucket Policy: 
+
 JSON 
 ```
 { 
