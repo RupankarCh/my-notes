@@ -33,17 +33,26 @@ docker --version
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo systemctl status docker
-nano dockerfile
+nano web-server
 ```
 ```
-FROM nginx:latest
+# Step 1: Use the lightweight, official Nginx base image
+FROM nginx:alpine
+# Step 2: Copy your local index.html file into Nginx's default web directory inside the container
 COPY index.html /usr/share/nginx/html/index.html
+# Step 3: Document that the container expects web traffic on port 80
+EXPOSE 80
 ```
-```
-sudo docker build -t mini-shop .
-sudo docker run -d -p 8080:80 mini-shop
-```
-public-ip:8080 and verify
+1. Stop your native host Nginx so Port 80 is completely free
+sudo systemctl stop nginx
+
+2. Build your new image with a clean name
+sudo docker build -t web-server .
+
+3. Run the container directly on Port 80
+sudo docker run -d --name web-server-container -p 80:80 web-server
+
+go to public-ip and verify
 
 # Module 2
 
