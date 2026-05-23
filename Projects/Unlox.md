@@ -1,50 +1,37 @@
-# Module 1
-start basic amazon linux in EC2 with all traffic
+# Module 2
+start basic Ubuntu in EC2 with SSH, HTTP, HTTPS allow and source 0.0.0.0/0
 connect to it doing ssh
 ```
-sudo dnf update -y
-sudo dnf install nginx -y
-sudo systemctl enable --now nginx
+ssh -i cloudops-key.pem ubuntu@YOUR_PUBLIC_IP
+sudo apt update && sudo apt upgrade -y
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
 sudo systemctl status nginx
-mkdir mini-shop
-cd mini-shop
-nano index.html
+cd /var/www/html
+sudo rm index.nginx-debian.html
+sudo nano index.html
 ```
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MiniShop</title>
-</head>
-<body>
-    <h1>MiniShop Cloud Store</h1>
-
-    <div>
-        <h2>Product 1</h2>
-        <p>Price: ₹500</p>
-        <button>Add to Cart</button>
-    </div>
-
-    <div>
-        <h2>Product 2</h2>
-        <p>Price: ₹1200</p>
-        <button>Add to Cart</button>
-    </div>
-</body>
-</html>
+<h1>CloudOps Enterprise Platform</h1>
+<p>Module 1 Deployment Successful</p>
 ```
 CTRL+X → Y → ENTER
 ```
 sudo cp index.html /usr/share/nginx/html/
 sudo systemctl restart nginx
 ```
+CTRL + x
+y
+ENTER
+
 http://YOUR_PUBLIC_IP (verify)
 
 ```
-sudo dnf install docker -y
+sudo apt install docker.io -y
 docker --version
-sudo systemctl enable --now docker
 sudo systemctl start docker
+sudo systemctl enable docker
 sudo systemctl status docker
 nano dockerfile
 ```
