@@ -70,6 +70,8 @@ sudo systemctl enable docker
 sudo systemctl start docker
 docker systemctl status docker
 sudo docker run -d -p 80:80 --name my-web-shop rupankarch/my-nginx-app:v1
+sudo docker exec -it my-web-shop /bin/sh (To get into the container)
+cd /usr/share/nginx/html (To see the current html file)
 
 
 
