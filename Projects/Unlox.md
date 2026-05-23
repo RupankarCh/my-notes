@@ -44,12 +44,15 @@ COPY index.html /usr/share/nginx/html/index.html
 EXPOSE 80
 ```
 1. Stop your native host Nginx so Port 80 is completely free
+
 sudo systemctl stop nginx
 
-2. Build your new image with a clean name
+3. Build your new image with a clean name
+
 sudo docker build -t web-server .
 
-3. Run the container directly on Port 80
+4. Run the container directly on Port 80
+
 sudo docker run -d --name web-server-container -p 80:80 web-server
 
 go to public-ip and verify
