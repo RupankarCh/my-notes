@@ -17,3 +17,22 @@ A microservice architecture is a **software development model's design approach 
 
 ## Usage: 
 Microservice architecture-**Large Application**, Monolithic Architecture-**Small projects**
+
+
+Technologies like WebSockets allow bidirectional communication between client and server,  enabling instant updates. 
+APIs: 
+
+JWT tokens (stateless auth)
+OAuth access tokens
+Single-page apps with API auth
+
+<img width="689" height="368" alt="image" src="https://github.com/user-attachments/assets/52196440-e7a2-4720-9557-b31b717ea1b0" />
+
+Value Types:
+String
+Number
+Boolean
+Null
+Object
+Array (Collection of objects)
+Each value pair ended with } creates a separate object.
