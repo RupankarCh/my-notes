@@ -8,7 +8,7 @@ Edit a connection> Select the interface> IPv4 Address Show> Enter the Content an
 ```
 2.Configure an YUM repository
 ```
-#df -Th (To check If you see s0 then start from Part 3, otherwise only disks like sda, vda, nvme0n1, etc., then there is no mounted ISO so proceed)
+#df -Th (To check If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no mounted ISO so proceed)
 ```
 Check:
 ```
@@ -41,7 +41,6 @@ lsblk
 You should see something like:
 sr0    11:0    1 10G 0 rom
 
-**Part 2**
 Then mount it:
 ```
 mkdir -p /mnt/cdrom
@@ -56,7 +55,7 @@ AppStream
 BaseOS
 media.repo
 
-Part 3: Configure Local YUM Repository
+Part 2: Configure Local YUM Repository
 1. Check the mount point
 ```
 ls /run/media/rupankar/RHEL-10-2-BaseOS-x86_64
