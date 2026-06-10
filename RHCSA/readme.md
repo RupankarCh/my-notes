@@ -56,6 +56,42 @@ AppStream
 BaseOS
 media.repo
 
-Part 3
+Part 3: Configure Local YUM Repository
+1. Check the mount point
+```
+ls /run/media/rupankar/RHEL-10-2-BaseOS-x86_64
+```
+You should see: AppStream, BaseOS, EFI, images, media.repo
 
+2. Create a repository file
+
+Open a new file:
+```
+sudo vi /etc/yum.repos.d/rhel10.repo
+```
+Add:
+```
+[BaseOS]
+name=RHEL 10 BaseOS
+baseurl=file:///run/media/rupankar/RHEL-10-2-BaseOS-x86_64/BaseOS
+enabled=1
+gpgcheck=0
+
+[AppStream]
+name=RHEL 10 AppStream
+baseurl=file:///run/media/rupankar/RHEL-10-2-BaseOS-x86_64/AppStream
+enabled=1
+gpgcheck=0
+```
+Save and exit. Esc :wq
+
+3. Clean existing metadata
+```
+sudo dnf clean all
+```
+4. Test package installation
+For example:
+```
+sudo dnf install httpd
+```
 
