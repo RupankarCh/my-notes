@@ -56,13 +56,13 @@ BaseOS
 media.repo
 
 Part 2: Configure Local YUM Repository
-1. Check the mount point
+Check the mount point
 ```
 ls /run/media/rupankar/RHEL-10-2-BaseOS-x86_64
 ```
 You should see: AppStream, BaseOS, EFI, images, media.repo
 
-2. Create a repository file
+Create a repository file
 
 Open a new file:
 ```
@@ -84,11 +84,11 @@ gpgcheck=0
 ```
 Save and exit. Esc :wq
 
-3. Clean existing metadata
+Clean existing metadata
 ```
 sudo dnf clean all
 ```
-4. Test package installation
+Test package installation
 For example:
 ```
 sudo dnf install httpd
