@@ -1,4 +1,4 @@
-1. IP Address Configuration, Hostname Change:
+1. **IP Address Configuration, Hostname Change:**
 Set IP Address, Subnet Mask, Gateway Address, DNS Address
 ```
 #nmtui (To configure IP address)
@@ -6,7 +6,7 @@ Edit a connection> Select the interface> IPv4 Address Show> Enter the Content an
 #ifconfig (To check)
 #hostnamectl set-hostname newhostname (To change hostname)
 ```
-2.Configure an YUM repository
+2.**Configure an YUM repository**
 ```
 #df -Th (To check If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no mounted ISO so proceed)
 ```
