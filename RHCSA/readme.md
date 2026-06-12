@@ -98,3 +98,28 @@ For example:
 sudo dnf install httpd*
 ```
 
+# 3.Create users and groups as per the following requirements
+```
+#groupadd sysadmin
+#useradd -G natasha
+#useradd -G jerry
+#useradd -s /sbin/nologin sarah
+#passwd natasha
+#passwd jerry
+#passwd sarah
+(Checking)
+#cat /etc/passwd
+#cat /etc/group
+#su <sarah> (user won't be able to login)
+```
+
+# 4. Setup collaborative directory
+```
+#mkdir /home/newfolder
+#groupadd sysadmin
+#chgrp sysadmin /home/newfolder
+#chmod 770 sysadmin /home/newfolder
+#chmod g+s /home/newfolder
+(Checking)
+#ls -ld /home/newfolder
+```
