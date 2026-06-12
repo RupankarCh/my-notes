@@ -124,3 +124,19 @@ sudo dnf install httpd*
 (Checking)
 #ls -ld /home/newfolder
 ```
+
+# 5. Configure NTP Client
+Your system should be configured as an NTP client of classromm example.com
+
+```
+#timedatectl set-ntp true
+#vim /etc/chrony.conf
+```
+Comment out the third line and write "<domain.com> iburst" and save
+
+# 6.create a user called system with ID number 2026
+```
+#sudo useradd -u 2026 system <username>
+```
+
+# 7.
