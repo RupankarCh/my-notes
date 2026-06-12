@@ -3,8 +3,10 @@
 
 ```
 #nmtui (To configure IP address)
+```
 Edit a connection> Select the interface> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Quit
 If connection is not getting active
+```
 #nmcli connection up
 #ifconfig (To check)
 #hostnamectl set-hostname newhostname (To change hostname)
