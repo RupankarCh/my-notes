@@ -12,6 +12,7 @@ If connection is not getting active
 #hostnamectl set-hostname newhostname (To change hostname)
 ```
 2.**Configure an YUM repository**
+
 <img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/1bf3685b-22e5-4035-a827-a8138643501c" />
 
 ```
