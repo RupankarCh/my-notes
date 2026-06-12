@@ -142,3 +142,7 @@ Comment out the third line and write "<domain.com> iburst" and save
 # 7.Create a tar archive
 Create an archive called archive.tar.bz2 which contains the contents of /usr/local directory using bzip2 compression to perform this task
 
+```
+#yum install bzip*
+#tar -Jcvf archive.tar.bz2 /usr/local/
+```
