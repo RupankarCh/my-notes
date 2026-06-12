@@ -1,22 +1,20 @@
 1. **IP Address Configuration, Hostname Change:**
-Set IP Address, Subnet Mask, Gateway Address, DNS Address
+<img width="612" height="248" alt="WhatsApp Image 2026-06-11 at 8 27 41 AM" src="https://github.com/user-attachments/assets/dd6ea055-e689-4665-bc29-c4db9c685fe7" />
+
 ```
 #nmtui (To configure IP address)
 Edit a connection> Select the interface> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Quit
+If connection is not getting active
+#nmcli connection up
 #ifconfig (To check)
 #hostnamectl set-hostname newhostname (To change hostname)
 ```
 2.**Configure an YUM repository**
+<img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/f6c3c245-4bbd-4720-9d1a-6aebff3cabbc" />
+
 ```
-#df -Th (To check If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no mounted ISO so proceed)
+#df -Th (To check if **/dev/s0 exists on your system means the hardware device (the virtual CD/DVD drive) exists and has a disc inserted/attached inside it,** If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no attached ISO so proceed)
 ```
-Check:
-```
-lsblk
-```
-You should see something like:
-sr0    11:0    1 10G 0 rom
-If not then proceed If yes then start from part 2
 Depending on your environment:
 
 VMware Workstation
@@ -34,12 +32,13 @@ Choose the RHEL 10 ISO.
 Start the VM.
 After attaching the ISO
 
-Check:
+Part 2:
 ```
 lsblk
 ```
 You should see something like:
 sr0    11:0    1 10G 0 rom
+If not then proceed If yes then start from Part 3
 
 Then mount it:
 ```
@@ -55,38 +54,37 @@ AppStream
 BaseOS
 media.repo
 
-Part 2: Configure Local YUM Repository
+Part 3: Configure Local YUM Repository
 Check the mount point
 ```
 ls /run/media/rupankar/RHEL-10-2-BaseOS-x86_64
 ```
 You should see: AppStream, BaseOS, EFI, images, media.repo
+#mkdir /root/foldername (To keep the main "RHEL installation DVD/ISO" untouched, it contains **operating system installation files, boot loaders, and the entire catalog of software packages**.) 
+#cp -rvf /run/media/rupankar/RHEL-10-2-BaseOS-x86_64 /root/foldername 
 
-Create a repository file
-
-Open a new file:
+Create a repository file:
 ```
-sudo vi /etc/yum.repos.d/rhel10.repo
+#vim /etc/yum.repos.d/filename.repo
 ```
 Add:
 ```
 [BaseOS]
-name=RHEL 10 BaseOS
-baseurl=file:///run/media/rupankar/RHEL-10-2-BaseOS-x86_64/BaseOS
-enabled=1
+name=This is RHEL 10 BaseOS
+baseurl=file:///root/foldername/RHEL-10-2-BaseOS-x86_64/BaseOS 
 gpgcheck=0
+enabled=1
 
 [AppStream]
-name=RHEL 10 AppStream
-baseurl=file:///run/media/rupankar/RHEL-10-2-BaseOS-x86_64/AppStream
-enabled=1
+name=This RHEL 10 AppStream
+baseurl=file:///root/foldername/RHEL-10-2-BaseOS-x86_64/AppStream
 gpgcheck=0
+enabled=1
 ```
 Save and exit. Esc :wq
-
-Clean existing metadata
 ```
-sudo dnf clean all
+#yum clean all (To Clean existing metadata)
+#yum repolist (The command scans all the configuration files inside /etc/yum.repos.d/)
 ```
 Test package installation
 For example:
