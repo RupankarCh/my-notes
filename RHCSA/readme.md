@@ -16,7 +16,7 @@ If connection is not getting active
 <img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/1bf3685b-22e5-4035-a827-a8138643501c" />
 
 ```
-#df -Th (To check if **/dev/s0 exists on your system means the hardware device (the virtual CD/DVD drive) exists and has a disc inserted/attached inside it,** If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no attached ISO so proceed)
+#df -Th (To check if /dev/s0 exists on your system means the hardware device (the virtual CD/DVD drive) exists and has a disc inserted/attached inside it, If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no attached ISO so proceed)
 ```
 Depending on your environment:
 
@@ -64,6 +64,7 @@ ls /run/media/rupankar/RHEL-10-2-BaseOS-x86_64
 ```
 You should see: AppStream, BaseOS, EFI, images, media.repo
 #mkdir /root/foldername (To keep the main "RHEL installation DVD/ISO" untouched, it contains **operating system installation files, boot loaders, and the entire catalog of software packages**.) 
+
 #cp -rvf /run/media/rupankar/RHEL-10-2-BaseOS-x86_64 /root/foldername 
 
 Create a repository file:
