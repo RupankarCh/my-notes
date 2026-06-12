@@ -1,6 +1,5 @@
 1. **IP Address Configuration, Hostname Change:**
 <img width="612" height="248" alt="WhatsApp Image 2026-06-11 at 8 27 41 AM" src="https://github.com/user-attachments/assets/dd6ea055-e689-4665-bc29-c4db9c685fe7" />
-
 ```
 #nmtui (To configure IP address)
 Edit a connection> Select the interface> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Quit
@@ -10,8 +9,7 @@ If connection is not getting active
 #hostnamectl set-hostname newhostname (To change hostname)
 ```
 2.**Configure an YUM repository**
-<img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/f6c3c245-4bbd-4720-9d1a-6aebff3cabbc" />
-
+<img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/f6c3c245-4bbd-4720-9d1a-6aebff3cabbc" /
 ```
 #df -Th (To check if **/dev/s0 exists on your system means the hardware device (the virtual CD/DVD drive) exists and has a disc inserted/attached inside it,** If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no attached ISO so proceed)
 ```
