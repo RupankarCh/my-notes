@@ -84,7 +84,10 @@ baseurl=file:///root/foldername/RHEL-10-2-BaseOS-x86_64/AppStream
 gpgcheck=0
 enabled=1
 ```
-Save and exit. Esc :wq
+Save and exit. Esc :wq if you get any error while creating the file E212/E303
+rum with root previledge
+rm -f /etc/yum.repos.d/.filename.repo.sw* (To cleanup)
+
 ```
 #yum clean all (To Clean existing metadata)
 #yum repolist (The command scans all the configuration files inside /etc/yum.repos.d/)
@@ -92,6 +95,6 @@ Save and exit. Esc :wq
 Test package installation
 For example:
 ```
-sudo dnf install httpd
+sudo dnf install httpd*
 ```
 
