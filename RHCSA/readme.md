@@ -139,4 +139,6 @@ Comment out the third line and write "<domain.com> iburst" and save
 #sudo useradd -u 2026 system <username>
 ```
 
-# 7.
+# 7.Create a tar archive
+Create an archive called archive.tar.bz2 which contains the contents of /usr/local directory using bzip2 compression to perform this task
+
