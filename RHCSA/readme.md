@@ -1,4 +1,4 @@
-1. **IP Address Configuration, Hostname Change:**
+# 1. **IP Address Configuration, Hostname Change:**
 <img width="612" height="248" alt="WhatsApp Image 2026-06-11 at 8 27 41 AM" src="https://github.com/user-attachments/assets/dd6ea055-e689-4665-bc29-c4db9c685fe7" />
 
 ```
@@ -11,7 +11,7 @@ If connection is not getting active
 #ifconfig (To check)
 #hostnamectl set-hostname newhostname (To change hostname)
 ```
-2.**Configure an YUM repository**
+# 2.**Configure an YUM repository**
 
 <img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/1bf3685b-22e5-4035-a827-a8138643501c" />
 
