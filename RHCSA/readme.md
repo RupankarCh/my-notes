@@ -31,7 +31,7 @@ Start the VM.
 VirtualBox
 Open Settings → Storage.
 Select the empty optical drive.
-Choose the RHEL 10 ISO.
+Choose the RHEL 10 DVD ISO (Only DVD iso contains BaseOS and AppStream)
 Start the VM.
 After attaching the ISO
 
@@ -100,6 +100,8 @@ sudo dnf install httpd*
 ```
 
 # 3.Create users and groups as per the following requirements
+<img width="1082" height="213" alt="3" src="https://github.com/user-attachments/assets/7dbcc940-fe41-4cb9-ae6a-ce28b2ca1e42" />
+
 ```
 #groupadd sysadmin
 #useradd -G natasha
@@ -115,6 +117,8 @@ sudo dnf install httpd*
 ```
 
 # 4. Setup collaborative directory
+<img width="1259" height="317" alt="4" src="https://github.com/user-attachments/assets/18cf8fb9-30d3-4e15-a26f-e42efaea6fc1" />
+
 ```
 #mkdir /home/newfolder
 #groupadd sysadmin
@@ -126,6 +130,8 @@ sudo dnf install httpd*
 ```
 
 # 5. Configure NTP Client
+<img width="806" height="209" alt="5" src="https://github.com/user-attachments/assets/c1842752-91fd-4295-8d85-5b1b6e499072" />
+
 Your system should be configured as an NTP client of classromm example.com
 
 ```
@@ -135,11 +141,14 @@ Your system should be configured as an NTP client of classromm example.com
 Comment out the third line and write "<domain.com> iburst" and save
 
 # 6.create a user called system with ID number 2026
+
 ```
 #sudo useradd -u 2026 system <username>
 ```
 
 # 7.Create a tar archive
+<img width="1097" height="176" alt="6" src="https://github.com/user-attachments/assets/33ce5d87-f3ed-473b-ab64-ec86c169d7e6" />
+
 Create an archive called archive.tar.bz2 which contains the contents of /usr/local directory using bzip2 compression to perform this task
 using bzip2
 ```
@@ -159,3 +168,4 @@ gzip -d file.txt.gz   # or gunzip file.txt.gz
 # Using bzip2
 bzip2 -d file.txt.bz2 # or bunzip2 file.txt.bz2
 
+# 8.Password Reset RHEL 10
