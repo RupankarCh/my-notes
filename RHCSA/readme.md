@@ -169,3 +169,14 @@ gzip -d file.txt.gz   # or gunzip file.txt.gz
 bzip2 -d file.txt.bz2 # or bunzip2 file.txt.bz2
 
 # 8.Password Reset RHEL 10
+
+Restart the machine first go to GRUB menu then press e to enter
+```
+init=/bin/bash (After the Linux line)
+ctrl+x
+mount -o remount,rw /
+passwd root
+touch /.autorelabel
+/usr/sbin/reboot -f
+```
+login with the new passwords.
