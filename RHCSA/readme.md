@@ -180,3 +180,21 @@ touch /.autorelabel
 /usr/sbin/reboot -f
 ```
 login with the new passwords.
+
+
+# 9.Create an Application message while login
+Write an application called rhcsa which should display "EX200 Exam whenever the user abid login.
+
+```
+vim /usr/local/bin/rhcsa
+```
+write 
+echo "EX200 Exam"
+```
+chmod +x /usr/local/bin/rhcsa
+vim /home/abid/.bash_profile
+```
+write
+/usr/local/bin/rhcsa
+
+Check: su - abid
