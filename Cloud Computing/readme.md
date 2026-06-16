@@ -12,6 +12,14 @@ Cloud computing is the **on-demand delivery of IT resources and applications ove
 - **Elasticity**: The ability to automatically adjust computing capacity to meet a sudden surge or drop in traffic.
 - **Global Reach**: Cloud providers have data centers worldwide, allowing you to deploy applications closer to your users.
 
+**Features of Cloud Computing:**
+- On-Demand IT Delivery: Instant access to compute, storage and database resources via internet.
+- Pay-As_you-Go Economics: Only pay for the specific resources consumed.
+- Scalability and Elasticity: Systems can be manually scaled for long-term growth or automatically streched (elasticity) to handle sudden spikes.
+- Global Infrastructure: Cloud providers maintain massive datacenters worldwide enabling businesses to deploy applications globally in minutes.
+- The Shared Responsibility Model: Provider manages physical security and hardware customers remain responsible for the data and applications they place in the cloud.
+
+
 # Cloud Deployment Models
 Cloud services are delivered in different ways to suit various business needs.
 
