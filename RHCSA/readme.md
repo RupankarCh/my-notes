@@ -103,9 +103,9 @@ sudo dnf install httpd*
 <img width="1082" height="213" alt="3" src="https://github.com/user-attachments/assets/7dbcc940-fe41-4cb9-ae6a-ce28b2ca1e42" />
 
 ```
-#groupadd sysadmin
-#useradd -G natasha
-#useradd -G jerry
+#groupadd sysadms
+#useradd -G sysadms natasha
+#useradd -G sysadms jerry
 #useradd -s /sbin/nologin sarah
 #passwd natasha
 #passwd jerry
