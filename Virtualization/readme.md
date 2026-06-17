@@ -2,10 +2,10 @@
 # Virtualization:
 
 Definition:
-**Virtualization is the technology that allows a single piece of hardware to run multiple operating systems simultaneously.**
+Virtualization is the **technology that allows a single piece of hardware to run multiple operating systems simultaneously**.
 
 Description
-A Virtual Machine (VM) is a complete, **self-contained operating system (OS) and its applications running on top of a hypervisor**. The **hypervisor is a piece of software that creates and runs VMs**, abstracting the underlying hardware.
+A Virtual Machine (VM) is a complete, **self-contained operating system (OS) and its applications running on top of a hypervisor**. The **hypervisor is a piece of software that creates and runs VMs, abstracting the underlying hardware.**
 
 # Terms
 - Host OS: The main OS my machine uses.
