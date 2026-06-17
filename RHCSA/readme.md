@@ -203,7 +203,9 @@ write
 Check: su - abid
 
 # 10.
+
 <img width="767" height="187" alt="10" src="https://github.com/user-attachments/assets/a8c33976-987e-4716-8e7a-2aa6c922cb7c" />
+
 ```
 tuned-adm active (To check Which profile the system has been configured)
 tuned-adm recomended (To check the list of profile)
@@ -212,7 +214,9 @@ systemctl enable tuned (To start the profile service)
 ```
 
 # 11. Default Umask value change
+
 <img width="833" height="195" alt="11" src="https://github.com/user-attachments/assets/e7d4439f-c384-4558-9307-ec5051468c23" />
+
 ```
 useradd sam
 su - sam
@@ -225,7 +229,9 @@ vim /etc/login.defs
 change the umask value, logout and login again
 
 # 12.Password Policy
+
 <img width="896" height="124" alt="12" src="https://github.com/user-attachments/assets/8e6f2fc1-344f-4add-a223-580e12161a98" />
+
 ```
 #vim /etc/login.defs
 ```
