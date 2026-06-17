@@ -236,3 +236,20 @@ change the umask value, logout and login again
 #vim /etc/login.defs
 ```
 maximum date will be 2 days
+
+
+# 13. 
+for perticular user
+```
+useradd sarah
+crontab -e -u sarah
+*/ * * * * logger "ex200"
+```
+:wq
+crontab -lu sarah
+
+# 14.Criteria Based Search
+search all lines from /usr/share/dict/words which have the word "command" copy.
+```
+grep "command" /usr/share/dict/word >> /root/command.txt
+```
