@@ -169,6 +169,7 @@ gzip -d file.txt.gz   # or gunzip file.txt.gz
 bzip2 -d file.txt.bz2 # or bunzip2 file.txt.bz2
 
 # 8.Password Reset RHEL 10
+<img width="734" height="123" alt="8" src="https://github.com/user-attachments/assets/37cdcbc1-1818-4d7c-a862-351d91ecf505" />
 
 Restart the machine first go to GRUB menu then press e to enter
 ```
@@ -183,6 +184,8 @@ login with the new passwords.
 
 
 # 9.Create an Application message while login
+<img width="885" height="119" alt="8" src="https://github.com/user-attachments/assets/4b3d8343-379b-4998-b2d6-bf9954128b19" />
+
 Write an application called rhcsa which should display "EX200 Exam whenever the user abid login.
 
 ```
@@ -198,3 +201,32 @@ write
 /usr/local/bin/rhcsa
 
 Check: su - abid
+
+# 10.
+<img width="767" height="187" alt="10" src="https://github.com/user-attachments/assets/a8c33976-987e-4716-8e7a-2aa6c922cb7c" />
+```
+tuned-adm active (To check Which profile the system has been configured)
+tuned-adm recomended (To check the list of profile)
+tuned-adm profile virtual-guest (To set the profile)
+systemctl enable tuned (To start the profile service)
+```
+
+# 11. Default Umask value change
+<img width="833" height="195" alt="11" src="https://github.com/user-attachments/assets/e7d4439f-c384-4558-9307-ec5051468c23" />
+```
+useradd sam
+su - sam
+touch a1
+touch a2
+ls -l
+umask
+vim /etc/login.defs
+```
+change the umask value, logout and login again
+
+# 12.Password Policy
+<img width="896" height="124" alt="12" src="https://github.com/user-attachments/assets/8e6f2fc1-344f-4add-a223-580e12161a98" />
+```
+#vim /etc/login.defs
+```
+maximum date will be 2 days
