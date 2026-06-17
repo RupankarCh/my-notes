@@ -19,7 +19,9 @@ Cloud computing is the **on-demand delivery of IT resources and applications ove
 Cloud services are delivered in different ways to suit various business needs.
 - **Public Cloud**: This is the most common model. **Cloud services are owned and operated by a third-party provider and delivered over the public internet**. All hardware, software, and other supporting infrastructure are managed by the provider. Examples include AWS, Azure, and GCP.
 - **Private Cloud**: A **cloud environment dedicated to a single organization**. It can be physically located on the company's premises or hosted by a third-party provider. This model offers greater control and security but comes with higher costs.
-- **Hybrid Cloud**: A **mix of public and private cloud environments**.A common use case is running mission-critical applications on a private cloud while using the public cloud for less sensitive tasks like web development or big data analytics. **Cloud Bursting is a strategy where an oraganization uses its private cloud for normal workloads but "bursts" into the public cloud to handle temporary spikes in traffic.**
+- **Hybrid Cloud**: A **mix of public and private cloud environments**.A common use case is running mission-critical applications on a private cloud while using the public cloud for less sensitive tasks like web development or big data analytics.
+- **Cloud Bursting**: is a strategy where an oraganization uses its **private cloud for normal workloads but "bursts" into the public cloud to handle temporary spikes in traffic**.
+- **Strategic Workload Placement**: Use the **private cloud for sensitive**, mission-critical data while leveraging the **public cloud for high-scale web applications**.
 
 ## Every CSP provides the Followings services
 - **Infrastructure as a Service (IaaS):** You get access to fundamental computing resources like virtual machines, storage, and networking. You manage the operating system and applications. Example Providers Amazon Web Services EC2, Microsoft Azure VM.
@@ -27,7 +29,7 @@ Cloud services are delivered in different ways to suit various business needs.
 - **Software as a Service (SaaS):** You get a ready-to-use software application delivered over the internet. Example services: Google Docs, Microsoft 365, Dropbox.
 
 
-# Overview of AWS, Azure& GCP service ecosystems
+# Overview of AWS, Azure & GCP service ecosystems
 ## CSPs (Cloud Service Providers)
 The cloud is not a single technology; it's a vast ecosystem of services. The three market leaders AWS, Azure, and GCP each have a unique philosophy but offer similar core functionalities.
 
@@ -65,17 +67,6 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - **Private Connectivity:(AWS Direct Connect, Azure ExpressRoute)** Dedicated network links that bypass the public internet to provide a secure, high-bandwidth connection between on-premise offices and the cloud
 
 
-## Why it’s used for these
-- Accessible via HTTP/HTTPS (perfect for browsers)
-- Virtually unlimited storage
-- Cheap compared to disks
-- Built-in redundancy and durability
-
-• **Amazon S3 (Simple Storage Service):** This is incredibly durable because of **data replication across multiple devices** and facilities. An object in S3 consists of **data, a unique key (its name), and metadata**. **Data is stored in buckets, which are containers in a specific AWS region**. S3 is highly scalable, and you can store viitually unlimited data.
-
-• **Azure Blob Storage**: "Blob" stands for **Binary Large Object**. Azure Blob has different **access tiers Hot, Cool, and Archive**, which allows you to optimtze costs based on how frequently you need to access the data, Data is stored in containers within an Azure storage account.
-
-• **Google Cloud Storage (GCS):** It also offers **a range of storage classes**, from high-performance to long-term archiving, which **automatically move objects between tiers to optimize cost**. GCS is deeply integrated with Google's other services, making it a **powerfull solution for data analytics and machine learning pipelines.**
 
 ## Data lifecycle management:
 How data is handled from creation to eventual deletion.
