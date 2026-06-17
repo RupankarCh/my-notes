@@ -253,3 +253,21 @@ search all lines from /usr/share/dict/words which have the word "command" copy.
 ```
 grep "command" /usr/share/dict/word >> /root/command.txt
 ```
+
+
+# 15.
+```
+#fdisk /dev/sda
+n
+p
+Last: +512M
+l
+t
+partprobe /dev/sda
+mkswap /dev/sda1
+vim /etc/fstab
+/dev/sda1 swap swap defaults 0 0
+swapon /dev/sda1
+swapon -s
+mount -a
+```
