@@ -20,6 +20,8 @@ The software that actually runs containers on a computer or server.
 3. Limits resources (Example: only 1GB RAM, only 1 CPU core)
 4. Starts the app process (Keeps it separate from other apps)
 
+
+
 # Vagrant:
 A tool used to create and manage reproducible development environments using virtual machines.
 
