@@ -22,4 +22,5 @@ A Virtual Machine (VM) is a complete, **self-contained operating system (OS) and
     - Learn & test
     - E:g Oracle virtualbox. Vmware server
   
-![Types of Hypervisor](https://github.com/RupankarCh/my-notes/blob/main/Images/Hypervisor%20Types.png)
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/cde411b6-8968-416c-b00e-ace57e9ed315" />
+
