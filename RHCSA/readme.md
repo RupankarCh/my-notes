@@ -229,6 +229,7 @@ vim /etc/login.defs
 change the umask value, logout and login again
 
 # 12.Password Policy
+<img width="896" height="124" alt="12" src="https://github.com/user-attachments/assets/ba302121-c285-4623-87f5-e46bac579c28" />
 
 <img width="896" height="124" alt="12" src="https://github.com/user-attachments/assets/8e6f2fc1-344f-4add-a223-580e12161a98" />
 
@@ -239,6 +240,8 @@ maximum date will be 2 days
 
 
 # 13. 
+<img width="1027" height="211" alt="WhatsApp Image 2026-06-18 at 2 43 50 PM" src="https://github.com/user-attachments/assets/4e588e3f-f209-4c5e-b4ec-392b2e0aa1fe" />
+
 for perticular user
 ```
 useradd sarah
@@ -249,13 +252,16 @@ crontab -e -u sarah
 crontab -lu sarah
 
 # 14.Criteria Based Search
-search all lines from /usr/share/dict/words which have the word "command" copy.
+<img width="1218" height="171" alt="14" src="https://github.com/user-attachments/assets/1ea6607b-0706-4e4e-9e69-b1b3988e9e2f" />
+
 ```
 grep "command" /usr/share/dict/word >> /root/command.txt
 ```
 
 
 # 15.
+<img width="490" height="183" alt="15" src="https://github.com/user-attachments/assets/b460110c-e30b-42a6-9d68-5fac72431553" />
+
 ```
 #fdisk /dev/sda
 n
