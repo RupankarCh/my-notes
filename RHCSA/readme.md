@@ -271,3 +271,28 @@ swapon /dev/sda1
 swapon -s
 mount -a
 ```
+
+# 16. Search and store files
+```
+mkdir -p /root/filefound
+find / -type f -user sarah -exec cp {} /root/filefound/ \;
+```
+
+# 17.
+```
+# useradd geo
+groupadd dba
+passwd geo
+visudo
+```
+write
+
+Allow root to run any commands anywhere
+geo ALL=(ALL) NOPASSWD: ALL
+
+Same thing without a passwd
+%dba ALL=(ALL) NOPASSWD: ALL
+
+save and exit.
+
+# 18.
