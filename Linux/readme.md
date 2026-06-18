@@ -31,6 +31,7 @@ Debian Based: Ubuntu Server, Kali Linux (Debian based means The software packagi
 - Shared Libraries: /lib, /usr/lib, /usr/local/lib (Installed Programming Language Library)
 
 ## Important files to remember:
-Path:/dev/sda
-Data:is a device file representing **the first physical disk on the system, next disks are ordered like sdb, sdc**; it doesn’t contain files like a regular directory, but refers to the raw disk data and its partitions (e.g., /dev/sda1, /dev/sda2).
+**Path:**/dev/sda
+**Data:** a device file representing **the first physical disk on the system, next disks are ordered like sdb, sdc**; it doesn’t contain files like a regular directory, but refers to the raw disk data and its partitions (e.g., /dev/sda1, /dev/sda2).
+
 
