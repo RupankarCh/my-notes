@@ -279,6 +279,8 @@ find / -type f -user sarah -exec cp {} /root/filefound/ \;
 ```
 
 # 17.
+<img width="1705" height="291" alt="image" src="https://github.com/user-attachments/assets/9ef78ce7-ab82-41cd-b979-41f26eaa96b7" />
+
 ```
 # useradd geo
 groupadd dba
