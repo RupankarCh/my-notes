@@ -13,11 +13,12 @@ in IT majorly there is two family of Linux OS
 RPM Based: RHEL, Centos, Oracle Linux (RPM based means The software packaging is done in RPM format like in  Windows its .exe and .msi and Android is .apk
 Debian Based: Ubuntu Server, Kali Linux (Debian based means The software packaging is done in Debian format)
 
+# File Structure:
 <img width="495" height="211" alt="image" src="https://github.com/user-attachments/assets/50af0dd8-e654-42c1-9e81-5b99d7c50f03" />
 <img width="521" height="403" alt="image" src="https://github.com/user-attachments/assets/c55d1d38-7647-4368-90da-8a2ea8000f8e" />
 <img width="523" height="388" alt="image" src="https://github.com/user-attachments/assets/4dcbbc7c-49ea-4f8f-84b5-86c1eb333e0b" />
 
-Some I mportant Directories
+## Some Important Directories
 - Home Directories: /root, /home/username
 - User Executable: /bin, /usr/bin, /usr/local/bin (Binaries or the user executable commands)
 - System Executables: /sbin, /usr/sbin, /usr/local/sbin (Binaries or the user executable commands)
@@ -28,3 +29,8 @@ Some I mportant Directories
 - Server Data: /var, /srv (Running server's data)
 - System Information: /proc, /sys (Current System Utilzation details)
 - Shared Libraries: /lib, /usr/lib, /usr/local/lib (Installed Programming Language Library)
+
+## Important files to remember:
+Path:/dev/sda
+Data:is a device file representing **the first physical disk on the system, next disks are ordered like sdb, sdc**; it doesn’t contain files like a regular directory, but refers to the raw disk data and its partitions (e.g., /dev/sda1, /dev/sda2).
+
