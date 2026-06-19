@@ -11,7 +11,8 @@ If connection is not getting active
 #ifconfig (To check)
 #hostnamectl set-hostname newhostname (To change hostname)
 ```
-# 2.**Configure an YUM repository**
+# 2.**Configure an YUM repository** 
+**(remember /etc/yum.repos.d/x.repo is a YUM/DNF repository configuration file that contains definitions of software repositories (repository ID, name, base URL, GPG settings, enable/disable options, etc.) used by the package manager to install and update packages.)**
 
 <img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/1bf3685b-22e5-4035-a827-a8138643501c" />
 
@@ -130,6 +131,7 @@ sudo dnf install httpd*
 ```
 
 # 5. Configure NTP Client
+(remember /etc/chrony.conf contains the configuration settings for the Chrony service, including NTP servers and time synchronization options.)
 <img width="806" height="209" alt="5" src="https://github.com/user-attachments/assets/c1842752-91fd-4295-8d85-5b1b6e499072" />
 
 Your system should be configured as an NTP client of classromm example.com
@@ -169,6 +171,7 @@ gzip -d file.txt.gz   # or gunzip file.txt.gz
 bzip2 -d file.txt.bz2 # or bunzip2 file.txt.bz2
 
 # 8.Password Reset RHEL 10
+**(/usr/sbin/reboot is the executable command used to safely restart the Linux system.)**
 <img width="734" height="123" alt="8" src="https://github.com/user-attachments/assets/37cdcbc1-1818-4d7c-a862-351d91ecf505" />
 
 Restart the machine first go to GRUB menu then press e to enter
@@ -223,15 +226,15 @@ su - sam
 touch a1
 touch a2
 ls -l
-umask
-vim /etc/login.defs
+umask (To check value of current user)
+vim /home/username/.bash_profile (To change umask value for a particular user)
+vim /etc/login.defs (To change value for all users)
 ```
 change the umask value, logout and login again
 
 # 12.Password Policy
+**(remember /etc/login.defs defines default settings for user account creation, password policies, and system login behavior.)**
 <img width="896" height="124" alt="12" src="https://github.com/user-attachments/assets/ba302121-c285-4623-87f5-e46bac579c28" />
-
-<img width="896" height="124" alt="12" src="https://github.com/user-attachments/assets/8e6f2fc1-344f-4add-a223-580e12161a98" />
 
 ```
 #vim /etc/login.defs
