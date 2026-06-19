@@ -270,15 +270,15 @@ grep "command" /usr/share/dict/word >> /root/command.txt
 n
 p
 Last: +512M
-l
 t
+82
+w
 partprobe /dev/sda
 mkswap /dev/sda1
 vim /etc/fstab
 /dev/sda1 swap swap defaults 0 0
 swapon /dev/sda1
 swapon -s
-mount -a
 ```
 
 # 16. Search and store files
