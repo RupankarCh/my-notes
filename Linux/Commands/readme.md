@@ -1,233 +1,371 @@
-# linux-commands-repo
-
-```text
-linux-commands-repo/
-│── README.md
-│
-├── Utilities/
-│   ├── file-commands.md
-│   ├── text-processing.md
-│   ├── system-monitoring.md
-│   ├── networking.md
-│   ├── cron-crontab.md
-│   └── package-management.md
-│
-├── Shells/
-│   ├── bash.md
-│   ├── zsh.md
-│   ├── fish.md
-│   ├── shell-scripting.md
-│   └── shell-differences.md
-│
-├── Permissions/
-│   ├── chmod.md
-│   └── chown.md
-│
-└── Cheatsheets/
-    ├── utilities-table.md
-    └── beginner-cheatsheet.md
-
-
-
-
-
-
-
-
-# 🐚 Basic Shell Knowledge (Linux)
-
-## 🧑‍💻 Prompt Symbols
-
-```text
-#  → Superuser (root) prompt, means you are running commands as **root (administrator)** → full system access ⚠️
-$  → Normal user prompt, means you are a **regular user** → limited permissions
-~  → Refers to the current user's home directory
-```
+A good way to remember Linux commands is to group them by **what you usually do**, not by the subsystem they belong to. Think of them as levels:
 
 ---
 
-## ▶️ Running Executables
+# 🥇 Level 1 — Daily Commands (Use Every Day)
+
+## 📂 Navigation
 
 ```bash
-./program_name   You need to use ./program_name to run an program existing on the same directory as you, If you downloaded that program in your current folder but didn’t move it to a PATH directory, typing `beef` alone will NOT work.
+pwd      # Where am I?
+ls       # What's here?
+cd       # Go somewhere
+cd ..    # Up one folder
+cd ~      # Home
 ```
+
+### Memory:
+
+> **P-L-C = Place, List, Change**
+
 ---
 
-## 🏃‍♂️ Directory Traversal
-Absolute Path:
-ls /usr/sbin/
-
-Relative Path:
-ls sbin/
-
-## 📦 to run without ./ (Why `./` is needed)
-
-```text
-move the program to PATH, the list of directories where the system looks for executable files "echo $PATH" to see the paths or move to the following directories
-python
-ls
-nano
-```
-
-### Common PATH directories:
-
-```text
-/usr/bin
-/bin
-/usr/local/bin
-```
-
-## 📁 File & Directory Basics
+## 📄 File Operations
 
 ```bash
-pwd        # Show current directory
-ls         # List files
-cd         # return to the home directory of the current user)
-cd /       # go to the root directory of the OS)
-cd ..      # return to the upper directory
-cd folder  # Change directory
+touch file.txt
+mkdir folder
+cp source dest
+mv old new
+rm file
+rm -r folder
 ```
+
+### Memory:
+
+> **Make → Copy → Move → Remove**
 
 ---
 
-## 🔐 Permissions (Very Important)
+## 🔍 Viewing Files
+
+```bash
+cat file
+head file
+tail file
+less file
+```
+
+### Memory:
+
+> **See beginning → See end → Browse**
+
+---
+
+# 🥈 Level 2 — Permissions & Users
+
+## Permissions
 
 ```bash
 ls -l
+chmod +x script.sh
+chmod 644 file
+chmod 755 script.sh
+chown user:user file
 ```
 
-Example output:
-
-```text
--rwxr-xr-x  1 user user  1234 file.sh
-```
-
-### Meaning:
-
-```text
-r = read
-w = write
-x = execute
-```
-
-### Make a file executable:
+## User Info
 
 ```bash
-chmod +x file.sh
+whoami
+id
+groups
+passwd
 ```
+
+### Memory:
+
+> **Who am I? → What can I do?**
 
 ---
 
-## ⚡ Useful Tips
+# 🥉 Level 3 — Processes
+
+## Running Programs
 
 ```bash
-./script.sh     # Run script in current folder
-bash script.sh  # Run using bash interpreter
+ps aux
+top
+htop
+pgrep nginx
+pidof sshd
 ```
 
----
-
-# 🐧 Universal Terminal Manipulation Guide
-
-## 📌 Basic Commands (Work on almost all Linux systems)
+## Killing Programs
 
 ```bash
-clear      # Clear the terminal screen
-reset      # Reset terminal (fix broken display)
-exit       # Close the terminal session
+kill PID
+kill -9 PID
+pkill firefox
 ```
+
+### Memory:
+
+> **Find → Monitor → Kill**
 
 ---
 
-## ⌨️ Cursor Movement (Shell-level — works in most shells like Bash)
-
-```text
-Ctrl + A   → Move cursor to beginning of line
-Ctrl + E   → Move cursor to end of line
-Alt + B    → Move backward one word
-Alt + F    → Move forward one word
-```
-
----
-
-## ✂️ Text Editing
-
-```text
-Ctrl + U   → Delete from cursor to beginning of line
-Ctrl + K   → Delete from cursor to end of line
-Ctrl + W   → Delete previous word
-Ctrl + Y   → Paste (yank) last deleted text
-```
-
----
-
-## 🔄 Screen Control
-
-```text
-Ctrl + L   → Clear screen (same as `clear`)
-Ctrl + C   → Cancel running command
-Ctrl + Z   → Suspend current process
-```
-
----
-
-## 📜 History Navigation
-
-```text
-Ctrl + P   → Previous command
-Ctrl + N   → Next command
-↑ / ↓      → Scroll through command history
-Ctrl + R   → Reverse search in history
-```
-
----
-
-## 🧵 Process & Session Control
-
-```text
-jobs       # List background jobs
-bg         # Resume job in background
-fg         # Bring job to foreground
-kill %1    # Kill job number 1
-```
-
----
-
-## 📂 Tab & Autocomplete
-
-```text
-Tab        → Auto-complete commands/files
-Tab (x2)   → Show all possible completions
-```
-
----
-
-## 🔍 Useful Terminal Tricks
+# 🏅 Level 4 — System Information
 
 ```bash
-history            # Show command history
-!!                 # Run last command again
-!n                 # Run command number n
+hostnamectl
+uname -a
+lsb_release -a
+uptime
+free -h
+lscpu
+date
+timedatectl
+```
+
+### Memory:
+
+> **System → CPU → Memory → Time**
+
+---
+
+# 🌐 Level 5 — Networking
+
+## Addresses
+
+```bash
+ip a
+ip route
+```
+
+## Connectivity
+
+```bash
+ping google.com
+traceroute google.com
+```
+
+## Ports
+
+```bash
+ss -tulnp
+```
+
+## DNS
+
+```bash
+dig google.com
+nslookup google.com
+resolvectl status
+```
+
+## Downloading
+
+```bash
+curl URL
+wget URL
+```
+
+### Memory:
+
+> **IP → Ping → Ports → DNS → Download**
+
+---
+
+# ⚙️ Level 6 — Services
+
+```bash
+systemctl status nginx
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+systemctl enable nginx
+systemctl disable nginx
+```
+
+### Memory:
+
+> **Status → Start → Stop → Restart → Enable**
+
+---
+
+# 📜 Level 7 — Logs & Troubleshooting
+
+## Journal
+
+```bash
+journalctl -b
+journalctl -f
+journalctl -u nginx
+```
+
+## Kernel
+
+```bash
+dmesg -T
+```
+
+## Syslog
+
+```bash
+tail -f /var/log/syslog
+grep error /var/log
+```
+
+### Memory:
+
+> **Journal → Kernel → Syslog**
+
+---
+
+# 💾 Level 8 — Disk & Storage
+
+## Space
+
+```bash
+df -h
+du -sh .
+lsblk
+blkid
+```
+
+## Mounting
+
+```bash
+mount
+findmnt
+umount
+```
+
+## Files
+
+```bash
+stat file
+file unknown.bin
+```
+
+### Memory:
+
+> **Space → Disks → Mounts → Files**
+
+---
+
+# 📦 Level 9 — Packages
+
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install package
+sudo apt remove package
+sudo apt autoremove
+```
+
+### Memory:
+
+> **Update → Upgrade → Install → Remove**
+
+---
+
+# 🔐 Level 10 — SSH & Firewall
+
+## SSH
+
+```bash
+ssh user@host
+ssh -v user@host
+ssh-copy-id user@host
+ssh-keygen -R host
+```
+
+## Firewall
+
+```bash
+sudo ufw status
+sudo ufw allow 22/tcp
+sudo ufw deny 22/tcp
+sudo ufw reload
+```
+
+### Memory:
+
+> **Connect → Keys → Firewall**
+
+---
+
+# 📝 Level 11 — Text Processing
+
+```bash
+grep
+sed
+awk
+cut
+sort
+uniq
+wc
+```
+
+### Memory:
+
+Think of a pipeline:
+
+```
+Find → Modify → Extract → Sort → Count
+grep → sed → awk → sort → uniq → wc
 ```
 
 ---
 
-## File Usage Tips:
+# 💾 Level 12 — Backup
 
-1. If a filename is '-' then 'cat ./-' can open it meaning you are telling cat to search for a file name '-' in the current directory './'
-2. To exit from ssh shell "exit"
-3. file ./-* (This command can be used for finding human readable text in a bunch of files where which file contains text is not specified because, ./-* means all files whose names start with -, The file command tells you the type of each file, e.g., ASCII text (human-readable), binary data.)
-4. find . -type f -size 1033c ! -executable -exec file {} + | grep "text" (find . (searches in the current directory and all subdirectories), -type f (looks for regular files only), -size 1033c (looks for files that are exactly 1033 bytes (c = bytes)), ! -executable (keep non executables files), -exec (lets you run a command on each file that found), file (determines file type), {} (is a placeholder that gets replaced with the current file's path/name for each match), + (passes multiple files at once), | grep "text" (filters the output to only show lines containing "text" i.e., human-readable files.)
+```bash
+rsync
+tar
+zip
+sha256sum
+diff
+```
 
+### Memory:
 
-sudo -i (To switch from a vagrant user to a root user)
-mkdir folder1 folder2 folder3 (To make multiple directories at a time)
-touch file{1..5}.txt (To make multiple files at a time)
-cd /tmp/ (To move to temp directory from anywhre)
-cp <coping_file_path> <destination_directory> (To copy, paste a file from one directory to another while not being present to the coping file directory)
-cp -r <coping_directory_name> <destination_directory_name> (To copy a directory recursively)
-mv <moving_directory_name> <destination_directory_name> (To move a directory from one place to another)
-mv <file_name.txt> <file_new_name.txt> (To rename a file)
-rm <file_name.txt> (To remove a file)
-rm -r <directory_name> (To remove a directory)
+```
+Copy → Compress → Verify → Compare
+```
 
+---
+
+# 🖥️ Level 13 — Hardware
+
+```bash
+lspci
+lsusb
+lsmod
+modprobe
+sensors
+rfkill
+```
+
+### Memory:
+
+> **Devices → Drivers → Temperature**
+
+---
+
+# ⭐ Master Order (Easy to Remember)
+
+```text
+1. Navigation
+2. Files
+3. Permissions
+4. Processes
+5. System Info
+6. Networking
+7. Services
+8. Logs
+9. Storage
+10. Packages
+11. SSH & Firewall
+12. Text Processing
+13. Backup
+14. Hardware
+```
+
+This order follows how Linux administrators usually troubleshoot:
+
+> **Where am I → What files are there → Who owns them → What's running → Is the system healthy → Is the network working → Are services running → What do the logs say → Is disk space okay → Are packages broken → Can I SSH → Need to edit text → Backup → Check hardware.**
+
+This structure is much easier to memorize than alphabetical lists.
