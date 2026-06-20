@@ -345,27 +345,7 @@ rfkill
 
 ---
 
-# ⭐ Master Order (Easy to Remember)
-
-```text
-1. Navigation
-2. Files
-3. Permissions
-4. Processes
-5. System Info
-6. Networking
-7. Services
-8. Logs
-9. Storage
-10. Packages
-11. SSH & Firewall
-12. Text Processing
-13. Backup
-14. Hardware
-```
 
 This order follows how Linux administrators usually troubleshoot:
 
 > **Where am I → What files are there → Who owns them → What's running → Is the system healthy → Is the network working → Are services running → What do the logs say → Is disk space okay → Are packages broken → Can I SSH → Need to edit text → Backup → Check hardware.**
-
-This structure is much easier to memorize than alphabetical lists.
