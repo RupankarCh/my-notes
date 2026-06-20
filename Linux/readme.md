@@ -924,5 +924,64 @@ ls -l /boot/grub2/
 ---
 
 
+# Environment Variable: PATH
+
+Data:
+PATH is an environment variable containing a list of directories that the shell searches for executable files when you type a command.
+
+The directories are searched from left to right.
+
+Example:
+
+/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+When you type:
+
+ls
+
+the shell searches in the following order:
+
+/usr/local/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+
+The first matching executable found is executed.
+
+View the current PATH:
+
+echo $PATH
+
+Temporarily add a directory to PATH (current session only):
+
+export PATH="$PATH:/home/user/bin"
+
+Permanently add a directory:
+
+For the current user:
+
+nano ~/.bashrc
+
+Add:
+
+export PATH="$PATH:/home/user/bin"
+
+Apply changes:
+
+source ~/.bashrc
+
+For all users:
+
+sudo nano /etc/profile
+
+or
+
+sudo nano /etc/bashrc
+
+Add:
+
+export PATH="$PATH:/opt/scripts"
+
 
 
