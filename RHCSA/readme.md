@@ -309,25 +309,25 @@ save and exit.
 # 18.
 Add a HDD Disk
 ```
-fdisk /dev/sda
+fdisk /dev/sda ( Opens the partition table editor for the first storage drive (sda))
 n
 +512M
 t
 l
 8e
 w
-partprobe /dev/sda
-pvcreate /dev/sda1
-pvdisplay /dev/sda1 (Check)
-vgcreate -s 8M datastore /dev/sda1
+partprobe /dev/sda (Forces the Linux kernel to read the new partition table without requiring a system reboo)
+pvcreate /dev/sda1 (Initializes the newly created partition (/dev/sda1) as an LVM Physical Volume so LVM can use it.)
+pvdisplay /dev/sda1 (Check properties of the new Physical Volume)
+vgcreate -s 8M datastore /dev/sda1 (Creates a Volume Group named datastore using the physical partition. The -s 8M flag explicitly sets the Physical Extent (PE) size to 8 Megabytes (the default is usually 4M))
 vgdisplay datastore
-lvcreate -l 50 -n database datastore
+lvcreate -l 50 -n database datastore (Allocates 50 logical extents to create a Logical Volume named database inside the datastore group.)
 lvdisplay datastore
-mkfs.vfat /dev/datastore/database
-mkdir -p /mnt/archive
-blkid
-vim /etc/fstab
-systemctl daemon-reload
+mkfs.vfat /dev/datastore/database (Formats the new logical volume with the FAT32 (vfat) filesystem.)
+mkdir -p /mnt/archive (Creates a target directory (mount point) named /mnt/archive to access the storage.)
+blkid (Displays the unique attributes of block devices (like UUIDs))
+vim /etc/fstab (Opens the system's file system table configuration file to add a line ensuring the disk mounts automatically on boot.)
+systemctl daemon-reload (Reloads the systemd manager configuration so it recognizes changes made to the system files.)
 mount -a
 ```
 
