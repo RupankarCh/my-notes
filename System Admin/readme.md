@@ -1,0 +1,14 @@
+# Essential duties of a system administrator
+- Controlling Access
+- Adding hardware
+- Automating Tasks
+- Overseeing Backups
+- Installing and upgrading software
+- Monitoring
+- Troubleshooting
+- Maintaining local documentation
+- Vililantly monitoring security
+- Tuning performace
+- Developing site policies
+- Working with Vendors
+- Fire Fighting
