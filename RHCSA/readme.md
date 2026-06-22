@@ -307,3 +307,28 @@ Same thing without a passwd
 save and exit.
 
 # 18.
+Add a HDD Disk
+```
+fdisk /dev/sda
+n
++512M
+t
+l
+8e
+w
+partprobe /dev/sda
+pvcreate /dev/sda
+pvcreate /dev/sda1
+pvdisplay /dev/sda1 (Check)
+vgcreate -s 8M datastore /dev/sda1
+vgdisplay datastore
+lvcreate -l 50 -n database datastore
+lvdisplay datastore
+mkfs.vfat /dev/datastore/database
+mkdir -p /mnt/archive
+blkid
+vim /etc/fstab
+systemctl daemon-reload
+mount -a
+```
+
