@@ -541,7 +541,16 @@ RDS> Create Database, Full Configuration,
 | High-scale cloud app     | Aurora              |
 | Serverless key-value app | DynamoDB            |
 
-## Object Storage S3:
+## Object Storage S3 (Simple Storage Service):
+Unlike traditional file systems that use nested folders, **object storage uses a flat structure. Data is stored as "objects" consisting of the file itself,** a unique key foridentification, and rich metadata, making it infinitely scalable for massive datasets.
+
+### Features:
+- Each **bucket name must be grobally unique** across all AWS accounts.
+- Every S3 object contains the **Data (the file)**,  a **Key** (the fullpath/name), and **Metadata** (tags like content-type or custom user-defined data).
+- S3 supports **"Versioning,"** allowing you to **keep, retrieve, and restore every version of every object**.
+- Security is managed through **IAM policies and Bucket Policies** to prevent public data leaks.
+- **S3 Standard replicates data across at least three separate Availability Zones (independent data centers) within a single region.**
+- There is **no limit of storage** to the amount of data you can store in S3, and **individual objects can be as large as 5 Terabytes.**
 
 ### Terms: 
 - Cross_Origin Resource sharing: Sharing Resource between multiple buckets.
