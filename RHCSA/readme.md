@@ -317,7 +317,6 @@ l
 8e
 w
 partprobe /dev/sda
-pvcreate /dev/sda
 pvcreate /dev/sda1
 pvdisplay /dev/sda1 (Check)
 vgcreate -s 8M datastore /dev/sda1
