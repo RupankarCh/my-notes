@@ -331,3 +331,14 @@ systemctl daemon-reload (Reloads the systemd manager configuration so it recogni
 mount -a
 ```
 
+
+# 19.
+<img width="1760" height="207" alt="image" src="https://github.com/user-attachments/assets/1d8405a0-91da-47e8-87ad-78ff0a5893e7" />
+
+
+```
+lsblk (Check current)
+lvextend -L + 300M /images
+resize2fs /image (For xfs filesystem, use fatlabel for vfat file system)
+lsblk (Check)
+```
