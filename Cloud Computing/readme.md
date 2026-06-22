@@ -46,7 +46,10 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - **Edge Computing**:(AWS Wavelength, Azure Stack Edge) Extending compute power closer to the user or IoT devices to reduce latency for real-time applications.
 
 ### Storage and Content Delivery:
-- **Object storage:(AWS S3, Azure Blob and GCP Cloud Storage)** **scalable, internet-accessible storage for large files and unstructured data  like photos, videos, and backups.**, Unlike traditional file systems that organize data in a hierarchy of folders, **object storage manages data as objects in a flat structure**, which makes it ideal for handling massive amounts ofunsttuctured data.
+- **Object storage:(AWS S3, Azure Blob and GCP Cloud Storage)** **scalable, internet-accessible storage for large files and unstructured data  like photos, videos, and backups.**, Unlike traditional file systems that organize data in a hierarchy of folders, **object storage manages data as objects in a flat structure**, which makes it ideal for handling massive amounts ofunsttuctured data. While the terminology differs—**S3 uses "Buckets," Azure uses"Containers," and GCS uses "Buckets"** —the concept is the same, a top-level logical unit used to organize objects and apply security policies.
+  - **Amazon S3:** Automatically **replicating data across multiple physical facilities within a region**, ensuring that data loss is statistically near-impossible.
+  - **Azure Blob Storage:** Optimized for "Binary Large Objects," this service excels at **serving contentdirectly to browsers and streaming media.**
+  - **Google Cloud Storage (GCS):** **automatically transition data to lower-cost tiers basedon its "age" or frequency of use**, optimizing the storage lifecycle.
 - **Block Storage: (AWS EBS, Azure ManagedDisks)** Acts like a **virtual hard drive attached to a VM**. It provides high-speed, low-latency performance required for running databases and enterprise applications.
 - **File Storage:(NAS)** Managed **network-attached storage** that allows multiple virtual machines to share a single file system, supporting standard protocols like NFS and SMB.
 - **Cold Storage (Archiving):(Amazon S3 Glacier)** Extremely low-cost tiers (like  designed fordata that is rarely accessed but must be kept for long-term compliance or backup.
