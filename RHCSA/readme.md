@@ -124,7 +124,7 @@ sudo dnf install httpd*
 #mkdir /home/newfolder
 #groupadd sysadmin
 #chgrp sysadmin /home/newfolder
-#chmod 770 sysadmin /home/newfolder
+#chmod 770 /home/newfolder
 #chmod g+s /home/newfolder
 (Checking)
 #ls -ld /home/newfolder
@@ -145,7 +145,7 @@ Comment out the third line and write "<domain.com> iburst" and save
 # 6.create a user called system with ID number 2026
 
 ```
-#sudo useradd -u 2026 system <username>
+#sudo useradd -u 2026 <username>
 ```
 
 # 7.Create a tar archive
