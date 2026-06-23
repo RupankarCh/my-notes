@@ -344,7 +344,7 @@ lsblk (Check)
 ```
 
 # 20.
-
+Server1
 ```
 yum install nfs* -y
 systemctl enable nfs-server.service 
@@ -356,4 +356,17 @@ vim /etc/exports
 /home/guest   *(rw,sync)
 firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
 firewall-cmd --reload
+```
+Server2
+```
+yum instal autofs* -y
+systemctl enable autofs.service 
+firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
+firewall-cmd --reload
+vim /etc/auto.master
+#/misc  /etc/auto.misc
+/home/guest     /etc/auto.misc
+vim /etc/auto.misc 
+systemctl enable autofs
+systemctl restart autofs.service 
 ```
