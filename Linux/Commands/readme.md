@@ -12,6 +12,7 @@ ls       # What's here?
 cd       # Go somewhere
 cd ..    # Up one folder
 cd ~      # Home
+man -k <keyword> # Searches the short descriptions of all manual pages for the specified keyword and returns a list of matching commands
 ```
 
 ### Memory:
