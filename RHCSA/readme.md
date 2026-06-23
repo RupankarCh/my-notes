@@ -342,3 +342,18 @@ lvextend -L + 300M /images
 resize2fs /image (For xfs filesystem, use fatlabel for vfat file system)
 lsblk (Check)
 ```
+
+# 20.
+
+```
+yum install nfs* -y
+systemctl enable nfs-server.service 
+mkdir -p /home/guest/it_database{1..20}
+ls -ld /home/guest/
+chown -R nobody:nobody /home/guest/
+chcon -R -t nfs_t /home/guest/
+vim /etc/exports
+/home/guest   *(rw,sync)
+firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
+firewall-cmd --reload
+```
