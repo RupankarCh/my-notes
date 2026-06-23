@@ -861,6 +861,11 @@ Apache web server logs (if installed).
 Nginx web server logs (if installed).
 
 ---
+## /usr/share
+### Path: `/usr/share/man`
+
+**Data**
+Storage of man pages, compressed with gzip to save space, The man command knows how to decompress them on the fly. If you add additional man pages to your system, you may need to rebuild the centralized index database file which consists info about all .gz files in the directory, to rebuild the index file we use "sudo mandb". 
 
 ## Metasploit
 
