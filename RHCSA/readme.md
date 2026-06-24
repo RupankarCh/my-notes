@@ -89,9 +89,8 @@ Once the file is saved, clear the package manager cache and verify that the new 
 #groupadd sysadmin
 #chgrp sysadmin /home/newfolder
 #chmod 770 /home/newfolder
-#chmod g+s /home/newfolder
-(Checking)
-#ls -ld /home/newfolder
+#chmod g+s /home/newfolder (If a user named rupankar (who belongs to the sysadms group) creates a file called test.txt, Even if rupankar's primary group is student, the file test.txt will automatically have its group set to sysadms.)
+#ls -ld /home/newfolder (Checking)
 ```
 
 # 5. Configure NTP Client
