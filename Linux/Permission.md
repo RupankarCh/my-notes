@@ -11,7 +11,8 @@ Think of a file as a document.
   - Allows a user to modify, overwrite, or truncate the data inside the file.
   - Commands enabled: Saving changes in vi, appending text with echo "text" >> file.
   - The Catch: It does not allow a user to delete the file. (More on that below).
-Execute (x): The power to run it.
+
+**Execute (x):** The power to run it.
   - Allows the system to run the file as a program, script, or binary.
   - Commands enabled: ./script.sh.
 
