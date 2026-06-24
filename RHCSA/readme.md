@@ -418,3 +418,33 @@ systemctl restart autofs.service
 
 # CHANGE: Added verification command to test and trigger the dynamic mount point
 cd /mnt/guest_shares/database && ls -la
+
+
+
+
+
+
+
+```S1:
+yum install nfs* -y
+mkdir -p /server1
+echo "NFS Test" > /server1/t1.txt
+chmod 777 /server1
+vim /etc/exports (/server1 <server2IP>(rw,sync,no_root_squash))
+systemctl enable nfs-server --now
+exportfs -r
+exportfs -v
+firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
+firewall-cmd --reload
+exportfs
+
+S2:
+yum install autofs* -y
+vim /etc/auto.master (/server2 /etc/auto.misc)
+vim /etc/auto.misc (access -rw,sync <server1IP>:/server1)
+systemctl enable autofs --now
+cd /server2
+cd /access
+ls -l
+```
+
