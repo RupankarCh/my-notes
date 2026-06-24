@@ -34,7 +34,7 @@ enabled=1
 gpgcheck=0
 Note on Parameters:
 ```
-Save and close the file (in vi, press Esc, type :wq, and press Enter).
+Save and close the file (in vim, press Esc, type :wq, and press Enter).
 
 Step 3: Verify and Clean the Cache
 Once the file is saved, clear the package manager cache and verify that the new repositories are correctly detected and enabled:
@@ -59,6 +59,10 @@ Once the file is saved, clear the package manager cache and verify that the new 
 **enabled=1** ensures the repository is active (as requested).
 
 **gpgcheck=0** gpgcheck does authenticates the package sourcedisables GPG key signature checking, which is ideal here since no GPG key URL was provided.
+
+**BaseOS** contains The Linux Kernel, systemd, glibc, OpenSSH, and the dnf package manager itself.
+
+**AppStream** contains Databases (MySQL, PostgreSQL), programming languages (Python, Node.js, PHP), web servers (nginx, Apache), and system administration tools.
 
 # 3.Create users and groups as per the following requirements
 <img width="1082" height="213" alt="3" src="https://github.com/user-attachments/assets/7dbcc940-fe41-4cb9-ae6a-ce28b2ca1e42" />
