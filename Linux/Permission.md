@@ -31,3 +31,22 @@ Think of a directory not as a container, but as a ledger or an index that lists 
 **Execute (x):** The power to pass through / access.
   - On a directory, x is often called the search bit. It allows a user to "enter" the directory and pass through it to access files inside.
   - Commands enabled: cd /path/to/directory, or directly reading a file inside it via cat /directory/file.txt.
+
+
+# SUID
+SUID stands for **Set User ID**. It is a special type of file permission in Linux that **allows an executable file to run with the privileges of the file's owner rather than the privileges of the user who is running it.**
+
+Most of the time, it is used to allow regular, non-privileged users to temporarily run specific programs with root (admin) privileges.
+
+example: 
+suppose the current folder looks like this after doing 
+```
+#chmod g+s /home/material
+drwxrws---. 2 root sysadms 6 Jun 16 11:11 /home/material/
+```
+If a user named rupankar (who belongs to the sysadms group) creates a file called test.txt, the file owner will be rupankar. Even if rupankar's primary group is student, the file test.txt will automatically have its group set to sysadms.
+```
+-rw-r-----. 1 rupankar sysadms 0 Jun 24 21:53 test.txt
+              ▲        ▲
+        Real Creator   Inherited Group from Parent Directory
+```
