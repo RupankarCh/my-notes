@@ -94,17 +94,19 @@ Once the file is saved, clear the package manager cache and verify that the new 
 ```
 
 # 5. Configure NTP Client
-(remember /etc/chrony.conf contains the configuration settings for the Chrony service, including NTP servers and time synchronization options.)
+
 <img width="806" height="209" alt="5" src="https://github.com/user-attachments/assets/c1842752-91fd-4295-8d85-5b1b6e499072" />
-
-Your system should be configured as an NTP client of classromm example.com
-
 ```
-#timedatectl set-ntp true
-#vim /etc/chrony.conf
+#timedatectl set-ntp true (enables Network Time Protocol (NTP) synchronization on your Linux system based on the system's time synchronization daemon chronyd)
+#vim /etc/chrony.conf (chrony.conf the configuration file for the time synchronization daemon)
 ```
-Comment out the third line and write "<domain.com> iburst" and save
+Only write "<domain.com> iburst" and save
+```
+#timedatectl (Check)
+```
 
+**Note:**
+/etc/chrony.conf contains the configuration settings for the Chrony service, including NTP servers and time synchronization options.
 # 6.create a user called system with ID number 2026
 
 ```
