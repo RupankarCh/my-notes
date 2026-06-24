@@ -448,3 +448,20 @@ cd /access
 ls -l
 ```
 
+```
+yum install httpd* -y
+systemctl restart httpd.service 
+vim /var/www/html/index.html (Write any text)
+chmod 777 /var/www/html/index.html 
+restorecon -Rv /var/www/html/
+systemctl restart httpd.service 
+curl http://localhost:80 (You can see the index.txt content on terminal)
+vim /etc/httpd/conf/httpd.conf (Change Listen port)
+semanage port -l | grep http_port_t
+firewall-cmd --permanent --add-port=82/tcp
+firewall-cmd --reload
+restorecon -Rv /var/www/html/
+systemctl restart httpd.service 
+systemctl reload  httpd.service 
+curl http://localhost:82
+```
