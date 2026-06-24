@@ -3,14 +3,10 @@
 
 ```
 #nmtui (To configure IP address)
+#nmcli device show (To check )
 ```
-Edit a connection> Select the interface> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Quit
-If connection is not getting active
-```
-#nmcli connection up
-#ifconfig (To check)
-#hostnamectl set-hostname newhostname (To change hostname)
-```
+Edit a connection> Select the interface> IPv4 Configuration: Manual> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Set System Hostname, Change name, OK> Quit
+
 # 2.**Configure an YUM repository** 
 **(remember /etc/yum.repos.d/x.repo is a YUM/DNF repository configuration file that contains definitions of software repositories (repository ID, name, base URL, GPG settings, enable/disable options, etc.) used by the package manager to install and update packages.)**
 
