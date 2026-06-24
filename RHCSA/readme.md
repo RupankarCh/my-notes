@@ -107,6 +107,7 @@ Only write "<domain.com> iburst" and save
 
 **Note:**
 /etc/chrony.conf contains the configuration settings for the Chrony service, including NTP servers and time synchronization options.
+iburst (initial burst) tells the time daemon (chronyd) to aggressively sync the system clock right when the service starts up or when a network connection is first established.
 # 6.create a user called system with ID number 2026
 
 ```
