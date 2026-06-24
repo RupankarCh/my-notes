@@ -3,7 +3,7 @@
 
 ```
 #nmtui (To configure IP address)
-#nmcli device show (To check )
+#nmcli device show (To check)
 ```
 Edit a connection> Select the interface> IPv4 Configuration: Manual> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Set System Hostname, Change name, OK> Quit
 
@@ -12,89 +12,48 @@ Edit a connection> Select the interface> IPv4 Configuration: Manual> IPv4 Addres
 
 <img width="736" height="283" alt="WhatsApp Image 2026-06-11 at 8 28 09 AM" src="https://github.com/user-attachments/assets/1bf3685b-22e5-4035-a827-a8138643501c" />
 
-```
-#df -Th (To check if /dev/s0 exists on your system means the hardware device (the virtual CD/DVD drive) exists and has a disc inserted/attached inside it, If you see sr0 then start from Part 2, otherwise only disks like sda, vda, nvme0n1, etc., then there is no attached ISO so proceed)
-```
-Depending on your environment:
+Step 1: Create the Configuration File
+Open a terminal and create a new repository file (e.g., rhel10.repo) 
 
-VMware Workstation
-Power off the VM (or edit settings while powered on if supported).
-Go to VM → Settings → CD/DVD.
-Select Use ISO image file.
-Browse to your RHEL 10 ISO.
-Check Connected and Connect at power on.
-Start the VM.
-
-VirtualBox
-Open Settings → Storage.
-Select the empty optical drive.
-Choose the RHEL 10 DVD ISO (Only DVD iso contains BaseOS and AppStream)
-Start the VM.
-After attaching the ISO
-
-Part 2:
 ```
-lsblk
+#vi /etc/yum.repos.d/rhel10.repo
 ```
-You should see something like:
-sr0    11:0    1 10G 0 rom
-If not then proceed If yes then start from Part 3
-
-Then mount it:
-```
-mkdir -p /mnt/cdrom
-mount /dev/sr0 /mnt/cdrom
-```
-Verify:
-```
-ls /mnt/cdrom
-```
-You should see directories such as:
-AppStream
-BaseOS
-media.repo
-
-Part 3: Configure Local YUM Repository
-Check the mount point
-```
-ls /run/media/rupankar/RHEL-10-2-BaseOS-x86_64
-```
-You should see: AppStream, BaseOS, EFI, images, media.repo
-#mkdir /root/foldername (To keep the main "RHEL installation DVD/ISO" untouched, it contains **operating system installation files, boot loaders, and the entire catalog of software packages**.) 
-
-#cp -rvf /run/media/rupankar/RHEL-10-2-BaseOS-x86_64 /root/foldername 
-
-Create a repository file:
-```
-#vim /etc/yum.repos.d/filename.repo
-```
-Add:
+Step 2: Add the Repository Configurations
+Paste the following configuration
 ```
 [BaseOS]
-name=This is RHEL 10 BaseOS
-baseurl=file:///root/foldername/RHEL-10-2-BaseOS-x86_64/BaseOS 
-gpgcheck=0
+name=BaseOS
+baseurl=http://content.example.com/rhel8.2/x86_64/dvd/BaseOS
 enabled=1
+gpgcheck=0
 
 [AppStream]
-name=This RHEL 10 AppStream
-baseurl=file:///root/foldername/RHEL-10-2-BaseOS-x86_64/AppStream
-gpgcheck=0
+name=AppStream
+baseurl=http://content.example.com/rhel8.2/x86_64/dvd/AppStream
 enabled=1
+gpgcheck=0
+Note on Parameters:
 ```
-Save and exit. Esc :wq if you get any error while creating the file E212/E303
-rum with root previledge
-rm -f /etc/yum.repos.d/.filename.repo.sw* (To cleanup)
+Save and close the file (in vi, press Esc, type :wq, and press Enter).
 
+Step 3: Verify and Clean the Cache
+Once the file is saved, clear the package manager cache and verify that the new repositories are correctly detected and enabled:
 ```
-#yum clean all (To Clean existing metadata)
-#yum repolist (The command scans all the configuration files inside /etc/yum.repos.d/)
+#sudo dnf clean all (cleans out the cached data that your system downloaded from those sources)
+#sudo dnf repolist (Status Checker: It looks through all the configuration files inside /etc/yum.repos.d/ and prints out a clean summary of every repository your system is currently allowed to use.)
 ```
-Test package installation
-For example:
-```
-sudo dnf install httpd*
-```
+**Note:**
+**[...]** defines the unique Repository ID.
+**name=** defines the display name of the repository.
+**baseurl=** points to the exact URL where the packages are hosted.
+  - **file:///root/foldername/**... uses the local filesystem.
+  How it works: The system looks for the packages directly on your local hard drive or SSD. The iso consists certain version of packages.
+  Requirement: The entire RHEL installation ISO or repository folder must already be downloaded, extracted, or mounted inside that specific local directory (/root/foldername/...).
+  - **http://content.example.com/**... uses the network (HTTP protocol).
+  How it works: The system downloads packages over a network or the internet from a remote web server whenever you try to install something.
+  Requirement: Your machine must have an active network connection and a properly configured DNS/routing setup to reach content.example.com.
+**enabled=1** ensures the repository is active (as requested).
+**gpgcheck=0** gpgcheck does authenticates the package sourcedisables GPG key signature checking, which is ideal here since no GPG key URL was provided.
 
 # 3.Create users and groups as per the following requirements
 <img width="1082" height="213" alt="3" src="https://github.com/user-attachments/assets/7dbcc940-fe41-4cb9-ae6a-ce28b2ca1e42" />
