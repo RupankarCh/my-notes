@@ -43,8 +43,11 @@ Once the file is saved, clear the package manager cache and verify that the new 
 #sudo dnf repolist (Status Checker: It looks through all the configuration files inside /etc/yum.repos.d/ and prints out a clean summary of every repository your system is currently allowed to use.)
 ```
 **Note:**
+
 **[...]** defines the unique Repository ID.
+
 **name=** defines the display name of the repository.
+
 **baseurl=** points to the exact URL where the packages are hosted.
   - **file:///root/foldername/**... uses the local filesystem.
   How it works: The system looks for the packages directly on your local hard drive or SSD. The iso consists certain version of packages.
@@ -52,7 +55,9 @@ Once the file is saved, clear the package manager cache and verify that the new 
   - **http://content.example.com/**... uses the network (HTTP protocol).
   How it works: The system downloads packages over a network or the internet from a remote web server whenever you try to install something.
   Requirement: Your machine must have an active network connection and a properly configured DNS/routing setup to reach content.example.com.
+
 **enabled=1** ensures the repository is active (as requested).
+
 **gpgcheck=0** gpgcheck does authenticates the package sourcedisables GPG key signature checking, which is ideal here since no GPG key URL was provided.
 
 # 3.Create users and groups as per the following requirements
