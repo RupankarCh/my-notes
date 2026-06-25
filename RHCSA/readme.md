@@ -108,6 +108,7 @@ Only write "<domain.com> iburst" and save
 **Note:**
 /etc/chrony.conf contains the configuration settings for the Chrony service, including NTP servers and time synchronization options.
 iburst (initial burst) tells the time daemon (chronyd) to aggressively sync the system clock right when the service starts up or when a network connection is first established.
+
 # 6.create a user called system with ID number 2026
 
 ```
@@ -123,6 +124,7 @@ using bzip2
 #yum install bzip*
 #tar -Jcvf archive.tar.bz2 /usr/local/
 ```
+**Note:**
 using gzip
 ```
 #yum install gzip*
@@ -130,13 +132,16 @@ using gzip
 ```
 
 Decompress Not needed
-# Using gzip
+Using gzip
+```
 gzip -d file.txt.gz   # or gunzip file.txt.gz
-
-# Using bzip2
+```
+Using bzip2
+```
 bzip2 -d file.txt.bz2 # or bunzip2 file.txt.bz2
+```
 
-# 8.Password Reset RHEL 10
+8.Password Reset RHEL 10
 **(/usr/sbin/reboot is the executable command used to safely restart the Linux system.)**
 <img width="734" height="123" alt="8" src="https://github.com/user-attachments/assets/37cdcbc1-1818-4d7c-a862-351d91ecf505" />
 
