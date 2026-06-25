@@ -425,7 +425,7 @@ export PATH="$PATH:/home/kali/go/bin"
 ### Path: `/home/username/.bash_profile`
 
 **Data:**
-Executed when a user logs in.
+user-specific environment configurations and startup commands
 
 Examples:
 
