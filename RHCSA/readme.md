@@ -141,7 +141,7 @@ Using bzip2
 bzip2 -d file.txt.bz2 # or bunzip2 file.txt.bz2
 ```
 
-8.Password Reset RHEL 10
+# 8.Password Reset RHEL 10
 **(/usr/sbin/reboot is the executable command used to safely restart the Linux system.)**
 <img width="734" height="123" alt="8" src="https://github.com/user-attachments/assets/37cdcbc1-1818-4d7c-a862-351d91ecf505" />
 
@@ -163,18 +163,20 @@ login with the new passwords.
 Write an application called rhcsa which should display "EX200 Exam whenever the user abid login.
 
 ```
-vim /usr/local/bin/rhcsa
+vim /usr/local/bin/rhcsa (To create a binary executable)
 ```
 write 
 echo "EX200 Exam"
 ```
-chmod +x /usr/local/bin/rhcsa
-vim /home/abid/.bash_profile
+chmod +x /usr/local/bin/rhcsa 
+vim /home/abid/.bash_profile (To modify user-specific and startup commands)
 ```
 write
-/usr/local/bin/rhcsa
+/usr/local/bin/rhcsa (To execute the exucutable file while login)
 
 Check: su - abid
+**Note:**
+/usr/local/bin/ 
 
 # 10.
 
