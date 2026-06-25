@@ -169,7 +169,7 @@ write
 echo "EX200 Exam"
 ```
 chmod +x /usr/local/bin/rhcsa 
-vim /home/abid/.bash_profile (To modify user-specific and startup commands)
+vim /home/abid/.bash_profile (To modify user-specific startup commands)
 ```
 write
 /usr/local/bin/rhcsa (To execute the exucutable file while login)
@@ -183,10 +183,10 @@ Check: su - abid
 <img width="767" height="187" alt="10" src="https://github.com/user-attachments/assets/a8c33976-987e-4716-8e7a-2aa6c922cb7c" />
 
 ```
-tuned-adm active (To check Which profile the system has been configured)
-tuned-adm recomended (To check the list of profile)
+tuned-adm recomended (To Find the recommended profile)
 tuned-adm profile virtual-guest (To set the profile)
-systemctl enable tuned (To start the profile service)
+systemctl enable --now tuned (To start the profile service)
+tuned-adm active (To check Which profile the system has been configured)
 ```
 
 # 11. Default Umask value change
