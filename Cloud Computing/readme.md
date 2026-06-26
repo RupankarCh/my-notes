@@ -15,7 +15,7 @@ Cloud computing is the **on-demand delivery of IT resources and applications ove
 - **Vertical Scalability:** Increase in the **power of current infrastructure**.
 - **Horizontal Scalability:** Increase in the **number of current infrastructure**. example service-**Auto Scaling Group, Load Balancer**
 
-## Cloud Deployment Models
+# Cloud Deployment Models
 Cloud services are delivered in different ways to suit various business needs.
 - **Public Cloud**: This is the most common model. **Cloud services are owned and operated by a third-party provider and delivered over the public internet**. All hardware, software, and other supporting infrastructure are managed by the provider. Examples include AWS, Azure, and GCP.
 - **Private Cloud**: A **cloud environment dedicated to a single organization**. It can be physically located on the company's premises or hosted by a third-party provider. This model offers greater control and security but comes with higher costs.
@@ -23,7 +23,7 @@ Cloud services are delivered in different ways to suit various business needs.
 - **Cloud Bursting**: is a strategy where an oraganization uses its **private cloud for normal workloads but "bursts" into the public cloud to handle temporary spikes in traffic**.
 - **Strategic Workload Placement**: Use the **private cloud for sensitive**, mission-critical data while leveraging the **public cloud for high-scale web applications**.
 
-## Every CSP provides the Followings services
+# Every CSP provides the Followings services
 - **Infrastructure as a Service (IaaS):** You get access to fundamental computing resources like virtual machines, storage, and networking. You manage the operating system and applications. Example Providers Amazon Web Services EC2, Microsoft Azure VM.
 - **Platform as a Service (PaaS):** You get a platform to build, run, and manage applications without the complexity of managing the underlying infrastructure. Example providers: Heroku, Google App Engine, Microsoft Azure App service.
 - **Software as a Service (SaaS):** You get a ready-to-use software application delivered over the internet. Example services: Google Docs, Microsoft 365, Dropbox.
@@ -69,40 +69,40 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - **In-Memory Caching:(ElastiCache or Redis)** **Services that store frequently accessed data in RAM** to provide sub-millisecond response times for applications.
 - **Graph and Ledger Databases**: Niche **databases for managing highly connected data** (socialnetworks) or providing an immutable, cryptographically verifiable record of transactions.
 
-Key Use Cases: SQL vs NoSQL
+**Key Use Cases: SQL vs NoSQL**
 - Use SQL for: Accounting systems, inventory management, and structured reporting.
 - Use NoSQL for: User profiles, real-time analytics, content management, and mobile app syncing.
 - Hybrid Approaches: Many modern architectures use both— **SQL for the core "truth" and NoSQL for fast-access "caching."**
 - Data Integrity: SQL ensures your data is never "partial" or "wrong" through strict schema enforcement.
 
-## Data lifecycle management:
+### **Data lifecycle management:**
 How data is handled from creation to eventual deletion.
 **Lifecycle Strategy**: A **structured approach to managing data from its initial creation and active use to its eventual archiving and permanent deletion**.
 
-### Data Classification and Tiering: 
+ **Lifecycle Policies:**
+You can **automate the movement of data between these tiers** using lifecycle policies. These are **rule-based policies that automatically transfer or delete objects based on a set of criteria**. For example, you can set a rule to move a file from a hot tier to a cool tier after 30 days and then to an archive tier after 90 days. This automation ensures that you are always using the most cost-effective storage class for your data, without any manual intervention. Effective data lifecycle management is critical for **cost optimization**, as it prevents you from paying for expensive, high-performance storage for data that is rarely used.
+
+#### Data Classification and Tiering:
 Not all data is equally valuable or accessed with the same frequency. Cloud providers offer **different storage tiers to match your data's access patterns with the right cost**. Storage cost decreases and retieval cost increases for less frequently accessed data. 
 
 - **Hot Tier**: For **frequently accessed data** that requires low latency. It has the highest storage cost but the lowest access cost.
 - **Cool/Infrequent Access Tier**: For data that is **accessed infrequently but must be available quickly**. It has a lower storage cost than the hot tier but a higher retrieval cost.
 - **Archive Tier**: For data that is **rarely accessed and can tolerate a retrieval delay of hours**. This tier has the lowest storage cost, making it **ideal for long-term backups and regulatory archives**.
 
-### Lifecycle Policies:
-You can **automate the movement of data between these tiers** using lifecycle policies. These are **rule-based policies that automatically transfer or delete objects based on a set of criteria**. For example, you can set a rule to move a file from a hot tier to a cool tier after 30 days and then to an archive tier after 90 days. This automation ensures that you are always using the most cost-effective storage class for your data, without any manual intervention. Effective data lifecycle management is critical for **cost optimization**, as it prevents you from paying for expensive, high-performance storage for data that is rarely used.
-
-### Automated Transition Policies
+**Automated Transition Policies**
 - **Rule-Based Migration:** **Create "If-Then" logic to move data automatically between tiers** based on the age of the file or the last date it was accessed.
 - **Phased Movement:** A **common policy** might move data from Hot to Cool after 30 days,then to Archive after 90 days of inactivity.
 - **Intelligent Tiering:** Some cloud providers offer **AI-driven classes that monitor access patterns and move data between tiers in real-time** without user-defined rules.
 - **Prefix and Tag Filtering:** **Policies can be applied globally to a bucket or targeted to specific folders and file types using metadata tags.**
 
-### Expiration and Retention Rules
+**Expiration and Retention Rules**
 - **Automated Deletion: Defines a specific "end-of-life" for data**, automatically purging files once they are no longer required for business or legal reasons.
 - **Version Control Cleanup: Manages "non-current" versions of files**, automatically deletingolder iterations after a set timeframe to save space.
 - **Regulatory Compliance: Helps organizations meet strict data privacy laws (like GDPR)** by ensuring personal data is not retained longer than necessary.
 - **Incomplete Upload Cleanup: Automatically identifies and removes "multipart upload" fragments from failed transfers** that would otherwise incur hidden costs.
 - **Legal Holds: Capability to override deletion rules temporarily during legal proceedings** to ensure critical evidence is preserved.
 
-### Advanced Managed Features
+**Advanced Managed Features**
 - Read Replicas: Distribute your data globally to ensure fast reads for users everywhere.
 - AI-Powered Tuning: Automatic performance optimization and bottleneck identification.
 - Security Guardrails: Private networking ensures your database is never exposed directly to the internet.
