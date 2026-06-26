@@ -28,7 +28,6 @@ Cloud services are delivered in different ways to suit various business needs.
 - **Platform as a Service (PaaS):** You get a platform to build, run, and manage applications without the complexity of managing the underlying infrastructure. Example providers: Heroku, Google App Engine, Microsoft Azure App service.
 - **Software as a Service (SaaS):** You get a ready-to-use software application delivered over the internet. Example services: Google Docs, Microsoft 365, Dropbox.
 
-
 # Overview of AWS, Azure & GCP service ecosystems
 ## CSPs (Cloud Service Providers)
 The cloud is not a single technology; it's a vast ecosystem of services. The three market leaders AWS, Azure, and GCP each have a unique philosophy but offer similar core functionalities.
@@ -41,6 +40,7 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 ### Compute: Services for running applications
 - **Virtual Machines (EC2, Azure VMs, Compute Engine)** users rent virtualized hardware where they have full control over the OS and software stack.
 - **Serverless Functions** (Lambda, Azure Functions, Cloud Functions) A "Function-as-a-Service"(FaaS) model, where developers upload code and the provider handles all server management, scaling, and execution.
+  - **a cloud-native model where developers deploy code without managing servers**, as the cloud provider automatically provisions, scales, and manages the infrastructure.
 - **Containerization: (EKS- AKS, GKE)** All three provider managed services for Kubernetes, allowing developers to package applications with their dependencies for consistent deployment across different environments.
 - **Batch Processing:** High-performance computing (HPC) services designed to run thousands of parallel jobs for complex simulations or data processing tasks.
 - **Edge Computing**:(AWS Wavelength, Azure Stack Edge) Extending compute power closer to the user or IoT devices to reduce latency for real-time applications.
@@ -75,14 +75,14 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - Hybrid Approaches: Many modern architectures use both— **SQL for the core "truth" and NoSQL for fast-access "caching."**
 - Data Integrity: SQL ensures your data is never "partial" or "wrong" through strict schema enforcement.
 
-### **Data lifecycle management:**
+#### **Data lifecycle management:**
 How data is handled from creation to eventual deletion.
 **Lifecycle Strategy**: A **structured approach to managing data from its initial creation and active use to its eventual archiving and permanent deletion**.
 
  **Lifecycle Policies:**
 You can **automate the movement of data between these tiers** using lifecycle policies. These are **rule-based policies that automatically transfer or delete objects based on a set of criteria**. For example, you can set a rule to move a file from a hot tier to a cool tier after 30 days and then to an archive tier after 90 days. This automation ensures that you are always using the most cost-effective storage class for your data, without any manual intervention. Effective data lifecycle management is critical for **cost optimization**, as it prevents you from paying for expensive, high-performance storage for data that is rarely used.
 
-#### Data Classification and Tiering:
+##### Data Classification and Tiering:
 Not all data is equally valuable or accessed with the same frequency. Cloud providers offer **different storage tiers to match your data's access patterns with the right cost**. Storage cost decreases and retieval cost increases for less frequently accessed data. 
 
 - **Hot Tier**: For **frequently accessed data** that requires low latency. It has the highest storage cost but the lowest access cost.
@@ -108,38 +108,36 @@ Not all data is equally valuable or accessed with the same frequency. Cloud prov
 - Security Guardrails: Private networking ensures your database is never exposed directly to the internet.
 - Storage Hyperscale: Move from gigabytes to petabytes without ever migrating your database engine.
 
-# Serverless computing:
-a cloud-native model where developers deploy code without managing servers, as the cloud provider automatically provisions, scales, and manages the infrastructure.
+### Networking
+Cloud networking **transitions physical hardware into a Software-Defined Network (SDN)**. This allows for the creation of complex, multi-tier architectures that are highly isolated yet globally accessible.
 
-# Networking
-Cloud networking transitions physical hardware into a Software-Defined Network (SDN). This allows for the creation of complex, multi-tier architectures that are highly isolated yet globally accessible.
-
-
-### Networking and Security:
+**Networking and Security:**
 - **Virtual Private Clouds (VPC/VNet):** A logically isolated section of the cloud where you define your own IP address range, subnets, and routing tables, acting as your private data center in the sky.
 - **Load Balancing:** **Automatically distributes incoming application traffic across multiple targets(VMs or containers)** to ensure high availability and fault tolerance.
 - **DNS and Traffic Management:(Route 53 or Google Cloud DNS)** **These services translate human-readable domain names into IP addresses** and can route users based on their geographic location.
 - **Firewalls and Security Groups:** Virtual firewalls that control inbound and outbound traffic at the instance or subnet level to protect resources from unauthorized access.
 - **Private Connectivity:(AWS Direct Connect, Azure ExpressRoute)** Dedicated network links that bypass the public internet to provide a secure, high-bandwidth connection between on-premise offices and the cloud
 
-## VPC (Virtual Private Cloud, Regional): 
+<img width="360" height="372" alt="image" src="https://github.com/user-attachments/assets/a5c95478-2242-4da2-b81d-91993d7717d7" />
+
+**VPC (Virtual Private Cloud, Regional):** 
 A VPC (or VNet in Azure)  is a **logically isolated virtual network** that you define within the public cloud. It's your private network inside the cloud. It provides you with complete control over your network environment, including your **own IP address range, subnets, route tables, and network gateways**. A VPC is a foundational component that gives you the security and isolation you need to run your applications. It's like having your own private data center in the cloud.
 - **Network Isolation:** No traffic can enter or leave the VPC unless you specifically configure a gateway.
 - **Custom IP Addressing:** You define your own private IP range (e.g., 10.0.0.0/16) using CIDR blocks.
 - **Routing Control:** You manage Route Tables that act as the GPS for your data, directing traffic between subnets, the internet, or on-premise networks.
 
-## Subnets (Zonal): 
+**Subnets (Zonal):**
 A subnet is a **logical subdivision of a VPC's IP address range**. You create subnets to organize your resources and **apply different security rules to them**. A VPC can have both **public subnets (where resources can be accessed from the internet) and private subnets (where resources are isolated from the internet)** For **example**, you would place your public-facing web servers in a public subnet and your private databases in a private subnet.
 
 **Availability Zone Distribution**: To ensure high availability, subnets are often distributed across different physical data centers (AZs) so that a failure in one location doesn't takedown the entire network.
 
-### Types of Subnet
+**Types of Subnet**
 - Private Subnet - No direct internet access, To download updates, resources here typically use a NAT Gateway to reach out without allowing the internet to "reach in." e.g., resources Stateless application, Database, Backend services.
 - Public Subnet - These are connected to an Internet Gateway. Resources here have public IP addresses and are accessible to the outside world, e.g., of resources are Stateful Application,  web servers, Load balancers. Its route table has a route to an Internet Gateway (IGW)
 Example: 0.0.0.0/0 -> igw-xxxx
 [Subnetting in seconds](https://cidr.xyz/)
 
-## CIDR: A method to define IP address ranges.
+**CIDR:** A method to define IP address ranges.
 
 ## Internet Gateway:
 Allows VPC to connect to internet
