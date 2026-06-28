@@ -239,20 +239,28 @@ grep "command" /usr/share/dict/word >> /root/command.txt
 <img width="490" height="183" alt="15" src="https://github.com/user-attachments/assets/b460110c-e30b-42a6-9d68-5fac72431553" />
 
 ```
-#fdisk /dev/sda
-n
-p
-Last: +512M
-t
-82
-w
-partprobe /dev/sda
-mkswap /dev/sda1
-vim /etc/fstab
-/dev/sda1 swap swap defaults 0 0
-swapon /dev/sda1
-swapon -s
+#fdisk /dev/sda (To partition the Drive (/dev/sda) with partition editor tool called fdisk)
+n (New partition)
+p (Primary Partition)
+Last: +512M (Sets the size of the partition. Leaving the "First sector" prompt at default and typing +512M here creates a partition that is exactly 512 Megabytes in size.)
+t (Changes the partition's type ID)
+82 (hexadecimal code for a Linux Swap partition)
+w (write)
+partprobe /dev/sda (reload the partition table without doing reboot)
+mkswap /dev/sda1 (formatting the partition specifically for swap use)
+vim /etc/fstab (contains a permanent list of all disk partitions and storage devices that the system should automatically mount at boot time.)
+/dev/sda1 swap swap defaults 0 0 (tells Linux to mount the partition automatically when the computer boots up.)
+swapon /dev/sda1 (Activating the Swap)
 ```
+Check: swapon -s (Displays a summary table of all currently active swap spaces on your system)
+
+**Note:**
+This is the configuration line you added inside that file. It breaks down like this:
+/dev/sda1: The device to mount.
+swap: The mount point (swap doesn't use a standard folder path, just swap).
+swap: The filesystem type.
+defaults: Uses standard mount settings (read/write, auto-mount, etc.).
+0 0: Controls backup dumps and filesystem integrity checks (both turned off for swap).
 
 # 16. Search and store files
 ```
