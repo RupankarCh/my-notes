@@ -322,7 +322,7 @@ mount -a
 
 ```
 lsblk (Check current)
-lvextend -L + 300M /images
+lvextend -L +300M /images
 resize2fs /image (For xfs filesystem, use fatlabel for vfat file system)
 lsblk (Check)
 ```
