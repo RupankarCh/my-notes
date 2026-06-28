@@ -267,6 +267,9 @@ defaults: Uses standard mount settings (read/write, auto-mount, etc.).
 mkdir -p /root/filefound
 find / -type f -user sarah -exec cp {} /root/filefound/ \;
 ```
+Note:
+**-exec ... \;**: This is an action flag. It tells **find** to execute an external command on every single file it successfully matches. The trailing escaped semicolon (\; or ';') is required to tell the shell where the command string ends.
+**{}**: A placeholder used by find. For every file discovered, find replaces {} with the actual, full path of that file.
 
 # 17.
 <img width="1705" height="291" alt="image" src="https://github.com/user-attachments/assets/9ef78ce7-ab82-41cd-b979-41f26eaa96b7" />
