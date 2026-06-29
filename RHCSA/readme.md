@@ -360,55 +360,6 @@ systemctl restart autofs.service
 Corrected Command ManualServer 1 (NFS Server)bash# CHANGE: Use specific package instead of wildcard 'nfs*' to save space and reduce conflicts
 yum install nfs-utils -y
 
-# CHANGE: Start the service immediately alongside enabling it
-systemctl enable --now nfs-server.service 
-
-mkdir -p /home/guest/it_database{1..20}
-ls -ld /home/guest/
-chown -R nobody:nobody /home/guest/
-chcon -R -t nfs_t /home/guest/
-
-# CHANGE: Fixed syntax inside /etc/exports (Removed space between '*' and configurations)
-# The line inside /etc/exports must be exactly:
-# /home/guest *(rw,sync,no_root_squash)
-vim /etc/exports
-
-# CHANGE: Added command to apply the updated export file configuration immediately
-exportfs -rva
-
-firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
-firewall-cmd --reload
-Use code with caution.Server 2 (Autofs Client)bash# CHANGE: Fixed typo 'instal' -> 'install' and added 'nfs-utils' (without it, autofs cannot mount NFS shares)
-yum install autofs nfs-utils -y
-
-# CHANGE: Start the service immediately alongside enabling it
-systemctl enable --now autofs.service 
-
-# CHANGE: Removed firewall rules on Server 2 (Clients do not need inbound NFS firewall ports open)
-# (Lines deleted: firewall-cmd --permanent... and firewall-cmd --reload)
-
-# CHANGE: Changed base path from '/home/guest' to '/mnt/guest_shares' to prevent locking user directories
-# The line inside /etc/auto.master must be exactly:
-# /mnt/guest_shares     /etc/auto.misc
-vim /etc/auto.master
-
-# CHANGE: Provided the exact map entry to use
-# The line at the bottom of /etc/auto.misc must be exactly:
-# database   -fstype=nfs,rw,sync   192.168.245.129:/home/guest
-vim /etc/auto.misc 
-
-# CHANGE: Removed duplicate enable command and kept just the clean service restart
-systemctl restart autofs.service 
-
-# CHANGE: Added verification command to test and trigger the dynamic mount point
-cd /mnt/guest_shares/database && ls -la
-
-
-
-
-
-
-
 ```S1:
 yum install nfs* -y
 mkdir -p /server1
@@ -424,6 +375,7 @@ exportfs
 
 S2:
 yum install autofs* -y
+yum install nfs* -y
 vim /etc/auto.master (/server2 /etc/auto.misc)
 vim /etc/auto.misc (access -rw,sync <server1IP>:/server1)
 systemctl enable autofs --now
