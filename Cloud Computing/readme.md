@@ -36,7 +36,7 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - **Azure (Microsoft Azure):** With its strong background in enterprise software, Azure is a **powerful choice for businesses already invested in Microsoft's ecosystem**. It integrates seamlessly with Windows Server, Active Directory, and Visual Studio. Azure has focused on providing a comprehensive PaaS (Platform as a Service) offering and has made significant strides in hybrid cloud capabilities.
 - **GCP (Google Cloud Platform):** Leveraging Google's own internal infrastructure, GCP is a leader in big data, machine learning, and containerization. Its services for **data analytics**, such as **BigQuery and Cloud AI Platform, are top-tier**. GCP is often favored by tech startups and **companies with a strong focus on data-driven innovation**.
 
-## All three platforms offer services in the following fundamental categories:
+## Services:
 ### Compute: Services for running applications
 - **Virtual Machines (EC2, Azure VMs, Compute Engine)** users rent virtualized hardware where they have full control over the OS and software stack.
 - **Serverless Functions** (Lambda, Azure Functions, Cloud Functions) A "Function-as-a-Service"(FaaS) model, where developers upload code and the provider handles all server management, scaling, and execution.
@@ -75,11 +75,11 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - Hybrid Approaches: Many modern architectures use both— **SQL for the core "truth" and NoSQL for fast-access "caching."**
 - Data Integrity: SQL ensures your data is never "partial" or "wrong" through strict schema enforcement.
 
-#### **Data lifecycle management:**
+**Data lifecycle management:**
 How data is handled from creation to eventual deletion.
 **Lifecycle Strategy**: A **structured approach to managing data from its initial creation and active use to its eventual archiving and permanent deletion**.
 
- **Lifecycle Policies:**
+**Lifecycle Policies:**
 You can **automate the movement of data between these tiers** using lifecycle policies. These are **rule-based policies that automatically transfer or delete objects based on a set of criteria**. For example, you can set a rule to move a file from a hot tier to a cool tier after 30 days and then to an archive tier after 90 days. This automation ensures that you are always using the most cost-effective storage class for your data, without any manual intervention. Effective data lifecycle management is critical for **cost optimization**, as it prevents you from paying for expensive, high-performance storage for data that is rarely used.
 
 ##### Data Classification and Tiering:
