@@ -139,11 +139,11 @@ Example: 0.0.0.0/0 -> igw-xxxx
 
 **CIDR:** A method to define IP address ranges.
 
-## Internet Gateway:
+**Internet Gateway:**
 Allows VPC to connect to internet
 EC2> Subnet> Route Table> IGW> Internet
 
-## NAT Gateway:
+**NAT Gateway:**
 allows private subnet to access internet (Outbound Traffic Only)
 EC2> NAT Gateway> Internet
 
@@ -156,14 +156,14 @@ EC2> NAT Gateway> Internet
 
 NAT gateway> Internet Gateway> Internet
 
-## Practical
-### Creating VPC
+#### Practical
+**Creating VPC** 
 Create VPC> VPC only> Name tag> IPv4 CIDR manual input(You decide the CIDR)/IPAM allocated IPv4 CIDR block(AWS IP Address Manager (IPAM) automatically allocates a CIDR block from a predefined IP pool.)> No IPv6 CIDR  block(resources inside that VPC cannot receive private/public IPv6 addresses from that VPC subnetting model.)>  Create VPC.
 
-### Creating Subnet
+**Creating Subnet**
 Create Subnet> Select VPC> Subnet Name> Select Availability Zone> Selct IPv4 Subnet CIDR block> Create Subnet
 
-### Creating and Connecting Internet Gateway with VPC
+**Creating and Connecting Internet Gateway with VPC**
 Creating Internet Gateway> Name Tag> Create Internet Gateway
 Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
 
