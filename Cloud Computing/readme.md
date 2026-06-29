@@ -215,10 +215,6 @@ Creating Internet Gateway> Name Tag> Create Internet Gateway
 Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
 
 
-# Database
-
-
-
 
 
 
