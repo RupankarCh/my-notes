@@ -56,15 +56,26 @@ The cloud is not a single technology; it's a vast ecosystem of services. The thr
 - **Content Delivery Networks (CDN): (CloudFront, AzureCDN)** A global network of "Edge Locations" that **caches content closer to users to speed up the delivery** of web pages and video streams.
 
 ### Databases
-- **Relational Databases (SQL):(AWS RDS, Azure SQL Cloud SQL)** **Managed instances of popular engines like MySQL, PostgreSQL,and SQL Server**. These services automate patching, backups, and scaling of structured data.
+Choosing between a relational and a NoSQL database **depends on your application's specific needs**. **Relational databases** are best for applications that require **structured data and transactional integrity**. while **NoSQL databases** are ideal for flexible, scalable **applications that handle large amounts of unstructured data**.
+
+- **RDS (Relational Database Service)(AWS RDS, Azure SQL Cloud SQL):**
+AWS RDS is a fully managed relational database setvice. Instead of installing: patching, and maintaining a database on a VM. you can simply provision an RDS instance in minutes. **RDS handles the tedious tasks of backups, patching, and scaling**. It **supports** several popular database engines: including **MySQL, PostgreSQL: Oracle, and Microsoft SQL Server**.
   - Transactional Integrity: perfect for financial systems and application requiring complex table relationships.
   - Point-in-Time Recovery: restore data from any precise moment to recover from human error or corruption.
   - Multi-AZ Failover: Automatic switching to a stadby instance during a data center outage.
-- **NoSQL Databases:** **Designed for high-speed, non-relational data at massive scale.** Examples include **DynamoDB (Key-Value), Cosmos DB (Multi-model), and Bigtable (Wide-column).**
+- **NoSQL Databases:** 
+Unlike relational databases that use a rigid, tabular structure, NoSQL databases are **schema-less and more flexible**. They are designed for **handling large volumes of unstructured data** and offer high performance for specific use cases.
+  - **AWS DynamoDB**: A fully managed, serverless key-value and document **NoSQL database that delivers single-digit millisecond performance at any scale**.
+  - **Azure Cosmos DB**: Microsoft's **globally distributed, multi-model database service**. It **supports several popular NoSQL APIs including MongoDB, Cassandra and Gremlim**.
+  - **Google Cloud Firestore**: A flexible, scalable **NoSQL document database for mobile, web, and server development**.
+
+Features:
   - Schema Flexibility: Store data as JSON-like documents or key-value pairs without pre-defining tables.
   - Global Reach: Replicate data across the globe with millisecond latency for international users.
   - Serverless Operations: Platforms like DynamoDB handle all scaling and maintenance automatically.
   - High Velocity: Built to handle millions of requests per second for IoT, gaming,and social media.
+
+**More Services:**
 - **Data Warehousing:(Amazon Redshift, Azure Synapse, Google BigQuery)** Specialized **databases built for complex analytical queries across petabytes of data**.
 - **In-Memory Caching:(ElastiCache or Redis)** **Services that store frequently accessed data in RAM** to provide sub-millisecond response times for applications.
 - **Graph and Ledger Databases**: Niche **databases for managing highly connected data** (socialnetworks) or providing an immutable, cryptographically verifiable record of transactions.
@@ -181,6 +192,16 @@ features of security group
 
 <img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
 
+**Load Balancing:**
+servers that forward internet traffic to multiple servers downstream.
+
+Why to use
+- Spread load across multiple downstream instances
+- Expose a single point of access (DNS) to your application
+- Seamlessly handle failures of downstream instances
+- Do regular health checks to your instances
+- Provide SSL termination (HTTPS) for your website
+- High availability across zones
 
 #### Practical
 **Creating VPC** 
@@ -195,28 +216,10 @@ Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attac
 
 
 # Database
-Choosing between a relational and a NoSQL database **depends on your application's specific needs**. **Relational databases** are best for applications that require **structured data and transactional integrity**. while **NoSQL databases** are ideal for flexible, scalable **applications that handle large amounts of unstructured data**.
 
-## RDS (Relational Database Service): 
-AWS RDS is a fully managed relational database setvice. Instead of installing: patching, and maintaining a database on a VM. you can simply provision an RDS instance in minutes. **RDS handles the tedious tasks of backups, patching, and scaling**. It **supports** several popular database engines: including **MySQL, PostgreSQL: Oracle, and Microsoft SQL Server**.
 
-## Azure SQL Database: 
-This is a fully managed relational database-as-a-service from Microsoft. It is built on the SQL Server engine and offers the same powerful features without the need for manual administration It's ideal for developers and enterprises already familiar with SQL Server. It also offers features like **automated backups**, built-in **high availability** and **intelligent performance tuning**.
 
-## NoSQL Databases: 
-Unlike relational databases that use a rigid, tabular structure, NoSQL databases are **schema-less and more flexible**. They are designed for **handling large volumes of unstructured data** and offer high performance for specific use cases.
-- **AWS DynamoDB**: A fully managed, serverless key-value and document **NoSQL database that delivers single-digit millisecond performance at any scale**.
-- **Azure Cosmos DB**: Microsoft's **globally distributed, multi-model database service**. It **supports several popular NoSQL APIs including MongoDB, Cassandra and Gremlim**.
-- **Google Cloud Firestore**: A flexible, scalable **NoSQL document database for mobile, web, and server development**.
 
-# Load Balancing:
-servers that forward internet traffic to multiple servers downstream.
 
-## Why to use
-- Spread load across multiple downstream instances
-- Expose a single point of access (DNS) to your application
-- Seamlessly handle failures of downstream instances
-- Do regular health checks to your instances
-- Provide SSL termination (HTTPS) for your website
-- High availability across zones
+
 
