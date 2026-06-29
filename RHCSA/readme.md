@@ -356,7 +356,7 @@ systemctl restart autofs.service
 ```
 
 
-21.
+# 21.
 Corrected Command ManualServer 1 (NFS Server)bash# CHANGE: Use specific package instead of wildcard 'nfs*' to save space and reduce conflicts
 yum install nfs-utils -y
 
@@ -383,7 +383,7 @@ cd /server2
 cd /access
 ls -l
 ```
-
+# 22.
 ```
 yum install httpd* -y
 systemctl restart httpd.service 
@@ -393,6 +393,7 @@ restorecon -Rv /var/www/html/
 systemctl restart httpd.service 
 curl http://localhost:80 (You can see the index.txt content on terminal)
 vim /etc/httpd/conf/httpd.conf (Change Listen port)
+semanage port -a -t http_port_t -p tcp 82
 semanage port -l | grep http_port_t
 firewall-cmd --permanent --add-port=82/tcp
 firewall-cmd --reload
