@@ -126,6 +126,13 @@ A VPC (or VNet in Azure)  is a **logically isolated virtual network** that you d
 - **Custom IP Addressing:** You define your own private IP range (e.g., 10.0.0.0/16) using CIDR blocks.
 - **Routing Control:** You manage Route Tables that act as the GPS for your data, directing traffic between subnets, the internet, or on-premise networks.
 
+Connecting to the World
+To make the VPC functional, various gateways and connections are utilized:
+- **Internet Gateway (IGW):** The bridge between your VPC and the public internet.
+- **Virtual Private Gateway**: Used to **establish a secure VPN tunnel between your corporate office and your cloud VPC**.
+- **VPC Peering**: Allows you to **connect two different VPCs together** so resources can communicate using private IP addresses as if they were on the same network.
+- **Direct Connect / ExpressRoute**: A dedicated, **physical fiber connection from your datacenter to the cloud provider**, bypassing the public internet for higher speed and security.
+
 **Subnets (Zonal):**
 A subnet is a **logical subdivision of a VPC's IP address range**. You create subnets to organize your resources and **apply different security rules to them**. A VPC can have both **public subnets (where resources can be accessed from the internet) and private subnets (where resources are isolated from the internet)** For **example**, you would place your public-facing web servers in a public subnet and your private databases in a private subnet.
 
@@ -156,6 +163,25 @@ EC2> NAT Gateway> Internet
 
 NAT gateway> Internet Gateway> Internet
 
+**Security Groups & Firewalls:** 
+These are the primary mechanisms for controlling traffic to your cloud resources.
+  - A **security group** **acts as a virtual firewall** for your virtual machines. It is a **stateful firewall, meaning** that if you allow inbound traffic, the corresponding outbound response is automatically allowed. You define rules that allow or deny traffic based on protocol (e.g., TCP UDP). port number (e.g.: 80 for HTTP. 443 for HTTPS). and source IP address. Security Group Diagram: Internet> Security Group> EC2 Instance
+
+features of security group
+- **Stateful Filtering**: If you **allow a "request" in on Port 80, the "response" is automatically allowed back out**. The firewall "remembers" the connection state.
+- **Whitelist Only: By default, all inbound traffic is blocked**. You must create "Allow" rules specifying the protocol (TCP/UDP), Port (e.g., 22 for SSH), and the specific Source (an IPaddress or another Security Group).
+- **Granular Control**: You can assign different security groups to different tiers; for example, a"Web-SG" might allow Port 443 from the whole world, while a "DB-SG" only allowstraffic from the "Web-SG." 
+  
+  - A **firewall rule** (e.g., in Google Cloud) or a Network Access Control List (NACL) (in AWS) is an additional layer of security that **controls traffic at the subnet level**. These are **stateless firewalls, so** you must explicitly allow both inbound and outbound traffc.
+
+**Types of Cloud Firewall**
+- **AWS Networking Firewall** (Advanced Protection)
+- **NACL (Subnet Level)** NACLs are stateless; **stateless so allow and deny traffic must be explicitly defined**. Maximum 100 rules for inbound and outbound each. It allow you to explicitly "Deny" specific IP addresses (e.g., blocking a known malicious bot). It sits at the subnet level, they filter traffic before it even reaches the instance-level security groups.
+- **Security Groups (Instance Level)** stateful **supporting only allow rules, automatically permitting return traffic**.
+
+<img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
+
+
 #### Practical
 **Creating VPC** 
 Create VPC> VPC only> Name tag> IPv4 CIDR manual input(You decide the CIDR)/IPAM allocated IPv4 CIDR block(AWS IP Address Manager (IPAM) automatically allocates a CIDR block from a predefined IP pool.)> No IPv6 CIDR  block(resources inside that VPC cannot receive private/public IPv6 addresses from that VPC subnetting model.)>  Create VPC.
@@ -167,30 +193,6 @@ Create Subnet> Select VPC> Subnet Name> Select Availability Zone> Selct IPv4 Sub
 Creating Internet Gateway> Name Tag> Create Internet Gateway
 Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
 
-## Security Groups & Firewalls: 
-These are the primary mechanisms for controlling traffic to your cloud resources.
-  - A **security group** **acts as a virtual firewall** for your virtual machines. It is a **stateful firewall, meaning** that if you allow inbound traffic, the corresponding outbound response is automatically allowed. You define rules that allow or deny traffic based on protocol (e.g., TCP UDP). port number (e.g.: 80 for HTTP. 443 for HTTPS). and source IP address. Security Group Diagram: Internet> Security Group> EC2 Instance
-
-# features of security group
-- **Stateful Filtering**: If you **allow a "request" in on Port 80, the "response" is automatically allowed back out**. The firewall "remembers" the connection state.
-- **Whitelist Only: By default, all inbound traffic is blocked**. You must create "Allow" rules specifying the protocol (TCP/UDP), Port (e.g., 22 for SSH), and the specific Source (an IPaddress or another Security Group).
-- **Granular Control**: You can assign different security groups to different tiers; for example, a"Web-SG" might allow Port 443 from the whole world, while a "DB-SG" only allowstraffic from the "Web-SG." 
-  
-  - A **firewall rule** (e.g., in Google Cloud) or a Network Access Control List (NACL) (in AWS) is an additional layer of security that **controls traffic at the subnet level**. These are **stateless firewalls, so** you must explicitly allow both inbound and outbound traffc.
-
-### Types of Cloud Firewall
-- **AWS Networking Firewall** (Advanced Protection)
-- **NACL (Subnet Level)** NACLs are stateless; **stateless so allow and deny traffic must be explicitly defined**. Maximum 100 rules for inbound and outbound each. It allow you to explicitly "Deny" specific IP addresses (e.g., blocking a known malicious bot). It sits at the subnet level, they filter traffic before it even reaches the instance-level security groups.
-- **Security Groups (Instance Level)** stateful **supporting only allow rules, automatically permitting return traffic**.
-
-<img width="640" height="170" alt="image" src="https://github.com/user-attachments/assets/c1122e8d-ee9a-41e0-b6c9-4af8fbee1ee3" />
-
-### Connecting to the World
-To make the VPC functional, various gateways and connections are utilized:
-- **Internet Gateway (IGW):** The bridge between your VPC and the public internet.
-- **Virtual Private Gateway**: Used to **establish a secure VPN tunnel between your corporate office and your cloud VPC**.
-- **VPC Peering**: Allows you to **connect two different VPCs together** so resources can communicate using private IP addresses as if they were on the same network.
-- **Direct Connect / ExpressRoute**: A dedicated, **physical fiber connection from your datacenter to the cloud provider**, bypassing the public internet for higher speed and security.
 
 # Database
 Choosing between a relational and a NoSQL database **depends on your application's specific needs**. **Relational databases** are best for applications that require **structured data and transactional integrity**. while **NoSQL databases** are ideal for flexible, scalable **applications that handle large amounts of unstructured data**.
