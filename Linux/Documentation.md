@@ -1,7 +1,5 @@
----
 
-# 1. What are Man Pages?
-
+```
 A **man page (manual page)** is the official documentation for Linux commands, system calls, configuration files, and programming functions.
 
 When you type:
@@ -30,8 +28,7 @@ DESCRIPTION
 ```
 
 Think of it as an **offline encyclopedia** built into Linux.
-
----
+```
 
 # 2. Where are Man Pages Stored?
 
