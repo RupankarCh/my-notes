@@ -384,21 +384,23 @@ cd /access
 ls -l
 ```
 # 22.
+Configuration of the Apache Server
 ```
-yum install httpd* -y
-systemctl restart httpd.service 
-vim /var/www/html/index.html (Write any text)
-chmod 777 /var/www/html/index.html 
-restorecon -Rv /var/www/html/
-systemctl restart httpd.service 
+yum install httpd* -y (Installs the Apache HTTP Server (httpd) and related packages)
+vim /var/www/html/index.html (Write the content)
+restorecon -Rv /var/www/html/ (Restores the correct SELinux security contexts recursively under the web document root.)
+systemctl restart httpd.service (Stops and starts the Apache web server service to apply changes.)
 curl http://localhost:80 (You can see the index.txt content on terminal)
-vim /etc/httpd/conf/httpd.conf (Change Listen port)
-semanage port -a -t http_port_t -p tcp 82
-semanage port -l | grep http_port_t
-firewall-cmd --permanent --add-port=82/tcp
-firewall-cmd --reload
-restorecon -Rv /var/www/html/
-systemctl restart httpd.service 
-systemctl reload  httpd.service 
-curl http://localhost:82
+```
+Answer
+```
+vim /etc/httpd/conf/httpd.conf (Opens Apache's main configuration file for editing, such as changing the listening port.)
+semanage port -a -t http_port_t -p tcp 82 (Adds TCP port 82 to the list of ports that SELinux allows Apache to use.)
+semanage port -l | grep http_port_t ((Lists all SELinux ports assigned to the http_port_t type and filters the output.))
+firewall-cmd --permanent --add-port=82/tcp (Permanently allows incoming TCP traffic on port 82 through the firewall.)
+firewall-cmd --reload (Reloads the firewall configuration to apply the new rule.)
+restorecon -Rv /var/www/html/ (Reapplies the correct SELinux labels to the web content directory.)
+systemctl restart httpd.service (Restarts Apache so it begins listening on the newly configured port.)
+systemctl reload  httpd.service (Reloads Apache's configuration without fully stopping the service.)
+curl http://localhost:82 (To check)
 ```
