@@ -376,3 +376,11 @@ systemctl restart httpd.service (Restarts Apache so it begins listening on the n
 systemctl reload  httpd.service (Reloads Apache's configuration without fully stopping the service.)
 curl http://localhost:82 (To check)
 ```
+# 22.
+```
+cd /usr/local/bin
+vim mysearch
+#!/bin/bash
+find /usr -type f -size -10M -size +2M -perm 2000 -exec cp -p {} /root/mysearch/ \;
+./mysearch
+```
