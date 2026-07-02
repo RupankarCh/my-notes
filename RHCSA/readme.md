@@ -327,36 +327,8 @@ resize2fs /image (For xfs filesystem, use fatlabel for vfat file system)
 lsblk (Check)
 ```
 
+
 # 20.
-Server1
-```
-yum install nfs* -y
-systemctl enable nfs-server.service 
-mkdir -p /home/guest/it_database{1..20}
-ls -ld /home/guest/
-chown -R nobody:nobody /home/guest/
-chcon -R -t nfs_t /home/guest/
-vim /etc/exports
-/home/guest   *(rw,sync)
-firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
-firewall-cmd --reload
-```
-Server2
-```
-yum instal autofs* -y
-systemctl enable autofs.service 
-firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
-firewall-cmd --reload
-vim /etc/auto.master
-#/misc  /etc/auto.misc
-/home/guest     /etc/auto.misc
-vim /etc/auto.misc 
-systemctl enable autofs
-systemctl restart autofs.service 
-```
-
-
-# 21.
 Corrected Command ManualServer 1 (NFS Server)bash# CHANGE: Use specific package instead of wildcard 'nfs*' to save space and reduce conflicts
 yum install nfs-utils -y
 
@@ -383,7 +355,7 @@ cd /server2
 cd /access
 ls -l
 ```
-# 22.
+# 21.
 Configuration of the Apache Server
 ```
 yum install httpd* -y (Installs the Apache HTTP Server (httpd) and related packages)
