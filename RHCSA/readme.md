@@ -263,6 +263,8 @@ defaults: Uses standard mount settings (read/write, auto-mount, etc.).
 0 0: Controls backup dumps and filesystem integrity checks (both turned off for swap).
 
 # 16. Search and store files
+<img width="827" height="141" alt="image" src="https://github.com/user-attachments/assets/15f2d273-e8a7-4bea-9fc5-cf63403786bd" />
+
 ```
 mkdir -p /root/filefound
 find / -type f -user sarah -exec cp {} /root/filefound/ \;
@@ -329,6 +331,8 @@ lsblk (Check)
 
 
 # 20.
+<img width="939" height="352" alt="image" src="https://github.com/user-attachments/assets/a23c6f88-d1da-4545-a2b9-589dce0da85a" />
+
 Corrected Command ManualServer 1 (NFS Server)bash# CHANGE: Use specific package instead of wildcard 'nfs*' to save space and reduce conflicts
 yum install nfs-utils -y
 
@@ -356,6 +360,8 @@ cd /access
 ls -l
 ```
 # 21.
+<img width="1079" height="188" alt="image" src="https://github.com/user-attachments/assets/0030716a-c0b2-46e1-9687-30d455731292" />
+
 Configuration of the Apache Server
 ```
 yum install httpd* -y (Installs the Apache HTTP Server (httpd) and related packages)
@@ -377,10 +383,14 @@ systemctl reload  httpd.service (Reloads Apache's configuration without fully st
 curl http://localhost:82 (To check)
 ```
 # 22.
+<img width="1338" height="195" alt="image" src="https://github.com/user-attachments/assets/a716505c-9b25-417f-95dc-9fab0f732e30" />
+
 ```
 cd /usr/local/bin
 vim mysearch
 #!/bin/bash
+mkdir -p /root/mysearch
 find /usr -type f -size -10M -size +2M -perm 2000 -exec cp -p {} /root/mysearch/ \;
-./mysearch
+echo "Files are copied to /root/mysearch.""
+mysearch (To run the script)
 ```
