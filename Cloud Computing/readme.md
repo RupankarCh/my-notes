@@ -214,8 +214,19 @@ Create Subnet> Select VPC> Subnet Name> Select Availability Zone> Selct IPv4 Sub
 Creating Internet Gateway> Name Tag> Create Internet Gateway
 Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
 
+# Serverless Computing:
+Developers write code, the CSP manages all the underlying hardware, networking and software stacks. No need for capacity planning, patching and infrasructure maitenance. Costs are calculated based on execution duration (milliseconds)and the number of requests. It also provdides scaling, Ideal for startups and projects with unpredictable or"spiky" traffic patterns.
 
+## Understanding Event-Driven Triggers
+- **Inbound Requests:** Triggering functions via HTTP requests through an API Gateway (e.g., a mobile app login).
+- **Data Changes:** Running code immediately after a file is uploaded to storage (likeS3) or a row is added to a database.
+- **Scheduled Tasks**: Creating "Serverless Cron Jobs" to run cleanup scripts orreports at specific intervals.
+- **Stream Processing**: Analyzing data in real-time as it flows through messagequeues or IoT hubs.
+- **Stateless Execution**: Each function starts fresh; any data that needs to persist mustbe stored in an external database.
 
-
-
-
+## When to Go Serverless (Use Cases)
+- **Web Backends**: Handling API requests for mobile apps or single-page weba pplications.
+- **Real-time Image Processing**: Automatically resizing or watermarking photos the moment they are uploaded.
+- **Chatbots and Assistants**: Processing natural language requests without maintaining a persistent server connection.
+- **Data Transformation**: Automatically cleaning or reformatting data as it enters a"Data Lake."
+- **IoT Backend**: Handling massive bursts of telemetry data from thousands of connected devices simultaneously.
