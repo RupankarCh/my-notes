@@ -215,11 +215,17 @@ Creating Internet Gateway> Name Tag> Create Internet Gateway
 Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
 
 # Serverless Computing:
-Serverless computing is **a cloud computing model in which the cloud provider automatically manages the servers, infrastructure, scaling, and maintenance, allowing developers to focus only on writing and deploying application code.** No need for capacity planning, patching and infrasructure maitenance. Costs are calculated based on execution duration (milliseconds)and the number of requests. It also provdides scaling, Ideal for startups and projects with unpredictable or"spiky" traffic patterns.
+Serverless computing is **a cloud computing model in which the cloud provider automatically manages the servers, infrastructure, scaling, and maintenance, allowing developers to focus only on writing and deploying application code.** No need for capacity planning, patching and infrasructure maitenance. **Costs are calculated based on execution duration (milliseconds)and the number of requests**. It also provdides scaling, Ideal for startups and projects with unpredictable or"spiky" traffic patterns.
 
 ## Creating Event-Driven Serverless Apps:
 Event-Driven Architecture (EDA) is an **architectural approach where the flow of an application is driven by events** (changes in state). **Event producers generate events, which are sent through an event broker (such as a message queue or event bus), and event consumers receive and process those events independently.**
 
+**Key Components of the EDA Ecosystem:**
+- Producers: **Services that generate event data** (Web Apps, IoT Sensors,Databases).
+- Event Channels: Queues or Streams (like Amazon SQS or Kinesis) that **transport and buffer events**.
+- Event Routers: Intelligent hubs (like AWS EventBridge) that **filter and direct events to specific targets.**
+- Consumers: The "Workers" (Lambda, Azure Functions) that **execute logic based on the incoming data**.
+- The Event Schema: A standardized format (usually JSON) that **ensures producers and consumers speak the same language.**
 
 **Understanding Event-Driven Triggers**
 - **Inbound Requests:** Triggering functions via HTTP requests through an API Gateway (e.g., a mobile app login).
@@ -227,6 +233,13 @@ Event-Driven Architecture (EDA) is an **architectural approach where the flow of
 - **Scheduled Tasks**: Creating "Serverless Cron Jobs" to run cleanup scripts orreports at specific intervals.
 - **Stream Processing**: Analyzing data in real-time as it flows through messagequeues or IoT hubs.
 - **Stateless Execution**: Each function starts fresh; any data that needs to persist mustbe stored in an external database.
+
+**The Anatomy of a Serverless Pipeline:**
+- **Automation** by Default: No human intervention is needed to move data from one stage to the next.
+- Stateless Processing: Each step in the pipeline is independent; if one fails, it can be retried without affecting others.
+- Parallel Execution: A **single event can trigger multiple actions** (e.g., one Lambda resizes a photo while another runs an AI scan for content).
+- Pay-per-Event: You are **only billed for the specific resources used to process that one event**.
+- Audit Trails: **Every event can be logged**, providing a perfect history of how datamoved through your system.
 
 ## When to Go Serverless (Use Cases)
 - **Web Backends**: Handling API requests for mobile apps or single-page weba pplications.
