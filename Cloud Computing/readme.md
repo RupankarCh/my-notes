@@ -215,9 +215,13 @@ Creating Internet Gateway> Name Tag> Create Internet Gateway
 Internet Gateways> Select the IGW> Actions> Attach to VPC> Select the VPC> Attach Internet Gateway
 
 # Serverless Computing:
-Developers write code, the CSP manages all the underlying hardware, networking and software stacks. No need for capacity planning, patching and infrasructure maitenance. Costs are calculated based on execution duration (milliseconds)and the number of requests. It also provdides scaling, Ideal for startups and projects with unpredictable or"spiky" traffic patterns.
+Serverless computing is **a cloud computing model in which the cloud provider automatically manages the servers, infrastructure, scaling, and maintenance, allowing developers to focus only on writing and deploying application code.** No need for capacity planning, patching and infrasructure maitenance. Costs are calculated based on execution duration (milliseconds)and the number of requests. It also provdides scaling, Ideal for startups and projects with unpredictable or"spiky" traffic patterns.
 
-## Understanding Event-Driven Triggers
+## Creating Event-Driven Serverless Apps:
+Event-Driven Architecture (EDA) is an **architectural approach where the flow of an application is driven by events** (changes in state). **Event producers generate events, which are sent through an event broker (such as a message queue or event bus), and event consumers receive and process those events independently.**
+
+
+**Understanding Event-Driven Triggers**
 - **Inbound Requests:** Triggering functions via HTTP requests through an API Gateway (e.g., a mobile app login).
 - **Data Changes:** Running code immediately after a file is uploaded to storage (likeS3) or a row is added to a database.
 - **Scheduled Tasks**: Creating "Serverless Cron Jobs" to run cleanup scripts orreports at specific intervals.
