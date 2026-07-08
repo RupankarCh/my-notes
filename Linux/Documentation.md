@@ -470,3 +470,17 @@ Formatted text
 * They are stored as compressed source files (for example, `/usr/share/man/man1/ls.1.gz`) written in the **roff** markup language.
 * **`nroff`** and **`groff`** are formatting programs that convert roff markup into readable output.
 * **Preformatting** means converting the source into display-ready text ahead of time and storing it in a cache, so it doesn't have to be reformatted on every request. Modern Linux systems usually do this caching automatically.
+* modern man-db on RHEL 10.2 formats pages on demand rather than maintaining a persistent cache. It saves storage previously where CPU was less powerfull 
+
+# To check wether this linux OS contains preformatted man page
+```
+find /var/cache/man -type f 2>/dev/null
+```
+If it lists files such as:
+```
+/var/cache/man/cat1/ls.1.gz
+/var/cache/man/cat2/read.2.gz
+```
+then the system has cached preformatted (cat) man pages.
+
+If it prints nothing, then there are no persistent cached cat pages in the standard cache location.
