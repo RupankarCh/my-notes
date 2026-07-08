@@ -6,9 +6,6 @@ A **man page (manual page)** is the official documentation for Linux commands, s
 - Anything followed by an ellipsis (“...”) can be repeated.
 - Curly braces (“{” and “}”) mean that you should select one of the items separated by vertical bars (“|”).
 
-## Sections of the man pages
-<img width="684" height="487" alt="image" src="https://github.com/user-attachments/assets/b833b282-096e-4fbe-bf70-1863e647203a" />
-
 When you type:
 
 ```
@@ -93,14 +90,15 @@ Linux documentation is divided into categories.
 
 | Section | Meaning                                           |
 | ------- | ------------------------------------------------- |
-| 1       | User commands (`ls`, `cp`, `cat`)                 |
-| 2       | System calls (`open()`, `read()`)                 |
-| 3       | Library functions (`printf()`)                    |
-| 4       | Device files                                      |
-| 5       | Configuration files                               |
-| 6       | Games                                             |
-| 7       | Miscellaneous                                     |
+| 1       | User commands and applications (`ls`, `cp`, `cat`)                 |
+| 2       | System calls, Kernel error codes (`open()`, `read()`)                 |
+| 3       | Library functions/calls (`printf()`)                    |
+| 4       | Device files/drivers and network protocols                                      |
+| 5       | Standard file formats and Configuration files                               |
+| 6       | Games and Demonstrations                                             |
+| 7       | Miscellaneous files and Documents                                     |
 | 8       | System administration commands (`mount`, `fdisk`) |
+| 9       | Obscure kernel specs and interfaces |
 
 Example:
 
