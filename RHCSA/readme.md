@@ -394,3 +394,15 @@ find /usr -type f -size -10M -size +2M -perm 2000 -exec cp -p {} /root/mysearch/
 echo "Files are copied to /root/mysearch.""
 mysearch (To run the script)
 ```
+
+# 23.
+<img width="1048" height="387" alt="WhatsApp Image 2026-07-07 at 11 23 07 PM" src="https://github.com/user-attachments/assets/f221a2c5-6c52-443e-9c35-7d717c1a0340" />
+
+```
+cp /etc/fstab /var/tmp/
+chown root:root /var/tmp/fstab (To make any file under this directory will be owned by root user and belong to root)
+chmod 644 /var/tmp/fstab (file should not be executable by anyone rw-r--r--)
+setfacl -m u:natasha:rw /var/tmp/fstab (natasha will be able to read and write)
+setfacl -m u:jerry:- /var/tmp/fstab (deny jerry all access)
+getfacl /var/tmp/fstab (To check/verify changes)
+```
