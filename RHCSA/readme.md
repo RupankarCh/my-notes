@@ -338,26 +338,26 @@ yum install nfs-utils -y
 
 ```S1:
 yum install nfs* -y
-mkdir -p /server1
-echo "NFS Test" > /server1/t1.txt
-chmod 777 /server1
-vim /etc/exports (/server1 <server2IP>(rw,sync,no_root_squash))
-systemctl enable nfs-server --now
-exportfs -r
-exportfs -v
-firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
+mkdir -p /remote/netuser1
+echo "NFS Test" > /remote/netuser1/t1.txt
+chmod 777 /remote/netuser1
+vim /etc/exports (/remote/netuser1  *(rw,sync,no_root_squash))
+systemctl enable --now rpcbind
+systemctl enable --now nfs-server
+exportfs -rav
+firewall-cmd --permanent --add-service=nfs
+firewall-cmd --permanent --add-service=mountd
+firewall-cmd --permanent --add-service=rpc-bind
 firewall-cmd --reload
-exportfs
 
 S2:
 yum install autofs* -y
 yum install nfs* -y
-vim /etc/auto.master (/server2 /etc/auto.misc)
-vim /etc/auto.misc (access -rw,sync <server1IP>:/server1)
-systemctl enable autofs --now
-cd /server2
-cd /access
-ls -l
+vim /etc/auto.master (/rhome    /etc/auto.rhome)
+vim /etc/auto.rhome (netuser1   -rw   <SERVER1_IP>:/remote/netuser1)
+systemctl enable --now autofs
+ls /rhome
+cd /rhome/netuser1
 ```
 # 21.
 <img width="1079" height="188" alt="image" src="https://github.com/user-attachments/assets/0030716a-c0b2-46e1-9687-30d455731292" />
