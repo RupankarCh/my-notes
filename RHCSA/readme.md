@@ -1,6 +1,11 @@
 # 1. **IP Address Configuration, Hostname Change:**
 <img width="612" height="248" alt="WhatsApp Image 2026-06-11 at 8 27 41 AM" src="https://github.com/user-attachments/assets/dd6ea055-e689-4665-bc29-c4db9c685fe7" />
-
+Two ways to do:
+**1.nmacli (CLI)**
+```
+nmcli con mod <interface_name> ipv4.addresses <IP_Address/CIDR> ipv4.gateway <IP_Address> connection.autoconnect yes
+```
+**2.nmtui (GUI)**
 ```
 #nmtui (To configure IP address)
 #nmcli device show (To check)
@@ -405,4 +410,46 @@ chmod 644 /var/tmp/fstab (file should not be executable by anyone rw-r--r--)
 setfacl -m u:natasha:rw /var/tmp/fstab (natasha will be able to read and write)
 setfacl -m u:jerry:- /var/tmp/fstab (deny jerry all access)
 getfacl /var/tmp/fstab (To check/verify changes)
+```
+
+# 24. Register our system
+
+Two Ways: 
+**1.Subscription-manager**
+```
+subscription-manager register
+<username>
+<password>
+```
+**2.rhc**
+```
+rhc connect
+<username>
+<password>
+
+# 25. Add a user named ram and the user to the wheel group
+```
+useradd ram
+usermod -G wheel 
+id norm (To check)
+```
+
+# 26. Passwordless SSH
+```
+# Step 1: Generate an SSH key pair (public and private keys)
+ssh-keygen
+
+# Press Enter to accept the default location
+# (default: ~/.ssh/id_ed25519 or ~/.ssh/id_rsa)
+
+# Enter a passphrase if desired, or press Enter twice for no passphrase.
+
+# Step 2: Copy the public key to the remote server
+ssh-copy-id <username>@<hostname_or_IP>
+
+# Example
+ssh-copy-id user@192.168.1.100
+
+# Step 3: Connect to the remote server
+ssh <username>@<hostname_or_IP>
 ```
