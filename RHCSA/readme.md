@@ -426,7 +426,7 @@ subscription-manager register
 rhc connect
 <username>
 <password>
-
+```
 # 25. Add a user named ram and the user to the wheel group
 ```
 useradd ram
