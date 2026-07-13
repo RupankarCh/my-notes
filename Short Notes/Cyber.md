@@ -3,7 +3,10 @@ Host Discovery> Port Scan> Service and Version Scaning> OS Scan> Script Scan
 
 # Tools
 ## Nmap:
-**Nmap (Network Mapper)** is a network scanning tool used to discover hosts, identify open ports, detect running services, and gather information about devices on a network.
+**Nmap (Network Mapper)** is a network scanning tool used to discover hosts, identify open ports, detect running services, and gather information about devices on a network.By default nmap scans top 1000 ports.
 
--sn <Network Address/CIDR> (Host Discovery)
-
+-sn <Network Address> (Host Discovery)
+-Pn <Network Address> (Port Discovery for ip address in the network, skips the ping assuming host is alive)
+-Pn <IP Address> (Port Discovery for a single ip address)
+-sV <IP Address> (Service Version Scan)
+-O <IP Address> (OS Scan)
