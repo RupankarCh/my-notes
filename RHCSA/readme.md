@@ -435,21 +435,31 @@ id norm (To check)
 ```
 
 # 26. Passwordless SSH
+SSH Server Configuration
 ```
-# Step 1: Generate an SSH key pair (public and private keys)
+sudo dnf install openssh-server -y
+sudo systemctl enable --now sshd
+sudo systemctl status sshd
+sudo firewall-cmd --permanent --add-service=ssh
+sudo firewall-cmd --reload
+ip addr
+```
+SSH client configuration
+```
 ssh-keygen
-
-# Press Enter to accept the default location
-# (default: ~/.ssh/id_ed25519 or ~/.ssh/id_rsa)
-
-# Enter a passphrase if desired, or press Enter twice for no passphrase.
-
-# Step 2: Copy the public key to the remote server
-ssh-copy-id <username>@<hostname_or_IP>
-
-# Example
-ssh-copy-id user@192.168.1.100
-
-# Step 3: Connect to the remote server
-ssh <username>@<hostname_or_IP>
+ssh-copy-id username@server_ip
+ssh username@server_ip
 ```
+Note:
+- By default root user login with SSH is disabled to check than run "grep -E "PermitRootLogin|PasswordAuthentication" /etc/ssh/sshd_config"
+Solution:
+Option 1: Root login enable
+```
+vi /etc/ssh/sshd_config
+PermitRootLogin yes
+PasswordAuthentication yes
+systemctl restart sshd
+```
+Option 2: Use normal user (A normal user's ssh login permit stays yes
+
+# 27.
