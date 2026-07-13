@@ -462,4 +462,27 @@ systemctl restart sshd
 ```
 Option 2: Use normal user (A normal user's ssh login permit stays yes
 
-# 27.
+# 27. How to List and Kill Processes
+```
+top (To find)
+k <pid> (To kill a process)
+q (To exit top)
+```
+```
+ps -ef (display a detailed snapshot of every currently running process on the system)
+kill <option> <PID> 
+```
+Note:
+kill -l (to see options of kill command)
+2. SIGINT to interrupt your process
+9. SIGKILL to forcefully kill process
+15. SIGTERM to kill processes gracefully
+
+# 28. Manage Services
+```
+systemctl status <service_name> (Displays the current status and runtime information of the specified service.)
+systemctl stop <service_name> (Stops the specified service immediately.)
+systemctl diasble <service_name> (Prevents the specified service from starting automatically at boot.)
+systemctl enable <service_name> (Configures the specified service to start automatically at boot.)
+systemctl reload <service_name> (Reloads the specified service's configuration without stopping or restarting it.)
+```
