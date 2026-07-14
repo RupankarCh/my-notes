@@ -1,5 +1,5 @@
 # Containers:
-A Container is a lightweight, portable, and self-sufficient **executable package that contains everything needed to run a software application**: the code, runtime, libraries, and settings.
+A Container is a a **lightweight virtualization method that packages applications and their dependencies into isolated units**. It is an **executable package that contains everything needed to run a software application** the code, runtime, libraries, and settings. enabling consistent and efficient deployment across environments. 
 
 - How They Differ from VMs: Unlike VMs, containers share the host machine's OS kernel. They don't have a separate guest OS. This makes them much smaller (megabytes), faster to start, and more resource-efficient.
 - The Analogy: Think of a VM as a full-sized house with its own foundation, plumbing, and electricity. A container is a portable apartment that shares the foundation and infrastructure of a large building, making it much easier to move and scale.
