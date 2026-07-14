@@ -19,6 +19,22 @@ docker ps -a (To List all containers (running + stopped))
 
 docker tag <image_name> username/image_name:v2.0.3 (To Tag an image with a new name and version for pushing to a registry)
 ```
+# A Basic Docker file
+```
+FROM → base image
+RUN → install dependencies
+COPY → add files
+WORKDIR → set working directory
+CMD → run the app
+```
+e.g.,
+```
+FROM ubuntu:latest (To Use the latest version of Ubuntu as the base image)
+
+RUN apt update && apt install -y nginx (To Updates package lists and installs Nginx )
+
+COPY . /app (To Copy all files from your local directory into /app inside the container.)
+```
 
 # 1. Create Custom Dockerfile and Push to Docker Hub
 
