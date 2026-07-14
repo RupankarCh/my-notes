@@ -32,3 +32,22 @@ groupadd quota
 usermod -g quota b
 vi /etc/fstab
 ```
+Write realtime, usrquota, grpquota
+Esc: wq
+```
+systemctl daemon-reload
+mount -o remount /data
+mount | grep /data
+passwd root
+passwd a
+chmod 777 /data
+quotacheck -cug /data
+edquota a
+```
+blocks soft 100000, hard 200000
+inodes soft 100000, hard 200000
+```
+quotaon /data
+su - a
+touch a.user{1..21}.txt
+```
