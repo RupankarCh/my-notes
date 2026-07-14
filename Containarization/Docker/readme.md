@@ -1,7 +1,4 @@
-# Containerization Definition:
-It is a **lightweight virtualization method that packages applications and their dependencies into isolated units** called containers, enabling consistent and efficient deployment across environments.container is an application.
-
-## Benefits of Docker in compared to VM:
+# Benefits of Docker in compared to VM:
 Containerization using Docker offers significant advantages over traditional Virtual Machines (VMs) by being more **lightweight, faster, and efficient**. Unlike VMs that require a full guest operating system, **Docker containers share the host OS kernel**, allowing them to start in seconds and use far fewer system resources. This leads to higher density on a single machine and better performance. Docker also ensures consistency across development, testing, and production environments, making it ideal for CI/CD pipelines. Additionally, **containers are highly portable and easier to manage, enabling faster deployment and scaling of applications compared to VMs.**
 
 # Docker Definition:
