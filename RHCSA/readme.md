@@ -486,3 +486,18 @@ systemctl diasble <service_name> (Prevents the specified service from starting a
 systemctl enable <service_name> (Configures the specified service to start automatically at boot.)
 systemctl reload <service_name> (Reloads the specified service's configuration without stopping or restarting it.)
 ```
+
+# 29.Symbolic Links
+**1. Soft Link** (Like shortcut in windows)
+```
+echo "this is a file" > test.txt (To Create a file first)
+ls -l test.txt (You will see there is no link)
+ln -s test.txt sltest.txt (To create soft link)
+ls -l sltest.txt (To check anchor, the main file is anchor)
+```
+**2. Hard Links** (Additional name pointing directly to the data, It can survive the deletion of the original file, all hard linked files shares the same inode number)
+```
+ls -li file.txt (List inode information also)
+ln file.txt ffile.txt (To create hard link)
+ls -li f* (To check)
+```
