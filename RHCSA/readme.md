@@ -1,7 +1,8 @@
 # 1. **IP Address Configuration, Hostname Change:**
 <img width="612" height="248" alt="WhatsApp Image 2026-06-11 at 8 27 41 AM" src="https://github.com/user-attachments/assets/dd6ea055-e689-4665-bc29-c4db9c685fe7" />
 Two ways to do:
-**1.nmacli (CLI)**
+
+**1.nmcli (CLI)**
 ```
 nmcli con mod <interface_name> ipv4.addresses <IP_Address/CIDR> ipv4.gateway <IP_Address> connection.autoconnect yes
 ```
