@@ -41,8 +41,9 @@ name=AppStream
 baseurl=http://content.example.com/rhel8.2/x86_64/dvd/AppStream
 enabled=1
 gpgcheck=0
-Note on Parameters:
 ```
+
+**Note on Parameters:**
 Save and close the file (in vim, press Esc, type :wq, and press Enter).
 
 Step 3: Verify and Clean the Cache
