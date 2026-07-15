@@ -5,11 +5,13 @@ Two ways to do:
 ```
 nmcli con mod <interface_name> ipv4.addresses <IP_Address/CIDR> ipv4.gateway <IP_Address> connection.autoconnect yes
 ```
+
 **2.nmtui (GUI)**
 ```
 #nmtui (To configure IP address)
 #nmcli device show (To check)
 ```
+
 Edit a connection> Select the interface> IPv4 Configuration: Manual> IPv4 Address Show> Enter the Content and OK> Back> Activate a connection> deactive and activate and Back> Set System Hostname, Change name, OK> Quit
 
 # 2.**Configure an YUM repository** 
