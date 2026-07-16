@@ -17,4 +17,15 @@ enable secret password
 ```
 While Booting
 press Ctrl+c (To enter in rommon mode)
+```
 rommon> confreg 0x2142
+reset
+copy startup-config running-config
+enable password abc
+wr
+```
+```
+conf t
+config-register 0x2102
+```
+restart
