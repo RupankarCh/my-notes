@@ -18,14 +18,12 @@ enable secret password
 While Booting
 press Ctrl+c (To enter in rommon mode)
 ```
-rommon> confreg 0x2142
-reset
+rommon> confreg 0x2142 (To configures a Cisco router to bypass the startup configuration during its next boot)
+rommon> reset (To reboots the Cisco device directly from the ROM Monitor (ROMMON) mode.)
 copy startup-config running-config
 enable password abc
 wr
-```
-```
 conf t
-config-register 0x2102
+config-register 0x2102 (To boot securely which was not possible after doing confreg 0x2142, and prevent no authentication from next time onwards)
 ```
-restart
+
