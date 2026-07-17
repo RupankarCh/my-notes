@@ -51,3 +51,16 @@ quotaon /data
 su - a
 touch a.user{1..21}.txt
 ```
+
+17.07.26
+```
+passwd root
+passwd user
+chgrp quota /data
+edquota -g quota
+quotaoff /data
+quotaon /data
+su - a
+cd /data
+touch abc{1..700}
+```
