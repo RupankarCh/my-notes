@@ -1,4 +1,4 @@
----
+
 
 # Ansible Automation Platform (Containerized)
 
@@ -14,7 +14,7 @@ Ansible is an **open-source IT automation tool** used for:
 
 Ansible Automation Platform (AAP) is the **enterprise version of Ansible** provided by Red Hat.
 
----
+
 
 # Features
 
@@ -43,7 +43,7 @@ Ansible Automation Platform (AAP) is the **enterprise version of Ansible** provi
    * Running the same playbook multiple times will produce the same result.
    * If a task is already in the desired state, Ansible skips making unnecessary changes.
 
----
+
 
 # Ansible Architecture
 
@@ -62,7 +62,7 @@ Communication:
 * Linux → SSH
 * Windows → WinRM
 
----
+
 
 # Important Components
 
@@ -98,7 +98,6 @@ Example:
   * VMware
 * Useful when server IP addresses change frequently.
 
----
 
 # Inventory Default Groups
 
@@ -110,7 +109,6 @@ Example:
 
    * Hosts that do not belong to any custom group.
 
----
 
 # Ansible Modules
 
@@ -129,7 +127,6 @@ Examples:
 
 Modules are executed by tasks.
 
----
 
 # Important Terms
 
@@ -143,7 +140,6 @@ Example:
 ansible.builtin.copy
 ```
 
----
 
 ### Task
 
@@ -158,13 +154,11 @@ Example:
     state: present
 ```
 
----
 
 ### Play
 
 A collection of tasks executed on one or more hosts.
 
----
 
 ### Playbook
 
@@ -175,7 +169,6 @@ Extensions:
 * `.yml`
 * `.yaml`
 
----
 
 # Ad-hoc Commands
 
@@ -212,7 +205,6 @@ ansible web -m service -a "name=httpd state=restarted"
 * Quick administration
 * Troubleshooting
 
----
 
 # Playbooks
 
@@ -258,7 +250,6 @@ Example:
 * Infrastructure as Code
 * Version-controlled automation
 
----
 
 # Difference Between Ad-hoc Commands and Playbooks
 
@@ -270,8 +261,6 @@ Example:
 | Quick administration  | Complex automation               |
 | Good for testing      | Good for production              |
 | Not reusable          | Easily reusable and maintainable |
-
----
 
 # YAML Basics
 
@@ -292,7 +281,6 @@ port: 80
 enabled: true
 ```
 
----
 
 # Structure of a Playbook
 
@@ -326,8 +314,6 @@ Example:
         state: present
 ```
 
----
-
 # Return Codes
 
 | Code | Meaning                                            |
@@ -338,5 +324,4 @@ Example:
 | 3    | Some hosts were unreachable                        |
 | 4    | Parser or syntax error (varies by command/context) |
 
----
 
