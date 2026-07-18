@@ -70,3 +70,36 @@ inventory = /home/teacher/inventory
 su - teacher
 ansible all --list-hosts (To check)
 ```
+
+# SSH Password Based Authentication: (Delete the custom inventory file)
+```
+password based authentication
+su - teacher
+rm -rf inventory/
+cd /etc/ansible/hosts
+vim hosts
+[dev]
+node1
+node2
+su - teacher
+ansible all --list-hosts
+vim ansible.cfg
+[defaults]
+inventory = /home/teacher/inventory
+host_key_checking = false
+:wq
+ansible dev -m ping -k 
+mkdir inventory 
+cd inventory/
+vim nodes
+[dev]
+node1
+node2
+:wq
+exit
+vim /etc/ansible/hosts
+su - teacher
+ansible dev -m ping -k
+```
+
+# # SSH Passwordless Authentication
