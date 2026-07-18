@@ -32,3 +32,31 @@ vim /etc/hosts
 192.168.10.2 node1.india.com node1
 192.168.10.3 node2.india.com node2
 ```
+Ansible Server Configuration
+yum repository configuration
+```
+yum install ansible-core -y
+ansible --version
+(/usr/lin/python3.9/site-packages/ansible stores ansible modules)
+useradd teacher (For 2 nodes also)
+passwd teacher (For 2 nodes also)
+su - teacher
+mkdir inventory
+cd inventory/
+vim nodes
+[dev]
+192.168.10.2
+192.168.10.3
+
+[data]
+192.168.10.[2:100]
+
+[data1]
+node1.india.com
+node2.india.com
+node[1:100].india.com
+
+:wq!
+ansible all --list-hosts -i ~/inventory/ (to see particular 2 group replace all with dev:data)
+```
+
