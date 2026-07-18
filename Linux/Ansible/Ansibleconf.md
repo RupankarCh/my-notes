@@ -5,7 +5,7 @@ systemctl restart network-online.target
 hostnamectl set-hostname ansible-server.india.com
 vim /etc/hostname
 vim /etc/hosts
-192.168.10.1 ansible-server.india.com ansible
+192.168.10.1 ansible-server.india.com ansible-server
 192.168.10.2 node1.india.com node1
 192.168.10.3 node2.india.com node2
 ```
@@ -17,7 +17,7 @@ systemctl restart network-online.target
 hostnamectl set-hostname node1.india.com
 vim /etc/hostname
 vim /etc/hosts
-192.168.10.1 ansible-server.india.com ansible
+192.168.10.1 ansible-server.india.com ansible-server
 192.168.10.2 node1.india.com node1
 192.168.10.3 node2.india.com node2
 ```
@@ -28,7 +28,7 @@ systemctl restart network-online.target
 hostnamectl set-hostname node1.india.com
 vim /etc/hostname
 vim /etc/hosts
-192.168.10.1 ansible-server.india.com ansible
+192.168.10.1 ansible-server.india.com ansible-server
 192.168.10.2 node1.india.com node1
 192.168.10.3 node2.india.com node2
 ```
