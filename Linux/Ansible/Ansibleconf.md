@@ -47,15 +47,6 @@ vim nodes
 [dev]
 192.168.10.2
 192.168.10.3
-
-[data]
-192.168.10.[2:100]
-
-[data1]
-node1.india.com
-node2.india.com
-node[1:100].india.com
-
 :wq!
 ansible all --list-hosts -i ~/inventory/ (to see particular 2 group replace all with dev:data)
 ```
