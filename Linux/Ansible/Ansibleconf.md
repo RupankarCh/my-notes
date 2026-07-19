@@ -1,4 +1,4 @@
-**Ansible Server Configuration**:
+**Ansible Control Node Configuration:**
 
 Change IP Address as 192.168.10.1/24 and Gateway address 192.168.10.1 and hostname ansible-server.india.com
 ```
