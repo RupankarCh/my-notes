@@ -80,12 +80,18 @@ Types of Inventory:
 Example:
 
 ```ini
-[web]
+[name]
 192.168.1.10
 192.168.1.11
 
-[db]
-192.168.1.20
+[data]
+192.168.10.[2:100]
+
+[data1]
+node1.fqdn.address
+node2.india.com
+node[1:100].india.com
+
 ```
 
 ### 2. Dynamic Inventory
