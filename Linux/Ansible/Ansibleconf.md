@@ -1,9 +1,7 @@
 Ansible Server Configuration
+Change IP Address as 192.168.10.1/24 and Gateway address 192.168.10.1 and hostname ansible-server.india.com
 ```
-nmcli connection modify ens160 ipv4.addresses 192.168.10.1/24 ipv4.gateway 192.168.10.1 ipv4.method manual 
-systemctl restart network-online.target 
-hostnamectl set-hostname ansible-server.india.com
-vim /etc/hostname
+vim /etc/hostname (To verify hostname)
 vim /etc/hosts
 192.168.10.1 ansible-server.india.com ansible-server
 192.168.10.2 node1.india.com node1
@@ -11,22 +9,18 @@ vim /etc/hosts
 ```
 
 Ansible Node1 Configuration
+Change IP Address as 192.168.10.2/24 and Gateway address 192.168.10.1 and hostname node1.india.com
 ```
-nmcli connection modify ens160 ipv4.addresses 192.168.10.2/24 ipv4.gateway 192.168.10.1 ipv4.method manual 
-systemctl restart network-online.target 
-hostnamectl set-hostname node1.india.com
-vim /etc/hostname
+vim /etc/hostname (To verify hostname)
 vim /etc/hosts
 192.168.10.1 ansible-server.india.com ansible-server
 192.168.10.2 node1.india.com node1
 192.168.10.3 node2.india.com node2
 ```
 Ansible Node2 Configuration
+Change IP Address as 192.168.10.3/24 and Gateway address 192.168.10.1 and hostname node2.india.com
 ```
-nmcli connection modify ens160 ipv4.addresses 192.168.10.3/24 ipv4.gateway 192.168.10.1 ipv4.method manual 
-systemctl restart network-online.target 
-hostnamectl set-hostname node1.india.com
-vim /etc/hostname
+vim /etc/hostname (To verify hostname)
 vim /etc/hosts
 192.168.10.1 ansible-server.india.com ansible-server
 192.168.10.2 node1.india.com node1
