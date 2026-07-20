@@ -44,3 +44,56 @@ If it doesn't work, terminate the instance and create a new one. Make sure you'r
 This means either two things:
 You are using the wrong security key or not using a security key. Please look at your EC2 instance configuration to make sure you have assigned the correct key to it.
 You are using the wrong user. Make sure you have started an Amazon Linux 2 EC2 instance, and make sure you're using the user ec2-user. This is something you specify when doing ec2-user@<public-ip> (ex: ec2-user@35.180.242.162) in your SSH command or your Putty configuration
+
+# Telnet
+Port 23 – Telnet is a **terminal emulation program that enables you to access IOS through the network and configure the device remotely**. The device that is being configured needs to have a Telnet server installed and an IP address configured.
+Telnet was used before SSH and offers the same functionality, One of the biggest disadvantages of this protocol is that it **sends all data as clear text**, which includes the passwords! This is the reason why this type of access is usually not used anymore. Instead, SSH is usually used.
+
+you don’t need to run a Telnet service or have any special port open on your side.
+Your computer: runs the Telnet client program.
+
+## Configuration:
+To configure basic Telnet between two Cisco routers, you need:
+
+IP connectivity between the routers. ping must work
+
+**Topology:**
+Router1 ---------------- Router2
+192.168.1.1/24      192.168.1.2/24
+
+**Option 1:** A username/password (or line password) on the router being accessed.
+Router 2
+```
+R2(config)#username admin secret cisco123
+line vty 0 4 (Configure remote virtual terminal lines, Here 0-4 means a total of 5 simultaneous remote login sessions)
+login local (Authenticate using the local username database)
+transport input telnet (Allow Telnet connections)
+exit
+enable secret class123
+exit
+copy running-config startup-config
+```
+Router 1
+```
+#telnet 192.168.1.2
+username: admin
+password: cisco123
+Router2> enable
+class123
+```
+
+
+**Option 2:** use a VTY password
+**VTY: A VTY (Virtual Teletype) line is a virtual login port that allows users to remotely access the router using Telnet or SSH over the network.**
+```
+Router2(config)# line vty 0 4 
+Router2(config-line)# password telnet123
+Router2(config-line)# login
+Router2(config-line)# transport input telnet 
+```
+Then connect:
+```
+Router1# telnet 192.168.1.2
+Password: telnet123 
+```
+
