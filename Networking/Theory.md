@@ -4,3 +4,8 @@ a networking feature that **automatically assigns an IP address (range 169.254.0
 
 # Subnetting
 Subnetting in seconds https://cidr.xyz/
+
+# Defence in Depth:
+- Switch: VLAN
+- Router: ACL
+- Firewall
