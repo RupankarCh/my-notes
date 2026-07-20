@@ -1,3 +1,6 @@
+# Terms:
+- Attack Surface: The total sum of all possible entry points, paths, and vulnerabilities that a hacker can use to access a system or steal data.
+
 # Steps of Scanning:
 Host Discovery> Port Scan> Service and Version Scaning> OS Scan> Script Scan
 
