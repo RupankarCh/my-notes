@@ -5,6 +5,7 @@
 - Enable Password: Priviledge Escalation
 - Enable Secret Password: Encrypted Priviledge Escalation
 - Line VTY Password: Connecting remotely
+**VTY: A VTY (Virtual Teletype) line is a virtual login port that allows users to remotely access the router using Telnet or SSH over the network.**
 
 | Mode                                   | Prompt                   | Purpose                                                     | How to Enter                        |
 | -------------------------------------- | ------------------------ | ----------------------------------------------------------- | ----------------------------------- |
