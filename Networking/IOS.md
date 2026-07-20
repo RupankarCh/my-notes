@@ -17,6 +17,10 @@
 | **Subinterface Configuration**         | `Router(config-subif)#`  | Configure logical subinterfaces                             | `interface GigabitEthernet0/0.10`   |
 | **VLAN Configuration** *(on switches)* | `Switch(config-vlan)#`   | Configure VLANs                                             | `vlan <vlan-id>`                    |
 
+There are three most common ways to access the Cisco IOS:
+1. Console
+2. Telnet
+3. SSH
 
 # Practicals
 ## Password Implementation
