@@ -9,6 +9,7 @@ Open PuTTy paste the public IP of the instance> THen SSH, Auth, Credentials and 
 EBS> Volumes> Create volume> Select Size, Availability zone will be same as instance> Create volume.
 
 Select the instance, Actions> Storage> Attach volume> Select Volume> Attach Volume.
+
 **Configuration of Disk Quota:**
 ```
 fdisk /dev/nvme1n1
