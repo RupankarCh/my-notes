@@ -59,7 +59,7 @@ touch a.user{1..21}.txt
 17.07.26
 ```
 passwd root
-passwd user
+passwd b
 chgrp quota /data (Changes the group ownership of /data to the quota group.)
 edquota -g quota (Opens the quota editor to configure group quotas for the quota group.)
 blocks: 4 soft: 100000 hard: 200000 inode:1 soft: 400 hard: 500
