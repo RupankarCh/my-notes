@@ -52,6 +52,7 @@ inodes soft 10, hard 20
 (blocks Sets a soft limit of 100000 KB and hard limit of 200000 KB for disk space, indoes Limits the user to 10 files before warning and a maximum of 20 files.)
 quotaon /data (Enables quota enforcement on the mounted filesystem.)
 su - a
+cd /data/
 touch a.user{1..21}.txt
 ```
 
