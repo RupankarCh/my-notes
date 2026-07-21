@@ -54,18 +54,16 @@ quotaon /data (Enables quota enforcement on the mounted filesystem.)
 su - a
 cd /data/
 touch a.user{1..21}.txt
+dd if=/dev/zero of=/folder/file bs=1M count=300
 ```
-
-17.07.26
+**Groupquota**
 ```
-passwd root
-passwd b
 chgrp quota /data (Changes the group ownership of /data to the quota group.)
 edquota -g quota (Opens the quota editor to configure group quotas for the quota group.)
 blocks: 4 soft: 100000 hard: 200000 inode:1 soft: 400 hard: 500
 quotaoff /data (Disables quota enforcement on /data.)
 quotaon /data (Re-enables quota enforcement on /data.)
-sudo usermod -aG group_name username
+sudo usermod -aG quota b
 su - b
 cd /data
 touch abc{1..700} (Creates 700 empty files to test group or inode quota limits.)
