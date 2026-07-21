@@ -63,32 +63,31 @@ ansible all --list-hosts (To check)
 
 # SSH Password Based Authentication: (Delete the custom inventory file)
 ```
-password based authentication
+sudo yum install -y sshpass
 su - teacher
-rm -rf inventory/
-cd /etc/ansible/hosts
-vim hosts
-[dev]
-node1
-node2
-su - teacher
-ansible all --list-hosts
-vim ansible.cfg
-[defaults]
-inventory = /home/teacher/inventory
-host_key_checking = false
-:wq
-ansible dev -m ping -k 
-mkdir inventory 
-cd inventory/
+rm -rf ~/inventory
+mkdir ~/inventory
+cd ~/inventory
 vim nodes
 [dev]
 node1
 node2
-:wq
-exit
-vim /etc/ansible/hosts
-su - teacher
+vim ~/ansible.cfg
+[defaults]
+inventory = /home/teacher/inventory/nodes
+host_key_checking = false
+ansible all --list-hosts (Test if two nodes appear)
+```
+
+On Nodes:
+```
+vim /etc/ssh/sshd_config 
+PasswordAuthentication yes
+sudo systemctl restart sshd
+```
+
+On Server:
+```
 ansible dev -m ping -k
 ```
 
