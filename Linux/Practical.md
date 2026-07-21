@@ -62,8 +62,10 @@ passwd root
 passwd user
 chgrp quota /data (Changes the group ownership of /data to the quota group.)
 edquota -g quota (Opens the quota editor to configure group quotas for the quota group.)
+blocks: 4 soft: 100000 hard: 200000 inode:1 soft: 400 hard: 500
 quotaoff /data (Disables quota enforcement on /data.)
 quotaon /data (Re-enables quota enforcement on /data.)
+sudo usermod -aG group_name username
 su - a
 cd /data
 touch abc{1..700} (Creates 700 empty files to test group or inode quota limits.)
