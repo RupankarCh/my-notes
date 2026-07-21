@@ -68,7 +68,18 @@ login on-success log   (Logs every successful login attempt in the system log)
 security authentication failure rate 3 log   (Logs an event if there are 3 authentication failures within the configured monitoring period (platform/IOS support varies))
 login block-for 120 attempts 3 within 30   (Blocks all login attempts for 120 seconds if there are 3 failed attempts within 30 seconds)
 ```
-
+**Bypassing Password(Startup Configuration)**
+While Booting
+press Ctrl+c (To enter in rommon mode)
+```
+rommon> confreg 0x2142 (To configure a Cisco router to bypass the startup configuration during its next boot)
+rommon> reset (To reboots the Cisco device directly from the ROM Monitor (ROMMON) mode.)
+copy startup-config running-config
+enable password abc
+wr
+conf t
+(config)#config-register 0x2102 (To boot securely which was not possible after doing confreg 0x2142, and prevent no authentication from next time onwards)
+```
 
 # 
 Connect a router and Linux machine in GNS3
