@@ -35,6 +35,7 @@ It allows to connect to a remote machine all using the CLI.
 
 
 **SSH Configuration**:
+
 On Router:
 ```
 R1(config)# hostname <hostname>
