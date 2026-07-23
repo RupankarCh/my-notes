@@ -50,16 +50,17 @@ Router1 ---------------- Router2
 192.168.1.1/24      192.168.1.2/24
 
 **Option 1:** A username/password (or line password) on the router being accessed.
+
 Router 2
 ```
-R2(config)#username admin secret cisco123
-line vty 0 4 (Configure remote virtual terminal lines, Here 0-4 means a total of 5 simultaneous remote login sessions)
-login local (Authenticate using the local username database)
-transport input telnet (Allow Telnet connections)
-exit
-enable secret class123
-exit
-copy running-config startup-config
+R2(config)# username admin secret cisco123
+R2(config)# line vty 0 4 (Configure remote virtual terminal lines, Here 0-4 means a total of 5 simultaneous remote login sessions)
+R2(config-line)# login local (Authenticate using the local username database)
+R2(config-line)# transport input telnet (Allow Telnet connections)
+R2(config-line)# exit
+R2(config)# enable secret class123
+R2(config)# end
+R2# copy running-config startup-config
 ```
 Router 1
 ```
@@ -67,7 +68,7 @@ Router 1
 username: admin
 password: cisco123
 Router2> enable
-class123
+Password: class123
 ```
 
 
@@ -82,7 +83,10 @@ Router2(config-line)# transport input telnet
 Then connect:
 ```
 Router1# telnet 192.168.1.2
-Password: telnet123 
+Password: telnet123
+Router2> enable
+Password: class123
+Router2#
 ```
 
 # RIP V2 Configuration
