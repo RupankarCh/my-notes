@@ -97,3 +97,18 @@ Router1# telnet 192.168.1.2
 Password: telnet123 
 ```
 
+# RIP V2 Configuration
+```
+Router> enable
+Router# configure terminal
+
+Router(config)# router rip
+Router(config-router)# version 2
+Router(config-router)# no auto-summary
+Router(config-router)# network 192.168.1.0
+Router(config-router)# network 10.0.0.0
+Router(config-router)# exit
+
+Router(config)# end
+Router# write memory
+```
