@@ -34,9 +34,29 @@ It allows to connect to a remote machine all using the CLI.
 - Permission denied (publickey,gssapi-keyex,gssapi-with-mic) This means either two things: You are using the wrong security key or not using a security key. Please look at your EC2 instance configuration to make sure you have assigned the correct key to it. or You are using the wrong user. Make sure you have started an Amazon Linux 2 EC2 instance, and make sure you're using the user ec2-user. This is something you specify when doing ec2-user@<public-ip> (ex: ec2-user@35.180.242.162) in your SSH command or your Putty configuration
 
 **SSH Configuration**:
-
-
-
+On Router:
+```
+R1(config)# hostname <hostname>
+<hostname>(config)# ip domain-name <ssh.domain.lab>
+(config)# username <user_name> privilege 15 secret <ssh_password>
+(config)# crypto key generate rsa
+1024
+(config)#line vty 0 4
+(config-line)# transport input ssh
+(config-line)# login local
+(config-line)# ip ssh version 2
+(config-line)# end
+#wr
+#show ip ssh
+```
+Connect with Linux:
+```
+#ssh <username>@<IP>
+```
+Connect with Router:
+```
+#ssh -l <user_name> <IP>
+```
 
 # Telnet
 Port 23 – Telnet is a **terminal emulation program that enables you to access IOS through the network and configure the device remotely**. The device that is being configured needs to have a Telnet server installed and an IP address configured.
