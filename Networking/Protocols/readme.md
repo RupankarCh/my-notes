@@ -33,6 +33,11 @@ It allows to connect to a remote machine all using the CLI.
 - There's a connection refused: This means the instance is reachable, but no SSH utility is running on the instance Try to restart the instance If it doesn't work, terminate the instance and create a new one. Make sure you're using Amazon Linux 2.
 - Permission denied (publickey,gssapi-keyex,gssapi-with-mic) This means either two things: You are using the wrong security key or not using a security key. Please look at your EC2 instance configuration to make sure you have assigned the correct key to it. or You are using the wrong user. Make sure you have started an Amazon Linux 2 EC2 instance, and make sure you're using the user ec2-user. This is something you specify when doing ec2-user@<public-ip> (ex: ec2-user@35.180.242.162) in your SSH command or your Putty configuration
 
+**SSH Configuration**:
+
+
+
+
 # Telnet
 Port 23 – Telnet is a **terminal emulation program that enables you to access IOS through the network and configure the device remotely**. The device that is being configured needs to have a Telnet server installed and an IP address configured.
 Telnet was used before SSH and offers the same functionality, One of the biggest disadvantages of this protocol is that it **sends all data as clear text**, which includes the passwords! This is the reason why this type of access is usually not used anymore. Instead, SSH is usually used.
