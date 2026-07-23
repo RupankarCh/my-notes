@@ -112,3 +112,21 @@ Router(config-router)# exit
 Router(config)# end
 Router# write memory
 ```
+**Configuration of CISCO routing protocol authentication:**
+```
+(config)#key chain RIP
+key 1
+key-string 0 rip@123
+exit
+exit
+interface s 1/0
+ip rip authentication mode text
+ip rip authentication key-chain RIP
+shutdown
+no shutdown
+exit
+#show ip protocols
+#show key chain
+#show ip route
+```
+If one wants to communicate with a machine they must know  the password
