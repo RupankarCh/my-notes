@@ -1,11 +1,34 @@
+# Automation:
+**What is Automation**:
+Performing repetative tasks with minimum human intervention.
 
+**Types of Automation:** 
+- Infrastructure
+- Configuration
+- Application
+- Cloud
+- Network
+- Security
+- CI/CD
+
+**Automation Tools:**
+- Ansible
+- Puppet: Configuration Management.
+- Terraform: IaC
+- Chef: IaC
+- Saltstack: Remote execution and configuration management.
+- Github Actions: CI/CD Automation.
+- AWS System Management: Server management and automation.
 
 # Ansible Automation Platform (Containerized)
 
 ## What is Ansible?
 
-Ansible is an **open-source IT automation tool** used for:
-
+Characteristics:
+* open-source IT automation tool
+* Agentless
+* It uses playbook to describe the automation jobs
+* It uses hostfile to group the hosts and control actions
 * Configuration Management
 * Application Deployment
 * Infrastructure Provisioning
@@ -68,7 +91,7 @@ Communication:
 
 ## Inventory
 
-Contains the list of managed hosts.
+Contains the list of managed .
 
 Types of Inventory:
 
@@ -96,7 +119,7 @@ node[1:100].india.com
 
 ### 2. Dynamic Inventory
 
-* Automatically fetches hosts from cloud providers like:
+* Automatically fetches  from cloud providers like:
 
   * AWS
   * Azure
@@ -113,7 +136,7 @@ node[1:100].india.com
 
 2. **ungrouped**
 
-   * Hosts that do not belong to any custom group.
+   *  that do not belong to any custom group.
 
 
 # Ansible Modules
@@ -163,7 +186,7 @@ Example:
 
 ### Play
 
-A collection of tasks executed on one or more hosts.
+A collection of tasks executed on one or more .
 
 
 ### Playbook
@@ -233,7 +256,7 @@ Example:
 ```yaml
 ---
 - name: Install Apache
-  hosts: web
+  : web
   become: true
 
   tasks:
