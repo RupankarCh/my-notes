@@ -25,6 +25,11 @@ A cryptographic **protocol securing communication over the internet.** Successor
 # SSH
 It allows to connect to a remote machine all using the CLI.
 
+**Types of SSH**:
+- Password based Authentication
+- Passwordless Authentication
+- Inventory based Authentication
+
 **Errors**
 - There's a connection timeout: This is a security group issue. Any timeout (not just for SSH) is related to security groups or a firewall. Ensure your security group looks like this and correctly assigned to your EC2 instance.
 <img width="1298" height="332" alt="image" src="https://github.com/user-attachments/assets/ff5a7cb8-012c-462a-b3a3-fa4270da9c77" />
