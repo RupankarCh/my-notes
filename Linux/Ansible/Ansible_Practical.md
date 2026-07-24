@@ -134,6 +134,7 @@ ansible --version (To see default inventory file)
 vim /etc/ansible/ansible.cfg 
 [defaults]
 inventory = /home/teacher/inventory
+host_key_checking = False
 :wq
 su - teacher
 ansible all --list-hosts (To check)
