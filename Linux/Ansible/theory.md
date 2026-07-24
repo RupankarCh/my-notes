@@ -11,6 +11,7 @@ Performing repetative tasks with minimum human intervention.
 - Security
 - CI/CD
 
+
 **Automation Tools:**
 - Ansible
 - Puppet: Configuration Management.
@@ -32,11 +33,11 @@ Characteristics:
 * Configuration Management
 * Application Deployment
 * Infrastructure Provisioning
-* Orchestration
+* Orchestration: Automated configuration, co-ordinating and managing of computer systems and softwares.
 * Security Automation
 
 Ansible Automation Platform (AAP) is the **enterprise version of Ansible** provided by Red Hat.
-
+Default Ansible Inventory Path **/etc/ansible/hosts**
 
 
 # Features
@@ -198,6 +199,11 @@ Extensions:
 * `.yml`
 * `.yaml`
 
+### Handlers: 
+Trgger service status changes like restarting or stopping the service.
+
+### Facts: 
+Global variable, which contains all the information about the system.
 
 # Ad-hoc Commands
 
