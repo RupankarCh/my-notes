@@ -217,7 +217,7 @@ vim inventory
 node1 ansible_user=ansible ansible_password=ansible (**node1** The hostname or IP of the managed node, **ansible_user=ansible** SSH username, **ansible_password=ansible** SSH password)
 node2 ansible_user=ansible ansible_password=ansible
 ansible web -m ping or ansible web -m ping -i /home/ansible/automation/inventory Test the connection)
-
+```
 
 # 6. Ansible Copy Module & Privilege Escalation Notes
 
