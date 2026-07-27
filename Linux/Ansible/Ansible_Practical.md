@@ -219,29 +219,417 @@ node2 ansible_user=ansible ansible_password=ansible
 ansible web -m ping or ansible web -m ping -i /home/ansible/automation/inventory Test the connection)
 
 
-#
-## Create a global inventory
-```
+# 6. Ansible Copy Module & Privilege Escalation Notes
+
+## 1. Create a System-Wide Inventory
+
+```bash
 cd /etc/ansible
-vim hosts (To create default system wide inventory, if it exists you can run ansible web -m ping without specifying -i and inventory)
+vim hosts
+```
+
+Example inventory:
+
+```ini
 [web]
 node1
 node2
-rm -rf inventory (Deletes the local inventory file, If /etc/ansible/hosts exists, Ansible falls back to using it)
-echo "Good Afternoon" > file1.txt (Create a file)
-cp -r /home/teacher/inventory /home/ansible/ (Copy an inventory)
-chown -R ansible:ansible /home/ansible/inventory (Change ownership)
-ansible all -i ~/inventory -m copy -a "src=/home/ansible/file1.txt dest=/tmp/file1.txt" (Copy a file to all nodes)
-ansible all -m command -a "ls -l /tmp/file1.txt" (Verify if the file was really copied from the control node itself)
-ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt' (Create a file without an existing source)
 ```
-On Both Nodes:
+
+> **Note:** If `/etc/ansible/hosts` exists, you can run Ansible commands without specifying the `-i` option.
+
+Example:
+
+```bash
+ansible web -m ping
 ```
+
+---
+
+## 2. Remove Local Inventory
+
+```bash
+rm -rf inventory
+```
+
+**Purpose:**
+- Deletes the local inventory file.
+- If `/etc/ansible/hosts` exists, Ansible automatically falls back to using it.
+
+---
+
+## 3. Create a Source File
+
+```bash
+echo "Good Afternoon" > file1.txt
+```
+
+Creates a text file that will be copied to managed nodes.
+
+---
+
+## 4. Copy an Inventory File
+
+```bash
+cp -r /home/teacher/inventory /home/ansible/
+```
+
+Copies the inventory directory from the teacher account.
+
+---
+
+## 5. Change Ownership
+
+```bash
+chown -R ansible:ansible /home/ansible/inventory
+```
+
+Changes ownership recursively to the `ansible` user and group.
+
+---
+
+# Copy Module Examples
+
+## 1. Copy a File from Control Node
+
+```bash
+ansible all -i ~/inventory -m copy -a "src=/home/ansible/file1.txt dest=/tmp/file1.txt"
+```
+
+Copies `file1.txt` from the control node to `/tmp/file1.txt` on every managed node.
+
+---
+
+## 2. Verify the Copy
+
+```bash
+ansible all -m command -a "ls -l /tmp/file1.txt"
+```
+
+Checks whether the file exists on all managed nodes.
+
+---
+
+## 3. Create a File Without an Existing Source
+
+```bash
+ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt'
+```
+
+Creates a file directly from the provided text without using a local source file.
+
+---
+
+# Preparing the Destination Directory
+
+## On Both Managed Nodes
+
+```bash
 cd
 mkdir test
 chmod 755 test
 ```
-On Server:
+
+Creates a directory with standard permissions.
+
+---
+
+## Copy File into the Directory
+
+On the control node:
+
+```bash
+ansible all -m copy -a "src=file1.txt dest=/home/ansible/test/"
 ```
-ansible all -m copy -a "src=file1.txt dest=/home/ansible/test/" (Copy a file into that directory)
+
+Copies `file1.txt` into `/home/ansible/test/` on every managed node.
+
+---
+
+# Configure Sudo Privileges
+
+## On All Three Machines
+
+Create a sudoers file:
+
+```bash
+echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible
 ```
+
+Or edit the sudoers file:
+
+```bash
+vim /etc/sudoers
+```
+
+Add:
+
+```text
+ansible ALL=(ALL) ALL
+```
+
+This allows the `ansible` user to execute commands as another user using sudo.
+
+---
+
+# Using Become (Privilege Escalation)
+
+Switch to the Ansible user:
+
+```bash
+su - ansible
+```
+
+---
+
+## Copy a File Using Sudo
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/test/file2.txt' -b -K --become-method sudo
+```
+
+### Options
+
+| Option | Meaning |
+|---------|---------|
+| `-b` | Enable privilege escalation (become) |
+| `-K` | Prompt for sudo password |
+| `--become-method sudo` | Use sudo for privilege escalation |
+
+---
+
+## Verify File
+
+```bash
+ansible all -m command -a 'ls -l /test'
+```
+
+---
+
+## Check Current User (Root)
+
+```bash
+ansible all -m command -a 'id' -b -K
+```
+
+Runs the command as root.
+
+---
+
+## Read `/etc/passwd`
+
+```bash
+ansible all -m command -a 'cat /etc/passwd'
+```
+
+Displays the passwd file.
+
+---
+
+## Become Another User
+
+```bash
+ansible all -m command -a 'id' -b --become-user ansible
+```
+
+Runs the command as the `ansible` user instead of root.
+
+---
+
+# Enable Become by Default
+
+Edit the configuration:
+
+```bash
+vim /etc/ansible/ansible.cfg
+```
+
+Add:
+
+```ini
+[privilege_escalation]
+become=true
+```
+
+> **Note:** The correct section name is **`[privilege_escalation]`**, not `priveledge_escalation`.
+
+Now simply run:
+
+```bash
+su - ansible
+
+ansible all -m command -a 'id'
+```
+
+Ansible automatically performs privilege escalation.
+
+---
+
+# Create User and Group
+
+## On All Three Machines
+
+```bash
+useradd student
+passwd student
+groupadd tech
+```
+
+Creates:
+- User: `student`
+- Group: `tech`
+
+---
+
+# Copy Module with Permissions
+
+## Copy While Setting Owner, Group and Mode
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K
+```
+
+This command:
+
+- Copies the file
+- Sets permissions to **755**
+- Changes owner to **student**
+- Changes group to **tech**
+
+---
+
+# Copy File Normally
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/tmp'
+```
+
+Copies the file into `/tmp`.
+
+---
+
+## Verify Contents
+
+```bash
+ansible all -m command -a 'cat /tmp/file1.txt'
+```
+
+---
+
+# Update a File
+
+Edit locally:
+
+```bash
+vim file1.txt
+```
+
+Contents:
+
+```text
+Welcome
+```
+
+Copy again:
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/tmp'
+```
+
+Verify:
+
+```bash
+ansible all -m command -a 'cat /tmp/file1.txt'
+```
+
+---
+
+Edit once more:
+
+```bash
+vim file1.txt
+```
+
+Add:
+
+```text
+New Line
+```
+
+Copy again with backup enabled:
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes'
+```
+
+---
+
+## Verify Backup
+
+```bash
+ansible all -m command -a 'ls -l /tmp'
+```
+
+Ansible creates a timestamped backup of the previous file before replacing it.
+
+---
+
+# Copy a File Already Present on the Remote Host
+
+```bash
+ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
+```
+
+### `remote_src=yes`
+
+Indicates that the source file is already located on the managed node, so Ansible copies it locally on that remote machine instead of transferring it from the control node.
+
+---
+
+# Remove Test Files
+
+## On Both Managed Nodes
+
+```bash
+rm -rf file10.txt
+rm -rf file1.txt.backup
+```
+
+Deletes the copied file and its backup.
+
+---
+
+# Copy Only to a Specific Host
+
+```bash
+ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
+```
+
+Copies the remote file only on **node2**.
+
+---
+
+# Summary of Important Copy Module Parameters
+
+| Parameter | Purpose |
+|-----------|---------|
+| `src=` | Source file |
+| `dest=` | Destination path |
+| `content=` | Create file from text |
+| `owner=` | File owner |
+| `group=` | File group |
+| `mode=` | File permissions |
+| `backup=yes` | Backup existing file before overwrite |
+| `remote_src=yes` | Source file already exists on the managed node |
+
+---
+
+# Frequently Used Become Options
+
+| Option | Description |
+|---------|-------------|
+| `-b` | Enable privilege escalation |
+| `-K` | Ask for sudo password |
+| `--become-user USER` | Execute as another user |
+| `--become-method sudo` | Use sudo as the escalation method |
+| `become=true` | Enable become by default in `ansible.cfg` |
