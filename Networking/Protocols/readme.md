@@ -174,8 +174,8 @@ subnet 192.168.25.0 netmask 255.255.255.0 {
 #  option routers 
 :wq
 vim /etc/rsyslog.conf
-chkconfig dhcpd on
 local6.*  	/var/log/dhcpd.log
+chkconfig dhcpd on
 systemctl restart dhcp-server 
 systemctl status dhcp-server
 firewall-cmd --add-service=dhcp --permanent 
