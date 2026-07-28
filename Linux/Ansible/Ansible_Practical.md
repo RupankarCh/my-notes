@@ -266,11 +266,11 @@ ansible web -m ping
 ```bash
 echo "Good Afternoon" > file1.txt (Creates a text file that will be copied to managed nodes)
 ansible all -i ~/inventory -m copy -a "src=/home/ansible/file1.txt dest=/tmp/file1.txt" (Copies `file1.txt` from the control node to `/tmp/file1.txt` on every managed node)
-ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' (Copies the remote file only on **node2**)
+ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' (Copies the remote file only on node2)
 ansible all -m command -a "ls -l /tmp/file1.txt" (Checks whether the file exists on all managed nodes)
 ansible all -m command -a 'cat /tmp/file1.txt' (Verify contents)
 ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt' (Creates a file directly from the provided text without using a local source file)
-ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K (Before doing it student user, tech group must exist in all the systems, It will Copy the file, Sets permissions to **755**, Changes owner to **student**, Changes group to **tech**)
+ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K (Before doing it student user, tech group must exist in all the systems, It will Copy the file, Sets permissions to 755, Changes owner to student, Changes group to tech)
 ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (To Create Backup, Ansible creates a timestamped backup of the previous file before replacing it)
 ansible all -m command -a 'ls -l /tmp' (To verify if backup exists)
 ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' (this command copies the file named file1.txt which exists on the remote host with copied file named file10.txt on the remote host)
