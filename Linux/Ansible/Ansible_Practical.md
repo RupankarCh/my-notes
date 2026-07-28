@@ -245,7 +245,8 @@ ansible web -m ping
 
 # 7. Modules
 
-## Copy a File from Control Node
+## Copy a File from Control Node 
+**Used to copy file from Ansible server(Control Node) to managed nodes.**
 
 ```bash
 echo "Good Afternoon" > file1.txt (Creates a text file that will be copied to managed nodes)
@@ -292,7 +293,7 @@ su - ansible
 
 ---
 
-## Copy a File Using Sudo
+## Copy a File Using Sudo 
 
 ```bash
 ansible all -m copy -a 'src=file1.txt dest=/test/file2.txt' -b -K --become-method sudo
