@@ -246,15 +246,35 @@ ansible web -m ping
 # 7. Modules
 
 ## Copy a File from Control Node 
-**Used to copy file from Ansible server(Control Node) to managed nodes.**
+**Used to copy file from Ansible server(Control Node) to managed nodes.** `remote_src=yes` Indicates that the source file is already located on the managed node, so Ansible copies it locally on that remote machine instead of transferring it from the control node.
+
+### Summary of Important Copy Module Parameters
+
+| Parameter | Purpose |
+|-----------|---------|
+| `src=` | Source file |
+| `dest=` | Destination path |
+| `content=` | Create file from text |
+| `owner=` | File owner |
+| `group=` | File group |
+| `mode=` | File permissions |
+| `backup=yes` | Backup existing file before overwrite |
+| `remote_src=yes` | Source file already exists on the managed node |
+
+---
 
 ```bash
 echo "Good Afternoon" > file1.txt (Creates a text file that will be copied to managed nodes)
 ansible all -i ~/inventory -m copy -a "src=/home/ansible/file1.txt dest=/tmp/file1.txt" (Copies `file1.txt` from the control node to `/tmp/file1.txt` on every managed node)
+ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' (Copies the remote file only on **node2**)
 ansible all -m command -a "ls -l /tmp/file1.txt" (Checks whether the file exists on all managed nodes)
+ansible all -m command -a 'cat /tmp/file1.txt' (Verify contents)
 ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt' (Creates a file directly from the provided text without using a local source file)
+ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K (Before doing it student user, tech group must exist in all the systems, It will Copy the file, Sets permissions to **755**, Changes owner to **student**, Changes group to **tech**)
+ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (To Create Backup, Ansible creates a timestamped backup of the previous file before replacing it)
+ansible all -m command -a 'ls -l /tmp' (To verify if backup exists)
+ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' (this command copies the file named file1.txt which exists on the remote host with copied file named file10.txt on the remote host)
 ```
-
 ---
 
 # Configure Sudo Privileges
@@ -284,13 +304,16 @@ This allows the `ansible` user to execute commands as another user using sudo.
 ---
 
 # Using Become (Privilege Escalation)
-### Options
 
-| Option | Meaning |
-|---------|---------|
-| `-b --become` | Become another user (usually root) |
-| `-K --ask-become-pass` | Prompt for sudo password |
-| `--become-method sudo` | Use sudo to become root |
+## Frequently Used Become Options
+
+| Option | Description |
+|---------|-------------|
+| `-b` | Enable privilege escalation |
+| `-K` | Ask for sudo password |
+| `--become-user USER` | Become another user (usually root) |
+| `--become-method sudo` | Use sudo as the escalation method |
+| `become=true` | Enable become by default in `ansible.cfg` |
 
 ## Copy a File Using Sudo 
 **Used when typically owned by root and a normal user cannot write there**
@@ -323,153 +346,9 @@ ansible all -m command -a 'id' (Ansible automatically performs privilege escalat
 ```
 ---
 
-# Create User and Group
-
-## On All Three Machines
-
-```bash
-useradd student
-passwd student
-groupadd tech
-```
-
-Creates:
-- User: `student`
-- Group: `tech`
-
----
-
-# Copy Module with Permissions
-
-## Copy While Setting Owner, Group and Mode
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K
-```
-
-This command:
-
-- Copies the file
-- Sets permissions to **755**
-- Changes owner to **student**
-- Changes group to **tech**
-
----
-
-# Copy File Normally
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/tmp'
-```
-
-Copies the file into `/tmp`.
-
----
-
-## Verify Contents
-
-```bash
-ansible all -m command -a 'cat /tmp/file1.txt'
-```
-
----
-
-# Update a File
-
-Edit locally:
-
-```bash
-vim file1.txt
-```
-
-Contents:
-
-```text
-Welcome
-```
-
-Copy again:
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/tmp'
-```
-
-Verify:
-
-```bash
-ansible all -m command -a 'cat /tmp/file1.txt'
-```
-
-Edit once more:
----
-
-## Create and Verify Backup
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (To Create Backup)
-ansible all -m command -a 'ls -l /tmp' (To verify if backup exists)
-```
-
-Ansible creates a timestamped backup of the previous file before replacing it.
-
----
-
 # Copy a File Already Present on the Remote Host
 
 ```bash
 ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
 ```
-
-### `remote_src=yes`
-
-Indicates that the source file is already located on the managed node, so Ansible copies it locally on that remote machine instead of transferring it from the control node.
-
 ---
-
-# Remove Test Files
-
-## On Both Managed Nodes
-
-```bash
-rm -rf file10.txt
-rm -rf file1.txt.backup
-```
-
-Deletes the copied file and its backup.
-
----
-
-# Copy Only to a Specific Host
-
-```bash
-ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
-```
-
-Copies the remote file only on **node2**.
-
----
-
-# Summary of Important Copy Module Parameters
-
-| Parameter | Purpose |
-|-----------|---------|
-| `src=` | Source file |
-| `dest=` | Destination path |
-| `content=` | Create file from text |
-| `owner=` | File owner |
-| `group=` | File group |
-| `mode=` | File permissions |
-| `backup=yes` | Backup existing file before overwrite |
-| `remote_src=yes` | Source file already exists on the managed node |
-
----
-
-# Frequently Used Become Options
-
-| Option | Description |
-|---------|-------------|
-| `-b` | Enable privilege escalation |
-| `-K` | Ask for sudo password |
-| `--become-user USER` | Execute as another user |
-| `--become-method sudo` | Use sudo as the escalation method |
-| `become=true` | Enable become by default in `ansible.cfg` |
