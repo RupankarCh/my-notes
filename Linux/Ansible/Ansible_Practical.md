@@ -284,96 +284,43 @@ This allows the `ansible` user to execute commands as another user using sudo.
 ---
 
 # Using Become (Privilege Escalation)
-
-Switch to the Ansible user:
-
-```bash
-su - ansible
-```
-
----
-
-## Copy a File Using Sudo 
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/test/file2.txt' -b -K --become-method sudo
-```
-
 ### Options
 
 | Option | Meaning |
 |---------|---------|
-| `-b` | Enable privilege escalation (become) |
-| `-K` | Prompt for sudo password |
-| `--become-method sudo` | Use sudo for privilege escalation |
+| `-b --become` | Become another user (usually root) |
+| `-K --ask-become-pass` | Prompt for sudo password |
+| `--become-method sudo` | Use sudo to become root |
 
+## Copy a File Using Sudo 
+**Used when typically owned by root and a normal user cannot write there**
+```bash
+su - ansible
+ansible all -m copy -a 'src=file1.txt dest=/test/file2.txt' -b -K --become-method sudo
+ansible all -m command -a 'ls -l /test' (Verify File)
+```
 ---
 
-## Verify File
+## User Administration
 
 ```bash
-ansible all -m command -a 'ls -l /test'
+ansible all -m command -a 'id' -b -K (Runs id as root user)
+ansible all -m command -a 'id' (Runs id as normal SSH user even if the user got it's name in sudoers file)
+ansible all -m command -a 'id' -b --become-user ansible (Runs the command as the `ansible` user instead of root)
 ```
-
 ---
 
-## Check Current User (Root)
-
-```bash
-ansible all -m command -a 'id' -b -K
-```
-
-Runs the command as root.
-
----
-
-## Read `/etc/passwd`
-
-```bash
-ansible all -m command -a 'cat /etc/passwd'
-```
-
-Displays the passwd file.
-
----
-
-## Become Another User
-
-```bash
-ansible all -m command -a 'id' -b --become-user ansible
-```
-
-Runs the command as the `ansible` user instead of root.
-
----
-
-# Enable Become by Default
+## Enable Become by Default
 
 Edit the configuration:
 
 ```bash
 vim /etc/ansible/ansible.cfg
-```
-
-Add:
-
-```ini
 [privilege_escalation]
 become=true
-```
-
-> **Note:** The correct section name is **`[privilege_escalation]`**, not `priveledge_escalation`.
-
-Now simply run:
-
-```bash
 su - ansible
-
-ansible all -m command -a 'id'
+ansible all -m command -a 'id' (Ansible automatically performs privilege escalation)
 ```
-
-Ansible automatically performs privilege escalation.
-
 ---
 
 # Create User and Group
