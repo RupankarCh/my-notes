@@ -155,3 +155,29 @@ exit
 #show ip route
 ```
 If one wants to communicate with a machine they must know the password
+
+
+# DHCP Configuration on RHEL 8/9
+```
+DHCP
+IP: 192.168.25.2/24 192.168.25.1
+yum install dhcp-server.x86_64 -y
+cd /etc/dhcp/
+ls (To see if dhcpd.conf is present)
+vim /etc/dhcp/dhcpd.conf (Copy the path)
+cp -v <paste> /etc/dhcp/dhcpd.conf
+vi dhcpd.conf (Check copy)
+authoritative;
+log-facility local6;
+subnet 192.168.25.0 netmask 255.255.255.0 {
+  range 192.168.25.10 192.168.25.20;
+#  option routers 
+:wq
+vim /etc/rsyslog.conf
+local6.*  	/var/log/dhcpd.log
+chkconfig dhcpd on
+systemctl restart dhcp-server 
+systemctl
+```
+
+
