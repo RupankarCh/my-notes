@@ -345,10 +345,3 @@ su - ansible
 ansible all -m command -a 'id' (Ansible automatically performs privilege escalation)
 ```
 ---
-
-# Copy a File Already Present on the Remote Host
-
-```bash
-ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
-```
----
