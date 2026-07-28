@@ -219,10 +219,7 @@ node2 ansible_user=ansible ansible_password=ansible
 ansible web -m ping or ansible web -m ping -i /home/ansible/automation/inventory Test the connection)
 ```
 
-# 6. Ansible Copy Module & Privilege Escalation Notes
-
-## 1. Create a System-Wide Inventory
-
+# 6. Create a System-Wide Inventory 
 ```bash
 cd /etc/ansible
 vim hosts
@@ -246,103 +243,16 @@ ansible web -m ping
 
 ---
 
-## 2. Remove Local Inventory
+# 7. Modules
+
+## Copy a File from Control Node
 
 ```bash
-rm -rf inventory
+echo "Good Afternoon" > file1.txt (Creates a text file that will be copied to managed nodes)
+ansible all -i ~/inventory -m copy -a "src=/home/ansible/file1.txt dest=/tmp/file1.txt" (Copies `file1.txt` from the control node to `/tmp/file1.txt` on every managed node)
+ansible all -m command -a "ls -l /tmp/file1.txt" (Checks whether the file exists on all managed nodes)
+ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt' (Creates a file directly from the provided text without using a local source file)
 ```
-
-**Purpose:**
-- Deletes the local inventory file.
-- If `/etc/ansible/hosts` exists, Ansible automatically falls back to using it.
-
----
-
-## 3. Create a Source File
-
-```bash
-echo "Good Afternoon" > file1.txt
-```
-
-Creates a text file that will be copied to managed nodes.
-
----
-
-## 4. Copy an Inventory File
-
-```bash
-cp -r /home/teacher/inventory /home/ansible/
-```
-
-Copies the inventory directory from the teacher account.
-
----
-
-## 5. Change Ownership
-
-```bash
-chown -R ansible:ansible /home/ansible/inventory
-```
-
-Changes ownership recursively to the `ansible` user and group.
-
----
-
-# Copy Module Examples
-
-## 1. Copy a File from Control Node
-
-```bash
-ansible all -i ~/inventory -m copy -a "src=/home/ansible/file1.txt dest=/tmp/file1.txt"
-```
-
-Copies `file1.txt` from the control node to `/tmp/file1.txt` on every managed node.
-
----
-
-## 2. Verify the Copy
-
-```bash
-ansible all -m command -a "ls -l /tmp/file1.txt"
-```
-
-Checks whether the file exists on all managed nodes.
-
----
-
-## 3. Create a File Without an Existing Source
-
-```bash
-ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt'
-```
-
-Creates a file directly from the provided text without using a local source file.
-
----
-
-# Preparing the Destination Directory
-
-## On Both Managed Nodes
-
-```bash
-cd
-mkdir test
-chmod 755 test
-```
-
-Creates a directory with standard permissions.
-
----
-
-## Copy File into the Directory
-
-On the control node:
-
-```bash
-ansible all -m copy -a "src=file1.txt dest=/home/ansible/test/"
-```
-
-Copies `file1.txt` into `/home/ansible/test/` on every managed node.
 
 ---
 
