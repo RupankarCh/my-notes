@@ -453,32 +453,14 @@ Verify:
 ansible all -m command -a 'cat /tmp/file1.txt'
 ```
 
----
-
 Edit once more:
-
-```bash
-vim file1.txt
-```
-
-Add:
-
-```text
-New Line
-```
-
-Copy again with backup enabled:
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes'
-```
-
 ---
 
-## Verify Backup
+## Create and Verify Backup
 
 ```bash
-ansible all -m command -a 'ls -l /tmp'
+ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (To Create Backup)
+ansible all -m command -a 'ls -l /tmp' (To verify if backup exists)
 ```
 
 Ansible creates a timestamped backup of the previous file before replacing it.
