@@ -182,4 +182,57 @@ firewall-cmd --add-service=dhcp --permanent
 firewall-cmd --reload
 ```
 
+# SNMP:
+UDP port 161, 162
+161 used for polling requests and response between manager and agent 
+162  used for trap 
+**SNMP (Simple Network Management Protocol)** – 
+a standard application-layer protocol used to monitor, manage, and troubleshoot network devices such as routers, switches, servers, printers, and firewalls over an IP network.
 
+**Key Components:**
+
+* **SNMP Manager:** The central system that collects and monitors information from devices.
+* **SNMP Agent:** Software running on a network device that gathers data and responds to manager requests.
+* **MIB (Management Information Base):** A database containing information about the managed device, organized as objects.
+
+**How SNMP Works:**
+
+* The manager sends requests to the agent to retrieve or modify device information.
+* The agent responds with the requested data.
+* Agents can also send **traps** or **notifications** to the manager when important events occur.
+
+**Versions:**
+
+* **SNMPv1:** Basic version with limited security.
+* **SNMPv2c:** Improved performance but still uses simple community-string authentication.
+* **SNMPv3:** Most secure version, providing authentication, encryption, and data integrity.
+
+**Advantages:**
+
+* Centralized network monitoring.
+* Helps detect and diagnose network problems.
+* Improves network performance and management.
+* Supports devices from different vendors.
+
+**Applications:**
+
+* Monitoring network traffic and bandwidth.
+* Checking device health and performance.
+* Receiving alerts for network failures.
+* Managing network infrastructure efficiently.
+
+A community string is a text-based password used by SNMPv1 and SNMPv2c to authenticate communication between an SNMP manager and an SNMP agent.
+
+It determines whether the manager is allowed to access information on a network device.
+
+Types of community strings
+Read-only (RO): Allows the manager to view device information but not make changes.
+Read-write (RW): Allows the manager to view and modify device settings.
+Examples
+
+Common default community strings are:
+
+public → Read-only access
+private → Read-write access
+
+Using these default values is considered insecure because they are widely known.
