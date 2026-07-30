@@ -1,0 +1,25 @@
+EIGRP and OSPF Configuration
+```
+Router
+(config)#router eigrp 100
+network 192.168.12.0 0.0.0.255
+network 192.168.1.0 0.0.0.255
+no auto-summary
+exit
+
+(config)#router ospf 1
+network 192.168.23.0 0.0.0.255 area 0
+network 192.168.3.0 0.0.0.255 area 0
+end
+```
+
+Redistribute:
+```
+(config)#router eigrp 100
+redistribute ospf 1 metric 10000 100 255 10 1500 
+exit
+(config)#router ospf 1
+redistribute eigrp 100 subnets
+exit
+
+```
