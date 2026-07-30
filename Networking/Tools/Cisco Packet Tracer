@@ -23,3 +23,57 @@ exit
 redistribute eigrp 100 subnets
 exit
 ```
+EIGRP and OSPF Authentication
+```
+R1
+(config)#key chain EIGRP
+key 1
+key-string abc@123
+end
+int s 1/0
+ip authentication mode eigrp 100 md5
+ip authentication key-chain eigrp 100 EIGRP
+shutdown
+no shutdown
+int f 0/0
+ip authentication mode eigrp 100 md5
+ip authentication key-chain eigrp 100 EIGRP
+
+R2
+key chain EIGRP
+key 1
+key-string abc@123
+end
+int s 1/0
+ip authentication mode eigrp 100 md5
+ip authentication key-chain eigrp 100 EIGRP
+shutdown 
+no shutdown
+int f 0/0
+ip authentication mode eigrp 100 md5
+ip authentication key-chain eigrp 100 EIGRP
+shutdown
+no shutdown
+int s 2/0
+ip ospf message-digest-key 1 md5 ospf@123
+ip ospf authentication message-digest 
+int f 0/0
+ip ospf message-digest-key 1 md5 ospf@123
+ip ospf authentication message-digest 
+end
+wr
+
+R3
+int s 1/1
+ip ospf message-digest-key 1 md5 ospf@123
+ip ospf authentication message-digest 
+shutdown
+no shutdown
+int f 0/0
+ip ospf message-digest-key 1 md5 ospf@123
+ip ospf authentication message-digest 
+shutdown
+no shutdown
+end
+wr
+```
