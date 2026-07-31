@@ -77,3 +77,46 @@ no shutdown
 end
 wr
 ```
+
+
+
+# Backup and Restore
+Server Configuration:
+Services> TFPT, On> 
+CLI
+(config)# int g 0/0
+ip add <IP> <subnet>
+no shut
+exit
+enable secret 12345
+line con 0
+password 12345
+login
+exit
+line aux 0
+password 12345
+login
+exit
+wr
+show run
+
+Desktop> IP> 192.168.10.100 255.255.255.0 192.168.10.1
+
+Router:
+copy run-con tftp
+<IP/Hostname>
+<name_it>
+
+
+Restore:
+conf t
+int g 0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+show run
+copy tftp running-config 
+<IP of FTP server>
+<name>
+wr
+show run
