@@ -438,9 +438,7 @@ ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=EOF' 
 
 ansible all -m command -a 'cat /tmp/file100.txt' (To check current content)
 
----
-ansible-doc (To check)
----
+ansible-doc (To check options)
 
 ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="GOOD AFTERNOON"' (To insert a content after a certain content)
 
