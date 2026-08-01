@@ -270,6 +270,25 @@ ansible web -m ping
 | `remote_src=yes` | Source file already exists on the managed node |
 
 ---
+## Quick Module Summary
+
+| Module       | Purpose                                                 |
+| ------------ | ------------------------------------------------------- |
+| `file`       | Create/delete files, directories, links, permissions    |
+| `copy`       | Copy files or content to managed nodes                  |
+| `fetch`      | Copy files from managed node to control node            |
+| `command`    | Execute simple commands                                 |
+| `shell`      | Execute shell commands, scripts, pipes, redirection     |
+| `raw`        | Execute commands without Python                         |
+| `stat`       | Get file information                                    |
+| `lineinfile` | Add/remove/modify a single line                         |
+| `replace`    | Replace all matching text                               |
+| `user`       | User administration                                     |
+| `group`      | Group administration                                    |
+| `filesystem` | Create filesystems (recommended)                        |
+| `mount`      | Mount filesystems and manage `/etc/fstab` (recommended) |
+
+---
 
 ```bash
 echo "Good Afternoon" > file1.txt (Creates a text file that will be copied to managed nodes)
@@ -356,7 +375,7 @@ ansible all -m command -a 'id' (Ansible automatically performs privilege escalat
 Check Environment:
 su - ansible
 ansible all -m ping
-
+------------------------------------------------------
 Command Module: To Execute a command in the Managed node.
 ansible all -m command -a 'uptime' (To check connection details)
 
@@ -541,3 +560,357 @@ ansible all -m shell -a 'df -h' (To check)
 
 Persistent Mounting:
 ansible all -m shell -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'
+
+
+Here's your Ansible commands **sorted by module** for easier revision.
+
+# 1. File Module
+
+**Used for:** `mkdir`, `touch`, `chmod`, `chown`, `chgrp`, `ln`, `rm`, `rmdir`
+
+```bash
+ansible all -m file -a 'path=/tmp/file20.txt state=touch' (Creates a File)
+
+ansible all -m file -a 'path=/tmp/redhat state=directory' (Creates a Directory)
+
+ansible all -m file -a 'path=/tmp/test state=directory mode=0777 owner=root group=root' -b (creates directory apply permission and set owner)
+
+ansible all -m file -a 'path=/tmp/* state=absent' (File Module doesn't support wildcards like * so to delete recursively delete the parent directory)
+
+ansible all -m file -a 'path=/tmp/redhat state=absent' (Deletes File/Directory)
+
+ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link1 state=link' (Create Soft Link)
+
+ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link2 state=hard' (Create Hard Link)
+```
+
+---
+
+# 2. Command Module
+
+**Used for:** Execute simple commands (no shell features).
+
+```bash
+ansible all -m command -a 'ls -l /tmp/file20.txt'
+
+ansible all -m command -a 'ls -l /tmp'
+
+ansible all -m command -a 'cat /tmp/file100.txt'
+
+ansible all -m command -a 'uptime'
+
+ansible all -m command -a 'id username'
+
+ansible all -m command -a 'ls -ld /tmp/redhat'
+
+ansible all -m command -a 'ls -l /home/ansible/test.sh'
+
+ansible all -m command -a 'ls -ld /data'
+
+ansible all -m command -a 'id'
+
+ansible all -m command -a 'id' -b -K
+
+ansible all -m command -a 'id' -b --become-user ansible
+
+ansible all -m command -a 'cat /tmp/file1.txt'
+
+ansible all -m command -a 'ls -l /tmp/file1.txt'
+
+ansible all -m command -a 'ls -l /test'
+
+ansible all -m command -a 'ls -l /tmp'
+```
+
+---
+
+# 3. Shell Module
+
+**Used for:** Pipes, redirects, variables, loops, scripts.
+
+### Delete Files
+
+```bash
+ansible all -m shell -a 'rm -rf /tmp/*'
+```
+
+### Create Multiple Files
+
+```bash
+ansible all -m shell -a 'touch /tmp/file{1..5}'
+```
+
+### User Commands
+
+```bash
+ansible all -m shell -a 'cut -d: -f1 /etc/passwd'
+
+ansible all -m shell -a 'cut -d: -f1 /etc/passwd' > /home/ansible/report.txt
+
+ansible all -m shell -a 'id developer'
+
+ansible all -m shell -a 'getent group HR'
+
+ansible all -m shell -a 'passwd -S Rohit'
+
+ansible all -m shell -a 'chage -d 0 Rohit'
+
+ansible all -m shell -a 'chage -l Rohit'
+
+ansible all -m shell -a 'grep Rohit /etc/passwd'
+
+ansible all -m shell -a 'ls -l /home'
+```
+
+### Disk Management
+
+```bash
+ansible all -m shell -a 'lsblk'
+
+ansible all -m shell -a 'fdisk -l /dev/nvme0n1'
+
+ansible all -m shell -a '
+cat <<EOF | fdisk /dev/nvme0n1
+n
+p
+1
+
++10G
+w
+EOF
+'
+
+ansible all -m shell -a 'partprobe /dev/nvme0n2'
+
+ansible all -m shell -a 'fdisk -l /dev/nvme0n2'
+
+ansible all -m shell -a 'blkid /dev/nvme0n2p2'
+
+ansible all -m shell -a 'mount -a'
+
+ansible all -m shell -a 'df -h'
+
+ansible all -m shell -a '/home/ansible/test.sh'
+```
+
+---
+
+# 4. Copy Module
+
+**Used for:** Copy files/content from control node to managed nodes.
+
+### Copy File
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/tmp/file1.txt'
+
+ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
+
+ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K
+
+ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes'
+
+ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
+```
+
+### Copy Using Sudo
+
+```bash
+ansible all -m copy -a 'src=file1.txt dest=/test/file2.txt' -b -K --become-method sudo
+```
+
+### Create File with Content
+
+```bash
+ansible all -m copy -a 'content="GOOD" dest=/tmp/file100.txt'
+
+ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt'
+```
+
+### Copy Script
+
+```bash
+ansible all -m copy -a 'src=test.sh dest=/home/ansible mode=755' -b
+```
+
+---
+
+# 5. Fetch Module
+
+**Used for:** Copy files from managed node to control node.
+
+```bash
+ansible node1 -m fetch -a 'src=/tmp/file100.txt dest=backup'
+```
+
+---
+
+# 6. Stat Module
+
+**Used for:** Check file metadata.
+
+```bash
+ansible all -m stat -a 'path=/tmp/file100.txt'
+```
+
+---
+
+# 7. Lineinfile Module
+
+**Used for:** Add, remove, or modify a single line.
+
+### Append Line
+
+```bash
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content"'
+```
+
+### Insert at Beginning
+
+```bash
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=BOF'
+```
+
+### Insert at End
+
+```bash
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=EOF'
+```
+
+### Insert After Matching Line
+
+```bash
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="GOOD AFTERNOON"'
+```
+
+### Remove Line
+
+```bash
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent'
+```
+
+---
+
+# 8. Replace Module
+
+**Used for:** Replace every occurrence of a pattern.
+
+```bash
+ansible all -m replace -a 'dest=/tmp/file100.txt regexp="AFTERNOON" replace="MORNING"'
+```
+
+---
+
+# 9. User Module
+
+**Used for:** User management.
+
+### Create User
+
+```bash
+ansible all -m user -a 'name=developer state=present'
+
+ansible all -m user -a 'name=tech home=/home/ram shell=/bin/bash state=present'
+
+ansible all -m user -a 'name=Rahul uid=2001'
+
+ansible all -m user -a 'name=username group=HR'
+
+ansible all -m user -a 'name=username groups=HR append=yes'
+```
+
+### Set Password
+
+```bash
+openssl passwd -6 'rohit@123'
+
+ansible all -m user -a 'name=Rohit password=<hashed_password>'
+```
+
+### Change Shell
+
+```bash
+ansible all -m user -a 'name=Rohit shell=/bin/nologin'
+```
+
+### Remove User
+
+```bash
+ansible all -m user -a 'name=Rohit state=absent'
+
+ansible all -m user -a 'name=Rohit state=absent remove=yes'
+```
+
+---
+
+# 10. Group Module
+
+**Used for:** Group management.
+
+### Create Group
+
+```bash
+ansible all -m group -a 'name=HR state=present'
+```
+
+### Add User to Group
+
+```bash
+ansible all -m user -a 'name=Rahul groups=HR append=yes'
+```
+
+### Remove Group
+
+```bash
+ansible all -m group -a 'name=HR state=absent'
+```
+
+---
+
+# 11. Raw Module
+
+**Used for:** Execute commands without requiring Python (works on older systems).
+
+```bash
+ansible all -m raw -a 'uptime; lsblk'
+```
+
+---
+
+# 12. Disk Management (Recommended Modules)
+
+> **Note:** These tasks are better handled with dedicated modules like `parted`, `filesystem`, and `mount` instead of `shell`.
+
+### Partition
+
+```bash
+ansible all -m shell -a '
+cat <<EOF | fdisk /dev/nvme0n1
+n
+p
+1
+
++10G
+w
+EOF
+'
+```
+
+### Create Filesystem *(recommended: filesystem module)*
+
+```bash
+ansible all -m filesystem -a 'fstype=xfs dev=/dev/nvme0n2p1'
+
+ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p2'
+```
+
+### Mount Filesystem *(recommended: mount module)*
+
+```bash
+ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs state=mounted'
+
+ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'
+```
+
+---
+
