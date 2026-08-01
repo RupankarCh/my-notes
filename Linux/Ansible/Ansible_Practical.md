@@ -353,3 +353,54 @@ su - ansible
 ansible all -m command -a 'id' (Ansible automatically performs privilege escalation)
 ```
 ---
+Check Environment:
+su - ansible
+ansible all -m ping
+
+Command Module: To Execute a command in the Managed node.
+ansible all -m command -a 'uptime' (To check connection details)
+
+Raw Module: To check connection details and more attribute at a single time, It works on older python versions also
+ansible all -m raw -a 'uptime; lsblk' ()
+
+Shell Module: To Execute a remote command ie if we execute a script.
+
+Creating a Shell Script File:
+vim test.sh
+#!/bin/bash
+echo "Welcome to our ..." 
+chmod 644 test.sh
+ansible all -m copy -a "src=test.sh dest=/home/ansible mode=755' (To copy and change permission)
+ansible all -m command -a "ls -l /home/ansible/test.sh"
+ansible all -m shell -a '/home/ansible/test.sh' 
+
+
+File Module: used for file and directories.
+mkdir, touch, chmod, chown, chgrp, ln, rm, rmdir. If I want to run all these command in the managed node from the control node then we will use the file module.
+
+ansible all -m file -a 'path=/tmp/redhat state=directory' (To create a directory in the managed ndoe)
+
+ansible all -m command -a 'ls -ld /tmp/redhat' 
+
+ansible all -m file -a 'path=/tmp/redhat state=absent'
+
+ansible all -m file -a 'path=/tmp/test state=directory mode=0777 owner=root group=root' -b (To create a directory with ownership changes)
+
+How to Bypass Become:
+#cd /etc/ansible
+vi ansible.cfg
+[privilege_escalation]
+become=True
+become_method=sudo
+
+
+ansible all -m file -a 'path=/tmp/file20.txt state=touch' (To create an empty file)
+
+ansible all -m command -a 'ls -l /tmp/file20.txt'
+
+
+ansible all -m file -a 'path=/tmp/* state=absent' (To delete 
+
+ansible all -m command -a 'ls -l /tmp/file20.txt'
+
+
