@@ -504,3 +504,40 @@ ansible all -m user -a 'name=Rohit state=absent remove=yes' (To remove a user)
 ansible all -m group -a 'name=HR state=absent' (To remove a group)
 
 ansible all -m shell -a 'getent group HR' (To check if the group exists)
+
+Disk Management:
+ansible all -m shell -a 'lsblk'
+ansible all -m shell -a 'fdisk -l /dev/nvme0n1' (To check partition table)
+ansible all -m shell -a 'cat <<EOF | fdisk /dev/nvme0n1'
+n
+p
+1
+
++10G
+w
+EOF
+'
+(To create a partition)
+
+ansible all -m shell -a 'partprobe /dev/nvme0n2' (To update kernel)
+
+ansible all -m shell -a 'fdisk -l /dev/nvme0n2' (To check)
+
+ansible all -m shell -a 'fstype=xfs dev=/dev/nvme0n2p1' (To change filesystem of a particular partition)
+
+ansible all -m shell -a 'fstype=ext4 dev=/dev/nvme0n2p2' (To change filesystem of a particular partition)
+
+ansible all -m shell -a 'blkid /dev/nvme0n2p2' (To check partition id)
+
+ansible all -m file -a 'path=/data state=directory mode=0755' (To create a directory)
+
+ansible all -m shell -a 'ls -ld /data' (To check)
+
+ansible all -m shell -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs state=mounted' (To mount)
+
+ansible all -m shell -a 'mount -a /dev/nvme0n2p1' 
+
+ansible all -m shell -a 'df -h' (To check)
+
+Persistent Mounting:
+ansible all -m shell -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'
