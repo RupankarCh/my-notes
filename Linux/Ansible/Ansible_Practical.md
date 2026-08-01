@@ -403,4 +403,45 @@ ansible all -m file -a 'path=/tmp/* state=absent' (To delete
 
 ansible all -m command -a 'ls -l /tmp/file20.txt'
 
+ansible all -m shell -a 'rm -rf /tmp/*' (To delete all files and folder under /tmp/)
 
+ansible all -m shell -a 'touch /tmp/file{1..5}' (To create multiple file on the managed node while sitting in the control node)
+
+ansible all -m command -a 'ls -l /tmp' (To check)
+
+ansible all -m copy -a 'content="GOOD" dest=/tmp/file100.txt' (To create a file in managed node with a specific content)
+
+ansible all -m stat -a 'path=/tmp/file100.txt' (To check)
+
+ansible all -m command -a "cat /tmp/file100.txt" (To check)
+
+ansible all -m file -a "src=/tmp/file100.txt dest=/tmp/link1 state=link" (To create a soft link)
+
+ansible all -m file -a "src=/tmp/file100.txt dest=/tmp/link2 state=hard" (To create a hard link)
+
+ansible all -m command -a 'ls -l /tmp'
+(To check)
+
+
+Fetch Module: It is opposite of copy module 
+
+ansible node1 -m fetch -a 'src=/tmp/file100.txt dest=backup' (To fetch a file to control node)
+
+
+Lineinfile Module: This module is used when we append or replace any line within file
+
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content"' (To append a line)
+
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=BOF' (To append the line as the first line)
+
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=EOF' (To append the line as the first line)
+
+ansible all -m command -a 'cat /tmp/file100.txt' (To check current content)
+
+---
+ansible-doc (To check)
+---
+
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="GOOD AFTERNOON"' (To insert a content after a certain content)
+
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent' (To delete a particular content)
