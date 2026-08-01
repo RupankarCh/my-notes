@@ -205,18 +205,26 @@ vim ansible.cfg
 inventory = ./inventory  (Uses the local inventory file by default) 
 host_key_checking = false (Disables SSH host key verification)
 remote_user = ansible (Uses the ansible user to connect by default)
-ask_pass = false (Does not prompt for an SSH password)
+ask_pass = false (Don't prompt for an SSH password)
 
 [privilege_escalation]
 become = true (Automatically uses sudo)
 become_method = sudo (Runs tasks as the root user)
 become_user = root (Runs tasks as the root user) 
-become_ask_pass = false (Does not ask for the sudo password)
+become_ask_pass = false (Don't ask for the sudo password)
 vim inventory
 [web] 
-node1 ansible_user=ansible ansible_password=ansible (**node1** The hostname or IP of the managed node, **ansible_user=ansible** SSH username, **ansible_password=ansible** SSH password)
-node2 ansible_user=ansible ansible_password=ansible
-ansible web -m ping or ansible web -m ping -i /home/ansible/automation/inventory Test the connection)
+node1 ansible_user=ansible ansible_password=redhat ansible_become_password=ansible (**node1** The hostname or IP of the managed node, **ansible_user=ansible** SSH username, **ansible_password=ansible** SSH password)
+node2 ansible_user=ansible ansible_password=redhat ansible_become_password=ansible
+```
+On All users
+```
+usermod -aG wheel ansible
+id ansible (Verify)
+```
+On Ansible server
+```
+ansible web -m ping  (Test the connection)
 ```
 
 # 6. Create a System-Wide Inventory 
