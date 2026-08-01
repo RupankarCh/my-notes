@@ -443,3 +443,64 @@ ansible-doc (To check options)
 ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="GOOD AFTERNOON"' (To insert a content after a certain content)
 
 ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent' (To delete a particular content)
+
+Replace Module: This module is used to replace all instances(string) of a pattern within a file.
+
+
+ansible all -m replace -a 'dest=/tmp/file100.txt regexp="AFTERNOON" replace="MORNING"' (To replace a particular content with another in the managed node)
+
+User/Group Module: Used for  User and Group Administration.
+
+ansible all -m shell -a 'cut -d: -f1 /etc/passwd (To check all users in the managed nodes)
+
+ansible all -m shell -a 'cut -d: -f1 /etc/passwd' > /home/ansible/report.txt (To save the output in a file)
+
+ansible all -m user -a 'name=developer state=present' (To create a user in all managed node)
+
+ansible all -m shell -a 'id developer' (To see if the user exists on managed nodes)
+
+
+ansible all -m user -a 'name=tech home=/home/ram shell=/bin/bash state=present' (To create a user with personalized home directory)
+
+ansible all -m shell -a 'cut -d: -f6 /etc/passwd (To check the home directory of all users)
+
+ansible all -m command -a 'id username' (To check user information)
+
+ansible all -m user -a 'name=Rahul uid=2001' (To set personalized uid)
+
+ansible all -m group 'name=HR state=present' (To create a group called HR)
+
+ansible all -m shell -a 'getent group HR' (To check if a group is present)
+
+ansible all -m user -a 'name=Rahul groups=HR append=yes' (To join a user to a group)
+
+ansible all -m user -a 'name=username groups=HR' (To create a user with a already existing group as primary group)
+
+ansible all -m user -a 'name=username group=HR' (To create a user with a already existing group as secondary group)
+
+openssl passwd -6 'rohit@123' 
+
+ansible all -m user -a 'name=Rohit password=<copied_path>'  (To set password)
+
+ansible all -m shell -a 'passwd -S rohit' (To check if the password is set)
+
+ansible all -m shell -a 'chage -d 0 Rohit' (To make the user change password while first login)
+
+ansible all -m shell -a 'chage -l Rohit' (To check password policy of the user)
+
+ansible all -m user -a 'name=Rohit shell=/bin/nologin' (To change user shell)
+
+ansible all -m shell -a "grep Rohit /etc/passwd' (To check user's shell)
+
+ansible all -m user -a 'name=Rohit state=absent' (to remove the user)
+
+ansible all -m user -a 'id Rohit' (To check if still the user exists)
+
+ansible all -m shell -a 'ls -l /home'
+(To check)
+
+ansible all -m user -a 'name=Rohit state=absent remove=yes' (To remove a user)
+
+ansible all -m group -a 'name=HR state=absent' (To remove a group)
+
+ansible all -m shell -a 'getent group HR' (To check if the group exists)
