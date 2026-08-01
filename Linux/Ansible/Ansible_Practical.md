@@ -562,26 +562,24 @@ Persistent Mounting:
 ansible all -m shell -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'
 
 
-Here's your Ansible commands **sorted by module** for easier revision.
-
 # 1. File Module
 
 **Used for:** `mkdir`, `touch`, `chmod`, `chown`, `chgrp`, `ln`, `rm`, `rmdir`
 
 ```bash
-ansible all -m file -a 'path=/tmp/file20.txt state=touch' (Creates a File)
+ansible all -m file -a 'path=/tmp/file20.txt state=touch' (Creates an empty File)
 
 ansible all -m file -a 'path=/tmp/redhat state=directory' (Creates a Directory)
 
-ansible all -m file -a 'path=/tmp/test state=directory mode=0777 owner=root group=root' -b (creates directory apply permission and set owner)
+ansible all -m file -a 'path=/tmp/test state=directory mode=0777 owner=root group=root' -b (creates directory apply permission and ownership)
 
-ansible all -m file -a 'path=/tmp/* state=absent' (File Module doesn't support wildcards like * so to delete recursively delete the parent directory)
+ansible all -m file -a 'path=/tmp/folder state=absent' (File Module doesn't support wildcards like * so to delete recursively delete the parent directory)
 
-ansible all -m file -a 'path=/tmp/redhat state=absent' (Deletes File/Directory)
+ansible all -m file -a 'path=/tmp/redhat.txt state=absent' (Deletes a File)
 
-ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link1 state=link' (Create Soft Link)
+ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link1 state=link' (Creates a symbolic (soft)  Link)
 
-ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link2 state=hard' (Create Hard Link)
+ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link2 state=hard' (Creates a Hard Link)
 ```
 
 ---
@@ -591,35 +589,17 @@ ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link2 state=hard' (Create
 **Used for:** Execute simple commands (no shell features).
 
 ```bash
-ansible all -m command -a 'ls -l /tmp/file20.txt'
+ansible all -m command -a 'ls -l /tmp/file20.txt' (Shows detailed information about file20.txt (permissions, owner, size, timestamp))
 
-ansible all -m command -a 'ls -l /tmp'
+ansible all -m command -a 'ls -l /tmp' (Lists all files and directories inside /tmp in long format)
 
-ansible all -m command -a 'cat /tmp/file100.txt'
+ansible all -m command -a 'ls -ld /tmp/redhat' (Shows detailed information about the redhat directory itself, not its contents)
 
-ansible all -m command -a 'uptime'
+ansible all -m command -a 'cat /tmp/file100.txt' (Displays the contents of file100.txt)
 
-ansible all -m command -a 'id username'
+ansible all -m command -a 'uptime' (Shows how long the system has been running, number of users, and load average)
 
-ansible all -m command -a 'ls -ld /tmp/redhat'
-
-ansible all -m command -a 'ls -l /home/ansible/test.sh'
-
-ansible all -m command -a 'ls -ld /data'
-
-ansible all -m command -a 'id'
-
-ansible all -m command -a 'id' -b -K
-
-ansible all -m command -a 'id' -b --become-user ansible
-
-ansible all -m command -a 'cat /tmp/file1.txt'
-
-ansible all -m command -a 'ls -l /tmp/file1.txt'
-
-ansible all -m command -a 'ls -l /test'
-
-ansible all -m command -a 'ls -l /tmp'
+ansible all -m command -a 'id ansible' (Displays the UID, GID, and group memberships of the specified user ansible)
 ```
 
 ---
