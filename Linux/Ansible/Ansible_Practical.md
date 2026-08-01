@@ -607,49 +607,32 @@ ansible all -m command -a 'id ansible' (Displays the UID, GID, and group members
 # 3. Shell Module
 
 **Used for:** Pipes, redirects, variables, loops, scripts.
-
-### Delete Files
-
-```bash
-ansible all -m shell -a 'rm -rf /tmp/*'
 ```
+ansible all -m shell -a 'rm -rf /tmp/*' (Delete Files)
 
-### Create Multiple Files
+ansible all -m shell -a 'touch /tmp/file{1..5}' (Create Multiple Files)
 
-```bash
-ansible all -m shell -a 'touch /tmp/file{1..5}'
-```
-
-### User Commands
-
-```bash
-ansible all -m shell -a 'cut -d: -f1 /etc/passwd'
+ansible all -m shell -a 'cut -d: -f1 /etc/passwd' (It simply prints the usernames of all local user accounts on the system)
 
 ansible all -m shell -a 'cut -d: -f1 /etc/passwd' > /home/ansible/report.txt
 
-ansible all -m shell -a 'id developer'
+ansible all -m shell -a 'id developer'  (Displays the UID, GID, and group memberships of the specified user ansible)
 
-ansible all -m shell -a 'getent group HR'
+ansible all -m shell -a 'getent group HR' (searches the system's group database (such as /etc/group, LDAP, or another configured name service) for a group named HR)
 
-ansible all -m shell -a 'passwd -S Rohit'
+ansible all -m shell -a 'passwd -S Rohit'  (Checks the password status of the user Rohit on every host managed by Ansible and prints the results)
 
-ansible all -m shell -a 'chage -d 0 Rohit'
+ansible all -m shell -a 'chage -d 0 Rohit' (After this command runs, the user Rohit will be forced to change their password at the next login)
 
-ansible all -m shell -a 'chage -l Rohit'
+ansible all -m shell -a 'chage -l Rohit' (To check password related information)
 
-ansible all -m shell -a 'grep Rohit /etc/passwd'
+ansible all -m shell -a 'grep Rohit /etc/passwd' (searches the /etc/passwd file for any line containing the string Rohit)
 
-ansible all -m shell -a 'ls -l /home'
-```
+ansible all -m shell -a 'lsblk'  (list block devices. It displays information about storage devices)
 
-### Disk Management
+ansible all -m shell -a 'fdisk -l /dev/nvme0n1' (Display the partition table)
 
-```bash
-ansible all -m shell -a 'lsblk'
-
-ansible all -m shell -a 'fdisk -l /dev/nvme0n1'
-
-ansible all -m shell -a '
+ansible all -m shell -a ' (Create a new partition)
 cat <<EOF | fdisk /dev/nvme0n1
 n
 p
@@ -660,17 +643,17 @@ w
 EOF
 '
 
-ansible all -m shell -a 'partprobe /dev/nvme0n2'
+ansible all -m shell -a 'partprobe /dev/nvme0n2' (Tell the kernel to re-read the partition table)
 
-ansible all -m shell -a 'fdisk -l /dev/nvme0n2'
+ansible all -m shell -a 'fdisk -l /dev/nvme0n2' (Verify the new partitions)
 
-ansible all -m shell -a 'blkid /dev/nvme0n2p2'
+ansible all -m shell -a 'blkid /dev/nvme0n2p2' (Display filesystem UUID)
 
 ansible all -m shell -a 'mount -a'
 
-ansible all -m shell -a 'df -h'
+ansible all -m shell -a 'df -h' (Display mounted filesystem)
 
-ansible all -m shell -a '/home/ansible/test.sh'
+ansible all -m shell -a '/home/ansible/test.sh' (Display mounted filesystems)
 ```
 
 ---
