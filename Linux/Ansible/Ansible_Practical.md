@@ -622,11 +622,11 @@ ansible all -m shell -a 'getent group HR' (searches the system's group database 
 
 ansible all -m shell -a 'passwd -S Rohit'  (Checks the password status of the user Rohit on every host managed by Ansible and prints the results)
 
-ansible all -m shell -a 'chage -d 0 Rohit' (After this command runs, the user Rohit will be forced to change their password at the next login)
-
 ansible all -m shell -a 'chage -l Rohit' (To check password related information)
 
 ansible all -m shell -a 'grep Rohit /etc/passwd' (searches the /etc/passwd file for any line containing the string Rohit)
+
+ansible all -m shell -a 'chage -d 0 Rohit' (After this command runs, the user Rohit will be forced to change their password at the next login)
 
 ansible all -m shell -a 'lsblk'  (list block devices. It displays information about storage devices)
 
@@ -660,7 +660,7 @@ ansible all -m shell -a '/home/ansible/test.sh' (Display mounted filesystems)
 
 # 4. Copy Module
 
-**Used for:** Copy files/content from control node to managed nodes.
+**Used for:** Copy files/content from control node to managed nodes and a managed node to the same managed node only.
 
 ### Copy File
 
@@ -673,13 +673,9 @@ ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=stude
 
 ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes'
 
-ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
-```
+ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' 
 
-### Copy Using Sudo
-
-```bash
-ansible all -m copy -a 'src=file1.txt dest=/test/file2.txt' -b -K --become-method sudo
+ansible all -m copy -a "src=hosts dest=/etc/hosts" -b -K (Copy Using Sudo, If sudo requires a password)
 ```
 
 ### Create File with Content
