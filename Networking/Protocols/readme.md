@@ -202,30 +202,28 @@ dhclient -r ens160
 cat /var/lib/dhcpd/dhcpd.lease
 ```
 
-# SNMP:
-UDP port 161, 162
-161 used for polling requests and response between manager and agent 
-162  used for trap 
-**SNMP (Simple Network Management Protocol)** – 
-a standard application-layer protocol used to monitor, manage, and troubleshoot network devices such as routers, switches, servers, printers, and firewalls over an IP network.
+# SNMP(Simple Network Management Protocol):
+- Used for **monitoring, management and Troubleshooting in live network devices.**
+- Designed by IETF (Internet Engineering Task Force)
+- **Application Layer Protocol**
+- UDP port 161, 162
+  - 161 used for **Polling** **SNMP manager sends a request for specific info from snmp agent by using OID**(Unique identifier to identify specific object). **SNMP agent fetch the info from MIB and sends that info to snmp manager.**
+  - 162  used for **TRAP/Inform** **SNMP agent sends a message to SNMP manager due to error occurrence without getting any request from SNMP manager** agent send a message to SNMP manager.
+- Main Components
+  - SNMP Server/Manager:  The central system that collects and monitors information from devices. where we integrate the protocol with tools like Solarwinds Orian, PRTG, Zabbix etc. and can monitor SNMP Agents.
+  - SNMP Agent: Software running on a network device that gathers data and responds to manager requests.
+  - **MIB (Management Information Base): A database containing information about the managed device, organized as objects**.
+- SNMP uses 3 types of Messages:
+  - GET: Sent by Manager to Agent to collect the info abut the Agent like Uptime, Interface Status etc.
+  - SET: Sent by Manager to Agent to Apply configuration to the Agent.
+  - TRAP/Inform: Sent by Agent to Manager to update the alerts like High CPU, High Bandwidth etc. from v2c the TRAP message is called Inform message.
 
-**Key Components:**
-
-* **SNMP Manager:** The central system that collects and monitors information from devices.
-* **SNMP Agent:** Software running on a network device that gathers data and responds to manager requests.
-* **MIB (Management Information Base):** A database containing information about the managed device, organized as objects.
-
-**How SNMP Works:**
-
-* The manager sends requests to the agent to retrieve or modify device information.
-* The agent responds with the requested data.
-* Agents can also send **traps** or **notifications** to the manager when important events occur.
 
 **Versions:**
 
 * **SNMPv1:** Basic version with limited security.
 * **SNMPv2c:** Improved performance but still uses simple community-string authentication.
-* **SNMPv3:** Most secure version, providing authentication, encryption, and data integrity.
+* **SNMPv3:** Most secure version, providing authentication, encryption like MD5, SHA, and data integrity. 
 
 **Advantages:**
 
@@ -241,33 +239,13 @@ a standard application-layer protocol used to monitor, manage, and troubleshoot 
 * Receiving alerts for network failures.
 * Managing network infrastructure efficiently.
 
-A community string is a text-based password used by SNMPv1 and SNMPv2c to authenticate communication between an SNMP manager and an SNMP agent.
+A **community string is a text-based password used by SNMPv1 and SNMPv2c to authenticate communication between an SNMP manager and an SNMP agent.** It determines whether the manager is allowed to access information on a network device.
 
-It determines whether the manager is allowed to access information on a network device.
+Types of community strings:
+- Read-only (RO): Allows the manager to view device information but not make changes.
+- Read-write (RW): Allows the manager to view and modify device settings.
 
-Types of community strings
-Read-only (RO): Allows the manager to view device information but not make changes.
-Read-write (RW): Allows the manager to view and modify device settings.
-Examples
+Common default community strings are: (Using these default values is considered insecure because they are widely known)
+- public → Read-only access
+- private → Read-write access
 
-Common default community strings are:
-
-public → Read-only access
-private → Read-write access
-
-Using these default values is considered insecure because they are widely known.
-
-
-Install SNMP Service on Windows 7
-Control Panel> Programms> Programms and Features> Turn Windows features on or off> SNMP,SNMP Provider>OK
-Run> services.msc> Search SNMP service, Right CLick, Properties, Security Options> Accept SNMP Packet from any Host> Add Community Name>Read Only Name it> Add Read Write Name it Apply>OK
-
-
-nmap -sU -p 161 <IP>
-nmap --script=snmp-info.nse <IP>
-nmap --script=snmp-brute.nse <IP>
-
-snmp-check -c Public <IP>
-
-snmpset -v1 -c Private 192.168.65.149 .1.3.6.1.2.1.1.5.0 s "r2"
-HW collect info from differnt tools. e.g., metasploit framework
