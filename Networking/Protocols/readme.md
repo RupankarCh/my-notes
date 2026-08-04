@@ -183,15 +183,24 @@ firewall-cmd --reload
 ```
 
 **DHCP Client Configuration**
+
 Client Joining:
 At first choose same network for each client machine as DHCP server.
+
 RHEL Client:
 nmcli con mod ens160 ipv4.method auto
 Then restart the machine or interface
+
 Windows 7 Client:
 Go to run  ncpa.cpl
 Disable it
 Enable it
+or
+```
+yum install dhcp-client
+dhclient -r ens160
+cat /var/lib/dhcpd/dhcpd.lease
+```
 
 # SNMP:
 UDP port 161, 162
