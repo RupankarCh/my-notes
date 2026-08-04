@@ -102,6 +102,7 @@ nmap --script=<script_name>.nse -p<port_number> <target_IP>
 ```
 
 **TCP Stealth Scan Types: (they all are used to detect if target has any port open with stealth)** 
+
 i. FIN Scan: **Sends only FIN flag, closed ports reply with RST, open ports usually ignore it**. it **does not attempt to establish a full TCP connection** like a normal TCP connect scan. It can be useful for bypassing some older or poorly configured firewalls, although many modern systems and intrusion detection systems can detect or block it. Limitation: Many Windows systems do not follow the expected TCP behavior for FIN scans, making the results less reliable on those hosts.
 ```
 nmap -sF <target_IP>
