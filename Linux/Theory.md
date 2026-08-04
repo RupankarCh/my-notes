@@ -24,11 +24,12 @@ A Linux distribution comprises the **Linux kernel**, which is the core of the op
 - **RHEL**: **Based on Fedora**,  RHEL targets **production environments at large enterprises** that require support and consulting services to keep their systems running smoothly. Somewhat paradoxically, **RHEL is open source but requires a license**. If you’re not willing to pay for the license, you’re not going to be running Red Hat. Red Hat also sponsors Fedora, a community-based distribution that serves as an incubator for bleeding-edge software not considered stable enough for RHEL.**Fedora is used as the initial test bed for software and configurations that later find their way to RHEL.**
 - **CentOS**: **Based on Fedora**, Virtually **identical to RHEL but free of charge**, except Red Hat's branding and a few proprietary tools, CentOS is an excellent choice for sites that want to deploy a production-oriented distribution. A hybrid approach is also feasible. **Oracle sells a rebranded and customized version of CentOS** to customers of its enterprise database software. **Amazon Linux was initially derived from CentOS** and still shares many of its conventions.
 
-# Term
-**Open Source software: is software with source code that anyone can inspect, modify. and enhance.**
 
 # Linux Booting Process:
 Power On> CPU (**CPU is hard-wired to start executing instructions from a fixed address** called reset vector **which maps to firmware(BIOS/UEFI) stored in a non-volatile memory like (ROM or Flash memory)**)> **BIOS/UEFI performs POST**, **looks for a bootable device**(SSD/HDD/Pendrive) **once found BIOS will enter the MBR** and **UEFI will enter the ESP** section of the bootable device, **BOOTLOADER executes GRUB** then it reads GRUB config and shows an GUI to the user to **select the OS or kernel**, once the kernel is selected, GRUB locates the kernel binary and **initrd/initramfs(temporary file system) image detects hardware and loads required modules from its temporary filesystem**. Once all required drivers are loaded, the **initramfs mounts the actual root filesystem**. After that, the **temporary filesystem (initramfs) is discarded/unmounted**. **Kernel sets up the environment and launches the first process, typically init or systemd**, which then continues to start all other user-space services. **Init/systemd reads configuration files (e.g., /etc/inittab or systemd unit files) to determine the default runlevel/target.  Runlevel/Target start services and daemons according to the desired system state**. 
+
+# Term
+**Open Source software: is software with source code that anyone can inspect, modify. and enhance.**
 
 **firmware**-a special type of **program stored on the motherboard**, manufacturer does it.
 
@@ -46,6 +47,9 @@ Power On> CPU (**CPU is hard-wired to start executing instructions from a fixed 
 
 **Initramfs (Initial RAM File System)** is a small, **temporary filesystem loaded into your computer's RAM during startup. It contains the essential drivers and tools the Linux kernel needs to find and mount your main, permanent filesystem** (the one on your hard drive or SSD e). Once the real filesystem is running, the initramfs is cleared from memory, having completed its mission.
 
-**The Linux kernel** is the core program of the operating system that controls all the computer's hardware and allows software to run.
-
 **SystemD** is the first user-space process, always started with **PID 1** by the kernel to bring the system to usable state. It **initializes all required services and targets according to its configuration**. The default target is usually a symlink: /etc/systemd/system/default.target 
+
+**Kernel:** It acts as a bridge between the hardware and software of a system. It manages memory, process and task.
+
+**Shell:** It is the interface between the user and kernel.
+
