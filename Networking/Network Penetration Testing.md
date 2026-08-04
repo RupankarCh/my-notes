@@ -123,11 +123,19 @@ Control Panel> Programms> Programms and Features> Turn Windows features on or of
 Run> services.msc> Search SNMP service, Right CLick, Properties, Security Options> Accept SNMP Packet from any Host> Add Community Name>Read Only Name it> Add Read Write Name it Apply>OK
 
 
-nmap -sU -p 161 <IP>
+nmap -sV -p161-162 -sU <target_IP>
 nmap --script=snmp-info.nse <IP>
-nmap --script=snmp-brute.nse <IP>
+nmap --script=snmp-brute.nse <IP> -p161 -sU 
 
 snmp-check -c Public <IP>
+snmp-check -c private <IP>
 
-snmpset -v1 -c Private 192.168.65.149 .1.3.6.1.2.1.1.5.0 s "r2"
+snmpset -v1 -c private 192.168.65.149 .1.3.6.1.2.1.1.5.0 s "r2" (To change Hostname to r2)
 HW collect info from differnt tools. e.g., metasploit framework
+
+Usage of Metasploit Framework to login on Agent:
+search snmp login
+use 4
+set RHOSTS <target_IP>
+set PASSWORD Public
+Run
