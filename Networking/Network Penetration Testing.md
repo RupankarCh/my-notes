@@ -80,6 +80,7 @@ Following these structured steps helps organizations identify and eliminate secu
 The methodical process of inspecting networks, devices, ports and applications to identify active systems, open ports and security vulnerabilities.
 
 **5 Types of Nmap Scanning:**
+
 i. Host Discovery:
 ```
 nmap -sn <target_IP/CIDR>
