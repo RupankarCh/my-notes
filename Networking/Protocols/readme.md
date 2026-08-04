@@ -166,7 +166,7 @@ cd /etc/dhcp/
 ls (To see if dhcpd.conf is present)
 vim /etc/dhcp/dhcpd.conf (Copy the path)
 cp -v <paste> /etc/dhcp/dhcpd.conf
-vi dhcpd.conf (Check copy)
+vim dhcpd.conf (Check copy)
 authoritative;
 log-facility local6;
 subnet 192.168.25.0 netmask 255.255.255.0 {
@@ -176,11 +176,22 @@ subnet 192.168.25.0 netmask 255.255.255.0 {
 vim /etc/rsyslog.conf
 local6.*  	/var/log/dhcpd.log
 chkconfig dhcpd on
-systemctl restart dhcp-server 
-systemctl status dhcp-server
+systemctl restart dhcpd.service
+systemctl status dhcpd.service
 firewall-cmd --add-service=dhcp --permanent 
 firewall-cmd --reload
 ```
+
+**DHCP Client Configuration**
+Client Joining:
+At first choose same network for each client machine as DHCP server.
+RHEL Client:
+nmcli con mod ens160 ipv4.method auto
+Then restart the machine or interface
+Windows 7 Client:
+Go to run  ncpa.cpl
+Disable it
+Enable it
 
 # SNMP:
 UDP port 161, 162
