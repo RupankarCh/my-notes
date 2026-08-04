@@ -1,4 +1,4 @@
-### **1. What is Network Penetration Testing? (5 Marks)**
+### **1. What is Network Penetration Testing?**
 
 **Network Penetration Testing (NPT)** is the process of testing a computer network to identify security weaknesses by simulating real-world cyberattacks. It helps organizations discover vulnerabilities before attackers can exploit them.
 
@@ -15,7 +15,7 @@ Network Penetration Testing helps organizations protect their networks by findin
 
 ---
 
-### **2. What is Vulnerability Assessment? (5 Marks)**
+### **2. What is Vulnerability Assessment?**
 
 **Vulnerability Assessment (VA)** is the systematic process of identifying, analyzing, and prioritizing security vulnerabilities in computer systems, networks, and applications.
 
@@ -32,7 +32,7 @@ Vulnerability Assessment helps organizations proactively identify and fix securi
 
 ---
 
-### **3. What is Post Exploitation? (5 Marks)**
+### **3. What is Post Exploitation?**
 
 **Post Exploitation** is the phase of penetration testing that occurs after successfully gaining access to a target system. Its purpose is to assess the impact of a successful attack and determine what an attacker could do after compromising the system.
 
@@ -49,7 +49,7 @@ Post Exploitation helps security professionals understand the extent of damage a
 
 ---
 
-### **4. What are the Steps of Network Penetration Testing (NPT)? (5 Marks)**
+### **4. What are the Steps of Network Penetration Testing (NPT)?**
 
 The Network Penetration Testing process generally consists of the following steps:
 
@@ -76,34 +76,27 @@ The Network Penetration Testing process generally consists of the following step
 **Conclusion:**
 Following these structured steps helps organizations identify and eliminate security weaknesses, thereby improving the overall security of their networks.
 
-# SNMP (Simple Network Management Protocol)
-- Application Layer Protocol
-- runs on UDP (port 161)
-- maintains and manages router, hub, switches on IP Network
-- SNMP agents run on networking devices
+### **5.Scanning Definition?**
+The methodical process of inspecting networks, devices, ports and applications to identify active systems, open ports and security vulnerabilities.
 
-## SNMP Versions:
-v1
-old
-Comunity Strings
-
-v2c
-Faster
-Community Strings
-
-v3
-Authentication
-Encryption
-Most Secure
-
-## Enumeration may tell us:
-Hostname, Users, Running Processes, Installed Software, Interfaces, Routing Table, System Name, Network Devices
-
+5 Types of Nmap Scanning:
+i. Host Discovery:
 ```
-nmap -sU -p 161 192.168.65.132
+nmap -sn <target_IP/CIDR>
 ```
-
-SnmpWalk
+ii. Port Scan:
 ```
-snmpwalk -v1 -c public 192.168.65.132
+nmap -Pn <target_IP>
+```
+iii.Service and Version Scanning:
+```
+nmap -sV <target_IP>
+```
+iv. OS Scan:
+```
+nmap -O <target_IP>
+```
+v. Script Scan:
+```
+nmap --script=<script_name>.nse -p<port_number> <target_IP>
 ```
