@@ -249,3 +249,8 @@ Common default community strings are: (Using these default values is considered 
 - public → Read-only access
 - private → Read-write access
 
+**SNMP Configuration on Windows:**
+
+Install SNMP Service on Windows 7
+Control Panel> Programms> Programms and Features> Turn Windows features on or off> SNMP,SNMP Provider>OK
+Run> services.msc> Search SNMP service, Right CLick, Properties, Security Options> Accept SNMP Packet from any Host> Add Community Name>Read Only Name it> Add Read Write Name it Apply>OK
