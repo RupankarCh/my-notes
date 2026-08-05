@@ -509,3 +509,74 @@ ls -li file.txt (List inode information also)
 ln file.txt ffile.txt (To create hard link)
 ls -li f* (To check)
 ```
+
+
+# 30. Disk Quota Configuration
+Attach New Volume
+```
+fdisk /dev/nvme1n1
+mkfs.ext4 /dev/nvme1n1p1
+mkdir /data
+mount /dev/nvme1n1p1 /data
+vi /etc/mtab
+```
+Go to last line enter Esc+yy (To copy/yank)
+Esc:n /etc/fstab
+Esc+p (To paste)
+Esc:wq
+```
+yum install quota
+yum list installed quota
+useradd a
+useradd b
+useradd c
+useradd d
+groupadd quota
+usermod -g quota b
+vi /etc/fstab
+```
+Write realtime, usrquota, grpquota
+Esc:wq
+```
+systemctl daemon-reload
+mount -o remount /data
+mount | grep /data
+passwd root
+passwd a
+chmod 777 /data
+quotacheck -cug /data
+edquota a
+```
+Blocks  Soft  Hard  indoes  Soft  Hard
+0   100000  200000   0       10    20
+```
+quotaon /data
+su - a
+touch a.user{1..21}.txt
+dd if=/dev/zero of=/data/file bs=1M count=300
+```
+
+**Groupquota:**
+```
+chgrp quota /data
+edquota -g quota
+```
+Blocks  Soft  Hard  indoes  Soft  Hard
+4   100000  200000   1       400    500
+```
+quotaoff /data
+quotaon /data
+sudo usermod -aG quota b
+su - b
+cd /data
+touch abc{1..700}.txt
+```
+
+**Modify Grace Period for a specific user when they exceed their soft disk quota limits:**
+```
+edquota -T a (Remove the time and add 7 days)
+quotaoff /data
+quotaon /data
+```
+
+
