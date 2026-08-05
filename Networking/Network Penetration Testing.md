@@ -118,28 +118,27 @@ nmap -sX <target_IP>
 ```
 
 ### 6. SNMP Enumeration:
-Install SNMP Service on Windows 7
-Control Panel> Programms> Programms and Features> Turn Windows features on or off> SNMP,SNMP Provider>OK
-Run> services.msc> Search SNMP service, Right CLick, Properties, Security Options> Accept SNMP Packet from any Host> Add Community Name>Read Only Name it> Add Read Write Name it Apply>OK
 
-
-nmap -sV -p161-162 -sU <target_IP>
-nmap --script=snmp-info.nse <IP>
-nmap --script=snmp-brute.nse <IP> -p161 -sU 
-
-snmp-check -c Public <IP>
-snmp-check -c private <IP>
-
-snmpset -v1 -c private 192.168.65.149 .1.3.6.1.2.1.1.5.0 s "r2" (To change Hostname to r2)
-HW collect info from differnt tools. e.g., metasploit framework
-
-Usage of Metasploit Framework to login on Agent:
+**Enumeration may tell us:**
+Hostname, Users, Running Processes, Installed Software, Interfaces, Routing Table, System Name, Network Devices
+```
+nmap -sU -p 161 <target_IP> (Check if the SNMP service is running)
+nmap -sV -p161-162 -sU <target_IP> (Detect the SNMP version and service)
+nmap --script=snmp-info.nse <target_IP> (Gather basic SNMP information)
+snmpwalk -v1 -c public <target_IP> (Enumerate everything using snmpwalk)
+snmp-check -c Public <target_IP> (Try common community strings)
+snmp-check -c private <target_IP> (Try common community strings)
+nmap --script=snmp-brute.nse <IP> -p161 -sU (Brute-force the community string)
+snmpset -v1 -c private 192.168.65.149 .1.3.6.1.2.1.1.5.0 s "r2" (Test write access, while Attempts to rename the device's hostname to r2.)
+```
+**Usage of Metasploit Framework to login on Agent:** 
+```
 search snmp login
 use 4
 set RHOSTS <target_IP>
 set PASSWORD Public
 Run
-
+```
 
 ### 7. Simulating Brute-Force Attacks on SSH, Telnet, FTP:
 **SSH Brute Forcing using nmap**:
