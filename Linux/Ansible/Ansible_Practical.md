@@ -667,29 +667,15 @@ ansible all -m shell -a '/home/ansible/test.sh' (Display mounted filesystems)
 ```bash
 ansible all -m copy -a 'src=file1.txt dest=/tmp/file1.txt'
 
-ansible node2 -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes'
+ansible all -m copy -a 'content="GOOD" dest=/tmp/file100.txt' (Create File with Content)
 
-ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K
+ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' (If the file exists on remote hosts it copies as file10.txt)
 
-ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes'
+ansible all -m copy -a 'src=test.sh dest=/home/ansible mode=755' (Copy Script, while configuring permissions)
 
-ansible all -m copy -a 'src=/tmp/file1.txt dest=/tmp/file10.txt remote_src=yes' 
+ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K (copy file with ownership and permission configuration)
 
-ansible all -m copy -a "src=hosts dest=/etc/hosts" -b -K (Copy Using Sudo, If sudo requires a password)
-```
-
-### Create File with Content
-
-```bash
-ansible all -m copy -a 'content="GOOD" dest=/tmp/file100.txt'
-
-ansible all -m copy -a 'content="Welcome to our Ansible Class" dest=/tmp/file3.txt'
-```
-
-### Copy Script
-
-```bash
-ansible all -m copy -a 'src=test.sh dest=/home/ansible mode=755' -b
+ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (Copies the file to remote hosts and if a file with the same name already exists there, Ansible creates a backup before overwriting it)
 ```
 
 ---
