@@ -735,37 +735,22 @@ ansible all -m replace -a 'dest=/tmp/file100.txt regexp="AFTERNOON" replace="MOR
 ### Create User
 
 ```bash
-ansible all -m user -a 'name=developer state=present'
+ansible all -m user -a 'name=developer state=present'  (Create a user named developer)
 
-ansible all -m user -a 'name=tech home=/home/ram shell=/bin/bash state=present'
+ansible all -m user -a 'name=tech home=/home/ram shell=/bin/bash state=present' (Create tech with a specific home directory and shell)
 
-ansible all -m user -a 'name=Rahul uid=2001'
+ansible all -m user -a 'name=Rahul uid=2001 group=HR' (Create/modify Rahul with UID 2001, add user to group)
 
-ansible all -m user -a 'name=username group=HR'
+ansible all -m user -a 'name=username groups=HR append=yes' (Add user to HR as a supplementary group)
 
-ansible all -m user -a 'name=username groups=HR append=yes'
-```
+openssl passwd -6 'rohit@123' (Generate a SHA-512 password hash)
+ansible all -m user -a 'name=Rohit password=<hashed_password>' -b -K (Set that hash as Rohit's Linux password)
 
-### Set Password
+ansible all -m user -a 'name=Rohit shell=/bin/nologin'  (Change user's Shell)
 
-```bash
-openssl passwd -6 'rohit@123'
+ansible all -m user -a 'name=Rohit state=absent' (Remove User)
 
-ansible all -m user -a 'name=Rohit password=<hashed_password>'
-```
-
-### Change Shell
-
-```bash
-ansible all -m user -a 'name=Rohit shell=/bin/nologin'
-```
-
-### Remove User
-
-```bash
-ansible all -m user -a 'name=Rohit state=absent'
-
-ansible all -m user -a 'name=Rohit state=absent remove=yes'
+ansible all -m user -a 'name=Rohit state=absent remove=yes' (Delete the Rohit user AND remove the user's home directory and related user files)
 ```
 
 ---
