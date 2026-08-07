@@ -566,7 +566,7 @@ ansible all -m shell -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults 
 
 **Used for:** `mkdir`, `touch`, `chmod`, `chown`, `chgrp`, `ln`, `rm`, `rmdir`
 
-```bash
+```
 ansible all -m file -a 'path=/tmp/file20.txt state=touch' (Creates an empty File)
 
 ansible all -m file -a 'path=/tmp/redhat state=directory' (Creates a Directory)
@@ -588,7 +588,7 @@ ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link2 state=hard' (Create
 
 **Used for:** Execute simple commands (no shell features).
 
-```bash
+```
 ansible all -m command -a 'ls -l /tmp/file20.txt' (Shows detailed information about file20.txt (permissions, owner, size, timestamp))
 
 ansible all -m command -a 'ls -l /tmp' (Lists all files and directories inside /tmp in long format)
@@ -664,7 +664,7 @@ ansible all -m shell -a '/home/ansible/test.sh' (Display mounted filesystems)
 
 ### Copy File
 
-```bash
+```
 ansible all -m copy -a 'src=file1.txt dest=/tmp/file1.txt'
 
 ansible all -m copy -a 'content="GOOD" dest=/tmp/file100.txt' (Create File with Content)
@@ -684,8 +684,8 @@ ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (Copies the file to 
 
 **Used for:** Copy files from managed node to control node.
 
-```bash
-ansible node1 -m fetch -a 'src=/tmp/file100.txt dest=backup'
+```
+ansible node1 -m fetch -a 'src=/tmp/file100.txt dest=backup' 
 ```
 
 ---
@@ -694,7 +694,7 @@ ansible node1 -m fetch -a 'src=/tmp/file100.txt dest=backup'
 
 **Used for:** Check file metadata.
 
-```bash
+```
 ansible all -m stat -a 'path=/tmp/file100.txt'
 ```
 
@@ -704,34 +704,16 @@ ansible all -m stat -a 'path=/tmp/file100.txt'
 
 **Used for:** Add, remove, or modify a single line.
 
-### Append Line
-
-```bash
-ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content"'
 ```
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content"' (Append Line)
 
-### Insert at Beginning
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter=BOF'  (Insert at Beginning)
 
-```bash
-ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=BOF'
-```
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter=EOF' (Insert at End)
 
-### Insert at End
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="Content"' (Insert After Matching Line)
 
-```bash
-ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="New" insertafter=EOF'
-```
-
-### Insert After Matching Line
-
-```bash
-ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="GOOD AFTERNOON"'
-```
-
-### Remove Line
-
-```bash
-ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent'
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent' (Remove Line)
 ```
 
 ---
