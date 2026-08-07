@@ -245,7 +245,7 @@ ansible web -m ping  (Test the connection)
 **Used when typically owned by root and a normal user cannot write there**
 ---
 
-# System Configuration and Debugging: 
+# 6. System Configuration and Debugging: 
 
 ## Create a System-Wide Inventory 
 ```bash
