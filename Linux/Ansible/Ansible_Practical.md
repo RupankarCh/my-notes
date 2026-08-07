@@ -722,7 +722,7 @@ ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent'
 
 **Used for:** Replace every occurrence of a pattern.
 
-```bash
+```
 ansible all -m replace -a 'dest=/tmp/file100.txt regexp="AFTERNOON" replace="MORNING"'
 ```
 
@@ -732,9 +732,7 @@ ansible all -m replace -a 'dest=/tmp/file100.txt regexp="AFTERNOON" replace="MOR
 
 **Used for:** User management.
 
-### Create User
-
-```bash
+```
 ansible all -m user -a 'name=developer state=present'  (Create a user named developer)
 
 ansible all -m user -a 'name=tech home=/home/ram shell=/bin/bash state=present' (Create tech with a specific home directory and shell)
@@ -759,22 +757,10 @@ ansible all -m user -a 'name=Rohit state=absent remove=yes' (Delete the Rohit us
 
 **Used for:** Group management.
 
-### Create Group
-
-```bash
-ansible all -m group -a 'name=HR state=present'
 ```
+ansible all -m group -a 'name=HR state=present' (Create Group)
 
-### Add User to Group
-
-```bash
-ansible all -m user -a 'name=Rahul groups=HR append=yes'
-```
-
-### Remove Group
-
-```bash
-ansible all -m group -a 'name=HR state=absent'
+ansible all -m group -a 'name=HR state=absent'  (Remove Group)
 ```
 
 ---
@@ -783,45 +769,26 @@ ansible all -m group -a 'name=HR state=absent'
 
 **Used for:** Execute commands without requiring Python (works on older systems).
 
-```bash
+```b
 ansible all -m raw -a 'uptime; lsblk'
 ```
 
 ---
 
-# 12. Disk Management (Recommended Modules)
+# 12. filesystem Module
 
-> **Note:** These tasks are better handled with dedicated modules like `parted`, `filesystem`, and `mount` instead of `shell`.
-
-### Partition
-
-```bash
-ansible all -m shell -a '
-cat <<EOF | fdisk /dev/nvme0n1
-n
-p
-1
-
-+10G
-w
-EOF
-'
 ```
-
-### Create Filesystem *(recommended: filesystem module)*
-
-```bash
-ansible all -m filesystem -a 'fstype=xfs dev=/dev/nvme0n2p1'
+ansible all -m filesystem -a 'fstype=xfs dev=/dev/nvme0n2p1'  (Create Filesystem)
 
 ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p2'
 ```
 
-### Mount Filesystem *(recommended: mount module)*
+# 13. Mount Module
 
-```bash
-ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs state=mounted'
+```
+ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs state=mounted'  (Mounts /dev/nvme0n2p1 as XFS on /data immediately and ensures the mount is configured persistently)
 
-ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'
+ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'  (Adds/configures the /data mount in /etc/fstab with default options but does not mount it immediately)
 ```
 
 ---
