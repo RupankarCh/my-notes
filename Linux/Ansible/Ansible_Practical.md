@@ -640,7 +640,7 @@ ansible node2 -m shell -a 'mount -a'
 
 ansible node2 -m shell -a 'findmnt /dev/nvme0n2p1' (Check)
 
-ansible node1 -m shell -a 'grep '/data' /etc/fstab" 
+ansible node1 -m shell -a "grep '/data' /etc/fstab" 
 
 ansible node1 -m shell -a 'unmount /data' (Unmount)
 
@@ -648,8 +648,90 @@ ansible node1 -m shell -a 'cp /etc/fstab /etc/fatab.bak'
 
 ansible node1 -m shell -a 'ls -l /etc/fastab.bak'
 
-ansible node1 -m shell "sed -i '\|[[:space]]/data[[:space]]|d' /etc/fstab"  (to edit a file use sed with -i for interactive shell, \|[[:space]]/data means delete only the line containing /data)
+ansible node1 -m shell "sed -i '\|[[:space]]data[[:space]]|d' /etc/fstab"  (to edit a file use sed with -i for interactive shell, \|[[:space]]/data means delete only the line containing /data)
 ```
+```
+Package Management:
 
+Method 1 Local YUM Repository Configuration:
+
+After Configuring YUM repository:
+Check if httpd is installed:
+ansible all -m shell -a 'rpm -qa |grep httpd'
+or,
+ansible all -m shell -a 'yum info httpd'
+
+ansible all -m yum -a 'name=httpd state=present" (To install httpd)
+
+ansible all -m package -a 'name=vsftpd state=present use=yum' (To install a package)
+
+ansible all -m package -a 'name=nfs*,samba state=present use=dnf' (Install multiple services)
+
+ansible all -m package -a ' 
+
+ansible all -m shell -a 'dnf list --showduplicates httpd' 
+
+ansible all -m shell -a 'dnf install httpd-2.3.4'  (To install a particular version of httpd)
+
+ansible all -m shell -a 'dnf update httpd' (To update package)
+
+ansible all -m shell -a 'rpm -qR httpd' (To view the dependencies for the package)
+
+ansible all -m shell -a 'yum remove -y  httpd*' (To remove a package)
+
+system D module: To manage services, and daemons
+
+ansible all -m systemd -a 'daemon-reload=true' 
+
+ansible all -m systemd -a 'name=httpd state=started' (To start the service)
+
+ansible all -m systemd -a 'name=httpd 
+
+ansible all -m command -a 'systemctl status httpd' (To check status)
+
+ansible all -m systemd -a 'name=httpd state=started enabled=true' (To restart and enable service)
+
+ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (To stop a service, enabled means restart the service at the boot time)
+
+ansible all -m systemd -a 'name=httpd state=started'
+
+Create the index file on server and copy
+ansible all -m copy -a 'src=index.html  dest=/var/www/html' (To create html file)
+
+ansible all -m command -a 'cat /var/www/html/index.html'
+
+ansible all -m systemd -a 'name=httpd state=started' (start the service)
+
+ansible all -m command -a 'systemctl status httpd'
+
+ansible all -m shell -a 'curl localhost'
+
+Service Masking:
+ansible all -m shell -a 'systemctl mask httpd' (Mask the service)
+
+ansible all -m systemd -a 'name=httpd state=stopped' 
+
+ansible all -m shell -a 'systemctl unmask httpd' (Unmask the service)
+
+ansible all -m shell -a 'systemctl list-units' (To see all masked and unmasked services, |grep active)
+
+Service Module:  To manage services
+
+ansible all -m shell -a 'systemctl --type=service --state=running' (To check which services are in running condition on the managed node)
+
+ansible all -m systemd -a 'name=httpd state=started' 
+
+ansible all -m shell -a 'systemctl --failed' (To check services in failed condition)
+
+ansible all -m shell -a 'systemctl cat httpd'  (Service Configuration View)
+
+
+ansible all -m shell -a 'systemctl show httpd' (View Service Properties)
+
+ansible all -m shell -a 'systemctl show httpd -p MainPID' (to show PID of the service)
+
+ansible all -m shell -a "ss -lntp |grep ':80'"  
+
+```
 
 
