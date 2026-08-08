@@ -567,3 +567,86 @@ ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults 
 
 ---
 
+Native Module vs External Module
+
+```
+ansible all -m shell -a 'lsblk -f' > report.txt
+
+ansible all -m shell -a 'fdisk -l /dev/nvme0n2' (See Partition Table)
+
+
+ansible all -m shell -a "cat << EOF | fdisk /dev/nvme0n2
+>n
+>p
+>1
+>
+>+2G
+>w
+>EOF
+"
+ 
+ansible all -m shell -a 'partprobe /dev/nvme0n2' (Persistatnt Filesystem)
+
+ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p1'
+or,
+ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1'
+
+
+ansible all -m shell -a 'blkid /dev/nvme0n2p1' (Check)
+
+ansible all -m file -a 'path=/data state=directory mode=0755'
+
+ansible all -m shell -a 'ls -ld /data'
+
+ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=ext4 state=mounted'
+or,
+ansible all -m shell -a 'mount -t ext4 /dev/nvme0n2p1 /data' 
+
+ansible all -m shell -a 'df -h' 
+
+ansible all -m copy -a 'src=report.txt dest=/data'
+
+ansible all -m shell -a 'ls -l /data'
+
+ansible all -m shell -a 'unmount /data' (To unmount)
+
+ansible all -m shell -a 'df -h' (To check)
+
+ansible all -m shell -a 'findmnt /dev/nvme0n2p1' (To Check partition's mounting state)
+
+ansible all -m shell -a 'cat <<EOF | fdisk /dev/nvme0n2
+>d
+>1
+>w
+>EOF
+'
+(To remove the partition)
+
+ansible all -m shell -a 'lsblk /dev/nvme0n2' (To check)
+
+
+Make a partition persistently mounted:
+ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1' (Copy the UUID)
+
+ansible node1 -m shell -a 'echo "UUID=<paste> /data ext4 defaults 0 0" >> /etc/fstab' ( 
+
+ansible node1 -m shell -a 'mount -a'
+
+ansible node1 -m shell -a 'findmnt /dev/nvme0n2p1' (Check)
+
+ansible node2 -m shell -a 'echo "UUID=<paste> /data ext4 defaults 0 0" >> /etc/fstab'
+
+ansible node2 -m shell -a 'mount -a'
+
+ansible node2 -m shell -a 'findmnt /dev/nvme0n2p1' (Check)
+
+ansible node1 -m shell -a 'grep '/data' /etc/fstab" 
+
+ansible node1 -m shell -a 'unmount /data' (Unmount)
+
+ansible node1 -m shell -a 'cp /etc/fstab /etc/fatab.bak'
+
+ansible node1 -m shell -a 'ls -l /etc/fastab.bak'
+
+ansible node1 -m shell "sed -i '\|[[:space]]/data[[:space]]|d' /etc/fstab"  (to edit a file use sed with -i for interactive shell, \|[[:space]]/data means delete only the line containing /data)
+```
