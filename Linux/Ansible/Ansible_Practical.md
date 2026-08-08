@@ -650,3 +650,6 @@ ansible node1 -m shell -a 'ls -l /etc/fastab.bak'
 
 ansible node1 -m shell "sed -i '\|[[:space]]/data[[:space]]|d' /etc/fstab"  (to edit a file use sed with -i for interactive shell, \|[[:space]]/data means delete only the line containing /data)
 ```
+
+
+
