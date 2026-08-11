@@ -1,5 +1,4 @@
-# Theory
-## Types of Password
+# Types of Password
 - Console Password: Connectiing with port
 - AUX Password: Connecting with port
 - Enable Password: Priviledge Escalation
@@ -18,16 +17,520 @@
 | **Subinterface Configuration**         | `Router(config-subif)#`  | Configure logical subinterfaces                             | `interface GigabitEthernet0/0.10`   |
 | **VLAN Configuration** *(on switches)* | `Switch(config-vlan)#`   | Configure VLANs                                             | `vlan <vlan-id>`                    |
 
-There are three most common ways to access the Cisco IOS:
-1. Console
-2. Telnet
-3. SSH
+# There are four most common ways to access the Cisco IOS:
+| Access method | IOS line         | Typical use                     |
+| ------------- | ---------------- | ------------------------------- |
+| **Console**   | `line console 0` | Local physical access           |
+| **AUX**       | `line aux 0`     | Modem/out-of-band remote access |
+| **Telnet**    | `line vty 0 4`   | Remote network access           |
+| **SSH**       | `line vty 0 4`   | Secure remote network access    |
 
-# Practicals
-## Password Implementation
+---
+
+## 1. Console Access
+
+What is it?
+
+Console access means connecting your computer **directly to the Cisco device's console port**.
+
+You don't need an IP address, Telnet, or SSH for the initial connection.
+
+Practical setup
+
+```text
+PC
+ │
+ │ Console cable
+ ▼
+Cisco Router/Switch
+```
+
+In **Cisco Packet Tracer**:
+
+1. Add a PC and router/switch.
+2. Choose the **Console cable**.
+3. Connect:
+
+   * PC → `RS232`
+   * Router/Switch → `Console`
+4. Click the PC.
+5. Go to **Desktop → Terminal**.
+6. Accept the default settings and press Enter.
+
+You'll get something like:
+
+```text
+Router>
+```
+
+You're now in **User EXEC mode**.
+
+---
+
+Configure a console password
+
+Go to Privileged EXEC:
+
+```text
+Router> enable
+Router#
+```
+
+Enter Global Configuration:
+
+```text
+Router# configure terminal
+Router(config)#
+```
+
+Enter the console line:
+
+```text
+Router(config)# line console 0
+Router(config-line)#
+```
+
+Set a password:
+
+```text
+Router(config-line)# password cisco
+```
+
+Tell IOS to require that password:
+
+```text
+Router(config-line)# login
+```
+
+Exit:
+
+```text
+Router(config-line)# exit
+Router(config)# exit
+```
+
+Now when someone connects through the console, they'll be prompted for:
+
+```text
+Password:
+```
+
+Complete configuration
+
+```text
+Router> enable
+Router# configure terminal
+Router(config)# line console 0
+Router(config-line)# password cisco
+Router(config-line)# login
+Router(config-line)# end
+Router#
+```
+
+---
+**Set Aux Console Passord**
+```
+(config)#line aux 0 (Enters AUX (auxiliary) line configuration mode)
+password abc
+login
+exit
+wr
+---
+
+# 2. Telnet Access
+
+Telnet is different because you're accessing the Cisco device **over the network**.
+
+For example:
+
+```text
+PC ───────────── Network ───────────── Router
+192.168.1.10                         192.168.1.1
+```
+
+The PC connects to the router's IP address using Telnet.
+
+Important
+
+Telnet is **not encrypted**.
+
+For learning, labs, and understanding IOS, it's useful. In real networks, **SSH should normally be used instead**.
+
+---
+
+Step 1: Give the router an IP address
+
+Suppose your router has:
+
+```text
+GigabitEthernet0/0
+```
+
+Configure it:
+
+```text
+Router> enable
+Router# configure terminal
+Router(config)# interface gigabitEthernet 0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+```
+
+Now the router has:
+
+```text
+192.168.1.1/24
+```
+
+---
+
+Step 2: Configure a PC
+
+Give the PC:
+
+```text
+IP address:      192.168.1.10
+Subnet mask:     255.255.255.0
+Default gateway: 192.168.1.1
+```
+
+The physical/network connection is now:
+
+```text
+PC                          Router
+192.168.1.10                192.168.1.1
+     │                           │
+     └──────── Ethernet ─────────┘
+```
+
+Test connectivity from the PC:
+
+```text
+ping 192.168.1.1
+```
+
+You should receive replies.
+
+---
+
+Step 3: Configure Telnet on the router
+
+This is where **VTY lines** come in.
+
+VTY = Virtual Terminal lines.
+
+Enter:
+
+```text
+Router# configure terminal
+Router(config)# line vty 0 4
+Router(config-line)#
+```
+
+Set a password:
+
+```text
+Router(config-line)# password cisco
+Router(config-line)# login
+```
+
+Exit:
+
+```text
+Router(config-line)# end
+```
+
+Now Telnet access is configured.
+
+---
+
+Step 4: Telnet from the PC
+
+On the PC's command prompt:
+
+```text
+telnet 192.168.1.1
+```
+
+You should see:
+
+```text
+Trying 192.168.1.1 ...
+Connected to 192.168.1.1
+
+Password:
+```
+
+Enter:
+
+```text
+cisco
+```
+
+You should get:
+
+```text
+Router>
+```
+
+Congratulations — you're now controlling the router remotely through **Telnet**.
+
+---
+
+# 3. SSH Access
+
+SSH works similarly to Telnet:
+
+```text
+PC ───────── Network ───────── Router
+```
+
+But SSH encrypts the communication.
+
+The practical setup is a little more involved because the router needs:
+
+* Hostname
+* Domain name
+* Username/password
+* RSA keys
+* VTY configuration
+* SSH transport
+
+---
+
+Step 1: Configure an IP address
+
+Just like Telnet:
+
+```text
+Router> enable
+Router# configure terminal
+
+Router(config)# interface gigabitEthernet 0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+```
+
+---
+
+Step 2: Set a hostname
+
+SSH requires a hostname/domain setup for RSA key generation.
+
+```text
+Router(config)# hostname R1
+R1(config)#
+```
+
+Notice the prompt changed:
+
+```text
+Router(config)#
+```
+
+to:
+
+```text
+R1(config)#
+```
+
+---
+
+Step 3: Configure a domain name
+
+```text
+R1(config)# ip domain-name lab.local
+```
+
+---
+
+Step 4: Create a local username
+
+```text
+R1(config)# username admin privilege 15 secret Cisco123
+```
+
+Now you've created:
+
+```text
+Username: admin
+Password: Cisco123
+```
+
+`secret` means IOS stores the password in a hashed/secured form rather than as plain text.
+
+---
+
+Step 5: Generate RSA keys
+
+```text
+R1(config)# crypto key generate rsa
+```
+
+Depending on the IOS version, you'll be asked for the modulus size.
+
+For a lab:
+
+```text
+How many bits in the modulus [512]: 1024
+```
+
+Enter:
+
+```text
+1024
+```
+
+On modern real devices, use a stronger key size appropriate to the platform and security policy.
+
+---
+
+Step 6: Configure the VTY lines for SSH
+
+```text
+R1(config)# line vty 0 4
+R1(config-line)# login local
+R1(config-line)# transport input ssh
+R1(config-line)# exit
+```
+
+The important commands are:
+
+```text
+login local
+```
+
+This tells the router:
+
+> Use the locally configured username/password.
+
+And:
+
+```text
+transport input ssh
+```
+
+This tells the router:
+
+> Allow SSH connections on the VTY lines.
+
+---
+
+Step 7: Connect using SSH
+
+From the PC:
+
+```text
+ssh -l admin 192.168.1.1
+```
+
+You'll be asked for:
+
+```text
+Password:
+```
+
+Enter:
+
+```text
+Cisco123
+```
+
+You should get:
+
+```text
+R1>
+```
+
+You're now remotely connected using **SSH**.
+
+---
+
+Putting all three together
+
+Think about it like this:
+
+```text
+                    CISCO DEVICE
+                         │
+          ┌──────────────┼──────────────┐
+          │              │              │
+       CONSOLE         TELNET          SSH
+          │              │              │
+       Physical       Network         Network
+       connection     connection      connection
+          │              │              │
+       Console         VTY lines      VTY lines
+          │              │              │
+       Console 0       VTY 0-4        VTY 0-4
+```
+
+**Console**
+
+```text
+PC ── Console Cable ── Router
+```
+
+Configuration:
+
+```text
+line console 0
+ password cisco
+ login
+```
+
+**Telnet**
+
+```text
+PC ── Network ── Router
+                  │
+                VTY
+```
+
+Configuration:
+
+```text
+line vty 0 4
+ password cisco
+ login
+ transport input telnet
+```
+
+**SSH**
+
+```text
+PC ── Network ── Router
+                  │
+                VTY
+```
+
+Configuration:
+
+```text
+username admin privilege 15 secret Cisco123
+
+line vty 0 4
+ login local
+ transport input ssh
+```
+
+Plus SSH prerequisites:
+
+```text
+hostname R1
+ip domain-name lab.local
+crypto key generate rsa
+```
+
+---
+
+# Password Implementation
 ```
 show running-config (Displays the current active configuration stored in the router's RAM)
 ```
+
 **Set line Console Password**
 ```
 (config)#line console 0 (Enters console line configuration mode to configure the physical console port)
@@ -36,13 +539,11 @@ login (Enables password authentication on the console line. Without this command
 exit
 wr (Saves the running configuration to the startup configuration)
 ```
-**Set Aux Console Passord**
+Now when someone connects through the console, they'll be prompted for:
 ```
-(config)#line aux 0 (Enters AUX (auxiliary) line configuration mode)
-password abc
-login
-exit
-wr
+Password:
+```
+
 ```
 **Set Enable Password (Useless)**
 ```
