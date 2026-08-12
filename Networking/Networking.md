@@ -1,14 +1,11 @@
 <img width="874" height="648" alt="image" src="https://github.com/user-attachments/assets/ca8d53d4-467a-44a6-a170-b32353a43c80" />
-
+# 1.If two pcs are connected with just one switch nothing else in the network, can they communicate with just MAC address or they need IP address also and is there anything else they need to communicate?
 Yes — **two PCs connected only to a switch can communicate**, but there are two different levels to understand:
 
-### 1. MAC address — needed by Ethernet
+## 1. send an Ethernet frame directly to PC2
 
 The switch works primarily with **MAC addresses**.
-
-For example:
-
-```text
+```
 PC1                         PC2
 MAC: AA:AA:AA:AA:AA:01     MAC: BB:BB:BB:BB:BB:02
        │                         │
@@ -26,7 +23,7 @@ So **IP addresses are not required for Ethernet itself**.
 
 ---
 
-### 2. IP address — needed for IP-based communication
+## 2. PCs to communicate using normal TCP/IP applications (e.g., ping, SSH, HTTP, file sharing, most network applications)
 
 If you want the PCs to communicate using normal **TCP/IP applications** such as:
 
@@ -79,20 +76,7 @@ PC1 → Broadcast:
 PC2 → PC1:
 "192.168.1.20 is at MAC BB:BB:BB:BB:BB:02"
 ```
-
-PC1 then sends the Ethernet frame:
-
-```text
-Ethernet:
-  Destination MAC = BB:BB:BB:BB:BB:02
-
-IP:
-  Destination IP = 192.168.1.20
-```
-
-So in normal IP communication, **both IP and MAC addresses participate**.
-
-### What else is needed?
+PC1 then sends the Ethernet frame, So in normal IP communication, **both IP and MAC addresses participate**.
 
 For two PCs connected directly to a switch:
 
