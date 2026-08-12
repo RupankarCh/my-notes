@@ -19,7 +19,28 @@ If PC1 sends an **Ethernet frame directly to PC2**, the frame contains:
 
 The switch uses the destination MAC to decide which port to send the frame out of.
 
-So **IP addresses are not required for Ethernet itself**.
+So **Host machine don't need to have IP address, IP is not required for Ethernet itself because it may contain other protocol like ARP which needs to have IP address configured on the target machine**.
+
+### What actually happens when you `ping` PC2?
+
+Suppose PC1 does:
+
+```text
+ping 192.168.1.20
+```
+
+PC1 knows **PC2's IP address**, but Ethernet needs **PC2's MAC address**.
+
+So PC1 uses **ARP**:
+
+```text
+PC1 → Broadcast:
+"Who has 192.168.1.20?"
+
+PC2 → PC1:
+"192.168.1.20 is at MAC BB:BB:BB:BB:BB:02"
+```
+PC1 then sends the Ethernet frame.
 
 ---
 
@@ -56,27 +77,7 @@ MAC: AA...                  MAC: BB...
 No router is necessary because both PCs are on the same local network.
 
 ---
-
-### What actually happens when you `ping` PC2?
-
-Suppose PC1 does:
-
-```text
-ping 192.168.1.20
-```
-
-PC1 knows **PC2's IP address**, but Ethernet needs **PC2's MAC address**.
-
-So PC1 uses **ARP**:
-
-```text
-PC1 → Broadcast:
-"Who has 192.168.1.20?"
-
-PC2 → PC1:
-"192.168.1.20 is at MAC BB:BB:BB:BB:BB:02"
-```
-PC1 then sends the Ethernet frame, So in normal IP communication, **both IP and MAC addresses participate**.
+So in normal IP communication, **both IP and MAC addresses participate**.
 
 For two PCs connected directly to a switch:
 
