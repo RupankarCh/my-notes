@@ -126,7 +126,7 @@ The physical Internet functions as a multi-tiered hierarchy that moves data acro
 
 An ISP acts as your gateway to this global infrastructure. Its primary functions include:
 
-* **Last-Mile Access:** Delivering physical connectivity to your home/business via Fiber, Coaxial Cable, DSL, 5G, or Satellite.
+* **Last-Mile Access:** **Delivering physical connectivity to your home/business via Fiber, Coaxial Cable, DSL, 5G, or Satellite.**
 * **Addressing & Configuration:** Assigning your network or router a public IP address (via DHCP) so other devices on the internet can find you.
 * **Routing Traffic:** Directing your outgoing packets toward their destination using dynamic routing protocols like **BGP (Border Gateway Protocol)**.
 * **DNS Resolution:** Providing default Domain Name System servers to translate human-readable domain names (like `google.com`) into numeric IP addresses (`142.250.190.46`).
@@ -156,6 +156,63 @@ When you connect your phone to Wi-Fi and load a webpage:
 3. **IETF** protocols (`TCP`, `TLS 1.3`, `HTTP/2`) package, encrypt, and deliver the web content reliably.
 4. **ICANN** ensures that when you typed the website domain, the DNS system properly mapped it to the right server address.
 
+# 3. How My system is connecting to ISP
+
+When you set your Ethernet properties to "Obtain an IP address automatically," your computer is requesting an IP via **DHCP (Dynamic Host Configuration Protocol)**.
+
+In almost all residential and typical home/office setups, your computer is **not talking directly to a server at the ISP's data center**. Instead, the DHCP server is running directly on your **home Wi-Fi router or ONU (Optical Network Unit) box** provided by your ISP.
+
+Here is how the hierarchy works and why:
+
+---
+
+## Local Network (LAN) vs. ISP Network (WAN)
+
+Your home network is split into two distinct sides by your router:
+
+```
+[ Your PC ] ──(Local DHCP)──> [ Home Router ] ──(ISP DHCP)──> [ ISP's Broadband Access Server (BRAS/BNG) ]
+
+```
+
+### Your Local Network (What your PC is talking to)
+
+* **The DHCP Server:** Your home router/modem.
+* **The IP Assigned:** A **Private IP address** (typically starting with `192.168.x.x` or `10.x.x.x`).
+* **How it works:** When your PC boots up, it broadcasts a `DHCPDISCOVER` packet across your Ethernet cable. Your router receives this packet and responds with a local IP address, subnet mask, default gateway (the router's own IP), and DNS servers.
+
+### The ISP's Network (What your Router is talking to)
+
+* **The DHCP Server:** A high-capacity network device called a **BRAS (Broadband Remote Access Server)** or **BNG (Broadband Network Gateway)** located in your local ISP exchange.
+* **The IP Assigned:** A **Public IP address** (or a Carrier-Grade NAT IP like `100.64.x.x`).
+* **How it works:** Your home router acts as a DHCP client on its WAN (Internet) port. It asks the ISP’s BRAS/BNG server for a public-facing IP so your entire home can access the global internet through **NAT (Network Address Translation)**.
+
+---
+
+## When DOES the ISP directly run the DHCP server for your PC?
+
+Your PC receives an IP address directly from the ISP's DHCP server only in specific network configurations:
+
+1. **Direct Fiber/Ethernet Drops (No Router):** If you plug the Ethernet cable coming from your wall/optical converter directly into your PC's Ethernet port without a router in between.
+2. **Bridge Mode:** If your home router is configured in "Bridge Mode," disabling its routing features and passing traffic directly from your PC to the ISP.
+3. **Enterprise / Campus Networks:** Large organizations or university dorms where individual rooms connect directly to managed enterprise switches connected back to a core network DHCP server.
+
+---
+
+## How to verify which server gave you your IP
+
+You can check which device acted as your DHCP server right now on Windows using Command Prompt:
+
+1. Press `Win + R`, type `cmd`, and hit **Enter**.
+2. Run the command:
+```cmd
+ipconfig /all
+
+```
+
+3. Look for your Ethernet adapter section and find the line **`DHCP Server`**.
+
+> If the address listed is something like `192.168.1.1` or `192.168.0.1`, it is your **home router**. If it is a public IP or a different subnet gateway assigned by your network administrator, it is an **external/ISP server**.
 
 
-
+# 
