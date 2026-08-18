@@ -15,10 +15,6 @@ cd ~      # Home
 man -k <keyword> # Searches the short descriptions of all manual pages for the specified keyword and returns a list of matching commands
 ```
 
-### Memory:
-
-> **P-L-C = Place, List, Change**
-
 ---
 
 ## 📄 File Operations
@@ -32,10 +28,6 @@ rm file
 rm -r folder
 ```
 
-### Memory:
-
-> **Make → Copy → Move → Remove**
-
 ---
 
 ## 🔍 Viewing Files
@@ -47,10 +39,22 @@ tail file
 less file
 ```
 
-### Memory:
+## I/O redirection:
+```
+> overwrite
+>> Append
+2>> Error Append
+&>> Error and Output Append
+grep <word> takes the line containing the word.
+```
 
-> **See beginning → See end → Browse**
-
+## Text Editor (Vim)
+```
+:se nu (turns on line numbers in the editor buffer)
+/<word> (To search for the word's next occurrence in the file)
+yy (Copy current line)
+p (Paste)
+```
 ---
 
 # 🥈 Level 2 — Permissions & Users
@@ -60,14 +64,25 @@ less file
 ```bash
 ls -l
 chmod +x script.sh
+chmod g+w <directory/rup> (To change permissions)
 chmod 644 file
 chmod 755 script.sh
 chown user:user file
+chown -R <username> <groupname> <directory/rup> (To change user owner and group owner) 
 ```
 
 ## User Info
+<img width="994" height="235" alt="Screenshot 2026-08-17 204537" src="https://github.com/user-attachments/assets/bd546f8e-a9a0-48a3-ba42-876c554bc612" />
 
-```bash
+**System Users**: The **users created by the softwares or applications** for example if we install Apache it will create a user apache. These kind of users are known as system users.
+
+Whenever a user is created in Linux things created by default:
+- A home directory is created (/home/username/)
+- A mail box is created (/var/spool/mail)
+- unique UID & GID are given to user
+
+
+```
 whoami
 id
 groups
@@ -78,6 +93,10 @@ passwd
 
 > **Who am I? → What can I do?**
 
+## User Modification
+```
+usermod -aG <username> <groupname> (To add an already existing user to another existing group)
+userdel -r <username> (To delete the user with it's home directory also)
 ---
 
 # 🥉 Level 3 — Processes
