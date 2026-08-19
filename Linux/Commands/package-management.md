@@ -111,3 +111,26 @@ Go Modules manages Go libraries and Go-based tools for Go development.
 | Remove package   | `apt remove pkg`  | `dnf remove pkg`   | `pacman -R pkg`  |
 | Search package   | `apt search pkg`  | `dnf search pkg`   | `pacman -Ss pkg` |
 
+```
+curl <link of the package> -o <package_name> (To download the file in the package name itself)
+rpm -ivh <package_name> (To install an RPM package)
+rpm -qa (To show installed RPM packages)
+tree /var/log (To show directory structure)
+rpm -e <package_name> (To erase/delete an package)
+yum search <package_name> (To find the desired package)
+yum install epel-release -y (To install another repository)
+yum update (To update all the packages)
+yum clean all (Clean the local cache)
+
+Service Mgmt
+
+systemctl start <service_name>
+systemctl status <service_name>
+systemctl restart <service_name> 
+systemctl reload <service_name> 
+systemctl enable <service_name> 
+
+When you install a service 
+
+cat /etc/systemd/system/multi-user.target.wants/<package_name> (To see the configuration file of the package)
+```
