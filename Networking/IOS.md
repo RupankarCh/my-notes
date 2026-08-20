@@ -38,7 +38,7 @@ Console access means connecting your computer **directly to the Cisco device's c
 
 Practical setup
 
-```text
+```
 PC
  │
  │ Console cable
@@ -58,8 +58,60 @@ In **Cisco Packet Tracer**:
 5. Go to **Desktop → Terminal**.
 6. Accept the default settings and press Enter.
 ---
+## ii. SSH Access
 
-## ii. Telnet Access
+SSH encrypts the communication.
+
+For practical setup the router needs:
+
+* Hostname
+* Domain name
+* Username/password
+* RSA keys
+* VTY configuration
+* SSH transport
+---
+
+Step 1: Configure an IP address '192.168.1.1/24'
+
+Step 2: Set a hostname 'R1' **SSH requires a hostname/domain setup for RSA key generation**.
+
+Step 3: Configure a domain name
+
+```
+R1(config)# ip domain-name lab.local
+```
+
+Step 4: Create a local username, **`secret` means IOS stores the password in a hashed/secured form** rather than as plain text.
+
+```
+R1(config)# username admin privilege 15 secret rup
+```
+
+Step 5: Generate RSA keys, On modern real devices, use a stronger key size appropriate to the platform and security policy.
+
+```
+R1(config)# crypto key generate rsa
+How many bits in the modulus [512]: 1024
+```
+
+Step 6: Configure the VTY lines for SSH, **login local tells the router to Use the locally configured username/password.** **transport input ssh Allows SSH connections on the VTY lines.**
+
+
+```
+R1(config)# line vty 0 4
+R1(config-line)# login local
+R1(config-line)# transport input ssh
+R1(config-line)# exit
+```
+
+Step 7: Connect using SSH From the PC and provide the local user's password:
+
+```
+ssh -l admin 192.168.1.1
+```
+
+## iii. Telnet Access
 
 Telnet is different because you're accessing the Cisco device **over the network**. Telnet is **not encrypted**.For learning, labs, and understanding IOS, it's useful. In real networks, **SSH should normally be used instead**.
 
@@ -99,173 +151,6 @@ telnet 192.168.1.1
 ```
 ---
 
-# iv. SSH Access
-
-SSH works similarly to Telnet:
-
-```text
-PC ───────── Network ───────── Router
-```
-
-But SSH encrypts the communication.
-
-The practical setup is a little more involved because the router needs:
-
-* Hostname
-* Domain name
-* Username/password
-* RSA keys
-* VTY configuration
-* SSH transport
-
----
-
-Step 1: Configure an IP address
-
-Just like Telnet:
-
-```text
-Router> enable
-Router# configure terminal
-
-Router(config)# interface gigabitEthernet 0/0
-Router(config-if)# ip address 192.168.1.1 255.255.255.0
-Router(config-if)# no shutdown
-Router(config-if)# exit
-```
-
----
-
-Step 2: Set a hostname
-
-SSH requires a hostname/domain setup for RSA key generation.
-
-```text
-Router(config)# hostname R1
-R1(config)#
-```
-
-Notice the prompt changed:
-
-```text
-Router(config)#
-```
-
-to:
-
-```text
-R1(config)#
-```
-
----
-
-Step 3: Configure a domain name
-
-```text
-R1(config)# ip domain-name lab.local
-```
-
----
-
-Step 4: Create a local username
-
-```text
-R1(config)# username admin privilege 15 secret Cisco123
-```
-
-Now you've created:
-
-```text
-Username: admin
-Password: Cisco123
-```
-
-`secret` means IOS stores the password in a hashed/secured form rather than as plain text.
-
----
-
-Step 5: Generate RSA keys
-
-```text
-R1(config)# crypto key generate rsa
-```
-
-Depending on the IOS version, you'll be asked for the modulus size.
-
-For a lab:
-
-```text
-How many bits in the modulus [512]: 1024
-```
-
-Enter:
-
-```text
-1024
-```
-
-On modern real devices, use a stronger key size appropriate to the platform and security policy.
-
----
-
-Step 6: Configure the VTY lines for SSH
-
-```text
-R1(config)# line vty 0 4
-R1(config-line)# login local
-R1(config-line)# transport input ssh
-R1(config-line)# exit
-```
-
-The important commands are:
-
-```text
-login local
-```
-
-This tells the router:
-
-> Use the locally configured username/password.
-
-And:
-
-```text
-transport input ssh
-```
-
-This tells the router:
-
-> Allow SSH connections on the VTY lines.
-
----
-
-Step 7: Connect using SSH
-
-From the PC:
-
-```text
-ssh -l admin 192.168.1.1
-```
-
-You'll be asked for:
-
-```text
-Password:
-```
-
-Enter:
-
-```text
-Cisco123
-```
-
-You should get:
-
-```text
-R1>
-```
-
-You're now remotely connected using **SSH**.
 
 ---
 
