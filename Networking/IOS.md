@@ -52,94 +52,12 @@ In **Cisco Packet Tracer**:
 2. Choose the **Console cable**.
 3. Connect:
 
-   * PC → `RS232`
+   * **PC → `RS232` Modern laptops do not come with built-in RS232 (DB9) serial ports use USB-to-RS232 Adapter**
    * Router/Switch → `Console`
 4. Click the PC.
 5. Go to **Desktop → Terminal**.
 6. Accept the default settings and press Enter.
-
-You'll get something like:
-
-```text
-Router>
-```
-
-You're now in **User EXEC mode**.
-
 ---
-
-Configure a console password
-
-Go to Privileged EXEC:
-
-```text
-Router> enable
-Router#
-```
-
-Enter Global Configuration:
-
-```text
-Router# configure terminal
-Router(config)#
-```
-
-Enter the console line:
-
-```text
-Router(config)# line console 0
-Router(config-line)#
-```
-
-Set a password:
-
-```text
-Router(config-line)# password cisco
-```
-
-Tell IOS to require that password:
-
-```text
-Router(config-line)# login
-```
-
-Exit:
-
-```text
-Router(config-line)# exit
-Router(config)# exit
-```
-
-Now when someone connects through the console, they'll be prompted for:
-
-```text
-Password:
-```
-
-Complete configuration
-
-```text
-Router> enable
-Router# configure terminal
-Router(config)# line console 0
-Router(config-line)# password cisco
-Router(config-line)# login
-Router(config-line)# end
-Router#
-```
-
----
-**Set Aux Console Passord**
-```
-(config)#line aux 0 (Enters AUX (auxiliary) line configuration mode)
-password abc
-login
-exit
-wr
-```
-
----
-
 
 # ii. Telnet Access
 
@@ -586,8 +504,7 @@ conf t
 (config)#config-register 0x2102 (To boot securely which was not possible after doing confreg 0x2142, and prevent no authentication from next time onwards)
 ```
 
-# 
-Connect a router and Linux machine in GNS3
+# Connect a router and Linux machine in GNS3
 ```
 (config)#enable password <password>
 (config)#line vty 0 4 (opens configuration mode for Virtual Teletype lines 0 through 4, allowing up to 5 simultaneous remote connections (via SSH or Telnet) to manage the device.)
@@ -611,3 +528,76 @@ ping 192.168.10.10 (To check)
 telnet 192.168.10.10
 Username <name>
 ```
+
+
+# Configure a console password
+
+Go to Privileged EXEC:
+
+```text
+Router> enable
+Router#
+```
+
+Enter Global Configuration:
+
+```text
+Router# configure terminal
+Router(config)#
+```
+
+Enter the console line:
+
+```text
+Router(config)# line console 0
+Router(config-line)#
+```
+
+Set a password:
+
+```text
+Router(config-line)# password cisco
+```
+
+Tell IOS to require that password:
+
+```text
+Router(config-line)# login
+```
+
+Exit:
+
+```text
+Router(config-line)# exit
+Router(config)# exit
+```
+
+Now when someone connects through the console, they'll be prompted for:
+
+```text
+Password:
+```
+
+Complete configuration
+
+```text
+Router> enable
+Router# configure terminal
+Router(config)# line console 0
+Router(config-line)# password cisco
+Router(config-line)# login
+Router(config-line)# end
+Router#
+```
+
+---
+**Set Aux Console Passord**
+```
+(config)#line aux 0 (Enters AUX (auxiliary) line configuration mode)
+password abc
+login
+exit
+wr
+```
+
+---
