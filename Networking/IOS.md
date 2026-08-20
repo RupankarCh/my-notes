@@ -59,9 +59,10 @@ In **Cisco Packet Tracer**:
 6. Accept the default settings and press Enter.
 ---
 
-# ii. Telnet Access
+## ii. Telnet Access
 
-Telnet is different because you're accessing the Cisco device **over the network**.
+Telnet is different because you're accessing the Cisco device **over the network**. Telnet is **not encrypted**.For learning, labs, and understanding IOS, it's useful. In real networks, **SSH should normally be used instead**.
+
 
 For example:
 
@@ -72,132 +73,30 @@ PC ───────────── Network ─────────�
 
 The PC connects to the router's IP address using Telnet.
 
-Important
-
-Telnet is **not encrypted**.
-
-For learning, labs, and understanding IOS, it's useful. In real networks, **SSH should normally be used instead**.
-
 ---
 
-Step 1: Give the router an IP address
-
-Suppose your router has:
-
-```text
-GigabitEthernet0/0
-```
-
-Configure it:
-
-```text
-Router> enable
-Router# configure terminal
-Router(config)# interface gigabitEthernet 0/0
-Router(config-if)# ip address 192.168.1.1 255.255.255.0
-Router(config-if)# no shutdown
-Router(config-if)# exit
-```
-
-Now the router has:
-
-```text
-192.168.1.1/24
-```
-
----
+Step 1: Give the router an IP address 192.168.1.1/24
 
 Step 2: Configure a PC
 
-Give the PC:
-
 ```text
-IP address:      192.168.1.10
-Subnet mask:     255.255.255.0
+IP address:      192.168.1.10/24
 Default gateway: 192.168.1.1
 ```
+Test connectivity from the PC using ping.
 
-The physical/network connection is now:
-
-```text
-PC                          Router
-192.168.1.10                192.168.1.1
-     │                           │
-     └──────── Ethernet ─────────┘
-```
-
-Test connectivity from the PC:
+Step 3: Configure Telnet on the router and Set a password:
 
 ```text
-ping 192.168.1.1
-```
-
-You should receive replies.
-
----
-
-Step 3: Configure Telnet on the router
-
-This is where **VTY lines** come in.
-
-VTY = Virtual Terminal lines.
-
-Enter:
-
-```text
-Router# configure terminal
 Router(config)# line vty 0 4
-Router(config-line)#
-```
-
-Set a password:
-
-```text
 Router(config-line)# password cisco
 Router(config-line)# login
 ```
 
-Exit:
-
-```text
-Router(config-line)# end
-```
-
-Now Telnet access is configured.
-
----
-
 Step 4: Telnet from the PC
-
-On the PC's command prompt:
-
 ```text
 telnet 192.168.1.1
 ```
-
-You should see:
-
-```text
-Trying 192.168.1.1 ...
-Connected to 192.168.1.1
-
-Password:
-```
-
-Enter:
-
-```text
-cisco
-```
-
-You should get:
-
-```text
-Router>
-```
-
-Congratulations — you're now controlling the router remotely through **Telnet**.
-
 ---
 
 # iv. SSH Access
