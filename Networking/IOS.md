@@ -28,13 +28,17 @@
 | **Telnet**    | `line vty 0 4`   | Remote network access           |
 | **SSH**       | `line vty 0 4`   | Secure remote network access    |
 
+| Console                                | AUX                                                        |
+| -------------------------------------- | ---------------------------------------------------------- |
+| Mainly for local management            | Mainly for remote management                               |
+| Direct connection to the device        | Can be connected through a modem                           |
+| Commonly used during initial setup     | Useful for out-of-band remote access                       |
+| Usually does not require an IP address | Also works independently of the device's normal IP network |
+
 ---
 
 ## i. Console Access
-
-What is it?
-
-Console access means connecting your computer **directly to the Cisco device's console port**. You don't need an IP address, Telnet, or SSH for the initial connection.
+Means connecting your computer **directly to the Cisco device's console port**. You don't need an IP address, Telnet, or SSH for the initial connection.
 
 Practical setup
 
@@ -110,8 +114,20 @@ Step 7: Connect using SSH From the PC and provide the local user's password:
 ```
 ssh -l admin 192.168.1.1
 ```
+## iii. AUX Access
+The AUX port is mainly used for remote management, commonly through a modem or another serial connection. Unlike console access, **AUX access is designed for remote out-of-band management(Accessing devices via a completely separate physical connection that does not depend on the router's IP interfaces or WAN links)**
 
-## iii. Telnet Access
+Step 1: Add a PC and a Cisco router.
+Step 2: Choose the appropriate cable/connection for the AUX interface.
+Connect:
+PC → RS232
+Router → AUX
+Click the PC.
+Go to Desktop → Terminal.
+Accept the default terminal settings and press Enter.
+
+
+## iv. Telnet Access
 
 Telnet is different because you're accessing the Cisco device **over the network**. Telnet is **not encrypted**.For learning, labs, and understanding IOS, it's useful. In real networks, **SSH should normally be used instead**.
 
