@@ -4,8 +4,11 @@
 - Enable Password: Priviledge Escalation
 - Enable Secret Password: Encrypted Priviledge Escalation
 - Line VTY Password: Connecting remotely
+
 **VTY: A VTY (Virtual Teletype) line is a virtual login port that allows users to remotely access the router using Telnet or SSH over the network.**
 
+
+# Navigation in IOS
 | Mode                                   | Prompt                   | Purpose                                                     | How to Enter                        |
 | -------------------------------------- | ------------------------ | ----------------------------------------------------------- | ----------------------------------- |
 | **User EXEC**                          | `Router>`                | Basic monitoring commands; limited access                   | Default after login                 |
@@ -17,7 +20,7 @@
 | **Subinterface Configuration**         | `Router(config-subif)#`  | Configure logical subinterfaces                             | `interface GigabitEthernet0/0.10`   |
 | **VLAN Configuration** *(on switches)* | `Switch(config-vlan)#`   | Configure VLANs                                             | `vlan <vlan-id>`                    |
 
-# There are four most common ways to access the Cisco IOS:
+# 4 Ways to access the Cisco IOS:
 | Access method | IOS line         | Typical use                     |
 | ------------- | ---------------- | ------------------------------- |
 | **Console**   | `line console 0` | Local physical access           |
@@ -27,13 +30,11 @@
 
 ---
 
-## 1. Console Access
+## i. Console Access
 
 What is it?
 
-Console access means connecting your computer **directly to the Cisco device's console port**.
-
-You don't need an IP address, Telnet, or SSH for the initial connection.
+Console access means connecting your computer **directly to the Cisco device's console port**. You don't need an IP address, Telnet, or SSH for the initial connection.
 
 Practical setup
 
@@ -135,9 +136,12 @@ password abc
 login
 exit
 wr
+```
+
 ---
 
-# 2. Telnet Access
+
+# ii. Telnet Access
 
 Telnet is different because you're accessing the Cisco device **over the network**.
 
@@ -278,7 +282,7 @@ Congratulations — you're now controlling the router remotely through **Telnet*
 
 ---
 
-# 3. SSH Access
+# iv. SSH Access
 
 SSH works similarly to Telnet:
 
