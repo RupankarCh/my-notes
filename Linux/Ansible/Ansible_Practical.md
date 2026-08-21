@@ -408,20 +408,17 @@ ansible all -m shell -a 'lsblk'  (list block devices. It displays information ab
 
 ansible all -m shell -a 'fdisk -l /dev/nvme0n1' (Display the partition table)
 
-ansible all -m shell -a ' (Create a new partition)
-cat <<EOF | fdisk /dev/nvme0n1
-n
-p
-1
-
-+10G
-w
+ansible all -m shell -a ' cat <<EOF | fdisk /dev/nvme0n1  (On every Ansible-managed server, create partition /dev/nvme0n1p1 with a size of approximately 10 GB and write the changes to disk, cat <<EOF ... EOF → Creates a sequence of input lines and sends them to fdisk.)
+n → create a new partition
+p → create a primary partition
+1 → partition number 1
+<blank> → accept the default first sector
++10G → make the partition 10 GB
+w → write/save the partition table
 EOF
 '
 
-ansible all -m shell -a 'partprobe /dev/nvme0n2' (Tell the kernel to re-read the partition table)
-
-ansible all -m shell -a 'fdisk -l /dev/nvme0n2' (Verify the new partitions)
+ansible all -m shell -a 'partprobe /dev/nvme0n2' (makes Linux kernel re-read the partition table so the new partition becomes visible without rebooting)
 
 ansible all -m shell -a 'blkid /dev/nvme0n2p2' (Display filesystem UUID)
 
@@ -430,6 +427,13 @@ ansible all -m shell -a 'mount -a'
 ansible all -m shell -a 'df -h' (Display mounted filesystem)
 
 ansible all -m shell -a '/home/ansible/test.sh' (Display mounted filesystems)
+
+ansible all -m shell -a 'lsblk -f' > report.txt (To save block devices, partitions, filesystems, UUIDs, and mount points to a file of all hosts in your ansible inventory)
+
+ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p1' (Creates an ext4 filesystem on /dev/nvme0n2p1 on every Ansible-managed server.)
+or,
+ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1'
+
 ```
 
 ---
@@ -567,31 +571,8 @@ ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults 
 
 ---
 
-Native Module vs External Module
 
 ```
-ansible all -m shell -a 'lsblk -f' > report.txt
-
-ansible all -m shell -a 'fdisk -l /dev/nvme0n2' (See Partition Table)
-
-
-ansible all -m shell -a "cat << EOF | fdisk /dev/nvme0n2
->n
->p
->1
->
->+2G
->w
->EOF
-"
- 
-ansible all -m shell -a 'partprobe /dev/nvme0n2' (Persistatnt Filesystem)
-
-ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p1'
-or,
-ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1'
-
-
 ansible all -m shell -a 'blkid /dev/nvme0n2p1' (Check)
 
 ansible all -m file -a 'path=/data state=directory mode=0755'
