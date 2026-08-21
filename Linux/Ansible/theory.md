@@ -359,4 +359,13 @@ Example:
 | 3    | Some hosts were unreachable                        |
 | 4    | Parser or syntax error (varies by command/context) |
 
+# Native vs External Module
+| Feature      | Native Module                                     | External Module                                   |
+| ------------ | ------------------------------------------------- | ------------------------------------------------- |
+| Meaning      | Module included with Ansible                      | Module developed/maintained outside Ansible core  |
+| Installation | Usually available with Ansible package/collection | May require installing a separate collection      |
+| Maintenance  | Maintained by Ansible/community                   | Maintained by a vendor, community, or third party |
+| Example      | `ansible.builtin.copy`, `ansible.builtin.file`    | Modules from vendor collections                   |
+| Namespace    | Often `ansible.builtin.*`                         | Usually `<collection>.<module>`                   |
+| Reliability  | Generally well integrated                         | Depends on the collection/vendor                  |
 
