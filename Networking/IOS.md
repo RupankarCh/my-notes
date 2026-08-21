@@ -38,7 +38,7 @@
 ---
 
 ## i. Console Access
-Means connecting your computer **directly to the Cisco device's console port**. You don't need an IP address, Telnet, or SSH for the initial connection.
+Used when you are physically beside the router means connecting your computer **directly to the Cisco device's console port**. You don't need an IP address, Telnet, or SSH for the initial connection.
 
 Practical setup
 
@@ -115,39 +115,18 @@ Step 7: Connect using SSH From the PC and provide the local user's password:
 ssh -l admin 192.168.1.1
 ```
 ## iii. AUX Access
-The AUX port is mainly used for remote management, commonly through a modem or another serial connection. Unlike console access, **AUX access is designed for remote out-of-band management(Accessing devices via a completely separate physical connection that does not depend on the router's IP interfaces or WAN links)**
-
-Step 1: Add a PC and a Cisco router.
-Step 2: Choose the appropriate cable/connection for the AUX interface.
-Connect:
-PC → RS232
-Router → AUX
-Click the PC.
-Go to Desktop → Terminal.
-Accept the default terminal settings and press Enter.
+The AUX port is mainly used for remote management, commonly through a modem or another serial connection. Unlike console access, **AUX access is designed for remote out-of-band management(Accessing devices via a completely separate physical connection that does not depend on the router's IP interfaces or WAN links)**. so that a remote administrator can dial into the router and access its CLI.
 
 
 ## iv. Telnet Access
 
 Telnet is different because you're accessing the Cisco device **over the network**. Telnet is **not encrypted**.For learning, labs, and understanding IOS, it's useful. In real networks, **SSH should normally be used instead**.
 
-
-For example:
-
-```text
-PC ───────────── Network ───────────── Router
-192.168.1.10                         192.168.1.1
-```
-
-The PC connects to the router's IP address using Telnet.
-
----
-
 Step 1: Give the router an IP address 192.168.1.1/24
 
 Step 2: Configure a PC
 
-```text
+```
 IP address:      192.168.1.10/24
 Default gateway: 192.168.1.1
 ```
@@ -155,14 +134,14 @@ Test connectivity from the PC using ping.
 
 Step 3: Configure Telnet on the router and Set a password:
 
-```text
+```
 Router(config)# line vty 0 4
 Router(config-line)# password cisco
 Router(config-line)# login
 ```
 
 Step 4: Telnet from the PC
-```text
+```
 telnet 192.168.1.1
 ```
 ---
