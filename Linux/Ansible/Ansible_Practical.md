@@ -384,6 +384,8 @@ ansible all -m command -a 'id ansible' (Displays the UID, GID, and group members
 
 **Used for:** Pipes, redirects, variables, loops, scripts to run on managed nodes.
 ```
+ansible all -m shell -a 'ls -ld /data' (It checks the `/data` directory on all Ansible-managed hosts and displays its permissions, owner, group, and directory details.)
+
 ansible all -m shell -a 'rm -rf /tmp/*' (Delete Files)
 
 ansible all -m shell -a 'touch /tmp/file{1..5}' (Create Multiple Files)
@@ -408,7 +410,7 @@ ansible all -m shell -a 'lsblk'  (list block devices. It displays information ab
 
 ansible all -m shell -a 'fdisk -l /dev/nvme0n1' (Display the partition table)
 
-ansible all -m shell -a ' cat <<EOF | fdisk /dev/nvme0n1  (On every Ansible-managed server, create partition /dev/nvme0n1p1 with a size of approximately 10 GB and write the changes to disk, cat <<EOF ... EOF → Creates a sequence of input lines and sends them to fdisk.)
+ansible all -m shell -a ' cat <<EOF | fdisk /dev/nvme0n1  
 n → create a new partition
 p → create a primary partition
 1 → partition number 1
@@ -417,23 +419,56 @@ p → create a primary partition
 w → write/save the partition table
 EOF
 '
+(On every Ansible-managed server, create partition /dev/nvme0n1p1 with a size of approximately 10 GB and write the changes to disk, cat <<EOF ... EOF → Creates a sequence of input lines and sends them to fdisk.)
 
 ansible all -m shell -a 'partprobe /dev/nvme0n2' (makes Linux kernel re-read the partition table so the new partition becomes visible without rebooting)
 
-ansible all -m shell -a 'blkid /dev/nvme0n2p2' (Display filesystem UUID)
+ansible all -m shell -a 'blkid /dev/nvme0n2p2' (It runs blkid on /dev/nvme0n2p1 on all Ansible-managed hosts to display its filesystem type, UUID, and other block-device identification information.)
 
 ansible all -m shell -a 'mount -a'
 
-ansible all -m shell -a 'df -h' (Display mounted filesystem)
+ansible all -m shell -a 'df -Th' (It **displays the disk space usage, filesystem type, total size, used space, available space, and mount points on all Ansible-managed hosts**.)
 
 ansible all -m shell -a '/home/ansible/test.sh' (Display mounted filesystems)
 
 ansible all -m shell -a 'lsblk -f' > report.txt (To save block devices, partitions, filesystems, UUIDs, and mount points to a file of all hosts in your ansible inventory)
 
-ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p1' (Creates an ext4 filesystem on /dev/nvme0n2p1 on every Ansible-managed server.)
-or,
-ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1'
+ansible all -m shell -a 'lsblk /dev/nvme0n2' (It displays the partition and block-device layout of `/dev/nvme0n2` on all Ansible-managed hosts.)
 
+ansible all -m shell -a 'mount -t ext4 /dev/nvme0n2p1 /data' (It **mounts `/dev/nvme0n2p1` as an `ext4` filesystem on `/data` on all Ansible-managed hosts**, and ensures the mount is active.)
+
+ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1' (Creates an ext4 filesystem on /dev/nvme0n2p1 on every Ansible-managed server.)
+
+ansible all -m shell -a 'umount /data' (It unmounts the filesystem mounted at `/data` on `node1`, without removing its `/etc/fstab` entry.)
+
+ansible all -m shell -a 'findmnt /dev/nvme0n2p1' (It checks where `/dev/nvme0n2p1` is currently mounted on all Ansible-managed hosts and displays its mount details.)
+
+
+ansible all -m shell -a 'cat <<EOF | fdisk /dev/nvme0n2 
+>d
+>1
+>w
+>EOF
+'
+(It **automatically runs `fdisk` on `/dev/nvme0n2` to delete partition 1 and write/save the partition-table changes on all Ansible-managed hosts**.)
+
+Make a partition persistently mounted:
+ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1' (It **formats `/dev/nvme0n2p1` with the `ext4` filesystem on all Ansible-managed hosts**, creating a new filesystem on that partition Copy the UUID)
+
+ansible node1 -m shell -a 'echo "UUID=<paste> /data ext4 defaults 0 0" >> /etc/fstab' (It adds an `/etc/fstab` entry on `node1` to automatically mount the specified UUID-based ext4 filesystem at `/data` during boot.)
+
+
+ansible node1 -m shell -a 'mount -a' (It mounts all filesystems listed in `/etc/fstab` on `node1`, including the newly configured `/data` filesystem.)
+
+ansible node1 -m shell -a 'findmnt /dev/nvme0n2p1' (It verifies that `/dev/nvme0n2p1` is mounted and shows its mount point and filesystem details on `node1`.)
+
+ansible node1 -m shell -a "grep '/data' /etc/fstab" (It checks `/etc/fstab` on `node1` and displays the line containing `/data`, verifying that the filesystem is configured for persistent mounting.)
+
+ansible node1 -m shell -a 'cp /etc/fstab /etc/fatab.bak' (It creates a backup copy of `/etc/fstab` as `/etc/fatab.bak` on `node1`.)
+
+ansible node1 -m shell -a 'ls -l /etc/fatab.bak' (It checks whether /etc/fastab.bak exists on node1 and displays its file details.)
+
+ansible node1 -m shell "sed -i '\|[[:space]]data[[:space]]|d' /etc/fstab"  ( \|[[:space]]/data means delete only the line containing /data, It **removes the `/data` mount entry from `/etc/fstab` on `node1` using `sed`. to edit a file use sed with -i for interactive shell,)
 ```
 
 ---
@@ -558,12 +593,15 @@ ansible all -m raw -a 'uptime; lsblk'
 ```
 ansible all -m filesystem -a 'fstype=xfs dev=/dev/nvme0n2p1'  (Create Filesystem)
 
-ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p2'
+ansible all -m filesystem -a 'fstype=ext4 dev=/dev/nvme0n2p1' (Creates an ext4 filesystem on /dev/nvme0n2p1 on every Ansible-managed server.)
+
 ```
 
 ## 13. Mount Module
 
 ```
+ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=ext4 state=mounted' (It **mounts `/dev/nvme0n2p1` as an `ext4` filesystem on `/data` on all Ansible-managed hosts**, and ensures the mount is active.)
+
 ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs state=mounted'  (Mounts /dev/nvme0n2p1 as XFS on /data immediately and ensures the mount is configured persistently)
 
 ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'  (Adds/configures the /data mount in /etc/fstab with default options but does not mount it immediately, the mount is configured persistently)
@@ -571,66 +609,6 @@ ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults 
 
 ---
 
-
-```
-ansible all -m shell -a 'blkid /dev/nvme0n2p1' (Check)
-
-ansible all -m file -a 'path=/data state=directory mode=0755'
-
-ansible all -m shell -a 'ls -ld /data'
-
-ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=ext4 state=mounted'
-or,
-ansible all -m shell -a 'mount -t ext4 /dev/nvme0n2p1 /data' 
-
-ansible all -m shell -a 'df -h' 
-
-ansible all -m copy -a 'src=report.txt dest=/data'
-
-ansible all -m shell -a 'ls -l /data'
-
-ansible all -m shell -a 'unmount /data' (To unmount)
-
-ansible all -m shell -a 'df -h' (To check)
-
-ansible all -m shell -a 'findmnt /dev/nvme0n2p1' (To Check partition's mounting state)
-
-ansible all -m shell -a 'cat <<EOF | fdisk /dev/nvme0n2
->d
->1
->w
->EOF
-'
-(To remove the partition)
-
-ansible all -m shell -a 'lsblk /dev/nvme0n2' (To check)
-
-
-Make a partition persistently mounted:
-ansible all -m shell -a 'mkfs.ext4 /dev/nvme0n2p1' (Copy the UUID)
-
-ansible node1 -m shell -a 'echo "UUID=<paste> /data ext4 defaults 0 0" >> /etc/fstab' ( 
-
-ansible node1 -m shell -a 'mount -a'
-
-ansible node1 -m shell -a 'findmnt /dev/nvme0n2p1' (Check)
-
-ansible node2 -m shell -a 'echo "UUID=<paste> /data ext4 defaults 0 0" >> /etc/fstab'
-
-ansible node2 -m shell -a 'mount -a'
-
-ansible node2 -m shell -a 'findmnt /dev/nvme0n2p1' (Check)
-
-ansible node1 -m shell -a "grep '/data' /etc/fstab" 
-
-ansible node1 -m shell -a 'unmount /data' (Unmount)
-
-ansible node1 -m shell -a 'cp /etc/fstab /etc/fatab.bak'
-
-ansible node1 -m shell -a 'ls -l /etc/fastab.bak'
-
-ansible node1 -m shell "sed -i '\|[[:space]]data[[:space]]|d' /etc/fstab"  (to edit a file use sed with -i for interactive shell, \|[[:space]]/data means delete only the line containing /data)
-```
 ```
 Package Management:
 
