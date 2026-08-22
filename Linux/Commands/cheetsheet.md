@@ -1,5 +1,3 @@
-A good way to remember Linux commands is to group them by **what you usually do**, not by the subsystem they belong to. Think of them as levels:
-
 ---
 
 # 🥇 Level 1 — Daily Commands (Use Every Day)
@@ -32,7 +30,8 @@ rm -r folder
 
 ## 🔍 Viewing Files
 
-```bash
+```
+file <filename> (see file type)
 cat file
 head file
 tail file
@@ -55,6 +54,15 @@ grep <word> takes the line containing the word.
 yy (Copy current line)
 p (Paste)
 ```
+
+## Archive:
+```
+tar -czvf <filename>.tar.gz <directory> (c-create, z-compress, f-file, to archive a directory)
+tar -xzvf <filename>.tar.gz <directory> (x-extract, )
+zip -r <filename>.zip <directory> 
+unzip <filename>.zip 
+```
+
 ---
 
 # 🥈 Level 2 — Permissions & Users
@@ -125,9 +133,9 @@ pkill firefox
 
 ---
 
-# 🏅 Level 4 — System Information
+# 🏅 Level 4 — System Information and Processes
 
-```bash
+```
 hostnamectl
 uname -a
 lsb_release -a
@@ -136,6 +144,11 @@ free -h
 lscpu
 date
 timedatectl
+top (To System Information processes)
+free -m (To see RAM details)
+ps -aux (To sort processes by PID)
+kill <PPID> (To stop all the process and then the parent process itself is stopped, It may happen that systemctl stop <ps> command won't be available)
+kill -9 <PID> <PID> <PID> (stop process forcefully)
 ```
 
 ### Memory:
@@ -265,13 +278,31 @@ file unknown.bin
 
 ---
 
-# 📦 Level 9 — Packages
+# 📦 Level 9 — Packages 
+/etc/yum.repos.d
+/etc/apt/sources.list (this file contains the repositories)
 
-```bash
-sudo apt update
-sudo apt upgrade
-sudo apt install package
-sudo apt remove package
+On Fedora based systems like RHEL/CentOS: 
+```
+yum update (checks for the latest indices and upgrades all installed packages at once also while removing the obsolete packages)
+yum install <package_name> (updates the index for every package on your system, and installs the latest version of the package_name mentioned)
+```
+
+On Debian based systems Kali/Ubuntu: (The default editor is nano here)
+```
+adduser <username>
+export EDITOR=vim (To change default editor to vim)
+dpkg -i <downloaded_package> 
+dpkg -l (To list all the Debian package on the system)
+dpkg -r <package_name> (To remove a package)
+apt update (downloads the latest package information from configured repositories so your system knows which software updates and new packages are available) 
+apt upgrade (installs the newest versions of all currently installed packages on your system using the package list fetched by apt update)
+apt search <package_name> 
+apt install <package_name> (To install and start a service)
+apt remove <package_name>
+apt purge <package_name> (To remove all the configuration, data and the package itself from the system)
+systemctl status <apache2>
+systemctl is-enabled <service_name> 
 sudo apt autoremove
 ```
 
