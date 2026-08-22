@@ -693,4 +693,113 @@ ansible all -m shell -a "ss -lntp |grep ':80'"
 
 ```
 
+22-08-26 1st half
+
+
+SELINUX: Security Enhanced Linux
+selinux is a mendatory access control security mechanism built into RHELL9 beyond traditional Linux permissions such as user and group ownership and rwx permission.
+
+MAC vs DAC
+
+MODE of SELINUX:
+1.Enforcing(default): Policy is active and provide highest level of security. It blocks and logs the unauthorized access.
+2.Permissive: selinux doesn't block unauthorized access but log file will be generated.
+3.Disabled: selinux is totally disabled.
+
+
+Configuration File: /etc/selinux/config
+
+
+sestatus (To see current state of selinux)
+getenforce (To see current state of selinux)
+setenforce 1 (To 
+sudo vim /etc/selinux/config (To change selinux mode permanently)
+SELINUX=disabled
+
+Types:
+1.STRICT (Every service/daemon)
+2.TARGETED (For a perticular service/daemon)
+3.MLS=> MULTI LEVEL SECURITY
+
+Selinux Contexts
+Security Context
+Selinux Boolean: selinux boolean allows administrator to enable or disable certain policy or behaviour without creating a complete new selinux policy 
+
+# manual Selinux 
+```
+ls -zl test.sh 
+
+su - root
+mkdir /web
+cd /web/
+vim index.html
+<content>
+ls -zl /web/index.html
+yum install httpd -y
+cd ..
+clear 
+systemctl restart httpd
+systemctl enable httpd
+httpd -t
+vim /etc/httpd/conf/httpd.conf
+DocumentRoot "/web/index.html"
+systemctl status httpd.service
+ls -lZd /var/www/html/
+vim /etc/httpd/conf/httpd.conf
+DocumentRoot "/web/index.html"
+systemctl restart httpd
+systemctl enabled httpd/systemctl restart --now httpd
+ls -Zl /web/index.html
+#chcon -t httpd_sys_content_t /web/index.html
+ls -Zld /web 
+#chcon -t httpd_sys_content_t /web
+systemctl restart httpd
+systemctl enabled httpd
+sudo chcon -t system_u /web
+ls -Zl /web
+ls -Zld /var/www/html
+sudo chcon -t system
+yum intall semanage* -y
+semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+restorecon -Rv /web/
+exit
+#systemctl restart --now httpd
+apachectl configtest
+curl localhost
+
+getsebool -a (To see all policy status)
+setsebool <Policy_name> on (To turn a policy on, Temporarily)
+setsebool -P <Policy_name> on (To turn a policy on, Permanently)
+```
+
+
+On Server:
+ansible all -m command -a 'sestatus' 
+ansible all -m command -a 'getenforce' 
+ansible all -m command -a 'cat /etc/selinux/config' 
+ansible all -m command -a 'sestatus | grep "Loaded policy name"' (To check selinux policy type)
+ansible all -m ansible.posix.selinux -a 'setenforce 0" (Change selinux mode to Permissive temporarily)
+ansible all -m shell -a "getsebool -a" (To see all policy status)
+ansible all -m shell -a "setsebool <boolean_name> 1" (To turn a policy on, Temporarily)
+
+ansible all -m shell -a 'touch /tmp/test_selinux.txt' (to create a file)
+ansible all -m command -a 'ls -lZ /tmp/test_selinux.txt' (To see selinux context)
+
+ansible all -m command -a 'ls -lZ /var/www/html' 
+ansible all -m shell -a 'dnf install httpd"
+
+ansible all -m shell -a 'echo "THIS IS THE ANSIBLE TEST PAGE" > /var/www/html/index.html'
+ansible all -m shell -a "ls -Zl /var/www/html/index.html"
+ansible all -m shell -a "chcon -t httpd_sys_content_t /var/www/html/index.html (To set context)
+ansible all -m shell -a "systemctl restart --now httpd"
+ansible all -m shell -a "curl localhost" 
+ansible all -m shell -a "restorecon -Rv var/www/html/index.html" 
+ansible all -m shell -a "command -v semanage" (To check semanage tool availability on hosts)
+ansible all -m shell -a "semanage fcontext -a -t httpd_sys_content_t "/var/www/html.*)?"' (To set the context permanently)
+ansible all -m shell -a "semanage fcontext -d-t httpd_sys_content_t "/var/www/html.*)?"' (To remove the context permanently)
+ansible all -m shell -a 'ps -eZ | grep httpd' (To see the context upon a particular process)
+ansible all -m shell -a 'semanage port -l | grep http_port_t'(Selinux port context upon certain port)
+ansible all -m shell -a 'semanage port -a -t http_port_t -p tcp 8085' (To add a port to the service so the web client can access the web server)
+```
+
 
