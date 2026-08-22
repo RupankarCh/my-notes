@@ -130,5 +130,3 @@ These support **network communication and resource management**
 | Application Services    | Run applications          |
 
 ---
-
-If you want, I can turn this into a **perfect exam answer (5–10 marks)** or **short notes for revision before exam**.
