@@ -1,10 +1,8 @@
----
-
 # 🥇 Level 1 — Daily Commands (Use Every Day)
 
 ## 📂 Navigation
 
-```bash
+```
 pwd      # Where am I?
 ls       # What's here?
 cd       # Go somewhere
@@ -17,7 +15,7 @@ man -k <keyword> # Searches the short descriptions of all manual pages for the s
 
 ## 📄 File Operations
 
-```bash
+```
 touch file.txt
 mkdir folder
 cp source dest
@@ -69,7 +67,7 @@ unzip <filename>.zip
 
 ## Permissions
 
-```bash
+```
 ls -l
 chmod +x script.sh
 chmod g+w <directory/rup> (To change permissions)
@@ -111,7 +109,7 @@ userdel -r <username> (To delete the user with it's home directory also)
 
 ## Running Programs
 
-```bash
+```
 ps aux
 top
 htop
@@ -121,7 +119,7 @@ pidof sshd
 
 ## Killing Programs
 
-```bash
+```
 kill PID
 kill -9 PID
 pkill firefox
@@ -161,7 +159,7 @@ kill -9 <PID> <PID> <PID> (stop process forcefully)
 
 ## Addresses
 
-```bash
+```
 ip a
 ip route
 ```
@@ -175,13 +173,13 @@ traceroute google.com
 
 ## Ports
 
-```bash
+```
 ss -tulnp
 ```
 
 ## DNS
 
-```bash
+```
 dig google.com
 nslookup google.com
 resolvectl status
@@ -189,7 +187,7 @@ resolvectl status
 
 ## Downloading
 
-```bash
+```
 curl URL
 wget URL
 ```
@@ -202,7 +200,7 @@ wget URL
 
 # ⚙️ Level 6 — Services
 
-```bash
+```
 systemctl status nginx
 systemctl start nginx
 systemctl stop nginx
@@ -221,7 +219,7 @@ systemctl disable nginx
 
 ## Journal
 
-```bash
+```
 journalctl -b
 journalctl -f
 journalctl -u nginx
@@ -229,13 +227,13 @@ journalctl -u nginx
 
 ## Kernel
 
-```bash
+```
 dmesg -T
 ```
 
 ## Syslog
 
-```bash
+```
 tail -f /var/log/syslog
 grep error /var/log
 ```
@@ -250,7 +248,7 @@ grep error /var/log
 
 ## Space
 
-```bash
+```
 df -h
 du -sh .
 lsblk
@@ -259,7 +257,7 @@ blkid
 
 ## Mounting
 
-```bash
+```
 mount
 findmnt
 umount
@@ -316,7 +314,7 @@ sudo apt autoremove
 
 ## SSH
 
-```bash
+```
 ssh user@host
 ssh -v user@host
 ssh-copy-id user@host
@@ -325,7 +323,7 @@ ssh-keygen -R host
 
 ## Firewall
 
-```bash
+```
 sudo ufw status
 sudo ufw allow 22/tcp
 sudo ufw deny 22/tcp
@@ -340,7 +338,7 @@ sudo ufw reload
 
 # 📝 Level 11 — Text Processing
 
-```bash
+```
 grep
 sed
 awk
@@ -363,7 +361,7 @@ grep → sed → awk → sort → uniq → wc
 
 # 💾 Level 12 — Backup
 
-```bash
+```
 rsync
 tar
 zip
@@ -381,7 +379,7 @@ Copy → Compress → Verify → Compare
 
 # 🖥️ Level 13 — Hardware
 
-```bash
+```
 lspci
 lsusb
 lsmod
