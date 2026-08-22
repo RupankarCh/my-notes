@@ -772,7 +772,7 @@ setsebool <Policy_name> on (To turn a policy on, Temporarily)
 setsebool -P <Policy_name> on (To turn a policy on, Permanently)
 ```
 
-
+```
 On Server:
 ansible all -m command -a 'sestatus' 
 ansible all -m command -a 'getenforce' 
