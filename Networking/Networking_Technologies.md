@@ -46,5 +46,6 @@ The CGNAT device maintains a translation table, something like:
 100.64.12.25:40000 ->	49.50.60.70:25000
 
 
+# Port Forwarding:
 
 
