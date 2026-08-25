@@ -750,8 +750,22 @@ Domain → Website
 "Which website should this HTTP/HTTPS request receive?"
 ```
 
+### If your ISP gives you a public IPv4 address
+Then you can usually host a server by configuring port forwarding on your home router:
+```
+Internet
+   ↓
+Public IP:80
+   ↓
+Home Router
+   ↓  port forwarding
+192.168.1.100:80
+   ↓
+Your Web Server
+```
 
+### If you're behind CGNAT
+TCP 443 → 192.168.1.100:443 An unsolicited connection from the Internet generally never reaches it because the ISP's CGNAT is in front.
 
-
-
-
+### ISP offers inbound port mapping through CGNAT
+→ it can work, but this is less common.
