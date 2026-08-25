@@ -133,8 +133,64 @@ systemctl restart httpd.service
 ```
 curl http://site1.com (To check site1.com's content
 
+## HTTPS
+hostnamectl set-hostname www.abc.com
+yum install -y httpd openssl mod_ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout Server.key -out Server.crt
+```
+Country Name (2 letter code) [XX]:IN
+State or Province Name (full name) []:WB
+Locality Name (eg, city) [Default City]:New Barrackpore
+Organization Name (eg, company) [Default Company Ltd]:RUPANKAR CHAKRABORTY
+Organizational Unit Name (eg, section) []:HO (Head Office)
+Common Name (eg, your name or your server's hostname) []:Rupankar
+Email Address []:root@192.168.231.160
+```
+mv Server.crt /etc/pki/tls/certs/
+mv Server.key /etc/pki/tls/private/
+cd /etc/httpd/conf.d/
+vim ssl.conf
+```
+(Line-85) SSLCertificateFile /etc/pki/tls/certs/Server.crt
+(Line-93) SSLCertificatekeyFile /etc/pki/tls/private/Server.key
+```
+vim http.conf
+```
+<VirtualHost *:443>
+SSLEngine on
+SSLCertificateFile /etc/pki/tls/certs/Server.crt
+SSLCertificateKeyFile /etc/pki/tls/private/Server.key
+ServerName www.abc.com
+DocumentRoot /var/www/html/website1
+</VirtualHost>
 
+<VirtualHost *:443>
+SSLEngine on
+SSLCertificateFile /etc/pki/tls/certs/Server.crt
+SSLCertificateKeyFile /etc/pki/tls/private/Server.key
+ServerName www.bwu.com
+DocumentRoot /var/www/html/website2
+</VirtualHost>
+```
+cd /var/www/html/
+mkdir website1 website2
+echo "I am Rupankar" > website1/index.html
+echo "I am not Rupankar" > website2/index.html
+vim /etc/hosts
+```
+192.168.231.160         www.abc.com
+192.168.231.160         www.bwu.com
+```
+httpd -t
+restorecon -v /etc/pki/tls/certs/Server.crt
+restorecon -v /etc/pki/tls/private/Server.key
+systemctl restart httpd
+systemctl status httpd --no-pager
+firewall-cmd --add-service=https --permanent 
+firewall-cmd --add-port=443/tcp --permanent
+firewall-cmd --reload 
 
+Go to browser https://www.abc.com and https://www.bwu.com
 
 
 
