@@ -733,3 +733,9 @@ EC2> Auto Scaling groups> ASG_name> Details, Edit (To change the capacity of the
 
 EC2> Auto Scaling groups, Select the ASG and Delete (To terminate the instances)
 
+## * **Custom VPC:** A private, isolated virtual network you create in the cloud to securely host and organize your resources.
+* **Public Subnet:** A designated range of IP addresses within a VPC that has a route directly to the internet.
+* **Internet Gateway:** A VPC component that enables communication and traffic flow between resources inside your VPC and the internet.
+* **Route Table:** A set of rules (routes) that determines where network traffic from your subnet or gateway is directed.
+* **NACL (Network Access Control List):** A stateless subnet-level firewall that controls inbound and outbound traffic using allowed and denied rules.
+* **Security Group:** A stateful virtual firewall at the instance or resource level that controls allowed inbound and outbound traffic.
