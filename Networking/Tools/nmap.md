@@ -15,3 +15,19 @@ Nmap Script Scan
 ```
 nmap --script=ftp-anon.nse <Target_IP>
 ```
+# How nmap works by default
+If you didn't specify -sT or -sS, Nmap normally uses a TCP SYN scan (-sS) when run with sufficient privileges.
+
+Conceptually, it does this for each TCP port:
+```
+Nmap                         Metasploitable 2
+ │                                  │
+ │──── TCP SYN → port 21 ──────────>│
+ │<─── SYN/ACK ─────────────────────│
+ │                                  │
+ │──── TCP SYN → port 22 ──────────>│
+ │<─── SYN/ACK ─────────────────────│
+ │                                  │
+ │──── TCP SYN → port 23 ──────────>│
+ │<─── SYN/ACK ─────────────────────│
+```
