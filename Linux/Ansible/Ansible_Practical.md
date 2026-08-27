@@ -129,6 +129,7 @@ ansible all --list-hosts -i ~/inventory/ (to see particular 2 group replace all 
 ```
 
 # 4. Make Custom inventory file as default inventory file:
+**/etc/ansible/ansible.conf** (Where default inventory file location can be changed)
 ```
 ansible --version (To see default inventory file)
 vim /etc/ansible/ansible.cfg 
