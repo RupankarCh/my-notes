@@ -127,16 +127,18 @@ User Responsible for:
 - Enable MFA on all accounts
 - Rotate all your keys often Use IAM tools to apply appropriate permissions
 - Analyze access patterns & review ermissions
+
 ## Users and Groups:
 - Root account created by default, shouldn't be used or shared
 - Users are people within your organization, and can be grouped
 - Groups only contain users, not other groups
-- Users don't have to belong to a group, and user can belong to multiple groups
+- Users don't have to belong to a group, and user can belong to multiple group
 
 ## IAM Permissions:
 - Users and Groups can be assigned a JSON documents called policies
 - These policies define the permissions of the users
 - In AWS you apply the least privilege principle: don't give more permissions than a user needs
+**Principal = "Who is allowed to access/use this function?"**
 
 ## Multi-Session Support
 It is used to **login to different accounts simultaniously on same window** of a browser.
@@ -497,6 +499,19 @@ Create internet gateway> Name tag> create > attach to VPC> Auto assign public IP
 - Azure-NSG
 - GCP-Firewall Rules
 
+## NAT
+| Feature                             | Custom NAT EC2 | AWS NAT Gateway     |
+| ----------------------------------- | -------------- | ------------------- |
+| Runs on EC2                         | ✅              | ❌                   |
+| You manage OS                       | ✅              | ❌                   |
+| You configure NAT                   | ✅              | ❌                   |
+| CloudWatch monitoring               | ✅              | ✅                   |
+| AWS manages infrastructure          | ❌              | ✅                   |
+| Automatic infrastructure redundancy | ❌              | ✅                   |
+| You pay EC2 + other resources       | ✅              | NAT Gateway pricing |
+
+## What is ELASTIC IP (EIP): 
+A static public IPv4 address in AWS that you can associate with an EC2 instance or other supported resources and keep even when the underlying instance is stopped or restarted.
 
 # Database
 Database is a place where data is stored, organized and accessed. 
