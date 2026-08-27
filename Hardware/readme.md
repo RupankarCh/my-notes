@@ -39,6 +39,17 @@ Lower latency = faster response.
 | **Best Use Case** | Budget/Mass Storage | Older Thin Laptops | OS Boot / Gaming / Video Editing |
 | **Relative Cost** | Lowest | Medium | Higher |
 
+#### RAID
+RAID 0 (Striping): **Splits data across at least two hard disks** to make **read and write speeds faster**, but offers no backup if a drive breaks.
+
+RAID 1 (Mirroring): Copies the exact **same data onto two hard disks** so that if one drive fails, your data is still safe on the other.
+
+RAID 5 (Distributed Parity): Uses **three or more hard disks to spread data and safety codes (parity)** so the system keeps working even if one drive breaks, **Parity is used to rebuild the data** in the event of a failure.
+
+RAID 5,10 both needs to have **4 disks minimum**
+
+RAID 10: both side is striped using RAID 0, It used fault tolerance of RAID 1, and speed of RAID 0. Downside: **you can only use the 50% capacity** of your disk space.
+
 #### M.2 SATA vs NVMe
 ##### Interface
 
