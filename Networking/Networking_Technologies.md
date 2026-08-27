@@ -120,3 +120,9 @@ Keeps a live copy of data to serve traffic instantly
 # Backup: 
 A snapshot of the data you restore when something breaks 
 
+# API Gateway:
+A service that acts as a single entry point between clients and backend APIs, handling routing, authentication, rate limiting, etc.
+
+# API endpoint:
+A specific URL/address where a client can access a particular API resource or operation.
+
