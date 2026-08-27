@@ -34,3 +34,12 @@ $USER will output current username ($USER is an environment variable which holds
 $HOME will show the home directory of the current user
 
 
+# Example:
+
+```
+Creating a Shell Script File:
+vim test.sh
+#!/bin/bash
+echo "Welcome to our ..." 
+chmod 644 test.sh
+```
