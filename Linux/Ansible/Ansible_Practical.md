@@ -347,11 +347,11 @@ ansible all -m file -a 'path=/tmp/file20.txt state=touch' (Creates an empty File
 
 ansible all -m file -a 'path=/tmp/redhat state=directory' (Creates a Directory)
 
+ansible all -m file -a 'path=/tmp/redhat.txt state=absent' (Deletes a File)
+
 ansible all -m file -a 'path=/tmp/test state=directory mode=0777 owner=root group=root' -b (creates directory apply permission and ownership)
 
 ansible all -m file -a 'path=/tmp/folder state=absent' (File Module doesn't support wildcards like * so to delete recursively delete the parent directory)
-
-ansible all -m file -a 'path=/tmp/redhat.txt state=absent' (Deletes a File)
 
 ansible all -m file -a 'src=/tmp/file100.txt dest=/tmp/link1 state=link' (Creates a symbolic (soft)  Link)
 
@@ -524,7 +524,7 @@ ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter=B
 
 ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter=EOF' (Insert at End)
 
-ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="Content"' (Insert After Matching Line)
+ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" insertafter="Content2"' (Insert After Matching Line)
 
 ansible all -m lineinfile -a 'dest=/tmp/file100.txt line="Content" state=absent' (Remove Line)
 ```
