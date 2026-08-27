@@ -32,7 +32,7 @@ It does not contain files like a regular directory. Instead, it refers to the ra
 ### Path: `/etc/fstab`
 
 **Data:**
-Used to permanently mount filesystems.
+Used to permanently mount filesystems, This file contains a permanent list of all disk partitions and storage devices that the system should automatically mount at boot time.
 
 Defines disk partitions and mount points.
 
