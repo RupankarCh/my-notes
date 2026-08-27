@@ -1,5 +1,8 @@
 # Linux Package Management Cheat Sheet
 
+**apt/yum/dnf → OS-level packages
+npm → Node.js/JavaScript application packages**
+
 🎯 Focus: Debian & Fedora only
 
 > **Easy memory rule:**
