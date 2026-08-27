@@ -1,28 +1,41 @@
 # Actions Runner or CI/CD
 A **CI/CD pipeline** is an automated process that builds, tests, and deploys code whenever developers make changes. 
 
-## CI – Continuous Integration
-Developers frequently push code to a shared repository (like GitHub). The system automatically builds the project and runs tests to make sure the new code doesn’t break anything.
-
-## CD – Continuous Delivery / Continuous Deployment
-After the code passes tests, it can be automatically prepared for release or deployed to production.
-
 Simple flow of a CI/CD pipeline:
 
 1.Developer pushes code to Git repo
-
 2.Platform (e.g., GitHub Actions, Jenkins, GitLab CI/CD) triggers the pipeline
-
 3.Code is built
-
 4.Automated tests run
-
 5.If tests pass → code is deployed to staging or production
 
 Create a github repo.
 Create another branch.
 Create an folder ".github/workflow/name.yml". 
 write the Github Actions Workflow Configuration and commit it.
+
+## CI – Continuous Integration
+Developers frequently push code to a shared repository (like GitHub). The system automatically builds the project and runs tests to make sure the new code doesn’t break anything.
+
+Continuous Integration (CI)
+• Developers push code frequently
+• Code pushed to Git
+• Automatically build + test
+Examples:
+• GitHub
+• GitLab
+
+## CD – Continuous Delivery / Continuous Deployment
+After the code passes tests, it can be automatically prepared for release or deployed to production.
+
+Continuous Delivery (CD)
+• Code is ready for deployment automatically
+• Build> Test> Ready for production
+
+Continuous Deployment (Advanced CD)
+Automatically deploy to production without manual approval
+
+
 
 
 
