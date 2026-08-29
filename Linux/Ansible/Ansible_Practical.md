@@ -891,7 +891,151 @@ ansible all -m shell '(crontab -l 2> /dev/null/; echo "* * * * *  /tmp/cron-test
 >> /tmp/cron-output.log 2>&1") | crontab -' 
 
 ansible all -m shell -a "ls -l /tmp/cron-output.log"
+
+An ansible Playbook is a file containing step by step instruction for automating tasks on the managed node.
+it is mainly written in .yaml(yet another markup language) language.
+
+*every .yaml file starts with three dash and end with three dot.
+
+
+---
+- name:  playbook1
+  hosts:  all
+  become: true
+ 
+  tasks:
+  - name:  mytask
+    ansible.builtin.ping:
+
+
+ansible-playbook <palybook_name>.yml (To run a playbook)
 ```
+---
+- name: File and Directory Management
+  hosts: all
+  become: true
+  
+  tasks:
+	- name: Create Directory
+	  ansible.builtin.file: 
+		path: /opt/ansible
+		state: directory
+		mode: '0755'
+
+	- name: Create File
+	  ansible.builtin.file:
+		path: /opt/ansible/file1.txt
+		state: touch
+		mode: '0644'
+
+	- name: Write content
+	  ansible.builtin.copy
+		content: "This is my first file\n"
+		dest: /opt/ansible.file1.txt
+		mode: '0644'
+```
+Normal Variable
+```
+---
+- name: Normal Variable Example
+  hosts: all
+
+  vars:
+	student_name: "Rahul"
+	course_name: "Ansible"
+	operating_system: "RHEL 9"
+	
+	tasks:
+	  
+	  - name: Display student name
+	    ansible.builtin.debug: 
+	      msg: "student Name: {{ student_name }}"
+	  
+	tasks:
+	  - name: Display Student  Course
+	    ansible.builtin.debug:
+		msg: "Student Course Name: {{ course_name }}"
+	
+	tasks:
+	  - name: Display Operating System
+	    ansible.builtin.debug:
+		msg: "Working Operating System: {{ operating_system }}"
+```
+
+
+Numeric Variable:
+```
+---
+- name: Numeric Variable Example 
+  hosts: all
+  vars:
+    
+    server_count: 2
+    port_number: 8080
+    
+  tasks:
+    
+    - name: Display Server Count
+      ansible.builtin.debug: 
+	msg: "Number of Servers: {{ server_count }}"
+    
+    - name: Display Port
+      ansible.builtin.debug:
+	msg: " Application Port: {{ port_number }}"
+```
+ 
+Boolean Variable:
+```
+---
+- name: Boolean Varible Example 
+  hosts: all
+  
+  vars:
+     
+    web_server_enabled: true
+    testing_enabled: false
+   
+  tasks:
+  
+    - name: Display web server status
+      ansible.builtin.debug:
+	msg: "Web server Enabled: {{ web_server_enabled }}"
+	
+    - name: Display Testing Status
+      ansible.builtin.debug: 
+	msg: "Testing Enabled: {{ testing_enabled }}"
+```
+
+Array Variable:
+```
+---
+- name: Array Variable Example
+  hosts: all
+
+  vars:
+  
+    students: 
+
+	- Ram
+	- Shyam
+	- Jadu
+	- Madhu
+
+  tasks: 
+
+     - name: Display Complete student list
+       ansible.builtin.debug:
+	 var: students
+	
+     - name: Display First student
+       ansible.builtin.debug:
+	 msg: "Student 1: {{ students[0] }}"
+
+     - name: Display Second Student Details
+       ansible.builtin.debug:
+ 	 msg: "Student 2: {{ students[1] }}"
+```
+       
 
 
 
