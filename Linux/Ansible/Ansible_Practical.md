@@ -850,3 +850,48 @@ ansible all -m shell -a "cat /home/ansible/test/cron-disk-monitor.log"
 ansible all -m shell -a "cat 
 ```
 
+29-08-26
+```
+One Time Automation
+
+at now +2 minutes 
+at> mkdir -p /dir1/dir2
+at> cp -v /etc/* /dir1/dir2/
+at> <EOT>
+
+at> (To check)
+
+Recurring Automation
+rpm -qa | grep cron-* (To check if cron rpm is loaded)
+crontab -e -u test 
+10	12	* 	* 	*	mkdir ~/dir3
+
+systemctl restart --now crond (Restart cron daemon)
+ 
+
+
+ansible all -m shell -a "rpm -qa | grep crontab" (To check current crontab)
+ansible all -m shell -a "systemctl is-active crond"
+ansible all -m shell -a "systemctl enable --now crond"
+ansible all -m shell -a "cat > /tmp/cront-test.sh << "EOF"
+>#!/bin/bash
+>echo "I am Ironman"
+>date
+>hostname
+
+ansible all -m shell -a "ls -l /tmp/cron-test.sh"
+
+ansible all -m shell -a "chmod o+x /tmp/cron-test.sh"
+
+ansible all -m shell -a "ls -l /tmp/cron-test.sh"
+
+ansible all -m shell -a "/tmp/cron-test.sh" (Check manually
+
+ansible all -m shell '(crontab -l 2> /dev/null/; echo "* * * * *  /tmp/cron-test.sh 
+>> /tmp/cron-output.log 2>&1") | crontab -' 
+
+ansible all -m shell -a "ls -l /tmp/cron-output.log"
+```
+
+
+
