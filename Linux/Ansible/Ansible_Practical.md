@@ -377,6 +377,9 @@ ansible all -m command -a 'cat /tmp/file100.txt' (Displays the contents of file1
 ansible all -m command -a 'uptime' (Shows how long the system has been running, number of users, and load average)
 
 ansible all -m command -a 'id ansible' (Displays the UID, GID, and group memberships of the specified user ansible)
+
+ansible all -m command -a 'systemctl status httpd' (To check status)
+
 ```
 
 ---
@@ -470,6 +473,42 @@ ansible node1 -m shell -a 'cp /etc/fstab /etc/fatab.bak' (It creates a backup co
 ansible node1 -m shell -a 'ls -l /etc/fatab.bak' (It checks whether /etc/fastab.bak exists on node1 and displays its file details.)
 
 ansible node1 -m shell "sed -i '\|[[:space]]data[[:space]]|d' /etc/fstab"  ( \|[[:space]]/data means delete only the line containing /data, It **removes the `/data` mount entry from `/etc/fstab` on `node1` using `sed`. to edit a file use sed with -i for interactive shell,)
+
+Package Management:
+ansible all -m shell -a 'rpm -qa |grep httpd' (Checks whether the httpd package is installed on all Ansible-managed hosts by listing installed RPM packages and filtering for httpd)
+
+ansible all -m shell -a 'yum info httpd' (Displays detailed information about the httpd package, such as its version, architecture, repository, and installation status)
+
+ansible all -m shell -a 'dnf list --showduplicates httpd' (Displays all available versions of the httpd package, including duplicate/older versions, on all managed hosts)
+
+ansible all -m shell -a 'dnf install httpd-2.3.4'  (To install a particular version of httpd)
+
+ansible all -m shell -a 'dnf update httpd' (To update package)
+
+ansible all -m shell -a 'rpm -qR httpd' (Displays the dependencies required by the installed httpd package on all managed hosts)
+
+ansible all -m shell -a 'yum remove -y  httpd*' (To remove a package)
+
+ansible all -m shell -a 'curl localhost' (Sends an HTTP request to the local web server on each managed host and displays the response/content returned by localhost)
+
+ansible all -m shell -a 'systemctl mask httpd' (Masks the httpd service on all managed hosts, preventing it from being started manually or automatically until it is unmasked)
+
+ansible all -m shell -a 'systemctl unmask httpd' (Unmasks the httpd service on all managed hosts, allowing it to be started manually or automatically again)
+
+ansible all -m shell -a 'systemctl list-units' (Lists the currently loaded and active systemd units (services, sockets, mounts, etc.) on all managed hosts, |grep active)
+
+ansible all -m shell -a 'systemctl --type=service --state=running' (Lists all currently running services on all managed hosts)
+
+ansible all -m shell -a 'systemctl --failed' (Lists all failed systemd units (such as services) on all managed hosts)
+
+ansible all -m shell -a 'systemctl cat httpd' (Displays the httpd systemd unit file and its configuration/drop-in files on all managed hosts)
+
+ansible all -m shell -a 'systemctl show httpd' (Displays detailed properties and runtime configuration of the httpd systemd service on all managed hosts)
+
+ansible all -m shell -a 'systemctl show httpd -p MainPID' (Displays the Main PID (Process ID) of the httpd service on all managed hosts)
+
+ansible all -m shell -a "ss -lntp |grep ':80'" (Checks which process/service is listening on TCP port 80 on all managed hosts)
+
 ```
 
 ---
@@ -490,6 +529,7 @@ ansible all -m copy -a 'src=test.sh dest=/home/ansible mode=755' (Copy Script, w
 ansible all -m copy -a 'src=file1.txt dest=/tmp/file10.txt mode=0755 owner=student group=tech' -b -K (Before doing it student user, tech group must exist in all the systems, It will Copy the file, Sets permissions to 755, Changes owner to student, Changes group to tech)
 
 ansible all -m copy -a 'src=file1.txt dest=/tmp backup=yes' (Copies the file to remote hosts and if a file with the same name already exists there, Ansible creates a backup before overwriting it)
+
 ```
 
 ---
@@ -608,91 +648,36 @@ ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs state=mounted'
 ansible all -m mount -a 'path=/data src=/dev/nvme0n2p1 fstype=xfs opts=defaults state=present'  (Adds/configures the /data mount in /etc/fstab with default options but does not mount it immediately, the mount is configured persistently)
 ```
 
----
-
+## 14. Package Module
 ```
-Package Management:
-
-Method 1 Local YUM Repository Configuration:
-
-After Configuring YUM repository:
-Check if httpd is installed:
-ansible all -m shell -a 'rpm -qa |grep httpd'
-or,
-ansible all -m shell -a 'yum info httpd'
-
-ansible all -m yum -a 'name=httpd state=present" (To install httpd)
-
 ansible all -m package -a 'name=vsftpd state=present use=yum' (To install a package)
 
 ansible all -m package -a 'name=nfs*,samba state=present use=dnf' (Install multiple services)
 
-ansible all -m package -a ' 
 
-ansible all -m shell -a 'dnf list --showduplicates httpd' 
 
-ansible all -m shell -a 'dnf install httpd-2.3.4'  (To install a particular version of httpd)
+```
 
-ansible all -m shell -a 'dnf update httpd' (To update package)
+## 15. Yum Module
+```
 
-ansible all -m shell -a 'rpm -qR httpd' (To view the dependencies for the package)
+ansible all -m yum -a 'name=httpd state=present" (To install httpd)
 
-ansible all -m shell -a 'yum remove -y  httpd*' (To remove a package)
+```
 
-system D module: To manage services, and daemons
-
-ansible all -m systemd -a 'daemon-reload=true' 
+## 16. Systemd Module (To manage services, and daemons)
+```
+ansible all -m systemd -a 'daemon-reload=true' (Reloads the systemd manager configuration on all managed hosts so it recognizes changes to service/unit files)
 
 ansible all -m systemd -a 'name=httpd state=started' (To start the service)
 
-ansible all -m systemd -a 'name=httpd 
-
-ansible all -m command -a 'systemctl status httpd' (To check status)
-
 ansible all -m systemd -a 'name=httpd state=started enabled=true' (To restart and enable service)
 
-ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (To stop a service, enabled means restart the service at the boot time)
+ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (Stops the httpd service and disables it from starting automatically at boot on all managed hosts)
 
-ansible all -m systemd -a 'name=httpd state=started'
-
-Create the index file on server and copy
-ansible all -m copy -a 'src=index.html  dest=/var/www/html' (To create html file)
-
-ansible all -m command -a 'cat /var/www/html/index.html'
-
-ansible all -m systemd -a 'name=httpd state=started' (start the service)
-
-ansible all -m command -a 'systemctl status httpd'
-
-ansible all -m shell -a 'curl localhost'
-
-Service Masking:
-ansible all -m shell -a 'systemctl mask httpd' (Mask the service)
-
-ansible all -m systemd -a 'name=httpd state=stopped' 
-
-ansible all -m shell -a 'systemctl unmask httpd' (Unmask the service)
-
-ansible all -m shell -a 'systemctl list-units' (To see all masked and unmasked services, |grep active)
-
-Service Module:  To manage services
-
-ansible all -m shell -a 'systemctl --type=service --state=running' (To check which services are in running condition on the managed node)
-
-ansible all -m systemd -a 'name=httpd state=started' 
-
-ansible all -m shell -a 'systemctl --failed' (To check services in failed condition)
-
-ansible all -m shell -a 'systemctl cat httpd'  (Service Configuration View)
-
-
-ansible all -m shell -a 'systemctl show httpd' (View Service Properties)
-
-ansible all -m shell -a 'systemctl show httpd -p MainPID' (to show PID of the service)
-
-ansible all -m shell -a "ss -lntp |grep ':80'"  
 
 ```
+---
 
 22-08-26 1st half
 
