@@ -851,7 +851,6 @@ ansible all -m shell -a "cat
 ```
 
 29-08-26
-```
 One Time Automation
 
 at now +2 minutes 
@@ -897,7 +896,7 @@ it is mainly written in .yaml(yet another markup language) language.
 
 *every .yaml file starts with three dash and end with three dot.
 
-
+```
 ---
 - name:  playbook1
   hosts:  all
@@ -906,7 +905,7 @@ it is mainly written in .yaml(yet another markup language) language.
   tasks:
   - name:  mytask
     ansible.builtin.ping:
-
+```
 
 ansible-playbook <palybook_name>.yml (To run a playbook)
 ```
