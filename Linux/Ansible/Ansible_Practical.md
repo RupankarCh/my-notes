@@ -677,24 +677,7 @@ ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (Stops the ht
 
 
 ```
----
-
-22-08-26 1st half
-
-
-SELINUX: Security Enhanced Linux
-selinux is a mendatory access control security mechanism built into RHELL9 beyond traditional Linux permissions such as user and group ownership and rwx permission.
-
-MAC vs DAC
-
-MODE of SELINUX:
-1.Enforcing(default): Policy is active and provide highest level of security. It blocks and logs the unauthorized access.
-2.Permissive: selinux doesn't block unauthorized access but log file will be generated.
-3.Disabled: selinux is totally disabled.
-
-
-Configuration File: /etc/selinux/config
-
+--- 
 
 sestatus (To see current state of selinux)
 getenforce (To see current state of selinux)
