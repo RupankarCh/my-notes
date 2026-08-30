@@ -1,5 +1,5 @@
 # SELinux:
-A Linux Kernel Security Module **Provides additional layer of access control and Mandatory Access Control (MAC) to enhance the security.**
+*A Linux security system that controls what users and programs are allowed to access.* 
 
 **DAC(Discretionary Access Control): Permission Based Security**
 **MAC(Mandatory Access Contol): Policy/Label-Based Security**
