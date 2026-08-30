@@ -380,6 +380,12 @@ ansible all -m command -a 'id ansible' (Displays the UID, GID, and group members
 
 ansible all -m command -a 'systemctl status httpd' (To check status)
 
+
+
+
+
+
+
 ```
 
 ---
@@ -509,6 +515,36 @@ ansible all -m shell -a 'systemctl show httpd -p MainPID' (Displays the Main PID
 
 ansible all -m shell -a "ss -lntp |grep ':80'" (Checks which process/service is listening on TCP port 80 on all managed hosts)
 
+SELINUX:
+ansible all -m shell -a "command -v semanage" (To check semanage tool availability on hosts)
+
+ansible all -m shell -a 'sestatus'  (display the current SELinux status and configuration details)
+
+ansible all -m shell -a 'getenforce' (show the current SELinux enforcement mode (Enforcing, Permissive, or Disabled))
+
+ansible all -m shell -a 'cat /etc/selinux/config' (Displays the SELinux configuration file on all hosts to show how SELinux is configured to start)
+
+ansible all -m shell -a "setenforce 0" (Change selinux mode to Permissive temporarily)
+
+ansible all -m shell -a "getsebool -a" (display the current SELinux boolean settings and whether each is on or off)
+
+ansible all -m shell -a "setsebool <boolean_name> 1" (Sets the specified SELinux boolean to on (enabled))
+
+ansible all -m shell -a 'ls -lZ /tmp/test_selinux.txt' (Displays the file's permissions, ownership, and SELinux security context)
+
+ansible all -m shell -a "chcon -t httpd_sys_content_t /var/www/html/index.html" (To change the lebel type)
+
+ansible all -m shell -a "restorecon -Rv var/www/html/index.html" (Apply the permanent rule)
+
+ansible all -m shell -a "semanage fcontext -a -t httpd_sys_content_t '/var/www/html(/.*)?'" (To This tells SELinux that files under /var/www/html should have the httpd_sys_content_t type)
+
+ansible all -m shell -a "semanage fcontext -d -t httpd_sys_content_t '/var/www/html(/.*)?'" (To deletes an existing SELinux file-context rule.)
+
+ansible all -m shell -a 'ps -eZ | grep httpd' (To see the context upon a particular process)
+
+ansible all -m shell -a 'semanage port -l | grep http_port_t' — Lists the SELinux ports labeled http_port_t, showing which ports HTTP services are allowed to use, It shows Selinux port context upon certain port)
+
+ansible all -m shell -a 'semanage port -a -t http_port_t -p tcp 8085' (To add a port to the service so the web client can access the web server)
 ```
 
 ---
