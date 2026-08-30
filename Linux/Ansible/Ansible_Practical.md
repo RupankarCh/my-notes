@@ -715,35 +715,6 @@ ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (Stops the ht
 ```
 --- 
 
-```
-On Server:
-ansible all -m command -a 'sestatus' 
-ansible all -m command -a 'getenforce' 
-ansible all -m command -a 'cat /etc/selinux/config' 
-ansible all -m command -a 'sestatus | grep "Loaded policy name"' (To check selinux policy type)
-ansible all -m ansible.posix.selinux -a 'setenforce 0" (Change selinux mode to Permissive temporarily)
-ansible all -m shell -a "getsebool -a" (To see all policy status)
-ansible all -m shell -a "setsebool <boolean_name> 1" (To turn a policy on, Temporarily)
-
-ansible all -m shell -a 'touch /tmp/test_selinux.txt' (to create a file)
-ansible all -m command -a 'ls -lZ /tmp/test_selinux.txt' (To see selinux context)
-
-ansible all -m command -a 'ls -lZ /var/www/html' 
-ansible all -m shell -a 'dnf install httpd"
-
-ansible all -m shell -a 'echo "THIS IS THE ANSIBLE TEST PAGE" > /var/www/html/index.html'
-ansible all -m shell -a "ls -Zl /var/www/html/index.html"
-ansible all -m shell -a "chcon -t httpd_sys_content_t /var/www/html/index.html (To set context)
-ansible all -m shell -a "systemctl restart --now httpd"
-ansible all -m shell -a "curl localhost" 
-ansible all -m shell -a "restorecon -Rv var/www/html/index.html" 
-ansible all -m shell -a "command -v semanage" (To check semanage tool availability on hosts)
-ansible all -m shell -a "semanage fcontext -a -t httpd_sys_content_t "/var/www/html.*)?"' (To set the context permanently)
-ansible all -m shell -a "semanage fcontext -d-t httpd_sys_content_t "/var/www/html.*)?"' (To remove the context permanently)
-ansible all -m shell -a 'ps -eZ | grep httpd' (To see the context upon a particular process)
-ansible all -m shell -a 'semanage port -l | grep http_port_t'(Selinux port context upon certain port)
-ansible all -m shell -a 'semanage port -a -t http_port_t -p tcp 8085' (To add a port to the service so the web client can access the web server)
-```
 2nd half
 ```
 firewalld
