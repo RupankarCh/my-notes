@@ -21,5 +21,21 @@ vagrant init <geerlingguy/centos7> (To initializes the current directory as a Va
 vagrant up (To download, create, configure, and power on a virtual machine (VM) based on the settings specified in the Vagrantfile) 
 vagrant ssh (To login the VM using the Vagrant user created automatically)
 vagrant reload (To update new settings)
+vagrant destroy (deletes the Vagrant virtual machine and all its associated resources but not the Vagrantfile itself)
+```
 
+## Multi-Machine Vagrantfile:
+Here web and db are two VMs controlled by a single Vagrantfile here we dont need to do vagrant init only write the Vagrantfile from scratch.
+```
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", inline: "echo Hello"
+
+  config.vm.define "web" do |web|
+    web.vm.box = "apache"
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+  end
+end
 ```
