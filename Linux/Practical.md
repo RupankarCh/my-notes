@@ -1,4 +1,17 @@
 # 1.Disk Quota
+1. Enable Quota: Edit /etc/ftsab and all usrquota or grpquota to required file system, then remount it.
+2. Create and check quota database
+```
+quotacheck -cug
+mountpoint
+quotaon /mountpoint
+```
+3. Set quota limit: use edquota to manually set soft limit, hard limit and inode(file) limits.
+i. Soft Limit: Warning level, can be exceeded temporarily.
+ii. Hard Limit: Maximum allowed disk usage.
+iii. Inode Limit: Limit the number of files a user/group can create.
+
+## Practical
 **Instance Creation:**
 EC2> Launch Instance> Name it> Select RHEL 10 as AMI> Create key pair with .ppk extension> Enable auto-assign public IP> Launch Instance.
 
