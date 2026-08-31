@@ -1,5 +1,28 @@
 # Router Privilege Levels and Their Configuration:
+**Privilege levels control what commands a user can execute**. They are part of Cisco IOS’s basic access-control mechanism. Level 2-14 can be customized to create role-based access, while level 15 provides full administrative access.
 
+## 1.Configure passwords for privilege levels:
+```
+Router(config)# enable secret level 5 <password>
+Router(config)# enable secret level 10 <password>
+```
+now 'Router> enable 5' and 'Router> enable 10' will ask for different passwords for different privileges 
+
+## 2.Assign required commands to a lower privilege level
+```
+Router(config)# privilege exec level 5 configure terminal (Allows privilege level 5 users to enter global configuration mode using configure terminal)
+Router(config)# privilege configure level 5 interface (Allows level 5 users to use the interface command from global configuration mode)
+Router(config)# privilege interface level 5 shutdown (Allows level 5 users to use the shutdown command inside interface configuration mode)
+Router(config)# privilege exec level show running-config (Allows level 5 users to run show running-config from EXEC mode)
+```
+
+## 3.Create users and assign them a privilege level
+```
+Router(config)# username <user_name> privilege 5 secret <Password>
+Router(config)# username <user_name> privilege 15 secret <password> (Creates a local user with privilege level 15, giving that user full administrative privileges)
+```
+After this when you login 'Router(config)# line console 0, Router(config-line)# login local' you will be prompted for username and password.
+The privilege level of those users will be predefined
 
 # Access Control List:
 **set of filter rules placed on routers, switches, or firewalls to permit or deny data packets.**
