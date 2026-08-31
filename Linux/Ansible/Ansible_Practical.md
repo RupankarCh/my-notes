@@ -761,37 +761,7 @@ ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (Stops the ht
 ```
 --- 
 
-2nd half
 ```
-firewalld
-ansible all -m shell -a "rpm -qa | grep firewalld" (To check if firewalld is installed)
-ansible all -m shell -a "systemctl status firewalld --no-pager" 
-ansible all -m shell -a "systemctl start firewalld"
-ansible all -m shell -a "firewalld --version"
-ansible all -m shell -a "firewall-cmd --get-default-zone"
-ansible all -m shell -a "firewall-cmd --get-zone"
-ansible all -m shell -a "firewall-cmd --get-active-zone"
-ansible all -m shell -a "firewall-cmd --list-all" 
-ansible all -m shell -a "firewall-cmd --list-services"
-ansible all -m shell -a "firewall-cmd --add-port=80/tcp"
-ansible all -m shell -a "firewall-cmd --list-ports"
-ansible all -m shell -a "firewall-cmd --reload"
-ansible all -m shell -a "firewall-cmd --add-port=8080/tcp --permanent"
-ansible all -m shell -a "firewall-cmd --add-port=5000-5010/tcp --permanent"
-ansible all -m shell -a "firewall-cmd --remove-port=8080/tcp --permanent"
-ansible all -m shell -a "firewall-cmd --zone=public --list-all"
-ansible all -m shell -a "firewall-cmd --zone=public --permanent --add-service=http" 
-ansible all -m shell -a "firewall-cmd --reload"
-ansible all -m shell -a "ip -br addr" (Which interfaces are connected to which zone)
-ansible all -b -m shell -a "firewall-cmd --permanent --zone=public --add=interface=ens160"
-ansible all -b -m shell -a "firewall-cmd --permanent --set-default-zone=private"
-ansible all -m shell -a "firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.10.10 --add-service=http reject'"
-ansible all -b -m shell -a "firewall-cmd --list-rich-rules"
-ansible all -m shell -a "firewall-cmd --permanent --remove-rich-rule='rule family=ipv4 source address=192.168.10.10 reject'"
-ansible all -b -m shell -a "firewall-cmd --list-rich-rules"
-ansible all -b -m shell -a "firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source adderss=192.168.10.10 service name=http accept'"
-ansible all -b -m shell -a 
-
 AT(One time executable) vs Recurring automation (Re occurring task)
 Crontab:Recurring automation
 ansible all -m shell -a "rpm -qa | grep crontab"
