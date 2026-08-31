@@ -545,6 +545,52 @@ ansible all -m shell -a 'ps -eZ | grep httpd' (To see the context upon a particu
 ansible all -m shell -a 'semanage port -l | grep http_port_t' — Lists the SELinux ports labeled http_port_t, showing which ports HTTP services are allowed to use, It shows Selinux port context upon certain port)
 
 ansible all -m shell -a 'semanage port -a -t http_port_t -p tcp 8085' (To add a port to the service so the web client can access the web server)
+
+FIREWALLD
+ansible all -m shell -a "rpm -qa | grep firewalld" (Checks firewalld RPM package is installed by listing installed RPM packages)
+
+ansible all -m shell -a "firewalld --version" (Displays the installed firewalld version on all managed hosts)
+
+ansible all -m shell -a "systemctl status firewalld --no-pager" (Checks the firewalld service status on all Ansible-managed hosts and displays the result without paging)
+
+ansible all -m shell -a "systemctl start firewalld" (Starts the firewalld service on all Ansible-managed hosts)
+
+ansible all -m shell -a "firewall-cmd --get-default-zone" (Shows the default firewalld zone configured on each host)
+
+ansible all -m shell -a "firewall-cmd --get-zones" (list all available zones)
+
+ansible all -m shell -a "firewall-cmd --get-active-zone" (Shows the currently active firewall zones and the interfaces/sources assigned to them)
+
+ansible all -m shell -a "firewall-cmd --list-all" (Displays all firewall settings of the default zone, including services, ports, interfaces, and rules)
+
+ansible all -m shell -a "firewall-cmd --zone=public --list-all" (Displays all firewall rules and settings for the public zone)
+
+ansible all -m shell -a "firewall-cmd --list-services" (Lists the services currently allowed through the default firewall zone)
+
+ansible all -m shell -a "firewall-cmd --add-port=80-82/tcp" (Temporarily allows incoming TCP traffic on port 80-82 in the current runtime configuration, add --permanent to make the configuration permanent)
+
+ansible all -m shell -a "firewall-cmd --remove-port=8080/tcp --permanent" (Permanently removes TCP port 8080 from the firewall's allowed ports)
+
+ansible all -m shell -a "firewall-cmd --list-ports" (Lists the manually opened ports in the current firewall zone)
+
+ansible all -m shell -a "firewall-cmd --reload" (Reloads firewalld configuration, applying permanent configuration changes to the runtime configuration)
+
+ansible all -m shell -a "firewall-cmd --zone=public --permanent --add-service=http" (Permanently allows the HTTP service (port 80/tcp) in the public zone)
+
+ansible all -m shell -a "ip -br addr" (Shows the network interfaces, their IP addresses, and status on all hosts, helping identify which interfaces are available for zone assignment)
+
+ansible all -b -m shell -a "firewall-cmd --permanent --zone=public --add=interface=ens160" (Permanently assigns the ens160 network interface to the public firewalld zone)
+
+ansible all -b -m shell -a "firewall-cmd --permanent --set-default-zone=private" (Permanently sets the private zone as the default firewalld zone)
+
+ansible all -m shell -a "firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.10.10 service name=http reject'" (Permanently adds a rich rule that rejects HTTP traffic from IPv4 address 192.168.10.10)
+
+ansible all -m shell -a "firewall-cmd --permanent --remove-rich-rule='rule family=ipv4 source address=192.168.10.10 reject'" (Permanently removes the rich rule that rejects IPv4 traffic from 192.168.10.10)
+
+ansible all -b -m shell -a "firewall-cmd --list-rich-rules" (Lists the configured firewalld rich rules on all managed hosts with elevated privileges)
+
+
+ansible all -b -m shell -a "firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.10.10 service name=http accept'" (Intended to permanently allow HTTP traffic from 192.168.10.10)
 ```
 
 ---
