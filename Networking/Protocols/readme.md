@@ -156,8 +156,16 @@ exit
 ```
 If one wants to communicate with a machine they must know the password
 
+# DHCP:
+**Its primary job is assigning IP addresses, it uses DHCP Options to deliver the extra configuration data a device needs to communicate on a network.**
 
-# DHCP Configuration on RHEL 8/9
+### DHCP Configuration file:
+1. **IP Address Assignment** to the clients based on specified range.
+2. It also provides Network Settings such as **subnet mask, default gateway, DNS Servers and lease time**.
+3. It can define static IP assignments for specific client using their MAC address.
+4. It also does Lease Management by **specifying how long an IP address is leased to a client and when the client may renew the lease.**
+
+## DHCP Configuration on RHEL 8/9
 ```
 DHCP
 IP: 192.168.25.2/24 192.168.25.1
