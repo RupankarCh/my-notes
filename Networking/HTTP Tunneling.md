@@ -1,101 +1,153 @@
-HTTP Tunnelling Using Chisel (Kali → Windows)
-Lab Environment: Kali Linux → Windows
-Chisel Version: v1.11.8 (AMD64)
-Purpose: Create a reverse tunnel from Windows to Kali and access Windows RDP through the tunnel.
-1. Kali Linux – Install Chisel
-Method 1: Clone and Build
-git clone https://github.com/jpillora/chisel.git
-cd chisel
-sudo apt install golang-go -y
-go build
-Method 2: Download Chisel
-Download the appropriate Chisel v1.11.8 AMD64 ZIP/release file, extract it, and keep the chisel executable in Kali.
-Verify:
-./chisel version
+# Assignment 05: Setting up HTTP Tunneling via Port 80
 
-2. Windows – Install Chisel
-Download Chisel v1.11.8 AMD64 for Windows.
-Extract the ZIP file and keep:
-chisel.exe
-For example:
-C:\Tools\chisel.exe
+## Conceptual Overview
 
-3. Kali – Start Chisel Server
-Start the Chisel server:
-./chisel server --port 8080 --reverse
-Keep this terminal running.
+### Q: What is HTTP?
 
-4. Windows – Create Reverse Tunnel
-Open PowerShell and go to the folder containing chisel.exe:
-cd C:\Tools
-Then run:
-.\chisel.exe client 192.168.1.10:8080 R:3389:127.0.0.1:3389
-Replace 192.168.1.10 with the actual IP address of the Kali machine.
-This creates a reverse tunnel from Kali’s local port 3389 to the Windows RDP service on port 3389.
+HTTP (Hypertext Transfer Protocol) is an application-layer protocol that uses default port 80. It is primarily used for transmitting hypermedia documents (such as HTML, images, and API payloads) across the internet. It serves as the foundational communication protocol of the World Wide Web, operating on a client-server architecture over TCP/IP.
 
-5. Kali – Check the Tunnel
-Open another Kali terminal and run:
+### Q: What is HTTP Tunneling?
+
+HTTP tunneling creates a network link through a restricted environment (like a firewall or proxy) by wrapping non-HTTP protocols (such as SSH, RMI, or standard TCP) inside standard HTTP requests.
+
+---
+
+## Part 1: Download & Setup Chisel (Kali Linux & Windows 10)
+
+### 1. Download Chisel on Kali Linux
+
+1. Open **Firefox** and search for **Chisel GitHub**.
+2. Navigate to **Releases** $\rightarrow$ **v1.11.8 (Latest)**.
+3. Locate and download the release package: `chisel_1.11.8_linux_amd64.deb`.
+4. Go to the `Downloads` directory, extract the downloaded package, right-click inside the extracted folder, and select **Open Terminal Here**.
+
+### 2. Download Chisel on Windows 10
+
+1. Open **Chrome** and navigate to **Chisel GitHub** $\rightarrow$ **Releases** $\rightarrow$ **v1.11.8 (Latest)**.
+2. Download the archive: `chisel_1.11.8_windows_amd64.zip`.
+3. Go to `Downloads` and extract the ZIP file.
+4. Open the extracted Chisel folder, click on the File Explorer path/search bar, type `powershell`, and press `Enter` to launch PowerShell directly in that path.
+
+---
+
+## Part 2: Establish the Chisel Reverse Tunnel
+
+### Step 1: Start Chisel Server on Kali Linux
+
+In your Kali Linux terminal, run:
+
+```bash
+chisel server -p 9090 --reverse
+
+```
+
+*(Leave this terminal window open to keep the server active)*.
+
+### Step 2: Connect Chisel Client from Windows PowerShell
+
+In the Windows PowerShell terminal, establish the reverse RDP tunnel back to Kali:
+
+```powershell
+.\chisel.exe client <Kali_IP>:9090 R:3389:127.0.0.1:3389
+
+```
+
+* **Output:** `Listening...`
+* **Mechanism:** This command routes local Windows RDP traffic (port 3389) back through the Chisel reverse tunnel to Kali's port 3389.
+
+---
+
+## Part 3: Verify the Tunnel & Check Windows RDP Status
+
+### Step 1: Verify Active Port Listening on Kali Linux
+
+Open a **new tab** in the Kali Linux terminal and execute:
+
+```bash
 ss -ltnp | grep 3389
-If port 3389 is listening, the reverse tunnel has been created successfully.
 
-6. Windows – Check RDP Status
-Check whether Windows Remote Desktop is enabled:
-Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name fDenyTSConnections
-Result:
-0 = RDP Enabled
-1 = RDP Disabled
+```
 
-7. Windows – Enable RDP if Disabled
-If the result is 1, open PowerShell as Administrator and run:
-Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name fDenyTSConnections -Value 0
-Then verify again:
-Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name fDenyTSConnections
-It should show:
-0
+> If port 3389 shows active listening, the reverse tunnel has been successfully created.
 
-8. Kali – Install Remmina
-If Remmina is not already installed, install it using the available package/source method.
-After installation, verify:
-Remmina
-“sudo apt install remmina remmina-plugin-rdp remmina-plugin-vnc remmina-
-plugin-secret”
-If Remmina opens successfully, continue to the next step.
-Remmina is used as the RDP client. It is not responsible for creating the Chisel tunnel. The Chisel tunnel must already be active.
+### Step 2: Test Local TCP Connection on Windows
 
-9. Kali – Open Remmina
-Open Remmina:
-remmina
-Click the + (New Connection Profile) icon.
-Set:
-Protocol : RDP
-Server   : 127.0.0.1:3389
-Username : Windows Username
-Password : Windows Password
-Then click Connect.
+In Windows PowerShell, test connectivity to the local port:
 
-10. Expected Flow
-             Reverse Chisel Tunnel
-Windows ──────────────────────────────> Kali
-   │                                      │
-   │ RDP :3389                            │ :8080
-   │                                      │
-   └────────────── Chisel Client ─────────┘
-                                          │
-                                          ▼
-                                   127.0.0.1:3389
-                                          │
-                                          ▼
-                                      Remmina
-                                          │
-                                          ▼
-                                    Windows RDP
-Important Verification
-Before connecting with Remmina, verify:
-Windows:
+```powershell
 Test-NetConnection localhost -Port 3389
-Expected:
-TcpTestSucceeded : True
-Kali:
-ss -ltnp | grep 3389
-Port 3389 should be listening.
-This verification flow is consistent with the troubleshooting steps in the original lab document.
+
+```
+
+> Expected Output: `TcpTestSucceeded : True`
+
+### Step 3: Check and Enable Windows RDP Status
+
+To verify if Remote Desktop Access is enabled in the Windows Registry (Run PowerShell as Administrator):
+
+```powershell
+Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name fDenyTSConnections
+
+```
+
+* **Registry Values:** `0` = RDP Enabled | `1` = RDP Disabled
+
+If RDP is currently disabled (`1`), enable it with:
+
+```powershell
+Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name fDenyTSConnections -Value 0
+
+```
+
+---
+
+## Part 4: Remmina Installation & Remote Connection Setup
+
+### 1. Remmina Installation on Kali Linux
+
+If Remmina is not pre-installed or needs a specific version build, type `remmina` in the terminal. If missing, perform the manual installation:
+
+```bash
+# Update repository packages
+sudo apt update
+
+# Verify system CPU architecture
+dpkg --print-architecture
+# Output: amd64
+
+# Create directory for package storage
+mkdir -p ~/remmina-install
+cd ~/remmina-install
+
+# Download required packages
+wget https://deb.debian.org/debian/pool/main/r/remmina/remmina-common_1.4.39+dfsg-1+deb13u1_all.deb
+wget https://deb.debian.org/debian/pool/main/r/remmina/remmina_1.4.39+dfsg-1+deb13u1_amd64.deb
+wget https://deb.debian.org/debian/pool/main/r/remmina/remmina-plugin-rdp_1.4.39+dfsg-1+deb13u1_amd64.deb
+
+# Verify downloaded files
+ls -lh
+
+# Install all packages simultaneously
+sudo apt install ./remmina-common_1.4.39+dfsg-1+deb13u1_all.deb \
+                 ./remmina_1.4.39+dfsg-1+deb13u1_amd64.deb \
+                 ./remmina-plugin-rdp_1.4.39+dfsg-1+deb13u1_amd64.deb -y
+
+# Verify installation version
+remmina --version
+
+```
+
+### 2. Connect to Windows RDP via Remmina
+
+1. Open **Remmina** on Kali Linux.
+2. Click the **`+` (New Connection Profile)** icon.
+3. Configure the profile details:
+* **Protocol:** `RDP`
+* **Server:** `127.0.0.1:3389`
+* **Username:** `<Windows_Username>`
+* **Password:** `<Windows_User_Password>`
+
+
+4. Click **Connect**.
+
+> Successful completion grants full remote desktop graphical control of the target Windows host over the reverse tunneled connection.
