@@ -754,3 +754,94 @@ EC2> Auto Scaling groups, Select the ASG and Delete (To terminate the instances)
 * **Route Table:** A set of rules (routes) that determines where network traffic from your subnet or gateway is directed.
 * **NACL (Network Access Control List):** A stateless subnet-level firewall that controls inbound and outbound traffic using allowed and denied rules.
 * **Security Group:** A stateful virtual firewall at the instance or resource level that controls allowed inbound and outbound traffic.
+
+
+
+
+
+# S3
+- allows people to store objects in buckets.
+- Buckets are defined at the region level but it's a global service.
+-  Naming
+  - Shared Global Namespace - has a globally unique name (across all regions all accounts)
+  - Account Regional Namespace - allows for "reuse" of the same bucket name across regions
+
+Use Cases:
+- Backup and storage
+- Disaster Recovery
+- Archive
+- Hybrid Cloud Storage
+- Application Hosting
+- Media hosting
+- Data lakes and big data analytics
+- Software Delivery
+
+Objects:
+Every file is the key there is no concepts of directories here. Max object size is 50TB, if uploading more than 5GB must use multi-part upload.
+- Objects(files) have a key
+- The key is the FULL path:
+  - s3://my-bucket/my_file.txt
+- The key is composed of prefix + object name
+- Metadata (list of text key / value pairs — system or user metadata)
+- Tags (Unicode key / value pair — up to IO) — useful for security / lifecycle
+- Version ID (if versioning is enabled) 
+
+Practical S3 Bucket Creation :
+```
+Create bucket>
+General for Normal use case
+Directory for lowlatency use cases>
+Global namespace - Must be unique across all AWS accounts and Regions (Worldwide)
+Account regional namespace	- Must be unique only within your AWS account and Region(Account + Region)>
+Block all Public Access is recommended>
+Bucket Versioning Disable
+Bucket Versioning Enable (To restore previous version of the objects>
+Tags - track storage costs and organize buckets>
+Default encryption - Server side encryption is automatically applied to new objects stored in this bucket>
+Bucket Key reduces encryption costs as it lowers calls to aws KMS(Key management system)
+create>
+```
+
+S3 Security:
+- User-Based
+    - IAM Policies — which API calls should be allowed for a specific user from IAM
+- Resource-Based
+    - Bucket Policies — bucket wide rules from the S3 console - allows cross account
+    - Object Access Control List (ACL) — finer grain (can be disabled)
+    - Bucket Access Control List (ACL) — less common (can be disabled)
+- Encryption: encrypt objects in Amazon S3 using encryption keys.
+- Bucket Settings to Block all Public access.
+
+S3 Bucket Policies:
+<img width="458" height="382" alt="image" src="https://github.com/user-attachments/assets/595a9ff1-2135-4ef5-84ec-c515fbfdee90" />
+
+- JSON based policies
+    - Resources: buckets and objects
+    - Effect: Allow / Deny
+    - Actions: Set of API to Allow or Deny
+    - Principal: The account or user to apply the policy to
+- Use S3 bucket for policy to:
+    - Grant public access to the bucket
+    - Force objects to be encrypted at upload
+    - Grant access to another account (Cross Account)
+    - EC2 Instance Roles can connect to a S3 Bucket
+
+Practical Bucket Security:
+```
+Bucket><Bucket_name>>Permissions> Block public access(bucket settings) Edit>
+```
+```
+Bucket><Bucket_name>>Permissions> Bucket Policy, Edit> Write JSON or use Policy generator>
+Select Type of Policy - S3 Bucket Policy
+Principal - whom?
+Actions - GetObject
+Amazon Resource Name (ARN) - Copy and paste the ARN from the Edit bucket policy tab and add "/*" to let all the objects of the bucket to be accessed.
+Paste it into your Policy and Save Changes
+```
+
+S3 - Static Website Hosting:
+- S3 can host static websites and have them accessible on the Internet
+- The website URL will be (depending on the region)
+- You need to make your bucket public readable otherwise you will get 403 error.
+
+
