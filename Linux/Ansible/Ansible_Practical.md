@@ -589,8 +589,28 @@ ansible all -m shell -a "firewall-cmd --permanent --remove-rich-rule='rule famil
 
 ansible all -b -m shell -a "firewall-cmd --list-rich-rules" (Lists the configured firewalld rich rules on all managed hosts with elevated privileges)
 
-
 ansible all -b -m shell -a "firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.10.10 service name=http accept'" (Intended to permanently allow HTTP traffic from 192.168.10.10)
+
+Crontab:Recurring automation
+
+ansible all -m shell -a "rpm -qa | grep crontab" (checks for a package name containing crontab)
+
+ansible all -m shell -a "systemctl start crond" (To start crond)
+ 
+ansible all -m shell -a "touch /home/ansible/test/cron-date.log" (touch creates the file if it doesn't exist)
+
+ansible all -m shell -a "crontab -l" (List the current user's cron jobs)
+
+ansible all -m shell -a '(crontab -l 2>>/dev/null; echo "* * * * * date >> /home/ansible/cron-date.log") | crontab -' (Run date every minute and append the output to /home/ansible/cron-date.log, 2>>/dev/null You don't want that error becoming part of the new crontab, ; Run the next command regardless of whether the previous command succeeded. crontab - Read the new crontab from standard input)
+
+ansible all -m shell -a "cat /home/ansible/cron-date.log" (To check if Every minute, date runs and appends another timestamp)
+
+ansible all -m shell -a '(crontab -l 2>>/dev/null; echo "#ANSIBLE CRON TEST"; echo "* * * * * date >> /home/ansible/cron-date.log") | crontab -' (Add another cron job with a comment)
+
+ansible all -m shell -a '(crontab -l 2>/dev/null; echo "45 17 * * * df -h >> /home/ansible/test/cron-disk-monitor.log") | crontab -' (Every day at 5:45 PM, run df -h and append its output to the log)
+
+ansible all -m shell -a "cat /home/ansible/test/cron-disk-monitor.log"
+
 ```
 
 ---
@@ -761,51 +781,6 @@ ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (Stops the ht
 ```
 --- 
 
-```
-AT(One time executable) vs Recurring automation (Re occurring task)
-Crontab:Recurring automation
-ansible all -m shell -a "rpm -qa | grep crontab"
-sudo vim /etc/crontab
-ansible all -m shell -a "systemctl start --now crond"
-ansible all -m shell -a "touch /home/ansible/test/cron-date.log" 
-ansible all -m shell -a "crontab -l"
-ansible all -m shell -a '(crontab -l 2>>/dev/null; echo "* * * * * date >> /home/ansible/cron-date.log") | crontab -'
-ansible all -m shell -a "crontab -l"
-ansible all -m shell -a "cat /home/ansible/cron-date.log"
-ansible all -m shell -a "cat /home/ansible/test/cron-date.log"
-ansible all -m shell -a '(crontab -l 2>>/dev/null; echo "#ANSIBLE CRON TEST"; echo "* * * * * date >> /home/ansible/cron-date.log") | crontab -'
-ansible all -m shell -a '(crontab -l 2>/dev/null df -h;>> echo "45 17 * * * date >> /home/ansible/test/cron-disk-monitor.log") | crontab -'
-ansible all -m shell -a "cat /home/ansible/test/cron-disk-monitor.log"
-ansible all -m shell -a "cat 
-```
-
-29-08-26
-One Time Automation
-
-at now +2 minutes 
-at> mkdir -p /dir1/dir2
-at> cp -v /etc/* /dir1/dir2/
-at> <EOT>
-
-at> (To check)
-
-Recurring Automation
-rpm -qa | grep cron-* (To check if cron rpm is loaded)
-crontab -e -u test 
-10	12	* 	* 	*	mkdir ~/dir3
-
-systemctl restart --now crond (Restart cron daemon)
- 
-
-
-ansible all -m shell -a "rpm -qa | grep crontab" (To check current crontab)
-ansible all -m shell -a "systemctl is-active crond"
-ansible all -m shell -a "systemctl enable --now crond"
-ansible all -m shell -a "cat > /tmp/cront-test.sh << "EOF"
->#!/bin/bash
->echo "I am Ironman"
->date
->hostname
 
 ansible all -m shell -a "ls -l /tmp/cron-test.sh"
 
