@@ -379,3 +379,11 @@ at> cp -v /etc/* /dir1/dir2/
 at> <EOT> (EOT means End Of Text in this context. Usually, you don't literally type 'Ctrl+D')
 at> (To check)
 ```
+
+## Recurring Automation
+Crontab:
+```
+rpm -qa | grep cron-* (To list all installed RPM packages, name starting with cron-)
+crontab -e -u test 
+10	12	* 	* 	*	mkdir ~/dir3 (Run the command every day at 12:10 PM)
+```
