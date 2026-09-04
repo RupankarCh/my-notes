@@ -91,10 +91,16 @@ git clone https://github.com/user/project.git
 
 **2️⃣ Checking status & history**
 
-**Check current repo status**
+**Status shows which files are modified, staged, or untracked**
 
 ```bash
 git status
+```
+
+Diff shows the actual lines that changed
+
+```bash
+git diff
 ```
 
 **View commit history**
@@ -112,7 +118,7 @@ git log --oneline
 ---
 
 **3️⃣ Adding files**
-
+Add stages the changes for your next commit 
 **Add a specific file**
 
 ```bash
@@ -131,7 +137,7 @@ This moves files to the **staging area**.
 
 **4️⃣ Commit changes**
 
-Save staged changes to repository history.**Commit** is a snapshot of a project at a specific time, It records file changes with a descriptive message.
+Save staged changes to repository history.**Commit** is a snapshot of a project at a specific time, It records file changes with a descriptive message. Commit records those staged changes by git add in Git history
 
 ```bash
 git commit -m "your commit message"
@@ -181,13 +187,13 @@ Push uploads **local commits to a remote repository**. So that others can also c
 git push origin branch-name
 ```
 
-Pull updates from remote:
+Pull downloads and integrates changes from remote repository into your current branch
 
 ```bash
 git pull
 ```
 
-Fetch changes without merging:
+Fetch downloads remote changes without applying them
 
 ```bash
 git fetch
@@ -216,7 +222,7 @@ git remote add origin <repo-url>
 
 **8️⃣ Undo mistakes**
 
-Unstage a file:
+Reset moves your branch back and rewrites local history:
 
 ```bash
 git reset filename
@@ -233,17 +239,24 @@ Undo last commit (keep changes):
 ```bash
 git reset --soft HEAD~1
 ```
+Revert creates a new commit that undoes an earlier commit
 
+```bash
+git revert
+```
 ---
 
-**9️⃣ Branch merging**
+**9️⃣ Branch **
 
-Merge branch into current branch:
+Merges two branch into current branch while keeping the history of both branches
 
 ```bash
 git merge branch-name
 ```
-
+Rebase moves your changes on top of another branch for a linear history
+```
+git rebase
+```
 ---
 
 **🔟 Stashing temporary work**
@@ -259,6 +272,9 @@ Restore it later:
 ```bash
 git stash pop
 ```
+
+---
+
 
 ---
 
