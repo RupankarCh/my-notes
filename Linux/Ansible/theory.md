@@ -369,3 +369,13 @@ Example:
 | Namespace    | Often `ansible.builtin.*`                         | Usually `<collection>.<module>`                   |
 | Reliability  | Generally well integrated                         | Depends on the collection/vendor                  |
 
+# Types of Automation
+
+## One Time Automation:
+```
+at now +2 minutes (Run the following commands once, 2 minutes from now)
+at> mkdir -p /dir1/dir2 
+at> cp -v /etc/* /dir1/dir2/
+at> <EOT> (EOT means End Of Text in this context. Usually, you don't literally type 'Ctrl+D')
+at> (To check)
+```
