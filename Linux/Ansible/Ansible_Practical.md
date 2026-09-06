@@ -611,6 +611,13 @@ ansible all -m shell -a '(crontab -l 2>/dev/null; echo "45 17 * * * df -h >> /ho
 
 ansible all -m shell -a "cat /home/ansible/test/cron-disk-monitor.log"
 
+ansible all -m shell -a "ls -l /tmp/cron-test.sh" (Checks whether /tmp/cron-test.sh exists on all Ansible-managed hosts and displays its permissions/details)
+
+ansible all -m shell -a "chmod o+x /tmp/cron-test.sh" (Gives execute permission to others (o+x) for /tmp/cron-test.sh on all managed hosts)
+
+ansible all -m shell -a "/tmp/cron-test.sh" (Manually executes /tmp/cron-test.sh on all managed hosts to verify that the script runs successfully)
+
+ansible all -m shell -a '(crontab -l 2>/dev/null; echo "* * * * * /tmp/cron-test.sh >> /tmp/cron-output.log 2>&1") | crontab -' (dds a cron job that runs /tmp/cron-test.sh every minute and appends its output/errors to /tmp/cron-output.log)
 ```
 
 ---
@@ -781,24 +788,7 @@ ansible all -m systemd -a 'name=httpd state=stopped enabled=false' (Stops the ht
 ```
 --- 
 
-
-ansible all -m shell -a "ls -l /tmp/cron-test.sh"
-
-ansible all -m shell -a "chmod o+x /tmp/cron-test.sh"
-
-ansible all -m shell -a "ls -l /tmp/cron-test.sh"
-
-ansible all -m shell -a "/tmp/cron-test.sh" (Check manually
-
-ansible all -m shell '(crontab -l 2> /dev/null/; echo "* * * * *  /tmp/cron-test.sh 
->> /tmp/cron-output.log 2>&1") | crontab -' 
-
-ansible all -m shell -a "ls -l /tmp/cron-output.log"
-
-An ansible Playbook is a file containing step by step instruction for automating tasks on the managed node.
-it is mainly written in .yaml(yet another markup language) language.
-
-*every .yaml file starts with three dash and end with three dot.
+# Playbook
 
 ```
 ---
