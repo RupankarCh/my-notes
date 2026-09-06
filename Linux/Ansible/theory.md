@@ -191,8 +191,8 @@ A collection of tasks executed on one or more .
 
 
 ### Playbook
-
-A collection of one or more plays written in **YAML**.
+An ansible Playbook is a file containing step by step instruction for automating tasks on the managed node.
+it is mainly written in .yaml(yet another markup language) language.
 
 Extensions:
 
