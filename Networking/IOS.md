@@ -140,6 +140,7 @@ Step 3: Configure Telnet on the router and Set a password:
 Router(config)# line vty 0 4
 Router(config-line)# password cisco
 Router(config-line)# login
+Router(config)# transport input telnet (Allow incoming remote connections to this VTY line using the Telnet protocol)
 ```
 
 Step 4: Telnet from the PC
