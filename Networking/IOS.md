@@ -109,13 +109,17 @@ R1(config)# line vty 0 4
 R1(config-line)# login local
 R1(config-line)# transport input ssh
 R1(config-line)# exit
+R1(config-line)# login local (Makes the device authenticate console/VTY access using the locally configured username and password)
+(config-line)#ip ssh version 2 (Configures the device to use SSH version 2 for secure remote access)
+# show ip ssh (Displays the device’s SSH configuration and status, including the SSH version being used)
 ```
 
 Step 7: Connect using SSH From the PC and provide the local user's password:
+```
+ssh <username@IP> (On Linux)
+ssh -l admin <IP_address> (On Router)
+```
 
-```
-ssh -l admin 192.168.1.1
-```
 ## iii. AUX Access
 The AUX port is mainly used for remote management, commonly through a modem or another serial connection. Unlike console access, **AUX access is designed for remote out-of-band management(Accessing devices via a completely separate physical connection that does not depend on the router's IP interfaces or WAN links)**. so that a remote administrator can dial into the router and access its CLI.
 
