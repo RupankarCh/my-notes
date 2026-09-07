@@ -172,7 +172,7 @@ Now when someone connects through the console, they'll be prompted for Password.
 ```
 enable secret <password (Sets the enable secret password to password for accessing Privileged EXEC mode. It is Stored as a hashed (encrypted) password and is more secure than enable password. You can configure only enable secret without configuring enable password)
 ```
-**Encrypt all Passwords**
+## Encrypt all Passwords
 ```
 (config)#service password-encryption (Encrypts all plain-text passwords in the running configuration using Cisco's Type 7 encryption.)
 ```
