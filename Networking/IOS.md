@@ -1,12 +1,3 @@
-# Types of Password
-- Console Password: Connectiing with port
-- AUX Password: Connecting with port
-- Enable Password: Priviledge Escalation
-- Enable Secret Password: Encrypted Priviledge Escalation
-- Line VTY Password: Connecting remotely
-
-**VTY: A VTY (Virtual Teletype) line is a virtual login port that allows users to remotely access the router using Telnet or SSH over the network.**
-
 
 # Navigation in IOS
 | Mode                                   | Prompt                   | Purpose                                                     | How to Enter                        |
@@ -19,6 +10,17 @@
 | **Router Configuration**               | `Router(config-router)#` | Configure routing protocols (OSPF, EIGRP, RIP, etc.)        | `router ospf 1`, `router rip`, etc. |
 | **Subinterface Configuration**         | `Router(config-subif)#`  | Configure logical subinterfaces                             | `interface GigabitEthernet0/0.10`   |
 | **VLAN Configuration** *(on switches)* | `Switch(config-vlan)#`   | Configure VLANs                                             | `vlan <vlan-id>`                    |
+
+# Types of Password
+- Console Password: Connectiing with port
+- AUX Password: Connecting with port
+- Enable Password: Priviledge Escalation
+- Enable Secret Password: Encrypted Priviledge Escalation
+- Line VTY Password: Connecting remotely
+
+**VTY: A VTY (Virtual Teletype) line is a virtual login port that allows users to remotely access the router using Telnet or SSH over the network.**
+
+
 
 # 4 Ways to access the Cisco IOS:
 | Access method | IOS line         | Typical use                     |
@@ -151,27 +153,24 @@ telnet 192.168.1.1
 show running-config (Displays the current active configuration stored in the router's RAM)
 ```
 
-**Set line Console Password**
+## line Console Password
 ```
 (config)#line console 0 (Enters console line configuration mode to configure the physical console port)
-password abc (Sets the console login password to abc)
+password <password> (Sets the console login password to password)
 login (Enables password authentication on the console line. Without this command, the configured password is ignored)
 exit
 wr (Saves the running configuration to the startup configuration)
 ```
-Now when someone connects through the console, they'll be prompted for:
-```
-Password:
-```
+Now when someone connects through the console, they'll be prompted for Password.
 
-```
+## Enable Password
 **Set Enable Password (Useless)**
 ```
-enable password abc (Sets the enable password to abc for accessing Privileged EXEC mode. It is Stored in plain text (or weakly encrypted if password encryption is enabled), so it is less secure.)
+(config)# enable password <Password> (Sets the enable password to password for accessing Privileged EXEC mode. It is Stored in plain text (or weakly encrypted if password encryption is enabled), so it is less secure.)
 ```
-**Set Enable Secret Password**
+## Set Enable Secret Password
 ```
-enable secret password (Sets the enable secret password to password for accessing Privileged EXEC mode. It is Stored as a hashed (encrypted) password and is more secure than enable password. You can configure only enable secret without configuring enable password)
+enable secret <password (Sets the enable secret password to password for accessing Privileged EXEC mode. It is Stored as a hashed (encrypted) password and is more secure than enable password. You can configure only enable secret without configuring enable password)
 ```
 **Encrypt all Passwords**
 ```
@@ -189,7 +188,8 @@ login on-success log   (Logs every successful login attempt in the system log)
 security authentication failure rate 3 log   (Logs an event if there are 3 authentication failures within the configured monitoring period (platform/IOS support varies))
 login block-for 120 attempts 3 within 30   (Blocks all login attempts for 120 seconds if there are 3 failed attempts within 30 seconds)
 ```
-**Bypassing Password(Startup Configuration)**
+
+## Bypassing Password(Startup Configuration)
 While Booting
 press Ctrl+c (To enter in rommon mode)
 ```
@@ -201,6 +201,15 @@ wr
 conf t
 (config)#config-register 0x2102 (To boot securely which was not possible after doing confreg 0x2142, and prevent no authentication from next time onwards)
 ```
+## Set Aux Console Passord
+```
+(config)#line aux 0 (Enters AUX (auxiliary) line configuration mode)
+password abc
+login
+exit
+wr
+```
+---
 
 # Connect a router and Linux machine in GNS3
 ```
@@ -226,76 +235,3 @@ ping 192.168.10.10 (To check)
 telnet 192.168.10.10
 Username <name>
 ```
-
-
-# Configure a console password
-
-Go to Privileged EXEC:
-
-```text
-Router> enable
-Router#
-```
-
-Enter Global Configuration:
-
-```text
-Router# configure terminal
-Router(config)#
-```
-
-Enter the console line:
-
-```text
-Router(config)# line console 0
-Router(config-line)#
-```
-
-Set a password:
-
-```text
-Router(config-line)# password cisco
-```
-
-Tell IOS to require that password:
-
-```text
-Router(config-line)# login
-```
-
-Exit:
-
-```text
-Router(config-line)# exit
-Router(config)# exit
-```
-
-Now when someone connects through the console, they'll be prompted for:
-
-```text
-Password:
-```
-
-Complete configuration
-
-```text
-Router> enable
-Router# configure terminal
-Router(config)# line console 0
-Router(config-line)# password cisco
-Router(config-line)# login
-Router(config-line)# end
-Router#
-```
-
----
-**Set Aux Console Passord**
-```
-(config)#line aux 0 (Enters AUX (auxiliary) line configuration mode)
-password abc
-login
-exit
-wr
-```
-
----
