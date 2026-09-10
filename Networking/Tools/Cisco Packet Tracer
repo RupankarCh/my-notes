@@ -122,3 +122,23 @@ copy tftp running-config
 <name>
 wr
 show run
+
+
+# Policy based routing:
+```
+PC1 :
+#trace 8.8.8.8    [ping command <pc>] 
+ROUTER2:
+r2(config)#ip access-list extended <name1>  [access-list creat]
+#permit ip any host 8.8.8.8    [access-list permit]
+#exit
+r2(config)#route-map <new name2> permit 10 [10= route-map no  
+#set ip next-hop 10.0.0.2 
+#match ip address <name1>
+R2(config)# int g 0/0
+#ip policy route-map <name2>
+#exit
+#wr
+PC1 :
+#traceroute 8.8.8.8 (To check)
+```
