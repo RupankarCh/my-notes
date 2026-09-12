@@ -928,7 +928,130 @@ Array Variable:
        ansible.builtin.debug:
  	 msg: "Student 2: {{ students[1] }}"
 ```
-       
 
+Loop
+vim loop1.yml
+```
+---
+- name: Simple loop example
+  hosts: all
+  tasks:
+    - name: Display student names
+      ansible.builtin.debug:
+        msg: "Student name is {{ item }}"
+      loop:
+        - Rahul
+        - Amit
+        - Atul
+```
+ansible-playbook loop1.yml (To execute the playbook)
 
+vim loop2.yml
+```
+---
+- name: Create multiple files
+  hosts: all
+  become: true
 
+  tasks:
+    - name: Create test Files
+      ansible.builtin.file:
+        path: "/tmp/{{ item }}"
+        state: touch
+        mode: '0755'
+      loop:
+        - file1.txt
+        - file2.txt
+        - file3.txt
+```
+ansible-playbook loop2.yml (To execute the playbook)
+
+vim loop3.yml
+```
+---
+- name: Create multiple files
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create multiple directories
+      ansible.builtin.file:
+        path: "/tmp/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - backup
+        - application
+        - Script
+```
+ansible-playbook loop3.yml (To execute the playbook)
+
+vim loop4.yml
+```
+---
+- name: Create multiple files with content
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create test files with content
+      ansible.builtin.copy:
+        content: "This is {{ item }}"
+        dest: "/tmp/{{ item }}"
+      loop:
+        - linux
+        - windows
+        - ansible
+```
+ansible-playbook loop4.yml (To execute the playbook)
+
+vim webserver.yml
+```
+---
+- name: Configure Apache Webserver on RHEL-10
+  hosts: all
+  become: true
+
+  tasks: 
+
+    - name: Install Apache HTTP Server
+      ansible.builtin.dnf:
+        name: httpd
+        status: present
+
+    - name: Create Custom Web Page
+      ansible.builtin.copy:
+        content:
+
+	  <!DOCTYPE html>
+          <html>
+          <head>
+            <title>My RHEL 10 Webserver</title>
+          </head>
+	  <body>
+              <h1>Welcome to my RHEL 10 web Server</h1>
+	      <p>This web page was developed using Ansible.</p>
+          </body>
+	  </html>
+        dest: /var/www/html/index.html
+	mode: '0644'
+
+    - name: start and enable apache
+      ansible.builtin.service:
+        name: httpd
+	state: started
+	enabled: true
+
+    - name: Allow HTTP Service through firewall
+      ansible.builtin.command:
+        cmd: firewall-cmd --permament --add-service=http
+	permanent: true
+	state: enabled
+	immediate: true
+
+    - name: Reload Firewall 
+      ansible.builtin.command:
+        cmd: firewall-cmd --reload
+
+ ```
+ansible-playbook webserver.yml (To execute the playbook) (If name: Allow HTTP Service through firewall dont work do it with shell module manually)
