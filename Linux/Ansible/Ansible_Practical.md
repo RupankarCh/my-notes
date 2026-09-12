@@ -1125,7 +1125,6 @@ ansible webserver -i /home/ansible/ansible-jinja/inventory -m command -a "ls -l 
 ansible webserver -i /home/ansible/ansible-jinja/inventory -m command -a "cat /tmp/systeminfo.txt"
 
 ---
-Conditional Tasks
 vim playbook6.yml
 ```
 ---
@@ -1158,3 +1157,35 @@ vim playbook6.yml
 ansible-playbook playbook6.yml
 ansible all -m shell -a "rpm -qa |grep vsftpd-*"
 
+vim playbook7.yml
+```
+---
+- name: Install Firewalld only on RHEL-9
+  hosts: all
+  become: true
+  
+  tasks:
+    - name: Display Operating System
+      ansible.builtin.debug:
+         msg: >
+            OS={{ ansible_facts['distribution'] }}
+		Version={{ ansible_facts['distribution_major_version'] }}
+
+    - name: Install firewalld on RHEL-9
+      ansible.builtin.dnf:
+        name: firewalld 
+        state: present
+      when: 
+        - ansible_facts['distribution'] == "Redhat"
+        - ansible_facts['distribution_major_version'] == "9"
+     - name: Start firewalld on RHEL-9
+       ansible.builtin.service:
+	 name: firewalld
+         state: started
+         enabled: true
+       when: 
+                  - ansible_facts['distribution'] == "Redhat"
+        - ansible_facts['distribution_major_version'] == "9"
+```
+ansible-playbook playbook7.yml
+ansible all -m shell -a "rpm -qa |grep firewalld-*"
