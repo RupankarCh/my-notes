@@ -35,7 +35,10 @@ Continuous Delivery (CD)
 Continuous Deployment (Advanced CD)
 Automatically deploy to production without manual approval
 
-
+**CI/CD Tools**
+- Jenkins
+- GitHub Actions
+- GitLab CI
 
 
 
