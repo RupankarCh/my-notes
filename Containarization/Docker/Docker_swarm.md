@@ -1,0 +1,1 @@
+Docker Swarm is **Docker's native container orchestration tool** built directly into the Docker Engine. It allows you to connect multiple physical or virtual machines running Docker into a single, cohesive cluster (called a swarm), enabling you to manage and scale your containers across multiple servers as if they were a single system.
