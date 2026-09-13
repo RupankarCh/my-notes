@@ -1,3 +1,6 @@
+
+
+## Network Penetration Testing
 ### **1. What is Network Penetration Testing?**
 
 **Network Penetration Testing (NPT)** is the process of testing a computer network to identify security weaknesses by simulating real-world cyberattacks. It helps organizations discover vulnerabilities before attackers can exploit them.
