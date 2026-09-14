@@ -272,3 +272,12 @@ The Challenges of Microservices
 • Distributed **Tracing**: Debugging a request that travels through five different services requires **advanced monitoring** tools.
 • Cultural Shift: Requires a "DevOps" culture where teams are responsible for the code they write and the servers it runs on.
 
+## Deploying Microservices:
+The Challenge of Microservices Scale
+• Management Complexity: Manually tracking 50+ independent services, their versions, and their health is impossible.
+• Networking Hurdles: Services need a reliable way to find and talk to each other as frey move across different servers.
+• Resource Effciency: How do you ensure you aren't over-provisioning servers for
+small, lightweight services?
+• Deployment Risks: Updating one service shouldn't risk the stability of the entire
+• The Solution: Combining Containerization (Docker) wiff Orchestration
+(Kubernetes).
