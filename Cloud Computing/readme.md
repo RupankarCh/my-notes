@@ -236,10 +236,10 @@ Event-Driven Architecture (EDA) is an **architectural approach where the flow of
 
 **The Anatomy of a Serverless Pipeline:**
 - **Automation** by Default: No human intervention is needed to move data from one stage to the next.
-- Stateless Processing: Each step in the pipeline is independent; if one fails, it can be retried without affecting others.
-- Parallel Execution: A **single event can trigger multiple actions** (e.g., one Lambda resizes a photo while another runs an AI scan for content).
-- Pay-per-Event: You are **only billed for the specific resources used to process that one event**.
-- Audit Trails: **Every event can be logged**, providing a perfect history of how datamoved through your system.
+- **Stateless Processing**: Each step in the pipeline is independent; if one fails, it can be retried without affecting others.
+- **Parallel Execution**: A **single event can trigger multiple actions** (e.g., one Lambda resizes a photo while another runs an AI scan for content).
+- **Pay-per-Event**: You are **only billed for the specific resources used to process that one event**.
+- **Audit Trails**: **Every event can be logged**, providing a perfect history of how datamoved through your system.
 
 ## When to Go Serverless (Use Cases)
 - **Web Backends**: Handling API requests for mobile apps or single-page weba pplications.
@@ -247,3 +247,28 @@ Event-Driven Architecture (EDA) is an **architectural approach where the flow of
 - **Chatbots and Assistants**: Processing natural language requests without maintaining a persistent server connection.
 - **Data Transformation**: Automatically cleaning or reformatting data as it enters a"Data Lake."
 - **IoT Backend**: Handling massive bursts of telemetry data from thousands of connected devices simultaneously.
+
+# Microservices Architecture:
+**Breaking a large application into small, independent, and specialized services. Services can be updated, tested, and deployed without rebooting the entire application. Communication happens over the network via standardized protocols (APIs).**
+
+**Key Design Principles**
+• **Single Responsibility**: A service focuses on a single task, ensuring **code clarity and easier maintenance**.
+• **API-First Communication**: Using **RESTful APIs or Message Buses to ensure services stay independent of each other's internal logic**.
+• **Database per Service**: **Each service manages its own data store** to ensure autonomy and avoid cross-service bottlenecks. (A **datastore** is any system or technology used to persist (save) data so it is not lost when an application stops running.)
+• **Autonomous Teams**: Small teams own a service from development through to production.
+• **Decentralization**: There is no "central brain"; logic is distributed throughout the network.
+
+**Comparison: Monolith vs. Microservices**
+• Deployment: Monoliths are "all-or-nothing"; Microservices allow for **"partial" updates**.
+• Scaling: A **monolith scales everything together as a single unit, while microservices scale individual components independently**.
+• Tech Stack: Monoliths are usually locked into one language; **Microservices allow for "Polyglot" programming**. (**Polyglot** programming is the practice of writing a software application using multiple programming languages)
+• Complexity: Monoliths have high **code complexity**; Microservices have high "**network and operational" complexity**.
+• Reliability: In a Monolith, one error can crash the system; in Microservices, failure is isolated to a single component.
+
+The Challenges of Microservices
+• **Operational Overhead**: Managing 50 services is harder than managing one; it requires **automation (CI/CD) and orchestration (Kubernetes).**
+• **Data Consistency**: Keeping **data in sync across multiple databases** requires careful design (Eventual Consistency).
+• **Network Latency**: Every service call is a network "hop," which can slow down performance if not managed carefully.
+• Distributed **Tracing**: Debugging a request that travels through five different services requires **advanced monitoring** tools.
+• Cultural Shift: Requires a "DevOps" culture where teams are responsible for the code they write and the servers it runs on.
+
