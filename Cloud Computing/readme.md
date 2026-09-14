@@ -292,10 +292,6 @@ The Challenges of Microservices
 
 **Advanced Kubernetes Features**
 • Self-Healing: **Automatically restarts failed containers** and reschedules them if a hardware node dies.
-• Automated Bin Packing: Intelligently places containers on servers based on their resource requirements to maximize hardware utility.
-• Secret & Configuration Management: Securely injects passwords and API keys
-into containers without hardcoding them in the image.
-• Storage Orchestration: Automatically attaches local or cloud storage (like EBS or
-Azure Disk) to containers that need to store data.
-• Batch Execution: Manages short-lived jobs and CI/CD workflows alongside long-
-running web services.
+• Automated Bin Packing: Intelligently **places containers on servers based on their resource requirements** to maximize hardware utility.
+• Secret & Configuration Management: Securely **injects passwords and API keys into containers without hardcoding them** in the image.
+• Storage Orchestration: **Automatically attaches local or cloud storage** (like EBS or Azure Disk) to containers that need to store data.
