@@ -852,7 +852,7 @@ Upload the index file into the bucket.
 Go to properties again to see the website URL
 ```
 
-Amazon S3 -Versioning
+## Amazon S3 -Versioning
 - You can version your files in Amazon S3
 - It is enabled at the bucket level
 - Same key overwrite will change the "version": l, 2, 3.
@@ -860,14 +860,71 @@ Amazon S3 -Versioning
     - Protect against unintended deletes (ability to restore a version)
     - • Easy roll back to previous version
 • Notes:
-- Any file that is not versioned prior to enabling versioning will have version "null"
+- Any file that is not versioned prior to enabling versioning, will have version ID as "null"
 - Suspending versioning does not delete the previous versions
 
 Practical Versioning:
 ```
+Buckets > <Bucket_name> > Properties, Bucket Versioning Edit > Enable (To enable versioning in a bucket
+
+Buckets > <Bucket_Name>, Objects > Show versions (To see object versions)
+
+Buckets > <Bucket_Name>, Objects, select the object versioned > Delete (To roll back to previous version, If bucket versioning is enabled object will provide a delete marker on it when attempted to deleted and if the marker is removed we can get back the object)
 ```
 
+## S3 Replication (CRR & SRR)
 
+- Must **enable Versioning** in source and destination buckets
+- CRR Cross Region Replication
+- SRR Same Region Replication
+- Buckets can be in different AWS accounts
+- Coping is asynchronous
+- Must give proper IAM permissions to S3
 
+**Use case**:
+- CRR - compliance, lower latency access, replication across accounts
+- SRR - log aggregation, live replication between production and test accounts
 
+Practical
+```
+Create <origin> bucket, Name it, Select Region, Enable Versioning  > Create <target> Bucket, Name it, Select Region(Same or different), Enable Versioning (To create the two bucket)
 
+Management, Create Replication rule > Name it, Status Enabled, Source Bucket Apply to all objects in the bucket, Choose a bucket in this account, Browse Buckets Select the <target_bucket_name>, IAM role create new role, save  (Now you can upload object to the origin bucket and it will be replicated to the target bucket, with same version ID)
+```
+
+# S3 Storage Classes
+- Amazon S3 Standard-General Purpose
+- Amazon S3 Standard-Infrequent Access (IA)
+- Amazon S3 One Zone-Infrequent Access
+- Amazon S3 Glacier Instant Retrieval
+- Amazon S3 Glacier Flexible Retrieval
+- Amazon S3 Glacier Deep Archive
+- Amazon S3 Intelligent Tiering
+
+Can move between classes manually or using S3 Lifecycle configurations
+
+**Durability: How many times a object is going to be available and not lost by Amazon S3**. It's 11 9s which means (99.999999999% Durability for all storage classes)
+
+**Availability: Measures how readily available a S3 service is**. S3 has 99.99% availability which means not available 53 minutes a year.
+
+Use Case of each Class:
+- **Infrequent** Access: **data that is less frequently accessed, but requires rapid access when needed**, Lower cost than S3 Standard.
+ - Amazon **S3 Infrequent Access (IA)**: 99.9% Availability, Disaster Recovery, Backups etc.
+ - Amazon **S3 One Zone-Infrequent Access**: High Durability in a single AZ but data lost when AZ is destroyed. 99.5% Availability
+- **Glacier** Storage Classes: **Low-cost** object storage, for archiving/backup, Pay for **price for storage + object retrieval cost**, **Minimum storage duration of 90 days**
+ - Amazon S3 Glacier **Instant Retrieval**: **Millisecond Retrieval**, great for **data accessed once a quarter.**
+ - Amazon S3 Glacier **Flexible Retrieval**: Expedited (l to 5 minutes), Standard (3 to 5 hours), Bulk (5 to 12 hours) — free 
+ - Amazon S3 Glacier **Deep Archive**: Standard (12 hours), Bulk (48 hours)
+**Minimum storage duration of 180 days**.
+
+S3 **Intelligent-Tiering**: 
+- Small **monthly monitoring and auto-tiering fee**
+- **Moves objects automatically between Access Tiers based on usage**
+- There are **no retrieval charges** in S3 Intelligent-Tiering
+- Frequent Access tier (automatic): default tier
+- Infrequent Access tier (automatic): objects not accessed for 30 days
+- Archive Instant Access tier (automatic): objects not accessed for 90 days
+- Archive Access tier (optional): configurable from 90 days to 700+ days
+- Deep Archive Access tier (optional): config. from 1 80 days to 700+ days
+
+<img width="1165" height="565" alt="image" src="https://github.com/user-attachments/assets/accff1f8-40d0-4401-8afc-2d3362762439" />
