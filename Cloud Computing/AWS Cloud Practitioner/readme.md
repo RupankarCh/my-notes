@@ -928,3 +928,5 @@ S3 **Intelligent-Tiering**:
 - Deep Archive Access tier (optional): config. from 1 80 days to 700+ days
 
 <img width="1165" height="565" alt="image" src="https://github.com/user-attachments/assets/accff1f8-40d0-4401-8afc-2d3362762439" />
+
+<img width="1173" height="577" alt="image" src="https://github.com/user-attachments/assets/aa25ab05-7854-4146-9cff-6c19a352249f" />
