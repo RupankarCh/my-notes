@@ -1,5 +1,9 @@
 # Assignment 6: Mail Server Configuration
 An **email service can run without public DNS only for local-only networks or single machines internal hostnames or IP addresses, but it cannot communicate over the public internet. If there is no DNS available**.
+
+**Email Address Structure:**
+username@domain.name
+
 ## Protocols:
 - Simple Mail Transfer Protocol(SMTP): used for sending messages
 - Post Office Protocol Version 3(POP3): Older protocol used previously for receving emails. 
