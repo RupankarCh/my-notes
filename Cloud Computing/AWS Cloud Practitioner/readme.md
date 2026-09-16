@@ -758,6 +758,7 @@ EC2> Auto Scaling groups, Select the ASG and Delete (To terminate the instances)
 
 
 
+<img width="1117" height="425" alt="image" src="https://github.com/user-attachments/assets/03f5cd9d-79e0-456e-b483-7134a1bba0c0" />
 
 # S3
 - allows people to store objects in buckets.
@@ -779,7 +780,7 @@ Use Cases:
 Objects:
 Every file is the key there is no concepts of directories here. Max object size is 50TB, if uploading more than 5GB must use multi-part upload.
 - Objects(files) have a key
-- The key is the FULL path:
+- **The key IS the full path to the object**.:
   - s3://my-bucket/my_file.txt
 - The key is composed of prefix + object name
 - Metadata (list of text key / value pairs — system or user metadata)
@@ -892,7 +893,7 @@ Create <origin> bucket, Name it, Select Region, Enable Versioning  > Create <tar
 Management, Create Replication rule > Name it, Status Enabled, Source Bucket Apply to all objects in the bucket, Choose a bucket in this account, Browse Buckets Select the <target_bucket_name>, IAM role create new role, save  (Now you can upload object to the origin bucket and it will be replicated to the target bucket, with same version ID)
 ```
 
-# S3 Storage Classes
+## S3 Storage Classes
 - Amazon S3 Standard-General Purpose
 - Amazon S3 Standard-Infrequent Access (IA)
 - Amazon S3 One Zone-Infrequent Access
@@ -907,15 +908,14 @@ Can move between classes manually or using S3 Lifecycle configurations
 
 **Availability: Measures how readily available a S3 service is**. S3 has 99.99% availability which means not available 53 minutes a year.
 
-Use Case of each Class:
+**Use Case of each Class:**
 - **Infrequent** Access: **data that is less frequently accessed, but requires rapid access when needed**, Lower cost than S3 Standard.
  - Amazon **S3 Infrequent Access (IA)**: 99.9% Availability, Disaster Recovery, Backups etc.
  - Amazon **S3 One Zone-Infrequent Access**: High Durability in a single AZ but data lost when AZ is destroyed. 99.5% Availability
 - **Glacier** Storage Classes: **Low-cost** object storage, for archiving/backup, Pay for **price for storage + object retrieval cost**, **Minimum storage duration of 90 days**
  - Amazon S3 Glacier **Instant Retrieval**: **Millisecond Retrieval**, great for **data accessed once a quarter.**
  - Amazon S3 Glacier **Flexible Retrieval**: Expedited (l to 5 minutes), Standard (3 to 5 hours), Bulk (5 to 12 hours) — free 
- - Amazon S3 Glacier **Deep Archive**: Standard (12 hours), Bulk (48 hours)
-**Minimum storage duration of 180 days**.
+ - Amazon S3 Glacier **Deep Archive**: Amazon Glacier Deep Archive is the **most cost-effective option if you want to archive data and do not have a retrieval time requirement**. You can retrieve data in 12 or 48 hours.
 
 S3 **Intelligent-Tiering**: 
 - Small **monthly monitoring and auto-tiering fee**
@@ -930,3 +930,80 @@ S3 **Intelligent-Tiering**:
 <img width="1165" height="565" alt="image" src="https://github.com/user-attachments/assets/accff1f8-40d0-4401-8afc-2d3362762439" />
 
 <img width="1173" height="577" alt="image" src="https://github.com/user-attachments/assets/aa25ab05-7854-4146-9cff-6c19a352249f" />
+
+**Practical S3 Storage Classes:**
+```
+Create a Bucket, Name it > Add files for upload, properties, Select the Class > Upload
+
+Buckets > <Bucket_name> > <Object_name>, properties, Edit Storage class > Save Changes (To modify the storage class of an existing object)
+
+Buckets > <Bucket_name>, Management > Create Life Cycle Rule > Name it, Apply to all objects in the bucket, Move current versions of objects between storage classes, Select the class transitions and days after object creation, Add transition to add more (To change storage class based on rules created by you)
+```
+
+**S3 Express One Zone Storage Class**: High performance single AZ storage class
+- Objects stored in a Directory Bucket (bucket in a single AZ)
+- **Handle 100,000s requests per second with single-digit millisecond latency**
+- Up to **1Ox better performance than S3 Standard (50% lower costs)**
+- High Durability (99.999999999%) and Availability (99.95%)
+- **Co-locate your storage and compute resources in the same AZ (reduces latency)**
+- Use cases: **latency-sensitive apps, data-intensive apps,Al & ML training, financial modeling, media processing, HPC**... Best integrated with SageMaker Model Training, Athena, EMR, Glue...
+
+## S3 Encryption
+- **Server Side** Encryption(Default): Each **uploaded object will be encrypted by amazon S3**
+- **Client Side** Encryption: **User encrypts the file before uploading it**.
+
+## IAM Access Analyzer for S3 
+**Find resources in your account which is shared with other entities.**
+- Ensures that only intended people have access to your S3 buckets
+- Example: publicly accessible bucket, bucket shared with other AWS account...
+- Evaluates S3 Bucket Policies, S3 ACLs, S3 Access Point Policies
+
+## Shared Responsibility Model for S3
+
+AWS:
+- **Infrastructure** (global security, durability, availability, sustain concurrent loss of data in two facilities)
+- **Configuration and vulnerability analysis**
+- **Compliance validation**
+
+User:
+- **S3 Versioning**
+- **S3 Bucket Policies**
+- **S3 Replication Setup**
+- **Logging and Monitoring**
+- **S3 Storage Classes**
+- **Data encryption** at rest and in transit
+
+## AWS Snowball
+AWS Snowball Edge is essentially **a physical AWS storage/compute appliance that AWS ships to your location**. You use it when moving a very large amount of data over the internet would be too slow, unreliable, or impractical.
+- Highly-secure, portable devices to collect and process data at the edge, and migrate data into and out of AWS
+- Helps migrate up to Petabytes of data
+
+**Edge Computing**: 
+- Edge computing means **processing data close to where the data is generated**, instead of always sending raw data to a centralized AWS Region first.
+ - A truck on the road, a ship on the sea, a mining station underground... These locations may have limited intemet and no access to computing power
+- We setup a Snowball Edge device to do edge computing
+ -  Snowball Edge Compute Optimized (dedicated for that use case) & Storage Optimized
+ -  Run EC2 Instances or Lambda functions at the edge
+- **Use cases: preprocess data, machine learning, transcoding media**
+
+**Practical Snow Family**
+```
+Snow family > Create new job, Name it, Choose Job type > Next, Select the Snow device, Select Bucket > Next > Next > Shipping Address > Save
+```
+
+**Pricing**:
+- You **pay for device usage and data transfer out of AWS**
+- **Data transfer IN to Amazon S3 is $0.00 per GB**
+
+## S3 Storage Gateway:
+**Bridge between on-premises data and clouud data** in S3. Used for **exposing cloud storage data to on-premises you have to use aws storage gateway**.
+
+## S3 Summary
+- Buckets vs Objects: Buckets have global unique name, tied to a region
+- S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption
+- S3 Websites: host a static website on Amazon S3
+- S3 Versioning: multiple versions for files, prevent accidental deletes
+- S3 Replication: same-region or cross-region, must enable versioning
+- S3 Storage Classes: Standard, IA, I Z-IA, Intelligent, Glacier (Instant, Flexible, Deep)
+- Snowball: import data onto S3 through a physical device, edge computing
+- Storage Gateway: hybrid solution to extend on-premises storage to S3
