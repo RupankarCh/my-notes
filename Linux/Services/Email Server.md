@@ -1,6 +1,9 @@
 # Assignment 6: Mail Server Configuration
-
-Here is the complete practical guide structured step-by-step based on your notes.
+An **email service can run without public DNS only for local-only networks or single machines internal hostnames or IP addresses, but it cannot communicate over the public internet. If there is no DNS available**.
+## Protocols:
+- Simple Mail Transfer Protocol(SMTP): used for sending messages
+- Post Office Protocol Version 3(POP3): Older protocol used previously for receving emails. 
+- Internet Message Protocol(IMAP): Modern protocol used for receiving emails.
 
 ---
 
