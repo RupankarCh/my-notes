@@ -240,3 +240,31 @@ ping 192.168.10.10 (To check)
 telnet 192.168.10.10
 Username <name>
 ```
+
+
+# IOS Backup & Restore
+**Prerequisite:**
+Configure IP Address on Router and the Server
+Server > Services TFTP On 
+Check connectivity using ping
+
+**On Router**
+```
+#show flash: (To displays the contents of the router's Flash memory)
+#copy flash: tftp: (To copies a file from the router's Flash memory to a TFTP server)
+<Paste_IOS_filename.bin>
+<Server's_IP>
+<Name_Destination_File>
+#delete flash:  (To delete a file from the router's Flash memory)
+<IOS_filename.bin>   
+#reload (To reboot the router)
+rommon 1 >tftpdnld (To download a file from a tftp server)
+2 >IP_ADDRESS=<OWN_IP>
+3 >IP_SUBNET_MASK=<Server's_SUBNET_MASK>
+4 >DEFAULT_GATEWAY=<DEFAULT_GATEWAY/OWN_IP>
+5 >TFTP_SERVER=<Server's_IP>
+6 >TFTP_FILE=<File_Name_To_Download>
+7 >tftpdnld
+y
+8>reset
+```
