@@ -64,3 +64,29 @@ Transformation → Estimate → Realign → Detect
 
 Mapping Process: 
 Original Message → Binary Conversion/Encoding → Message Mapping → Message Vector → Watermark Embedding
+
+**Side information** may include host-media characteristics, secret keys, watermark patterns, image features, and statistical properties.
+
+**Dirty-Paper Coding (DPC)** uses the known host media as side information/interference during watermark embedding.
+
+Types of Distortions:
+- **Volumetric distortion**: Changes the **pixel/signal values** of the media, such as noise or filtering.
+- **Temporal distortion**: Affects the **time sequence**, mainly in audio and video, such as frame reordering.
+- **Geometric distortion**: Changes the **position, orientation, or size**, such as rotation, scaling, and cropping.
+
+**Resist geometric attacks**:
+- synchronization techniques
+- feature-based watermarking
+- DFT/DWT and Error Correction Coding (ECC)
+
+**Redundant embedding**:
+The **same watermark information is embedded multiple times in different locations of the host media**.
+
+**Lattice Codes embed and decode watermark information**
+- During embedding, the host media is treated as known interference, and the **encoder maps the watermark information to suitable points in a lattice while considering the host signal**.
+- During decoding, the **received signal is examined and the nearest/appropriate lattice point is selected to recover the watermark information**.
+
+**Spread Spectrum Coding** is a watermarking technique in which the **watermark is distributed over a large number of host-signal components** using a pseudo-random (PN) sequence. The **PN sequence is generated using a secret key, and the watermark is spread across many pixels or coefficients.**
+
+**Scalar watermarking** embeds information by slightly modifying individual numerical values according to the watermark bits.
+
