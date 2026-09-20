@@ -90,7 +90,7 @@ Router(config)#show running-config | include username (Enables checking of local
 - **0x2142 (Password Recovery Setting)**: Tells the router to **ignore the startup-config** in NVRAM during bootup. The **router boots into a clean, default state** as if it has no passwords configured, while leaving your original configuration file untouched in NVRAM. 
 
 # Router Privilege Levels and Their Configuration:
-**Privilege levels control what commands a user can execute**. They are part of Cisco IOS’s basic access-control mechanism. **Level 2-14 can be customized to create role-based access, while level 15 provides full administrative access**.
+**Privilege levels control what commands a user can execute**. They are part of Cisco IOS’s basic access-control mechanism. **Level 2-14 can be customized to create role-based access control, while level 15 provides full administrative access**.
 
 ## 1.Configure passwords for privilege levels:
 ```
@@ -104,7 +104,7 @@ now 'Router> enable 5' and 'Router> enable 10' will ask for different passwords 
 Router(config)# privilege exec level 5 configure terminal (Allows privilege level 5 users to enter global configuration mode using configure terminal)
 Router(config)# privilege configure level 5 interface (Allows level 5 users to use the interface command from global configuration mode)
 Router(config)# privilege interface level 5 shutdown (Allows level 5 users to use the shutdown command inside interface configuration mode)
-Router(config)# privilege exec level show running-config (Allows level 5 users to run show running-config from EXEC mode)
+Router(config)# privilege exec level 5 show running-config (Allows level 5 users to run show running-config from EXEC mode)
 ```
 
 ## 3.Create users and assign them a privilege level
@@ -114,6 +114,30 @@ Router(config)# username <user_name> privilege 15 secret <password> (Creates a l
 ```
 After this when you login 'Router(config)# line console 0, Router(config-line)# login local' you will be prompted for username and password.
 The privilege level of those users will be predefined
+
+## Verification and Troubleshooting Commands
+```
+Router(config)# show privilege (Displays the exact numeric privilege level (0–15) of the current terminal session)
+Router(config)# show running-config | include privilege (Lists all custom command-shifting maps and role definitions configured globally on the device) 
+Router(config)# disconnect or logout (Allows students to exit their session to test the credential mappings of different administrative profiles)
+```
+
+# NTP (Network Time Protocol):
+A networking protocol operating over **UDP port 123 at the Application Layer (Layer 7)** of the OSI model. Its primary objective is to **synchronize the internal clocks of network devices (routers, switches, firewalls, and servers)** to a precise, common time reference. 
+
+**Stratum number indicates how many routing hops a device is away from an authoritative, atomic hardware clock.**  Most enterprise networks sync their edge routers with public Stratum 2 servers
+
+```
+Router# show clock 
+Router# show calendar (check the hardware and software clock status of the device)
+Router# clock set 12:00:00 16 June 2026 (manually configuring a rough baseline can help speed up initial NTP acquisition)
+Router# configure terminal 
+Router(config)# ntp server 192.168.10.100 (Point your infrastructure device to a secure, known Stratum 2 network address)
+Router(config)# access-list 10 permit 192.168.10.100 
+Router(config)# ntp access-group peer 10 ( the device will only accept time synchronization updates and peering packets from IP)
+Router(config)# show ntp status (whether the clock is synchronized or unsynchronized)
+Router(config)# show ntp associations ( list of all upstream NTP servers configured on the device, including metrics such as delay, offset, and jitter. An asterisk (*) next to a server indicates that the router has chosen that specific server as its primary master time source.)
+```
 
 # Access Control List:
 **set of filter rules placed on routers, switches, or firewalls to permit or deny data packets.**
