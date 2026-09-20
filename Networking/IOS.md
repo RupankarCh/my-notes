@@ -281,3 +281,29 @@ Router(config)#show cdp (show global CDP configurations)
 Router(config)#show cdp neighbors 
 Router(config)#show cdp neighbors detail 
 ```
+
+
+# Passive Interface:
+An interface where the **router does not send routing protocol hello/update messages, but the router can still advertise the network connected to that interface to other routers.**
+
+**Manual Assignment**
+```
+Router# configure terminal 
+Router(config)# router ospf 1 
+Router(config-router)# network 192.168.10.0 0.0.0.255 area 0 
+Router(config-router)# passive-interface GigabitEthernet 0/1 
+Router(config-router)# exit
+```
+
+**Global Lockdown**
+**Make all interfaces passive globally**, and then explicitly turn routing updates back on only for the specific links connecting directly to trusted upstream routers.
+```
+Router(config)# router eigrp 100 
+Router(config-router)# network 10.0.0.0 
+Router(config-router)# passive-interface default (instantly locks down every single interface running on the router. No routing packets leak out anywhere.)
+Router(config-router)# no passive-interface GigabitEthernet 0/0 (re-enables EIGRP updates only on the trunk link that leads directly to your core distribution router.)
+Router(config-router)# exit
+Router(config)# show ip protocols (showing every interface currently muted)
+Router(config)# show ip ospf neighbor or show ip eigrp neighbors (checks if neighbors are successfully forming 
+peers.)
+```
