@@ -1,5 +1,96 @@
+# Core Operational Pillars of Infrastructure Hardening
+## Management Plane Security:
+The part of a system responsible for **controlling, configuring, monitoring, and administering the infrastructure**.
+- Use Secure Protocols: like SSH
+- Privilege Level Separation: Apply Least Privilege principle
+## Control Plane Security
+The part of an infrastructure system that **makes decisions about how the system should operate**. 
+- Protocol Authentication: prevent unintended participant know and modify the underlying infrastructure.
+- Topology Safeguards: 
+## Data Plane Security
+The part of an infrastructure system that actually **handles and processes the workload or traffic**.
+- Traffic Filtering: ACLs
+- Edge Protections: Port Security
+
+
+# Structure of Secure Enterprise Network:
+network infrastructure is never flat. It is logically and physically partitioned into distinct security zones using Virtual Local Area Networks (VLANs) and firewalls to mitigate lateral threat movement. 
+- **Perimeter Firewall**:  The initial line of defense that enforces explicit inbound traffic constraints using **stateful packet inspection and Application-Layer inspection**. 
+- **The DMZ (Demilitarized Zone)**: A dedicated, **semi-isolated network segment hosting external facing corporate resources (e.g., public web servers, DNS servers, mail relays)**. If a server inside the 
+DMZ is compromised, the primary internal firewall prevents the attacker from shifting laterally into the internal core. 
+- **The Trusted Zone (Internal Corporate LAN)**: The highly restricted segment housing corporate **workstations, internal database arrays, active directory infrastructure, and core network management endpoints**. 
+
+# Fixed-Time Password Based Authentication:
+It refers to a security control where **access to a network device’s management plane (Console, VTY lines, or Aux port) is restricted using a static password** that is governed by explicit temporal and administrative constraints.  
+
+**Advantages:**
+- **Administrative Validity Lifespan**: A operational policy requiring **passwords to expire and be forcefully rotated after a fixed window of time** (e.g., 30, 60, or 90 days).
+- **Login Session Timeouts (Exec-Timeout)**: Automatically **terminating an authenticated administrative session if no input is detected within a designated, fixed duration of time**. This prevents an open terminal from being hijacked if an administrator walks away from their desk.
+- **Brute-Force Lockout Windows**: Temporarily disabling authentication attempts for a fixed period if a user enters an incorrect password multiple times within a short timeframe. 
+
+**Disadvantages:**
+- **Clear-Text Exposure by default**
+- Lack of Accountability (If multiple junior engineers share a single, fixed local password to access a router's privilege mode, it becomes **impossible to determine who executed a specific command during an incident**.)
+- **Credential Stuffing & Brute-Forcing**
+
+**Common Cisco IOS Hashing Types**:
+- Type 0 (Plain Text)
+- Type 7 (Vigenère Cipher)
+- Type 5 (MD5)
+- Type 8 (SHA-256) & Type 9 (scrypt)
+
+## Enabling Basic Password Obfuscation (Type 7) 
+This obscures any existing clear-text line passwords in the configuration file. 
+```
+Router# configure terminal 
+Router(config)# service password-encryption
+```
+
+## Configuring Strong Enable Passwords (Type 5/8/9) 
+Always use enable secret rather than enable password, as the latter uses insecure Type 0 or Type 7 formatting. 
+```
+Router(config)# enable secret P@ssw0rd123!
+```
+
+## Implementing Fixed-Time Login Constraints (Brute-Force Block) 
+To defend against automated dictionary attacks, we can configure the device to block authentication attempts for a fixed period if an engineer fails to log in successfully.
+```
+Router(config)# login block-for 180 attempts 3 within 60 (Block all login attempts for 180 seconds if 3 failed attempts are registered within a 60
+second window.)
+```
+
+## Configuring Administrative Session Timeouts (Exec-Timeout) 
+To prevent left-behind management sessions from remaining open indefinitely, apply a fixed-time execution limit on Console and VTY (remote access) lines. 
+
+```
+Router(config)# line console 0 
+Router(config-line)# exec-timeout 5 0 (exec-timeout 5 0 means the session will automatically terminate after 5 minutes and 0 seconds of absolute inactivity)
+Router(config-line)# exit 
+Router(config)# line vty 0 4 
+Router(config-line)# exec-timeout 10 0 
+Router(config-line)# exit
+```
+
+# Password Policy:
+A set of administrative and technical rules designed to ensure that access credentials used to manage corporate routers, switches, and firewalls are highly resilient against compromise.
+
+```
+Router(config)# security passwords min-length 10  (Configure password's minimum length 
+Router(config)# username NetAdmin secret strong_P@ssw0rd!9 (Preventing Shared Access with Local Named Accounts) 
+Router(config)# login block-for 120 attempts 4 within 60 (stop login interface  120 seconds if 4 incorrect entries occur 
+within a 60-second window.
+Router(config)# show running-config | include passwords (Verifies if the global minimum length restriction is currently active on the device)
+Router(config)#show login (To Displays whether any brute-force tracking windows or administrative lockout parameters are in effect)
+Router(config)#show running-config | include username (Enables checking of local user parameters. Ensure that the strings displayed following the username show safe hash identifier digits (like $5$, $8$, or $9$) rather than plain text)
+```
+
+# Password Recovery Techniques:
+**Cisco Configuration Register** a 16-bit NVRAM value that dictates how a router behaves when it boots up. 
+- **0x2102 (Default Factory Setting)**: Tells the router to boot normally. It **loads the Cisco IOS software from Flash memory and applies the saved configuration file (startup-config) from NVRAM into RAM.**
+- **0x2142 (Password Recovery Setting)**: Tells the router to **ignore the startup-config** in NVRAM during bootup. The **router boots into a clean, default state** as if it has no passwords configured, while leaving your original configuration file untouched in NVRAM. 
+
 # Router Privilege Levels and Their Configuration:
-**Privilege levels control what commands a user can execute**. They are part of Cisco IOS’s basic access-control mechanism. Level 2-14 can be customized to create role-based access, while level 15 provides full administrative access.
+**Privilege levels control what commands a user can execute**. They are part of Cisco IOS’s basic access-control mechanism. **Level 2-14 can be customized to create role-based access, while level 15 provides full administrative access**.
 
 ## 1.Configure passwords for privilege levels:
 ```
