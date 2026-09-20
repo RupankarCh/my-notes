@@ -268,3 +268,16 @@ rommon 1 >tftpdnld (To download a file from a tftp server)
 y
 8>reset
 ```
+
+# Cisco Discovery Protocol (CDP):
+A proprietary protocol runs on **Layer 2 (Data Link Layer)** of the OSI model. CDP allows **directly connected Cisco devices to discover each other, learn structural parameters, and automatically share hardware capabilities** regardless of which Network Layer (Layer 3) protocols are configured. CDP packets are transmitted periodically **every 60 seconds as multicast frames to a destination hardware MAC address** (01:00:0c:cc:cc:cc). 
+
+```
+Router(config)# no cdp run ( completely shuts down the protocol process. The device will stop sending out CDP advertisements and will stop listening for incoming neighbor frames on all ports)
+
+Router(config)# interface GigabitEthernet 0/24 
+Router(config-if)# no cdp enable (Selectively Disabling CDP on Specific Interfaces)
+Router(config)#show cdp (show global CDP configurations)
+Router(config)#show cdp neighbors 
+Router(config)#show cdp neighbors detail 
+```
