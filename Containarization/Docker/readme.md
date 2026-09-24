@@ -141,3 +141,12 @@ WORKDIR /app (To Set /app as the working directory for subsequent commands.)
 
 CMD ["nginx", "-g", "daemon off;"] (To Runs Nginx in the foreground when the container starts)
 ```
+
+
+The "Build Once, Run Anywhere" Principle
+- Eliminating Inconsistency: Containers package code with its specific environment, ensuring identical behavior across Dev, Test, and Prod.
+- Isolation: Each container is an independent unit; dependencies for one app won't interfere with another on the same server.
+- Portability: Move your application between AWS, Azure, or on-premise servers without changing a single line of code.
+- Speed: Containers share the host OS kernel, making them much faster to start and lighter than traditional Virtual Machines.
+- Standardization: Provides a universal format for developers and operations teams to collaborate.
+
