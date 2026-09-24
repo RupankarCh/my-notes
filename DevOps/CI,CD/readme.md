@@ -74,3 +74,38 @@ How to see the Triggers:
 
 Repository> Settings> Pages> Select Deploy from Branch to Github Action> Actions> Select the .yml file and you can see all the steps defined in the .yml file of the Github Actions Workflow file.
 
+The Rise of Native CI/CD
+- Platform Integration: Moving away from external tools (like Jenkins) to tools built directly into the code repository.
+- Single Source of Truth: Code, infrastructure (IaC), and deployment logic (YAML) all live in a single repository.
+- Unified Security: Managing access to code and deployment permissions through a single identity provider.
+- Reduced Overhead: No need to manage separate servers, plugins, or complex integrations between different vendors.
+- Developer Experience: Developers can see the results of their builds and tests directly within their Pull Requests.
+
+
+GitHub Actions: Event-Driven Automation
+- Workflow Components: Workflows -+ Jobs -+ Steps —+ Actions.
+- The Marketplace: Leveraging thousands of reusable components to build complex pipelines in minutes.
+- Matrix Builds: Effortlessly testing your code across multiple operating systems and language versions at once.
+- GitHub-Native Secrets: Securely storing API keys and cloud credentials that are only accessible during the build.
+- Flexible Triggers: Automating tasks based on pushes, releases, or even cron-job schedules.
+
+GitLab CI/CD: The "One Tool" Philosophy
+- Stage-Based Execution: Defining clear boundaries between Building, Testing, and Deploying for maximum safety.
+- Integrated Container Registry: Storing your Docker images directly within GitLab for faster, more secure deployments.
+- Security First: Automated vulnerability scanning and license compliance checks are built into every pipeline.
+- GitLab Runners: The flexibility to use GitLab's managed cloud runners or host your own for specialized hardware needs.
+- Advanced Releases: Native support for "Canary Deployments" and "Feature Flags" to control how new code reaches users.
+
+Bitbucket Pipelines: Integrated Simplicity
+- Atlassian Synergy: Creating a seamless link between Jira issues, Bitbucket code, and final deployments.
+- Serverless Model: No infrastructure to manage; Bitbucket scales the build environment automatically based on your needs.
+- Pipe-Based Configuration: Using "Pipes" (similar to Actions) to simplify tasks like deploying to AWS, Azure, or Heroku.
+- Deployment Tracking: Visualizing the health and history of deployments across different environments (Dev, QA, Prod). Quick Onboarding: Designed for teams that want to go from "zero to CI/CD" with minimal YAML configuration.
+
+Choosing Your Repository Strategy
+- Ecosystem Alignment: If you use Jira, Bitbucket is the logical choice. If you use open-source, GitHub is the standard.
+- Complexity Requirements: Choose GitLab for high-compliance enterprise needs; choose GitHub Actions for rapid, community-driven growth.
+- Cost Management: Evaluate the "Build Minutes" included in each plan, as costs can scale with the frequency of your deployments.
+- Security Posture: Consider the built-in scanning tools versus third-party integrations required for each platform.
+- Long-Term Scalability: All three platforms can handle massive scale, but their management style (Marketplace vs. Built-in) may dictate your team's workflow.
+
