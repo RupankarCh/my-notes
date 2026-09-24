@@ -1,0 +1,6 @@
+# The Role ofthe CI/CD Tool
+- Automation Orchestrator: Coordinating the flow of code from "Commit" to "Production."
+- Standardization: Ensuring every piece of code goes through the exact same testing and building process.
+- Gatekeeping: Preventing buggy or insecure code from reaching the end user by failing the pipeline early.
+- Auditability: Providing a clear history of every deployment, including what changed and who authorized it.
+- Speed: Replacing hours of manual deployment work with minutes of automated execution.
