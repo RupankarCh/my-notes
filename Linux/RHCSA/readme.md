@@ -580,3 +580,15 @@ quotaon /data
 ```
 
 
+# 31. Flatpak
+<img width="1387" height="126" alt="image" src="https://github.com/user-attachments/assets/a504e6ca-bd58-41ed-966b-9c16b963cd1b" />
+
+```
+dnf install flatpak -y
+flatpak remotes
+flatpak remote-add --no-gpg-verify --user flatdb <flatpak_repo_link>
+flatpak remote-ls flatrepo --app | grep -i codium
+flatpak install codium
+flatpack list --user
+```
+
