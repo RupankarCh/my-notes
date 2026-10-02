@@ -585,10 +585,10 @@ quotaon /data
 
 ```
 dnf install flatpak -y
-flatpak remotes
-flatpak remote-add --no-gpg-verify --user flatdb <flatpak_repo_link>
-flatpak remote-ls flatrepo --app | grep -i codium
+flatpak remotes (Show currently configured flatpak repository on the system)
+flatpak remote-add --no-gpg-verify --user flatdb <flatpak_repo_link> (Adds a new Flatpak repository)
+flatpak remote-ls flatrepo --app | grep -i codium (Lists applications available from a remote(repository) named flatrepo)
 flatpak install codium
-flatpack list --user
+flatpak list --user (Lists applications available from a remote named flatrepo)
 ```
 
