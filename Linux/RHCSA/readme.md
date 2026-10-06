@@ -500,11 +500,43 @@ ls -li f* (To check)
 <img width="1387" height="126" alt="image" src="https://github.com/user-attachments/assets/a504e6ca-bd58-41ed-966b-9c16b963cd1b" />
 
 ```
-dnf install flatpak -y
-flatpak remotes (Show currently configured flatpak repository on the system)
-flatpak remote-add --no-gpg-verify --user flatdb <flatpak_repo_link> (Adds a new Flatpak repository)
-flatpak remote-ls flatrepo --app | grep -i codium (Lists applications available from a remote(repository) named flatrepo)
-flatpak install codium (Install codium package)
-flatpak list --user (Lists applications available from a remote named flatrepo)
+#dnf install flatpak -y
+#ssh student@<IP/Hostname> (Do it from different machine)
+$flatpak remotes (Show currently configured flatpak repository on the system)
+$flatpak remote-add --no-gpg-verify --user flatdb <flatpak_repo_link> (Adds a new Flatpak repository)
+$flatpak remote-ls flatrepo --app | grep -i codium (Lists applications available from a remote(repository) named flatrepo)
+$flatpak install codium (Install codium package)
+$flatpak list --user (Lists applications available from a remote named flatrepo)
 ```
 
+# 31. 
+<img width="1451" height="81" alt="image" src="https://github.com/user-attachments/assets/77c1e007-a9b2-466e-9028-c72f459ba78f" />
+
+```
+#vim /usr/local/bin/log_capture
+#!/bin/bash
+ls -l /tmp > /root/log_ouput/system_logs.trc
+#chmod +x /usr/local/bin/log_capture
+#cd /etc/systemd/system
+#vim log_capture.service
+[Unit]
+Description=Capture Log
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/log_capture
+#vim log_capture.timer
+[Unit]
+Description=Capture Log
+
+[Timer]
+OnBootSec=1m
+OnUnitActiveSec=1m
+
+[Install]
+WantedBy=timers.target
+#systemctl daemon-reload
+#mkdir /root/log_output
+#systemctl enable --now log_capture.timer
+#systemctl start log_capture.service
+```
