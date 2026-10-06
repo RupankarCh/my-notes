@@ -82,9 +82,9 @@ Once the file is saved, clear the package manager cache and verify that the new 
 #useradd -G sysadms natasha
 #useradd -G sysadms jerry
 #useradd -s /sbin/nologin sarah
-#passwd natasha
-#passwd jerry
-#passwd sarah
+#echo trootent | passwd --stdin natasha
+#echo trootent | passwd --stdin jerry
+#echo trootent | passwd --stdin sarah
 (Checking)
 #cat /etc/passwd
 #cat /etc/group
@@ -94,12 +94,12 @@ Once the file is saved, clear the package manager cache and verify that the new 
 # 4. Setup collaborative directory
 <img width="1259" height="317" alt="4" src="https://github.com/user-attachments/assets/18cf8fb9-30d3-4e15-a26f-e42efaea6fc1" />
 
+e. Ensure only file owners can delete their own files
 ```
 #mkdir /home/newfolder
 #groupadd sysadmin
 #chgrp sysadmin /home/newfolder
-#chmod 770 /home/newfolder
-#chmod g+s /home/newfolder (If a user named rupankar (who belongs to the sysadms group) creates a file called test.txt, Even if rupankar's primary group is student, the file test.txt will automatically have its group set to sysadms.)
+#chmod 3770 /home/newfolder
 #ls -ld /home/newfolder (Checking)
 ```
 
@@ -110,11 +110,8 @@ Once the file is saved, clear the package manager cache and verify that the new 
 ```
 #timedatectl set-ntp true (enables Network Time Protocol (NTP) synchronization on your Linux system based on the system's time synchronization daemon chronyd)
 #vim /etc/chrony.conf (chrony.conf the configuration file for the time synchronization daemon)
-```
-
-Only write "<domain.com> iburst" and save
-
-```
+server <domain.com> iburst
+#systemctl restart chronyd
 #timedatectl (Check)
 ```
 
@@ -132,10 +129,10 @@ iburst (initial burst) tells the time daemon (chronyd) to aggressively sync the 
 <img width="1097" height="176" alt="6" src="https://github.com/user-attachments/assets/33ce5d87-f3ed-473b-ab64-ec86c169d7e6" />
 
 Create an archive called archive.tar.bz2 which contains the contents of /usr/local directory using bzip2 compression to perform this task
-using bzip2
+using bzip2 (b of bzip goes with j if you know you know)
 ```
 #yum install bzip*
-#tar -Jcvf archive.tar.bz2 /usr/local/
+#tar -jcvf archive.tar.bz2 /usr/local/
 ```
 **Note:**
 using gzip
