@@ -509,7 +509,7 @@ $flatpak install codium (Install codium package)
 $flatpak list --user (Lists applications available from a remote named flatrepo)
 ```
 
-# 31. 
+# 31. Creating systemd timer
 <img width="1451" height="81" alt="image" src="https://github.com/user-attachments/assets/77c1e007-a9b2-466e-9028-c72f459ba78f" />
 
 ```
