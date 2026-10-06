@@ -173,22 +173,16 @@ login with the new passwords.
 Write an application called rhcsa which should display "EX200 Exam whenever the user abid login.
 
 ```
-vim /usr/local/bin/rhcsa (To create a binary executable)
-```
-write 
+#vim /usr/local/bin/rhcsa (To create a binary executable)
+#!/bin/bash
 echo "EX200 Exam"
-```
-chmod +x /usr/local/bin/rhcsa 
-vim /home/abid/.bash_profile (To modify user-specific startup commands)
-```
-write
+#chmod +x /usr/local/bin/rhcsa 
+#vim /home/abid/.bash_profile (To modify user-specific startup commands)
 /usr/local/bin/rhcsa (To execute the exucutable file while login)
-
+```
 Check: su - abid
-**Note:**
-/usr/local/bin/ 
 
-# 10.
+# 10. Tuning System Performance
 
 <img width="767" height="187" alt="10" src="https://github.com/user-attachments/assets/a8c33976-987e-4716-8e7a-2aa6c922cb7c" />
 
@@ -202,18 +196,14 @@ tuned-adm active (To check Which profile the system has been configured)
 # 11. Default Umask value change
 
 <img width="833" height="195" alt="11" src="https://github.com/user-attachments/assets/e7d4439f-c384-4558-9307-ec5051468c23" />
-
+Umask Calculation  777(Default Directory Permission)- 775 (Expected Directory Permission) = 002 (Umask Value)
 ```
-useradd sam
-su - sam
-touch a1
-touch a2
-ls -l
 umask (To check value of current user)
-vim /home/username/.bash_profile (To change umask value for a particular user)
+vim /home/sam/.bash_profile (To change umask value for a particular user)
 vim /etc/login.defs (To change value for all users)
 ```
-change the umask value, logout and login again
+umask 002
+logout and login again
 
 # 12.Password Policy
 **(remember /etc/login.defs defines default settings for user account creation, password policies, and system login behavior.)**
@@ -225,42 +215,47 @@ change the umask value, logout and login again
 maximum date will be 2 days
 
 
-# 13. 
+# 13. Scheduling Future Tasks
 <img width="1027" height="211" alt="WhatsApp Image 2026-06-18 at 2 43 50 PM" src="https://github.com/user-attachments/assets/4e588e3f-f209-4c5e-b4ec-392b2e0aa1fe" />
 
 for perticular user
 ```
 useradd sarah
 crontab -e -u sarah
-*/ * * * * logger "ex200"
+*/3 * * * * logger "ex200" (To execute the command in every 3 minutes)
+23 15 * * * logger "ex200" (To execute it at 15:23 everyday)
 ```
 :wq
-crontab -lu sarah
+crontab -l -u sarah (To check)
 
 # 14.Criteria Based Search
 <img width="1218" height="171" alt="14" src="https://github.com/user-attachments/assets/1ea6607b-0706-4e4e-9e69-b1b3988e9e2f" />
-
+> for Append >> for overwrite
 ```
-grep "command" /usr/share/dict/word >> /root/command.txt
+grep "command" /usr/share/dict/word > /root/command.txt
+grep "^command" /usr/share/dict/word > /root/command2.txt (To search the words which are starting with the word command)
+grep "command$" /usr/share/dict/word > /root/command3.txt ((To search the words which are ending with the word command)
 ```
 
 
-# 15.
+# 15. Managing Basic Storage
 <img width="490" height="183" alt="15" src="https://github.com/user-attachments/assets/b460110c-e30b-42a6-9d68-5fac72431553" />
 
 ```
+#lsblk (Lists block devices such as disks, partitions, and logical volumes in a tree-like format.)
 #fdisk /dev/sda (To partition the Drive (/dev/sda) with partition editor tool called fdisk)
 n (New partition)
 p (Primary Partition)
 Last: +512M (Sets the size of the partition. Leaving the "First sector" prompt at default and typing +512M here creates a partition that is exactly 512 Megabytes in size.)
 t (Changes the partition's type ID)
-82 (hexadecimal code for a Linux Swap partition)
+L (Check hexadecimal code)
+82 (Varies)
 w (write)
-partprobe /dev/sda (reload the partition table without doing reboot)
-mkswap /dev/sda1 (formatting the partition specifically for swap use)
-vim /etc/fstab (contains a permanent list of all disk partitions and storage devices that the system should automatically mount at boot time.)
-/dev/sda1 swap swap defaults 0 0 (tells Linux to mount the partition automatically when the computer boots up.)
-swapon /dev/sda1 (Activating the Swap)
+#partprobe /dev/sda (reload the partition table without doing reboot)
+#mkswap /dev/sda1 (formatting the partition specifically for swap use)
+#vim /etc/fstab (contains a permanent list of all disk partitions and storage devices that the system should automatically mount at boot time.)
+/dev/sda1 none swap defaults 0 0 (tells Linux to mount the partition automatically when the computer boots up.)
+#swapon -a (Activating the Swap)
 ```
 Check: swapon -s (Displays a summary table of all currently active swap spaces on your system)
 
@@ -277,13 +272,13 @@ defaults: Uses standard mount settings (read/write, auto-mount, etc.).
 
 ```
 mkdir -p /root/filefound
-find / -type f -user sarah -exec cp {} /root/filefound/ \;
+find / -type f -user sarah -exec cp -p {} /root/filefound/ \;  (cp -p to preserve file attributes)
 ```
 Note:
 **-exec ... \;**: This is an action flag. It tells **find** to execute an external command on every single file it successfully matches. The trailing escaped semicolon (\; or ';') is required to tell the shell where the command string ends.
 **{}**: A placeholder used by find. For every file discovered, find replaces {} with the actual, full path of that file.
 
-# 17.
+# 17. Gaining Super User Access
 <img width="1705" height="291" alt="image" src="https://github.com/user-attachments/assets/9ef78ce7-ab82-41cd-b979-41f26eaa96b7" />
 
 ```
@@ -302,74 +297,64 @@ Same thing without a passwd
 
 save and exit.
 
-# 18.
-Add a HDD Disk
+# 18. Managing Logical Volumes
+<img width="1455" height="61" alt="image" src="https://github.com/user-attachments/assets/b8760deb-7a23-4153-8352-4fd3755967b4" />
+calculate 17*32 take two more extents to calculate
 ```
 fdisk /dev/sda ( Opens the partition table editor for the first storage drive (sda))
 n
-+512M
++544M
 t
 l
 8e
 w
-partprobe /dev/sda (Forces the Linux kernel to read the new partition table without requiring a system reboo)
+partprobe (Forces the Linux kernel to read the new partition table without requiring a system reboot)
 pvcreate /dev/sda1 (Initializes the newly created partition (/dev/sda1) as an LVM Physical Volume so LVM can use it.)
 pvdisplay /dev/sda1 (Check properties of the new Physical Volume)
-vgcreate -s 8M datastore /dev/sda1 (Creates a Volume Group named datastore using the physical partition. The -s 8M flag explicitly sets the Physical Extent (PE) size to 8 Megabytes (the default is usually 4M))
+vgcreate -s 32M datastore /dev/sda1 (Creates a Volume Group named datastore using the physical partition. The -s 8M flag explicitly sets the Physical Extent (PE) size to 8 Megabytes (the default is usually 4M))
 vgdisplay datastore
-lvcreate -l 50 -n database datastore (Allocates 50 logical extents to create a Logical Volume named database inside the datastore group.)
+lvcreate -l 15 -n database datastore (Allocates 50 logical extents to create a Logical Volume named database inside the datastore group.)
 lvdisplay datastore
-mkfs.vfat /dev/datastore/database (Formats the new logical volume with the FAT32 (vfat) filesystem.)
-mkdir -p /mnt/archive (Creates a target directory (mount point) named /mnt/archive to access the storage.)
+mkfs -t /dev/datastore/database (Formats the new logical volume with the FAT32 (vfat) filesystem.)
+mkdir /database (Creates a target directory (mount point) named /mnt/archive to access the storage.)
 blkid (Displays the unique attributes of block devices (like UUIDs))
 vim /etc/fstab (Opens the system's file system table configuration file to add a line ensuring the disk mounts automatically on boot.)
+/dev/datastore/database /database ext3 defaults 0 0
 systemctl daemon-reload (Reloads the systemd manager configuration so it recognizes changes made to the system files.)
 mount -a
+df -Th (Shows disk space usage for mounted filesystems, including their filesystem type (-T) and sizes in human-readable format (-h))
 ```
 
 
-# 19.
+# 19. Managing Logical Volume
 <img width="1760" height="207" alt="image" src="https://github.com/user-attachments/assets/1d8405a0-91da-47e8-87ad-78ff0a5893e7" />
-
+If the question wants to expand by 300M then type -L +300M, else to 300M will be -L 300M
 
 ```
-lsblk (Check current)
-lvextend -L +300M /images
-resize2fs /image (For xfs filesystem, use fatlabel for vfat file system)
-lsblk (Check)
+df -Th (Check current)
+lvextend /dev/sdb/images -L +300M -r
 ```
 
 
-# 20.
-<img width="939" height="352" alt="image" src="https://github.com/user-attachments/assets/a23c6f88-d1da-4545-a2b9-589dce0da85a" />
+# 20. Mounting NFS Shares with Automounter
+<img width="1451" height="83" alt="image" src="https://github.com/user-attachments/assets/59ee6e31-f185-4553-88bb-6eac5d262d73" />
 
 Corrected Command ManualServer 1 (NFS Server)bash# CHANGE: Use specific package instead of wildcard 'nfs*' to save space and reduce conflicts
 yum install nfs-utils -y
 
-```S1:
-yum install nfs* -y
-mkdir -p /remote/netuser1
-echo "NFS Test" > /remote/netuser1/t1.txt
-chmod 777 /remote/netuser1
-vim /etc/exports (/remote/netuser1  *(rw,sync,no_root_squash))
-systemctl enable --now rpcbind
-systemctl enable --now nfs-server
-exportfs -rav
-firewall-cmd --permanent --add-service=nfs
-firewall-cmd --permanent --add-service=mountd
-firewall-cmd --permanent --add-service=rpc-bind
-firewall-cmd --reload
-
-S2:
-yum install autofs* -y
-yum install nfs* -y
-vim /etc/auto.master (/rhome    /etc/auto.rhome)
-vim /etc/auto.rhome (netuser1   -rw   <SERVER1_IP>:/remote/netuser1)
-systemctl enable --now autofs
-ls /rhome
-cd /rhome/netuser1
 ```
-# 21.
+#yum install autofs* nfs-utils -y
+#vim /etc/auto.master.d/rhome.autofs
+/rhome /etc/auto.rhome
+#vim /etc/auto.rhome
+*  -rw,sync,fstype=nfs4   <Domain/IP>:/rhome/natasha
+#systemctl enable --now autofs
+#systemctl restart autofs
+#su - natasha
+$pwd
+```
+
+# 21. SELinux
 <img width="1079" height="188" alt="image" src="https://github.com/user-attachments/assets/0030716a-c0b2-46e1-9687-30d455731292" />
 
 Configuration of the Apache Server
@@ -382,30 +367,33 @@ curl http://localhost:80 (You can see the index.txt content on terminal)
 ```
 Answer
 ```
-vim /etc/httpd/conf/httpd.conf (Opens Apache's main configuration file for editing, such as changing the listening port.)
+vim /etc/httpd/conf/httpd.conf (Opens Apache's main configuration file for editing, such as changing the listening port, change it to 82)
+man semanage-port
 semanage port -a -t http_port_t -p tcp 82 (Adds TCP port 82 to the list of ports that SELinux allows Apache to use.)
-semanage port -l | grep http_port_t ((Lists all SELinux ports assigned to the http_port_t type and filters the output.))
 firewall-cmd --permanent --add-port=82/tcp (Permanently allows incoming TCP traffic on port 82 through the firewall.)
 firewall-cmd --reload (Reloads the firewall configuration to apply the new rule.)
-restorecon -Rv /var/www/html/ (Reapplies the correct SELinux labels to the web content directory.)
 systemctl restart httpd.service (Restarts Apache so it begins listening on the newly configured port.)
 systemctl reload  httpd.service (Reloads Apache's configuration without fully stopping the service.)
 curl http://localhost:82 (To check)
 ```
-# 22.
+
+# 22. Bash Script
 <img width="1338" height="195" alt="image" src="https://github.com/user-attachments/assets/a716505c-9b25-417f-95dc-9fab0f732e30" />
 
 ```
-cd /usr/local/bin
-vim mysearch
+#cd /usr/local/bin
+#vim mysearch
 #!/bin/bash
-mkdir -p /root/mysearch
+if [ ! -f /root/mysearch ]
+then
+    mkdir -p /root/mysearch
+fi 
 find /usr -type f -size -10M -size +2M -perm 2000 -exec cp -p {} /root/mysearch/ \;
 echo "Files are copied to /root/mysearch.""
-mysearch (To run the script)
+#mysearch (To run the script)
 ```
 
-# 23.
+# 23. ACL
 <img width="1048" height="387" alt="WhatsApp Image 2026-07-07 at 11 23 07 PM" src="https://github.com/user-attachments/assets/f221a2c5-6c52-443e-9c35-7d717c1a0340" />
 
 ```
@@ -432,15 +420,16 @@ rhc connect
 <username>
 <password>
 ```
+
 # 25. Add a user named ram and the user to the wheel group
 ```
 useradd ram
-usermod -G wheel 
-id norm (To check)
+usermod -G wheel ram
+id ram (To check)
 ```
 
 # 26. Passwordless SSH
-SSH Server Configuration
+SSH Server Configuration, Provide IP, Subnet Mask, Gateway on both machines
 ```
 sudo dnf install openssh-server -y
 sudo systemctl enable --now sshd
@@ -465,7 +454,7 @@ PermitRootLogin yes
 PasswordAuthentication yes
 systemctl restart sshd
 ```
-Option 2: Use normal user (A normal user's ssh login permit stays yes
+Option 2: Use normal user (A normal user's ssh login permit stays yes)
 
 # 27. How to List and Kill Processes
 ```
@@ -507,77 +496,7 @@ ln file.txt ffile.txt (To create hard link)
 ls -li f* (To check)
 ```
 
-
-# 30. Disk Quota Configuration
-Attach New Volume
-```
-fdisk /dev/nvme1n1
-mkfs.ext4 /dev/nvme1n1p1
-mkdir /data
-mount /dev/nvme1n1p1 /data
-vi /etc/mtab
-```
-Go to last line enter Esc+yy (To copy/yank)
-Esc:n /etc/fstab
-Esc+p (To paste)
-Esc:wq
-```
-yum install quota
-yum list installed quota
-useradd a
-useradd b
-useradd c
-useradd d
-groupadd quota
-usermod -g quota b
-vi /etc/fstab
-```
-Write realtime, usrquota, grpquota
-Esc:wq
-```
-systemctl daemon-reload
-mount -o remount /data
-mount | grep /data
-passwd root
-passwd a
-chmod 777 /data
-quotacheck -cug /data
-edquota a
-```
-Blocks  Soft  Hard  indoes  Soft  Hard
-0   100000  200000   0       10    20
-```
-quotaon /data
-su - a
-touch a.user{1..21}.txt
-dd if=/dev/zero of=/data/file bs=1M count=300
-```
-
-**Groupquota:**
-```
-chgrp quota /data
-edquota -g quota
-```
-Blocks  Soft  Hard  indoes  Soft  Hard
-4   100000  200000   1       400    500
-```
-quotaoff /data
-quotaon /data
-sudo usermod -aG quota b
-su - b
-cd /data
-touch abc{1..700}.txt
-```
-
-**Modify Grace Period for a specific user when they exceed their soft disk quota limits:**
-```
-edquota -T a (Remove the time and add 7 days)
-quotaoff /data
-quotaon /data
-```
-
-
-# 31. Flatpak
+# 30. Flatpak
 <img width="1387" height="126" alt="image" src="https://github.com/user-attachments/assets/a504e6ca-bd58-41ed-966b-9c16b963cd1b" />
 
 ```
@@ -585,7 +504,7 @@ dnf install flatpak -y
 flatpak remotes (Show currently configured flatpak repository on the system)
 flatpak remote-add --no-gpg-verify --user flatdb <flatpak_repo_link> (Adds a new Flatpak repository)
 flatpak remote-ls flatrepo --app | grep -i codium (Lists applications available from a remote(repository) named flatrepo)
-flatpak install codium
+flatpak install codium (Install codium package)
 flatpak list --user (Lists applications available from a remote named flatrepo)
 ```
 
