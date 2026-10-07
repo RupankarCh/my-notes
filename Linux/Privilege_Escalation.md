@@ -36,3 +36,19 @@ On Attacker's Machine
 ssh username@Victim's_IP
 find -la -perm -4000 -type
 /usr/local/bin/rootbash
+
+# Linux Enumeration Tools:
+- LinPeas: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
+- LinEnum: https://github.com/rebootuser/LinEnum
+- LES (Linux Exploit Suggester): https://github.com/mzet-/linux-exploit-suggester
+- Linux Smart Enumeration: https://github.com/diego-treitos/linux-smart-enumeration
+- Linux Priv Checker: https://github.com/linted/linuxprivchecker
+
+Unless a single vulnerability leads to a root shell, the privilege escalation process will rely on misconfigurations and lax permissions.
+
+## Kernel exploit methodology is simple
+1. Identify the kernel version
+2. Search and find an exploit code for the kernel version of the target system
+3. Run the exploi
+
+
