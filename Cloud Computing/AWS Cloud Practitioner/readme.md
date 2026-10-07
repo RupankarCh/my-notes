@@ -242,7 +242,7 @@ IAM> Credential Report> Download Credential Report>
 IAM> users> username> Access Advisor
 
 # Scaling
-- Vertical Scaling: Upgrading the resources, the process of increasing the capacity of an existing resource, such as a virtual machine (VM) or database, by adding more power to it.
+- Vertical Scaling: Upgrading the resources, the process of increasing the capacity of an existing resource, such as a virtual machine (VM) or , by adding more power to it.
 - Horizontal Scaling: the process of adding more machines or instances to your infrastructure to handle increased traffic or workloads.
 
 # EC2 (Elastic Compute Cloud/Infrastructure as a Service)
@@ -422,7 +422,7 @@ A type of temporary storage that comes physically attached to the host machine r
 | ----------- | ---------------- | ------------- |
 | Speed       | Very Fast ⚡      | Fast          |
 | Persistence | ❌ Temporary      | ✅ Permanent   |
-| Use Case    | Cache, temp data | OS, databases |
+| Use Case    | Cache, temp data | OS, s |
 
 ## EFS (Elastic File System):
 - It is managed NFS (Network File System) that can be mounted on 100s of EC2 instances.
@@ -436,7 +436,7 @@ A type of temporary storage that comes physically attached to the host machine r
 | 📁 Access      | Like a hard disk (you format it)          | Like a shared network folder              |
 | ⚡ Performance  | Very high (low latency)                   | Scales automatically                      |
 | 📈 Scalability | Manual resizing                           | Auto scaling                              |
-| 🌐 Use Case    | OS, databases                             | Shared files, web apps                    |
+| 🌐 Use Case    | OS, s                             | Shared files, web apps                    |
 | 💾 Persistence | Permanent                                 | Permanent                                 |
 
 ### EFS Infrequent Access (EFS-IA):
@@ -515,10 +515,27 @@ A static public IPv4 address in AWS that you can associate with an EC2 instance 
 
 # Database
 Database is a place where data is stored, organized and accessed. 
+<img width="1006" height="601" alt="image" src="https://github.com/user-attachments/assets/6dd7011f-ea48-4ce3-b330-428a93ade820" />
+
+**Benifit of Database compared to EFS, EBS, EC2 Instance Store, S3**
+- Structured data storage
+- You **build indexes to efficiently query** / search through the data.
+- You define **relationships between your datasets.**
+- Quick Provisioning, High Availability,Vertical and Horizontal Scaling
+- Automated Backup & Restore, Operations, Upgrades
+- Operating System Patching is handled by AWS
+
+Advantage over using **managed RDS versus deploying DB on EC2**: (Disadvantage you can't SSH into your database)
+- Automated provisioning, OS patching
+- Continuous backups and restore to specific timestamp (Point in Time Restore)!
+- Monitoring dashboards
+- Read replicas for improved read performance
+- Multi AZ setup for DR (Disaster Recovery)
+- Maintenance windows for upgrades
 
 ## Types of Database based on storage
-- SQL data is stored in a structure. Features Tables(rows, columns), Fixed Schema, Relationships. e.g., MySQL, PostgreSQL
-- NoSQL data is stored in the form of Objects without an structure. Represented in JSON format. e.g., MongoDB, DynamoDB (for Flexible Large Scale Data)
+- **SQL data is stored in a structure. Features Tables(rows, columns), Fixed Schema, Relationships. e.g., MySQL, PostgreSQL**
+- **NoSQL data is stored in the form of Objects without an structure and relation. Represented in JSON format. e.g., MongoDB, DynamoDB** (for Flexible Large Scale Data)
 
 
 ### SQL Databases Across Cloud (Features-Automated Backups, Scaling, No Server Management)
@@ -534,11 +551,11 @@ Database is a place where data is stored, organized and accessed.
 ## Data Access Flow
 App>Firewall/Security Group> Database
 
-## AWS RDS: 
-Managed Database service in AWS.(Features Multi-AZ, Server setup, Automated Backups, Scaling, Security patches, Monitoring) 
+## AWS Relational Database Service(RDS): 
+Managed Database service in AWS where **multiple tables are linked together, It uses SQL as a query language**. (Features Multi-AZ, Server setup, Automated Backups, Scaling, Security patches, Monitoring) 
 
 ### Supported Engines by AWS:
-MySQL, PostgreSQL, MariaDB, Oracle, SQL Server
+MySQL, Postgres, MariaDB, Oracle, Microsoft SQL Server, IVM DB2, Aurora (AWS Proprietary Database)
 
 ## Types of Database Instance
 - Master Database Instance: Read, Write Permission
@@ -555,6 +572,23 @@ RDS> Create Database, Full Configuration,
 | Enterprise legacy app    | Oracle / SQL Server |
 | High-scale cloud app     | Aurora              |
 | Serverless key-value app | DynamoDB            |
+
+## Amazon Aurora
+- Aurora is a proprietary technology from AWS (not open sourced)
+- PostgreSQL and MySQL are both supported as Aurora DB
+- Aurora is "AWS cloud optimized" and claims 5x performance improvement over MySQL on RDS, over 3x the performance of Postgres on RDS
+- Aurora storage automatically grows in increments of I OGB, up to 256 TB
+- Aurora costs more than RDS (20% more) — but is more efficient
+
+### Amazon Aurora Serverless:
+- Automated database instantiation and auto-scaling based on actual usage
+- PostgreSQL and MySQL are both supported as Aurora Serverless DB
+- No capacity planning needed
+- Least management overhead
+- Pay per second, can be more cost-effective
+- Use cases: good for infrequent, intermittent or unpredictable workloads...
+
+<img width="562" height="556" alt="image" src="https://github.com/user-attachments/assets/4b25d45f-fe28-43dd-a79a-e4f10699e41b" />
 
 ## Object Storage S3 (Simple Storage Service):
 Unlike traditional file systems that use nested folders, **object storage uses a flat structure. Data is stored as "objects" consisting of the file itself,** a unique key foridentification, and rich metadata, making it infinitely scalable for massive datasets.
