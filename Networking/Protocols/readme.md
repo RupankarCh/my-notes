@@ -404,3 +404,25 @@ Common default community strings are: (Using these default values is considered 
 Install SNMP Service on Windows 7
 Control Panel> Programms> Programms and Features> Turn Windows features on or off> SNMP,SNMP Provider>OK
 Run> services.msc> Search SNMP service, Right CLick, Properties, Security Options> Accept SNMP Packet from any Host> Add Community Name>Read Only Name it> Add Read Write Name it Apply>OK
+
+
+# IPv6
+R1------R2------R3
+R1--2001:DB8:12::1/64
+R2--2001:DB8:12::2/64
+R2--2001:DB8:23::1/64
+R3--2001:DB8:23::2/64
+```
+R1(config)#ipv6 unicast-routing
+R1(config)#int s 1/0
+R1(config-if)#ipv6 address 2001:DB8:12::1/64
+R1(config-if)#no shutdown
+R1(config-if)#exit
+R1(config)#ipv6 router eigrp 100
+R1(config-rtr)#eigrp router-id 1.1.1.1
+R1(config-rtr)#no shtdown
+R1(config-rtr)#exit
+R1(config)#interface s 1/0
+R1(config-if)#ipv6 eigrp 100
+Add Last line on each interface
+```
