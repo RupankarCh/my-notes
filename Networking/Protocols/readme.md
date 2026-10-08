@@ -412,12 +412,18 @@ R1--2001:DB8:12::1/64
 R2--2001:DB8:12::2/64
 R2--2001:DB8:23::1/64
 R3--2001:DB8:23::2/64
+
+## IP Configuration:
 ```
 R1(config)#ipv6 unicast-routing
 R1(config)#int s 1/0
 R1(config-if)#ipv6 address 2001:DB8:12::1/64
 R1(config-if)#no shutdown
 R1(config-if)#exit
+```
+
+## EIGRP Configuration
+```
 R1(config)#ipv6 router eigrp 100
 R1(config-rtr)#eigrp router-id 1.1.1.1
 R1(config-rtr)#no shtdown
@@ -425,4 +431,26 @@ R1(config-rtr)#exit
 R1(config)#interface s 1/0
 R1(config-if)#ipv6 eigrp 100
 Add Last line on each interface
+```
+
+## OSPF Configuration
+```
+OSPF (Router ID is mandatory for OSPF)
+R3(config)#ipv6 router ospf 10
+R3(config-rtr)#router-id 3.3.3.3 
+R3(config)#exit
+R1(config)#interface s 1/1
+R1(config-if)#ipv6 ospf 10 area 0
+```
+
+## Redistribute
+```
+EIGRP-> OSPF
+ipv6 router eigrp 100
+redistribute ospf 10 metric 10000 100 255 1 1500
+exit
+OSPF -> EIGRP
+ipv6 router ospf 10
+redistribute eigrp 100 metric-type 1
+exit
 ```
