@@ -11,4 +11,10 @@
    - Number of Attempts
 
 
-# 
+# Email Address
+- phonebook.cz
+- clearbit connect(Chrome extension).
+
+# Direct email login
+(If u have a valid email of target) 
+His Phone Model name, and if he have installed gmail app in his phone you can directly
