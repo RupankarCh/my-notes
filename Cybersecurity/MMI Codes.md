@@ -1,5 +1,6 @@
+```
 *21*<phone number># to instantly forward all incoming calls to the number provided, regardless of whether your phone is busy, off, or out of reach.receive the call normally, answer it, talk, and end the call just like any regular incoming call.The intermediary phone will not receive any call unless the call forwarding is disabled.
-
+```
 <img width="619" height="230" alt="image" src="https://github.com/user-attachments/assets/2af1ec5c-d910-4b8e-8627-87b9af3a4b9a" />
 
 <img width="586" height="615" alt="image" src="https://github.com/user-attachments/assets/2e6f9b10-dd51-4c48-a678-9f16e1cf5a12" />
