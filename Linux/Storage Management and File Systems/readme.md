@@ -1,1 +1,0 @@
-**RHEL uses Logical Volume Manager (LVM)**, it allows to create volume with different file systems. You can create partitions with a specific file system or change the file system of an existing partition.
