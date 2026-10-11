@@ -74,3 +74,7 @@ systemctl --failed (Check failed services)
 systemctl is-enabled <service_name> (Check whether a service starts automatically)
 sudo journalctl -u <service_name> (Check service logs, add -f to follow new log messages live)
 ```
+
+## Tuned
+tuned is a service that applies performance-tuning profiles to supported Linux systems.
+Different workloads have different performance requirements.
