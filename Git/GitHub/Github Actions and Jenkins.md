@@ -35,7 +35,7 @@ Choosing Your Automation Path
 
 ## GitHub actions
 make the pipeline file hidden so start the folder name with .github/workflows/pipe.yml
-yml is build upon key:value pair data
+yml is build upon key:value pair architecture
 
 Architecture of pipeline file
 Workflow>Jobs>Steps>Actions
@@ -73,8 +73,8 @@ jobs:
       - name: Code Deploy
         run: echo "Code deploy done"
 ```
-# Actions are prebuilt steps that you use in a job inside a workflow
-GitHub actions marketplace to search for actions
+# Actions:
+are prebuilt steps that you use in a job inside a workflow, go to GitHub actions marketplace to search for actions
 
 - To clone any repository <username/repositoryname@vVersionNumber>
 - To run the code build test deploy sequentially add 'needs: code' under build, 'needs: build' under test, 'needs: test' under deploy
