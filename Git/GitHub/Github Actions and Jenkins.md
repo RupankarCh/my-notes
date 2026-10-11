@@ -32,3 +32,56 @@ Choosing Your Automation Path
 - Ecosystem Fit: Align your tool choice with your existing developer workflow (e.g., GitHub, GitLab, or Bitbucket).
 - Security Requirements: Evaluate whether you need the air-gapped security of a private Jenkins server.
 - Scalability: Both tools scale, but GitHub Actions offers "infinite" scale without manual infrastructure configuration.
+
+## GitHub actions
+make the pipeline file hidden so start the folder name with .github/workflows/pipe.yml
+yml is build upon key:value pair data
+
+Architecture of pipeline file
+Workflow>Jobs>Steps>Actions
+
+Example of pipeline file
+```
+#### WORKFLOW ####
+# Name of the Workflow
+name: CICD
+
+# when does the workflow run
+on: push
+
+#### JOBS ####
+jobs:
+  code:
+    #### STEPS ####
+    runs-on: ubuntu—latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v7
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Build
+        run: echo "Code build done"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code test
+         run: echo "Code test done"
+  deploy:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Code Deploy
+        run: echo "Code deploy done"
+```
+# Actions are prebuilt steps that you use in a job inside a workflow
+GitHub actions marketplace to search for actions
+
+- To clone any repository <username/repositoryname@vVersionNumber>
+- To run the code build test deploy sequentially add 'needs: code' under build, 'needs: build' under test, 'needs: test' under deploy
+
+If you push the file to the repository and go to GitHub Actions tab you can see the pipeline is live.
+Now put:
+Code-Actions
+Build-Docker
+Test-SonarQube
+Deploy-Instance
