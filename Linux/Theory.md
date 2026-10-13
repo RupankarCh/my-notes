@@ -53,3 +53,4 @@ Power On> CPU (**CPU is hard-wired to start executing instructions from a fixed 
 
 **Shell:** It is the interface between the user and kernel.
 
+**POSIX** (Portable Operating System Interface) is **a set of standards that defines how programs should interact with an operating system**.
