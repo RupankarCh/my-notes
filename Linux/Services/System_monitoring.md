@@ -78,3 +78,25 @@ sudo journalctl -u <service_name> (Check service logs, add -f to follow new log 
 ## Tuned
 tuned is a service that applies performance-tuning profiles to supported Linux systems.
 Different workloads have different performance requirements.
+
+# Advanced Linux System Administration, Performance Tuning, and Troubleshooting Commands.
+1. Change process CPU affinity?
+taskset
+2. Modify process I/O priority?
+Ionice
+3. Intercept application system calls?
+strace
+4. View shared library dependencies?
+ldd
+5. Change kernel variables at runtime?
+sysctl
+6. Check network interface drop counters?
+ip -s link or ethtool -S <interface>
+7. List extended file privileges/capabilities?
+getcap
+8. Monitor real-time disk I/O per process?
+iotop
+9. Display active shared memory segments?
+ipcs -m
+10. Find process ID using a specific port?
+lsof -i :<port> or fuser <port>/tcp
