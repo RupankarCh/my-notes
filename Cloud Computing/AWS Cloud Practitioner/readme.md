@@ -630,6 +630,32 @@ or after step 5 enter the add the bucket policy under permissions
 }
 ```
 
+# AWS CloudWatch (Metrics, Alarms, Dashboards)
+**CloudWatch monitors everything in real-time and enables centralized logging, automatically collects metrics from EC2, CPU, Lambda invocations, RDS connections.**
+
+Terms:
+- **Monitoring**: **Tracking known metrics (CPU usage, memory, disk space) against preset thresholds**. e.g., CPU at 75% at 10:00 AM
+- **Observability**: **Proactive and investigative**. It is a system property built from collected telemetry data—specifically logs, metrics, and traces (the three pillars) e.g., **checking why the metrics went higher**.
+
+**Metrics is measurement over time.** 
+Types of Metrics:
+- **Standard metrics**: AWS services send automatically (free, 5-min intervals)
+- **Custom metrics**: You send application-specific data using API (e.g., user logins)
+
+Namespace: Groups metrics by service (AWS/EC2, AWS/Lambda, AWS/RDS)
+
+Click on a running EC2 Instance> Monitoring, Manage detailed monitoring, Enable Detailed monitoring and Confirm.
+
+View Specific Metrics
+CloudWatch> Metrics, All metrics, EC2 to check specific EC2 metrics.
+
+**CloudWatch Alarms** (Automated Alerts)
+**Alarm monitors one metric, Triggers action when threshold breached**.
+
+1.Three states: 0K (normal), ALARM (threshold exceeded), INSUFFICIENT_DATA
+2.Threshold types: Static (CPU > 80%) or Anomaly detection (Al-based)
+3.Actions: Send notification (SNS), Auto-scale resources, Stop/Terminate instance
+4.Evaluation: Choose how many periods must breach before alarming
 
 
 # AWS Lambda
