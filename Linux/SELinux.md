@@ -56,35 +56,38 @@ setsebool -P <bool_name> on/off (To set boolean)
 ## SELinux and Apache Practical:
 Apache wants to serve /web/index.html, but SELinux may block it unless the file has the correct SELinux context.
 ```
-# 1. Create website 
+1. Create website 
 #mkdir /web
-vim /web/index.html
+#vim /web/index.html
 
-# 2. Configure Apache
-yum install httpd -y
-systemctl enable --now httpd
-vim /etc/httpd/conf/httpd.conf
-# DocumentRoot "/web"
-systemctl restart httpd
+2. Configure Apache
+#yum install httpd -y
+#systemctl enable --now httpd
+#vim /etc/httpd/conf/httpd.conf
+Listen 82
+DocumentRoot "/web"
+<Directory "/web">
+#systemctl restart httpd
 
-# 3. Check SELinux context
-ls -Zld /var/www/html
-ls -Zl /web/index.html
+Document
+3. Check SELinux context
+#ls -Zld /var/www/html
+#ls -Zl /web/index.html
 
-# 4. Create permanent SELinux rule
-semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+4. Create permanent SELinux rule
+#semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
 (semanage fcontext Manage SELinux file-context rules, -a Add a rule, -t httpd_sys_content_t Assign the SELinux type httpd_sys_content_t, "/web(/.*)?" Apply it to /web and everything inside /web.)
 
-# 5. Apply the rule
-restorecon -Rv /web/ (It applies the SELinux context rule you just created.)
+5. Apply the rule
+#restorecon -Rv /web/ (It applies the SELinux context rule you just created.)
 
-# 6. Verify
-ls -Zl /web/index.html
+6. Verify
+#ls -Zl /web/index.html
 
-# 7. Restart Apache
-systemctl restart httpd
+7. Restart Apache
+#systemctl restart httpd
 
-# 8. Test
-curl localhost:82
+8. Test
+#curl localhost:82
 ```
 
