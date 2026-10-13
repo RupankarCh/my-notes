@@ -85,6 +85,6 @@ ls -Zl /web/index.html
 systemctl restart httpd
 
 # 8. Test
-curl localhost
+curl localhost:82
 ```
 
