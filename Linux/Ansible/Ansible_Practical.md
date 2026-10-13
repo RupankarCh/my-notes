@@ -126,7 +126,9 @@ vim nodes
 192.168.10.3
 :wq!
 ansible all --list-hosts -i ~/inventory/ (to see particular 2 group replace all with dev:data)
+ansible-inventory -i inventory/hosts.yml --graph (It renders a visual tree structure of the hosts and groups defined in `inventory/hosts.yml` directly in your terminal)
 ```
+
 
 # 4. Make Custom inventory file as default inventory file:
 **/etc/ansible/ansible.conf** (Where default inventory file location can be changed)
