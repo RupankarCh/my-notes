@@ -238,6 +238,14 @@ wr
 ```
 
 # Backup and Restore
+## TFTP (Trivial File Transfer Protocol): A lightweight, connectionless protocol operating over UDP port 69. It is simple to deploy in isolated management networks but lacks authentication and encryption. It is only recommended within trusted management zones.
+
+Limitations:
+- No Authentication or Encryption
+- Unreliable Transport
+- No Directory Listing
+
+
 Server Configuration:
 Services> TFPT, On> 
 CLI
