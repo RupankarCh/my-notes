@@ -1,0 +1,2 @@
+Terms:
+- Demilitarized zone (DMZ) is a **physical or logical subnetwork that sits between a trusted internal local-area network (LAN) and an untrusted network like the public internet, It houses public-facing services**—such as web servers, mail servers, and DNS—so external users can access them without gaining direct entry into the sensitive corporate or home network.  If a server in the DMZ is hacked, the rest of the internal network remains safely isolated behind firewalls.
