@@ -564,6 +564,7 @@ MySQL, Postgres, MariaDB, Oracle, Microsoft SQL Server, IVM DB2, Aurora (AWS Pro
 ## How to create a Database 
 RDS> Create Database, Full Configuration, 
 
+
 ## Engine use case based on needs
 | Use Case                 | Good Choice         |
 | ------------------------ | ------------------- |
@@ -589,6 +590,18 @@ RDS> Create Database, Full Configuration,
 - Use cases: good for infrequent, intermittent or unpredictable workloads...
 
 <img width="562" height="556" alt="image" src="https://github.com/user-attachments/assets/4b25d45f-fe28-43dd-a79a-e4f10699e41b" />
+
+## RDS Hands on
+Creating a database
+```
+Aurora and RDS> Databases, Create database> Full Configuration, MySQL, free tier, Self Managed, Provide Password, Create new VPC, name it, Create Database. 
+```
+Snapshot (Sharable, Restorable, Deployable into different region)
+```
+RDS> Databases> Database_name> Actions, Take snapshot> Name it, Take Snapshot.
+
+RDS> Snapshots> snapshot_name> Actions, Restore snapshot
+```
 
 ## Object Storage S3 (Simple Storage Service):
 Unlike traditional file systems that use nested folders, **object storage uses a flat structure. Data is stored as "objects" consisting of the file itself,** a unique key foridentification, and rich metadata, making it infinitely scalable for massive datasets.
