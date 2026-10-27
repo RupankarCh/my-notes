@@ -135,7 +135,7 @@ cat abc
 
 ```bash
 # Create attachment file (e.g., calendar data)
-cal > /tmp/cal.txt
+cat > /tmp/cal.txt
 cat /tmp/cal.txt
 
 # Create mail body content
@@ -180,9 +180,8 @@ yum install telnet -y
 
 ### 2. Test Sending Mail via Telnet (SMTP)
 
-```bash
+```
 telnet localhost smtp
-
 ```
 
 Type the following interactive SMTP commands:
