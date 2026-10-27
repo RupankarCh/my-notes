@@ -181,13 +181,21 @@ DocumentRoot /var/www/html/website2
 192.168.231.160         www.abc.com
 192.168.231.160         www.bwu.com
 ```
+
 #httpd -t
+
 #restorecon -v /etc/pki/tls/certs/Server.crt
+
 #restorecon -v /etc/pki/tls/private/Server.key
+
 #systemctl restart httpd
+
 #systemctl status httpd --no-pager
+
 #firewall-cmd --add-service=https --permanent 
+
 #firewall-cmd --add-port=443/tcp --permanent
+
 #firewall-cmd --reload 
 
 Go to browser https://www.abc.com and https://www.bwu.com
