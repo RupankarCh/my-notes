@@ -172,23 +172,23 @@ ServerName www.bwu.com
 DocumentRoot /var/www/html/website2
 </VirtualHost>
 ```
-cd /var/www/html/
-mkdir website1 website2
-echo "I am Rupankar" > website1/index.html
-echo "I am not Rupankar" > website2/index.html
-vim /etc/hosts
+#cd /var/www/html/
+#mkdir website1 website2
+#echo "I am Rupankar" > website1/index.html
+#echo "I am not Rupankar" > website2/index.html
+#vim /etc/hosts
 ```
 192.168.231.160         www.abc.com
 192.168.231.160         www.bwu.com
 ```
-httpd -t
-restorecon -v /etc/pki/tls/certs/Server.crt
-restorecon -v /etc/pki/tls/private/Server.key
-systemctl restart httpd
-systemctl status httpd --no-pager
-firewall-cmd --add-service=https --permanent 
-firewall-cmd --add-port=443/tcp --permanent
-firewall-cmd --reload 
+#httpd -t
+#restorecon -v /etc/pki/tls/certs/Server.crt
+#restorecon -v /etc/pki/tls/private/Server.key
+#systemctl restart httpd
+#systemctl status httpd --no-pager
+#firewall-cmd --add-service=https --permanent 
+#firewall-cmd --add-port=443/tcp --permanent
+#firewall-cmd --reload 
 
 Go to browser https://www.abc.com and https://www.bwu.com
 
