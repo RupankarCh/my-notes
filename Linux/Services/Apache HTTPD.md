@@ -173,9 +173,13 @@ DocumentRoot /var/www/html/website2
 </VirtualHost>
 ```
 #cd /var/www/html/
+
 #mkdir website1 website2
+
 #echo "I am Rupankar" > website1/index.html
+
 #echo "I am not Rupankar" > website2/index.html
+
 #vim /etc/hosts
 ```
 192.168.231.160         www.abc.com
