@@ -29,3 +29,5 @@
 
 ## Virtualization
 - Container: runs your application continuously on an infrastructure you manage.
+- Vertical Scaling: Upgrading the resources, the process of increasing the capacity of an existing resource, such as a virtual machine (VM) or , by adding more power to it.
+- Horizontal Scaling: the process of adding more machines or instances to your infrastructure to handle increased traffic or workloads.
