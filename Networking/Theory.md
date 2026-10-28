@@ -1,3 +1,8 @@
+Powershell
+net user <user_name> <passwd> /add (To add a user)
+net user <user_name> /delete (To delete a user)
+wmic process call create "C:\Program Files\VulnService\legit.exe (The last command)
+
 NFS Enumeration
 nmap -p 111,2049 -sV 192.168.9.129
 nmap -p 111,2049 --script=nfs-ls,nfs-showmount,nfs-statfs 192.168.9.129
