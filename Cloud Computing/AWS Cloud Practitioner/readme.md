@@ -480,6 +480,21 @@ FSx for NetApp ONTAP
 - FSx for Windows: Network File System for Windows servers
 - FSx for Lustre: High Performance Computing Linux file system
 
+# Containerization and Orchastration
+## ECS = Elastic Container Service
+**Launch Docker containers** on AWS You must **provision & maintain the infrastructure** (the EC2 instances) AWS takes care of starting / stopping containers It Has integrations with the Application Load Balancer.
+
+## Fargate
+**Launch Docker containers** on AWS, You **do not provision the infrastructure** (no EC2 instances to manage) — simpler!, Serverless offering, AWS just runs containers for you based on the CPU / RAM you need
+
+## ECR (Elastic Container Registry)
+Elastic Container Registry, Private Docker Registry on AWS, This is where you store your Docker images so they can be run by ECS or Fargate
+
+<img width="538" height="326" alt="Screenshot 2026-10-28 232457" src="https://github.com/user-attachments/assets/e48886a4-795f-471e-b3a9-5ff24278a8a4" />
+
+# EKS (Elastic Kubernetes Service)
+Allows you to **launch managed Kubernetes clusters on AWS**, Kubernetes is an **open-source system for management, deployment, and scaling of containerized apps** (Docker)
+
 # Networking
 ## VPC 
 ### Creating VPC
