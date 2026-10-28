@@ -46,5 +46,20 @@ The CGNAT device maintains a translation table, something like:
 100.64.12.25:40000 ->	49.50.60.70:25000
 
 
+# Reverse Proxy: 
+A reverse proxy is a server that sits in front of your backend servers and receives requests from users on their behalf. It Protects the server it hides where the request is going.
 
+For example, suppose your app runs internally on port 3000:
+```
+Internet
+   ↓
+example.com
+   ↓
+Nginx (reverse proxy)
+   ↓
+localhost:3000
+   ↓
+Your Node.js app
+```
+Reverse proxies are commonly used for HTTPS/TLS, load balancing, caching, hiding backend servers, routing different URLs to different services, and security/rate limiting.
 
