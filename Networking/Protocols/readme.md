@@ -462,3 +462,41 @@ ipv6 router ospf 10
 redistribute eigrp 100 metric-type 1
 exit
 ```
+
+
+Layer 3Switch needed to perform VLAN
+# VLAN Creation
+```
+sw#show mac-address-table
+sw(conf)#vlan <ID(1-1005)>
+sw(conf-vlan)#name <name>
+sw(conf)#vlan <ID(1-1005)>
+sw(conf-vlan)#name <name>
+sw(conf)#int f 0/1 
+sw(conf-if)#switchport mode access 
+sw(conf-if)#switchport mode access vlan 10
+sw(conf)#int f 0/2
+sw(conf-if)#switchport mode access
+sw(conf-if)#switchport mode access vlan 10
+sw(conf)#int f 0/3
+sw(conf-if)#switchport mode access
+sw(conf-if)#switchport mode access vlan 20
+sw(conf)#int f 0/4 
+sw(conf-if)#switchport mode access
+sw(conf-if)#switchport mode access vlan 10
+```
+
+# Inter VLAN Routing
+A L3 device is needed.
+```
+sw(conf)#int f 0/5
+sw(conf-if)#switchport mode trunk
+sw(conf-if)#switchport trunk allow vlan 10,20
+
+ro(conf)#int g 0/0.10
+ro(conf-subif)#encapsulation dot1Q 10
+ro(conf-subif)#ip add 192.168.10.1 255.255.255.0
+ro(conf)#int g 0/0.20
+ro(conf-subif)#encapsulation dot1Q 20
+ro(conf-subif)#ip add 192.168.20.1 255.255.255.0
+```
