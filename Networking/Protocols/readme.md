@@ -474,20 +474,20 @@ sw(conf)#vlan <ID(1-1005)>
 sw(conf-vlan)#name <name>
 sw(conf)#int f 0/1 
 sw(conf-if)#switchport mode access 
-sw(conf-if)#switchport mode access vlan 10
+sw(conf-if)#switchport access vlan 10
 sw(conf)#int f 0/2
 sw(conf-if)#switchport mode access
-sw(conf-if)#switchport mode access vlan 10
+sw(conf-if)#switchport access vlan 10
 sw(conf)#int f 0/3
 sw(conf-if)#switchport mode access
-sw(conf-if)#switchport mode access vlan 20
+sw(conf-if)#switchport access vlan 20
 sw(conf)#int f 0/4 
 sw(conf-if)#switchport mode access
-sw(conf-if)#switchport mode access vlan 10
+sw(conf-if)#switchport access vlan 10
 ```
 
 # Inter VLAN Routing
-A L3 device is needed, add default gateway
+A L3 device is needed, add default gateway 
 ```
 sw(conf)#int f 0/5
 sw(conf-if)#switchport mode trunk
