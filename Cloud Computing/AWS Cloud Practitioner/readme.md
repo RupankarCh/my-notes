@@ -495,6 +495,48 @@ Elastic Container Registry, Private Docker Registry on AWS, This is where you st
 # EKS (Elastic Kubernetes Service)
 Allows you to **launch managed Kubernetes clusters on AWS**, Kubernetes is an **open-source system for management, deployment, and scaling of containerized apps** (Docker)
 
+# Serverless
+- Serverless is a new paradigm in which the developers don't have to manage servers anymore, They just deploy code/functions
+- Initially... Serverless == FaaS (Function as a Service)
+- Serverless was pioneered by AWS Lambda but now also includes anything that's managed: "databases, messaging, storage, etc."
+- Serverless does not mean there are no servers. .. it means you just don't manage / provision / see them
+- e.g., S3, DynamoDB, Fargate, Lambda
+
+## Lambda
+- Virtual functions — no servers to manage!
+- Limited by time - short executions
+- Event-Driven: functions get invoked by AWS when needed
+- Scaling is automated!
+- Easy Pricing:
+  - Pay per request and compute time
+  - Free tier of I AWS Lambda requests and 400,000 GBs of compute time
+- Integrated with the whole AWS suite of services
+- Integrated with many programming languages (e.g., Node.js(JavaScript), Python, Java, C# (.NET Core) / Powershell, Ruby, Custom Runtime API (community supported, example Rust or Golang))
+- Easy monitoring through AWS CloudWatch
+- Easy to get more resources per functions (up to 10GB of RAM!)
+- Increasing RAM will also improve CPU and network!
+
+### Pricing
+<img width="762" height="291" alt="image" src="https://github.com/user-attachments/assets/84822098-e801-41e3-be73-a82f8e965124" />
+
+### Lambda Hands on 
+```
+Visualization of Lambda
+Lambda> Functions> go to URL write begin instead off functions> Select a language Run, Next> Next.  
+
+Creating a function
+Lambda> Functions> Create function> Use a blueprint, choose Hello world python, Name it, Create function.
+
+Testing a function
+Lambda> Functions> function_name> Test, Test.
+
+Triggers
+Lambda> Functions> function_name> Triggers, Add trigger> Select the trigger, Add.
+```
+Notes:
+- a function needs an IAM role to write on cloudwatch.
+- 
+
 # Networking
 ## VPC 
 ### Creating VPC
