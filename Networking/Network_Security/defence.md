@@ -185,6 +185,6 @@ sw(conf)#int f 0/1
 sw(conf)#switchport mode access
 sw(conf)#switchport port-security maximum 1
 sw(conf)#switchport port-security mac-address <MAC or sticky> 
-sw(conf)#switchport port-security violation shutdown
+sw(conf)#switchport port-security violation restrict
 sw(conf)#no shutdown
 ```
