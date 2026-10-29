@@ -178,3 +178,11 @@ ip access-group <Name> out
 2. Authorization "What you can do": Determines the commands privileges and resources that an authenticated user is allowed to access.
 3. Accounting "What did you do": It records and tracks user's activities.
 
+#Port Security:
+## MAC Binding
+sw(conf)#int f 0/1
+sw(conf)#switchport mode access
+sw(conf)#switchport port-security maximum 1
+sw(conf)#switchport port-security mac-address <MAC or sticky> 
+sw(conf)#switchport port-security violation shutdown
+sw(conf)#no shutdown
