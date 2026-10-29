@@ -487,7 +487,7 @@ sw(conf-if)#switchport mode access vlan 10
 ```
 
 # Inter VLAN Routing
-A L3 device is needed.
+A L3 device is needed, add default gateway
 ```
 sw(conf)#int f 0/5
 sw(conf-if)#switchport mode trunk
@@ -499,4 +499,6 @@ ro(conf-subif)#ip add 192.168.10.1 255.255.255.0
 ro(conf)#int g 0/0.20
 ro(conf-subif)#encapsulation dot1Q 20
 ro(conf-subif)#ip add 192.168.20.1 255.255.255.0
+ro(conf)#int g 0/0
+ro(conf-if)#no shut
 ```
