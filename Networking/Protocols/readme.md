@@ -502,3 +502,13 @@ ro(conf-subif)#ip add 192.168.20.1 255.255.255.0
 ro(conf)#int g 0/0
 ro(conf-if)#no shut
 ```
+# Ether Channel
+**Multiple Physical Channel into one logical channel** for data transmission
+Connect two switches having more than one channel, typically
+On Both Switches
+```
+sw(conf)#int range f 0/1 - 2
+sw(conf-if-range)#shutdown
+sw(conf-if-range)#channel-group 1 mode active
+sw(conf-if-range)#no shutdown
+```
