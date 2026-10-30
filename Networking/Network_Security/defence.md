@@ -183,6 +183,7 @@ ip access-group <Name> out
 ```
 sw(conf)#int f 0/1
 sw(conf)#switchport mode access
+sw(conf)#switchport port-security
 sw(conf)#switchport port-security maximum 1
 sw(conf)#switchport port-security mac-address <MAC or sticky> 
 sw(conf)#switchport port-security violation restrict
