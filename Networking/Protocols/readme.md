@@ -529,3 +529,17 @@ sw(conf)#int f 0/1
 sw(conf-if)#ip dhcp snooping trust
 Reset PCs to static then DHCP to verify again
 ```
+
+
+# BPDU Guard
+```
+Block a perticuler port
+sw(conf)#int f 0/3
+sw(conf-if)#switchport mode access
+sw(conf-if)#spanning-tree portfast
+sw(conf-if)#spanning-tree bpdugruard enable
+
+Block multiple port
+Switch(config)# interface range fastethernet 0/1 - 24
+Switch(config-if-range)# spanning-tree bpduguard enable
+```
