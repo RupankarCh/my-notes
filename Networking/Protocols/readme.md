@@ -512,3 +512,20 @@ sw(conf-if-range)#shutdown
 sw(conf-if-range)#channel-group 1 mode active
 sw(conf-if-range)#no shutdown
 ```
+
+# DHCP snooping
+```
+On Real DHCP server
+Set IP of DHCP server, Services> DHCP, On, Provide Default Gateway, Provide Start IP Address and Subnet Mask, Maximum Number of Users.
+
+On fake DHCP server
+Set IP of different range in the DHCP server, Services> DHCP, On, Provide Default Gateway as Real DHCP server Provide Start IP Address and Subnet Mask, Maximum Number of Users.
+
+On PCs set DHCP IP allotment
+On Switch
+sw(conf)#ip dhcp snooping
+sw(conf)#ip dhcp snooping vlan 1 (If needed)
+sw(conf)#int f 0/1
+sw(conf-if)#ip dhcp snooping trust
+Reset PCs to static then DHCP to verify again
+```
