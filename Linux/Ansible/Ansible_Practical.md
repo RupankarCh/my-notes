@@ -1284,8 +1284,28 @@ ansible all -m command -a "useradd ansible -u 1002"
 ansible webservers -m command -a "useradd ansible -u 1002" -i /home/ansible/apache-deployment/inventory/hosts.ini
 ansible-playbook /home/ansible/apache-deployment/playbooks/apache.yml --syntax-check -i /home/ansible/apache-deployment/inventory/hosts.ini
 ansible-playbook /home/ansible/apache-deployment/playbooks/apache.yml -i /home/ansible/apache-deployment/inventory/hosts.ini
-
-
+On EC2 Instance using putty (Add swap memory)
+sudo fallocate -l2G /swap
+sudo chmod 600 /swap
+sudi mkswap /swap
+sudo swapon /swap
+On Control node
+git config --global user.name "<github_username>"
+git config --global user.email "<github_gmail>"
+git config --list
+cd apache-deployment/
+git init
+vi .gitignore
+*.pem
+*.key
+*.retry
+:wq
+git add .
+git commit -m "myproject"
+git remote add origin <repo_link>
+git branch -M main
+git push -u origin main 
+```
 
 
 	  
