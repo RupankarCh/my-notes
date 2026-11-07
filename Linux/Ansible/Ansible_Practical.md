@@ -1191,3 +1191,133 @@ vim playbook7.yml
 ```
 ansible-playbook playbook7.yml
 ansible all -m shell -a "rpm -qa |grep firewalld-*"
+
+
+
+
+## Create Password Less authentication from control node to the EC2 Instance
+On Control Node
+```
+make the ens160 interface have automatic IP assigned
+Create an EC2 Instance(Create a key pair with .pem, allow all TCP traffic, Assign Public IP)
+Connect to the Instance using SSH PuTTy
+Create an Elastic IP from VPC service select the IP Actions and associate with the EC2 instance.
+Convert the .ppk file to .pem
+Install WinSCP
+Set Control Node in Bridged Mode
+Run WinSCP and set hostname as IP of control node, username, password.
+/home/ansible# mkdir .ssh
+Copy the file to the control node's .ssh folder
+ansible#chmod 400 ~/.ssh/<key_name>.pem
+ansible# sudo dnf install -y ansible-core git python openssh-clients
+ansible# ssh -i ~/.ssh/<key_name>.pem ec2-user@100.61.146.98
+Install VS Code for Windows
+Extension add Remote - SSH on VS Code
+Remote Explorer> SSH Add remote
+ssh ansible@<controlnode_IP>
+Connect to the by opening new terminal
+Explorer /home/ansible open folder
+ansible$mkdir -p apache-deployment
+mkdir -p /home/ansible/apache-deployment/inventory playbooks files
+mkdir playbooks
+mkdir files
+vim ansible.cfg
+[defaults]
+inventory = inventory/hosts.ini
+remote_user = ec2-user
+host_key_checking = False
+retry_files_enable = False
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+:wq
+cd inventory/
+vim hosts.ini
+[webservers]
+aws-web ansible_host = <ELASTIC_IP>
+
+[webservers:vars]
+ansible_user = ec2-user
+ansible_ssh_private_key_file = /home/ansible/.ssh/<key_name>.pem
+:wq
+ansible all -m ping -i /home/annsible/apache-deployment/inventory/hosts.ini
+cd playbooks
+vim apache.yml
+---
+- name: Deploy Apache Web Server on AWS EC2
+  hosts: webserver
+  become: yes
+
+  tasks:
+
+	- name: Update system packages
+      ansible.builtin.command: "sudo dnf update -y"
+        name: "httpd"
+		state: latest
+
+	- name: Install Apache Web Server
+	  ansible.builtin.dnf:
+		name: httpd
+		state: current
+
+	- name: Built Your Web Page
+	  ansible.builtin.copy:
+	    src: /home/ansible/apache-deployment/files/index.html
+		dest: /var/www/html/index.html
+		owner: ansible
+		group: apache
+		mode: '0644'
+
+	- name: Start and Enable the Service
+	  ansible.builtin.service:
+		name: httpd
+		state: started
+		enabled: yes
+:wq
+cd ..
+vim index.html
+awdbhjuawbhdu
+:wq
+ansible all -m command -a "useradd ansible -u 1002"
+ansible webservers -m command -a "useradd ansible -u 1002" -i /home/ansible/apache-deployment/inventory/hosts.ini
+ansible-playbook /home/ansible/apache-deployment/playbooks/apache.yml --syntax-check -i /home/ansible/apache-deployment/inventory/hosts.ini
+ansible-playbook /home/ansible/apache-deployment/playbooks/apache.yml -i /home/ansible/apache-deployment/inventory/hosts.ini
+
+
+
+
+	  
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
