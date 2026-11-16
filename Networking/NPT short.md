@@ -10,8 +10,45 @@ Encapsulates other traffic inside HTTP/HTTPS.
 # SOCKS proxy 
 **allows network traffic to pass through another system**. In an authorized penetration-testing laboratory, Metasploit can use a compromised lab machine as a pivot point to reach an isolated internal network.
 
+# Micro-segmentation 
+A security technique that divides a network into very small, **isolated segments and applies individual access-control policies to each segment**.
+
+# Data exfiltration 
+unauthorized transfer of files or sensitive information from a compromised system to another machine.
+Three common methods are:
+1. Netcat: Transfers data through TCP network connections.
+2. HTTP/HTTPS: Transfers files through web-based communication.
+3. SCP/SFTP: Transfers files using encrypted SSH-based communication.
+
+# Bridged Networking 
+A network configuration in virtualization where a virtual machine connects directly to the physical network through the host computer's network adapter.
+
+| TCP SYN Scan | TCP Connect Scan |
+|---|---|
+| Uses the TCP three-way handshake partially. | Completes the full TCP three-way handshake. |
+| Does not normally establish a complete connection. | Establishes a complete connection. |
+| Also called a half-open scan. | Also called a full-connect scan. |
+| Generally faster. | Generally slower. |
+| Uses `-sS`. | Uses `-sT`. |
+| Usually requires raw-packet privileges. | Can work without raw-packet privileges. |
+
+# Reverse shell 
+allows a remote system to initiate a connection back to another machine, through which commands may be communicated.
+| Netcat | PowerShell TCP Socket |
+|---|---|
+| Uses the Netcat utility. | Uses built-in PowerShell networking capabilities. |
+| Requires Netcat to be available. | Can use .NET TCP socket classes. |
+| Supports network communication through TCP. | Supports TCP communication through native Windows functionality. |
+| May be detected as an unauthorized network utility. | May be monitored through PowerShell logging and endpoint security. |
+
 # WMIC (Windows Management Instrumentation Command-line) 
 A Windows administration utility used to **retrieve system and service information.**
+How it can be abused:
+1. Identify services using WMIC.
+2. Examine their executable paths.
+3. Find paths containing spaces without quotation marks.
+4. Check whether an earlier interpreted location is writable by an unprivileged user.
+5. If exploitable, an attacker may place an unauthorized executable in that location.
 
 # HAL
 HAL stands for Hardware Abstraction Layer. It is a component of Windows that provides an interface between the operating system kernel and the computer hardware.
