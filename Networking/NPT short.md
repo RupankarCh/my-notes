@@ -6,9 +6,23 @@ An attack in which attacker stores a malicious dll file in the earlier path base
 
 # HTTP Tunneling
 Encapsulates other traffic inside HTTP/HTTPS.	
+Detection Mechanisms:
+1. Deep Packet Inspection (DPI): Examines network traffic for suspicious patterns where inspection is permitted.
+2. Proxy Monitoring: Monitors unusual web requests and destinations.
+3. DNS Monitoring: Identifies suspicious domain queries.
+4. Network Traffic Analysis: Detects abnormal communication patterns.
+5. SIEM: Correlates logs from different security devices.
 
 # Network pivoting 
 An attacker uses an intermediate compromised machine to access another network.
+
+# NAC (Network Access Control) 
+A security technology that controls which devices can connect to an organization's network.
+How NAC prevents pivoting:
+- Restricts access based on user and device identity.
+- Limits communication between unauthorized devices.
+- Can isolate compromised systems.
+- Applies network access policies.
 
 # SOCKS proxy 
 **Dynamic Port Forwarding allows network traffic to pass through another system**. In an authorized penetration-testing laboratory, Metasploit can use a compromised lab machine as a pivot point to reach an isolated internal network.
@@ -18,6 +32,12 @@ A feature that controls the conditions under which PowerShell scripts can run. e
 
 # Micro-segmentation 
 A security technique that divides a network into very small, **isolated segments and applies individual access-control policies to each segment**.
+
+# Certutil 
+A Windows command-line utility used for certificate management and related operations.
+
+# LOLBin(Living Off the Land Binary)
+It refers to legitimate operating-system tools that attackers may misuse for malicious purposes.
 
 # Sysmon Event ID 3
 Network Connection records network connections made by processes.
@@ -177,3 +197,10 @@ One Windows machine that is connected to both networks your and company's networ
 | Day of Month | `*` | Every day |
 | Month | `*` | Every month |
 | Day of Week | `1-5` | Monday to Friday |
+
+# Important NetBIOS Ports:
+| Port | Protocol | Purpose |
+|---|---|---|
+| 137 | UDP | NetBIOS Name Service |
+| 138 | UDP | NetBIOS Datagram Service |
+| 139 | TCP | NetBIOS Session Service |
