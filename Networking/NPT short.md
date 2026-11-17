@@ -13,6 +13,18 @@ Encapsulates other traffic inside HTTP/HTTPS.
 # Micro-segmentation 
 A security technique that divides a network into very small, **isolated segments and applies individual access-control policies to each segment**.
 
+# Sysmon Event ID 3
+Network Connection records network connections made by processes.
+
+# Dirty COW (Copy-On-Write) 
+A privilege-escalation vulnerability discovered in the Linux kernel in 2016. Its root cause was a race condition in the kernel's Copy-On-Write (COW) memory-management mechanism.
+Working:
+1. Linux uses Copy-On-Write to avoid unnecessary memory duplication.
+2. When a process attempts to modify shared memory, the kernel should create a private copy.
+3. Due to a race condition, the kernel could incorrectly handle simultaneous memory operations.
+4. This could allow an unprivileged user to modify read-only memory under certain conditions.
+
+
 # Data exfiltration 
 unauthorized transfer of files or sensitive information from a compromised system to another machine.
 Three common methods are:
@@ -110,3 +122,13 @@ One Windows machine that is connected to both networks your and company's networ
 1. External Zone: The untrusted network, usually the internet.
 2. DMZ (Demilitarized Zone): A separate network **containing publicly accessible services** such as web and mail servers.
 3. Internal Zone: The trusted private network containing sensitive systems, databases and organizational resources.
+
+# cron
+*/15 9-17 * * 1-5
+| Field | Value | Meaning |
+|---|---|---|
+| Minute | `*/15` | Every 15 minutes |
+| Hour | `9-17` | From 9 AM to 5 PM |
+| Day of Month | `*` | Every day |
+| Month | `*` | Every month |
+| Day of Week | `1-5` | Monday to Friday |
