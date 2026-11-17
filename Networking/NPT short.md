@@ -122,6 +122,7 @@ Main Functions:
 | Nmap `-sV` | Service/version detection |
 | Nmap `-O` | OS detection |
 | Nmap `-Pn` | Skip host discovery |
+| Nmap `-p-` | All port Scan |
 | Nmap `-A` (Aggressive Scan) | Service Banner, Authentication Requirements, Enables OS detection, version detection, script scanning and traceroute to collect detailed information about the target|
 | DLL Hijacking | Malicious DLL loaded from an unsafe location |
 | HTTP Tunneling | Carries other traffic through HTTP/HTTPS |
