@@ -4,6 +4,18 @@ SNMP (Simple Network Management Protocol) enumeration is used to collect informa
 # DLL hijacking
 An attack in which attacker stores a malicious dll file in the earlier path based on the application's search order and the malicious dll file gets executed with the trusted application's privilege.
 
+# Local port forwarding 
+allows a user to access a remote service through a port on their local machine.
+
+# Remote port forwarding 
+exposes a service from the local side through a port on the remote SSH server.
+| Local Port Forwarding | Remote Port Forwarding |
+|---|---|
+| Uses `-L` in SSH. | Uses `-R` in SSH. |
+| Creates a listening port on the local machine. | Creates a listening port on the remote machine. |
+| Forwards traffic towards a remote destination. | Forwards incoming remote traffic towards a local-side destination. |
+| Useful for accessing remote internal services. | Useful for making a local service accessible through a remote server. |
+
 # HTTP Tunneling
 Encapsulates other traffic inside HTTP/HTTPS.	
 
