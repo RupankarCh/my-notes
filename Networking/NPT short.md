@@ -4,6 +4,24 @@ SNMP (Simple Network Management Protocol) enumeration is used to collect informa
 # DLL hijacking
 An attack in which attacker stores a malicious dll file in the earlier path based on the application's search order and the malicious dll file gets executed with the trusted application's privilege.
 
+# HTTP Tunneling
+Encapsulates other traffic inside HTTP/HTTPS.	
+
+# Network pivoting 
+An attacker uses an intermediate compromised machine to access another network.
+
+# SOCKS proxy 
+**Dynamic Port Forwarding allows network traffic to pass through another system**. In an authorized penetration-testing laboratory, Metasploit can use a compromised lab machine as a pivot point to reach an isolated internal network.
+
+# PowerShell Execution Policy 
+A feature that controls the conditions under which PowerShell scripts can run. e.g., Restricted, AllSigned, RemoteSigned, Unrestricted. Execution Policy is designed mainly to prevent accidental script execution, not to prevent determined attackers from executing malicious code.
+
+# Micro-segmentation 
+A security technique that divides a network into very small, **isolated segments and applies individual access-control policies to each segment**.
+
+# Sysmon Event ID 3
+Network Connection records network connections made by processes.
+
 # Local port forwarding 
 allows a user to access a remote service through a port on their local machine.
 
@@ -15,21 +33,6 @@ exposes a service from the local side through a port on the remote SSH server.
 | Creates a listening port on the local machine. | Creates a listening port on the remote machine. |
 | Forwards traffic towards a remote destination. | Forwards incoming remote traffic towards a local-side destination. |
 | Useful for accessing remote internal services. | Useful for making a local service accessible through a remote server. |
-
-# HTTP Tunneling
-Encapsulates other traffic inside HTTP/HTTPS.	
-
-# SOCKS proxy 
-**allows network traffic to pass through another system**. In an authorized penetration-testing laboratory, Metasploit can use a compromised lab machine as a pivot point to reach an isolated internal network.
-
-# PowerShell Execution Policy 
-A feature that controls the conditions under which PowerShell scripts can run. e.g., Restricted, AllSigned, RemoteSigned, Unrestricted. Execution Policy is designed mainly to prevent accidental script execution, not to prevent determined attackers from executing malicious code.
-
-# Micro-segmentation 
-A security technique that divides a network into very small, **isolated segments and applies individual access-control policies to each segment**.
-
-# Sysmon Event ID 3
-Network Connection records network connections made by processes.
 
 # Object Manager 
 Helps manage the corresponding object and its access. When an application opens a file, Windows creates or provides a handle that allows the application to access that file.
