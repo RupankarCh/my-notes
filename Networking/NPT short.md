@@ -7,14 +7,27 @@ An attack in which attacker stores a malicious dll file in the earlier path base
 # HTTP Tunneling
 Encapsulates other traffic inside HTTP/HTTPS.	
 
+
 # SOCKS proxy 
 **allows network traffic to pass through another system**. In an authorized penetration-testing laboratory, Metasploit can use a compromised lab machine as a pivot point to reach an isolated internal network.
+
+# PowerShell Execution Policy 
+A feature that controls the conditions under which PowerShell scripts can run. e.g., Restricted, AllSigned, RemoteSigned, Unrestricted. Execution Policy is designed mainly to prevent accidental script execution, not to prevent determined attackers from executing malicious code.
 
 # Micro-segmentation 
 A security technique that divides a network into very small, **isolated segments and applies individual access-control policies to each segment**.
 
 # Sysmon Event ID 3
 Network Connection records network connections made by processes.
+
+# BITS (Background Intelligent Transfer Service) 
+A Windows service used to transfer files between computers in the background.
+Why attackers misuse BITS:
+1. It supports background file transfers.
+2. Transfers can continue even when applications are closed.
+3. It can operate using normal Windows service mechanisms.
+4. Attackers may abuse BITS jobs to download malicious files.
+5. Unauthorized BITS jobs can help maintain access or persistence.
 
 # Dirty COW (Copy-On-Write) 
 A privilege-escalation vulnerability discovered in the Linux kernel in 2016. Its root cause was a race condition in the kernel's Copy-On-Write (COW) memory-management mechanism.
