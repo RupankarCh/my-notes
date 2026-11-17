@@ -22,6 +22,14 @@ A security technique that divides a network into very small, **isolated segments
 # Sysmon Event ID 3
 Network Connection records network connections made by processes.
 
+# Sysmon Event ID 4688 
+A new process has been created,
+Security Importance:
+- Helps identify suspicious program execution.
+- Detects unexpected administrative tools.
+- Helps investigate privilege escalation.
+- Allows security analysts to trace suspicious process activity.
+
 # Local port forwarding 
 allows a user to access a remote service through a port on their local machine.
 
