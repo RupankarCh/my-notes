@@ -7,7 +7,6 @@ An attack in which attacker stores a malicious dll file in the earlier path base
 # HTTP Tunneling
 Encapsulates other traffic inside HTTP/HTTPS.	
 
-
 # SOCKS proxy 
 **allows network traffic to pass through another system**. In an authorized penetration-testing laboratory, Metasploit can use a compromised lab machine as a pivot point to reach an isolated internal network.
 
@@ -19,6 +18,15 @@ A security technique that divides a network into very small, **isolated segments
 
 # Sysmon Event ID 3
 Network Connection records network connections made by processes.
+
+# Object Manager 
+Helps manage the corresponding object and its access. When an application opens a file, Windows creates or provides a handle that allows the application to access that file.
+Main Functions:
+1. Creates and manages system objects.
+2. Maintains object names and directories.
+3. Controls object handles.
+4. Manages object security and access permissions.
+5. Handles object references and resource management.
 
 # BITS (Background Intelligent Transfer Service) 
 A Windows service used to transfer files between computers in the background.
