@@ -46,6 +46,11 @@ functions:
 4. Spoofing Prevention
 5. Secure Communication
 
-
+# IPv6 Security Policy Components
+- IPsec: Provides data encryption, authentication and integrity to secure communication.
+- Firewall: Monitors and filters incoming and outgoing network traffic.
+- Access Control Lists (ACLs): Allow or deny network traffic based on predefined rules.
+- Authentication: Verifies the identity of users and devices before allowing access.
+- Secure Neighbor Discovery (SEND): Protects IPv6 Neighbor Discovery from spoofing attacks.
 
 
