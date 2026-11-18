@@ -22,7 +22,7 @@ A LAN technology in which computers are connected in a logical ring topology. It
 A networking technology that combines multiple physical Ethernet links into one logical connection.
 
 # DHCP Snooping
-It's an L2 security feature used in networking switches to protect against unauthorized DHCP servers. It divides switch ports into two categories: trusted and untrusted. DHCP server messages received on untrusted ports are blocked.
+**monitor and filter DHCP messages to prevent rogue DHCP servers**. It's an L2 security feature used in networking switches to protect against unauthorized DHCP servers. It divides switch ports into two categories: trusted and untrusted. DHCP server messages received on untrusted ports are blocked.
 It maintains a DHCP snooping binding table containing IP address, MAC address, VLAN and switch port information.
 
 # STP 
@@ -62,4 +62,17 @@ Working:
 4. The device combines the network prefix with an interface identifier to generate its IPv6 address.
 5. The device performs Duplicate Address Detection (DAD) to check whether the address is already in use.
 
+# Network Prefix (/24): 
+Represents the **fixed portion of an IP address**. For example, in 192.168.1.0/24, the first 24 bits are the network address, and the remaining 8 bits are available for host devices (IPs from 192.168.1.1 to 192.168.1.254).
 
+# Prefix List (Router Tool): 
+A firewall-like or routing filter rule set used by network administrators. It tells a router: "Allow or deny traffic/routing updates coming from these specific network prefixes.
+
+# Distribute list 
+An **access control tool used in routing protocols** (like OSPF, EIGRP, or BGP) **to filter routing updates**. It functions like a firewall rule for routes, it prevents a router from advertising certain prefixes to its neighbors, or from accepting certain prefixes into its routing table.
+
+# Route map 
+A tool used in enterprise networking (commonly on Cisco platforms) to filter and manipulate traffic or routing information. **Think of it as a smart, programmable script (similar to an if/then/else statement) that combines Access Control Lists (ACLs) and actions.**
+
+# Dynamic ARP Inspection (DAI) 
+A Layer 2 security feature that prevents ARP spoofing (ARP poisoning) by intercepting, logging, and validating all ARP packets on a network.
