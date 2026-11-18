@@ -53,4 +53,13 @@ functions:
 - Authentication: Verifies the identity of users and devices before allowing access.
 - Secure Neighbor Discovery (SEND): Protects IPv6 Neighbor Discovery from spoofing attacks.
 
+# SLAAC (Stateless Address Autoconfiguration) 
+An IPv6 feature that allows devices to automatically configure their own IPv6 addresses without requiring a DHCPv6 server for address assignment.
+Working:
+1. A device connects to an IPv6 network.
+2. It sends a Router Solicitation (RS) message to discover available routers.
+3. The router responds with a Router Advertisement (RA) message containing network prefix information.
+4. The device combines the network prefix with an interface identifier to generate its IPv6 address.
+5. The device performs Duplicate Address Detection (DAD) to check whether the address is already in use.
+
 
