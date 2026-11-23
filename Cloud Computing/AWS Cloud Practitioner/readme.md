@@ -1,6 +1,14 @@
 
 <img width="394" height="568" alt="image" src="https://github.com/user-attachments/assets/bd77e3b5-3aa5-4510-aa7b-6abe2044e48e" />
 
+Value Proposition:
+- Trading Fixed Expenses for Variable Expenses: Pay for only what you use, On demand pricing.
+- Massive Economies of Scale: AWS can buy hardware and run data centers much more cheaply per unit that a single mid-sized company could never negotiate.
+- Eliminating Capacity Guesswork: Dynamically scale resources based on actual demand.
+- Increasing Speed and Agility: Instant resource provisioning, Rapid experimentation, Scalability and flexibility, Reduced time-to-market.
+- Reducing Data Center Costs
+- Global Reach in Minutes: Extensive global infrastructure, Rapid deployment, Low latency, Scalability and flexibility.
+
 # Server:
 A server consists of Compute, Memory, Storage, Database, Network. 
 
