@@ -1307,3 +1307,25 @@ Snow family > Create new job, Name it, Choose Job type > Next, Select the Snow d
 - S3 Storage Classes: Standard, IA, I Z-IA, Intelligent, Glacier (Instant, Flexible, Deep)
 - Snowball: import data onto S3 through a physical device, edge computing
 - Storage Gateway: hybrid solution to extend on-premises storage to S3
+
+
+# AWS Governance Concepts
+- Identity and access management (IAM)
+- Continuous monitoring and logging
+- Network and edge security
+- Data security and encryption
+- Auditing and compliance(AWS Artifact and AWS Config)
+
+## AWS Compliance Services:
+- Amazon GuardDuty: Continuously monitors AWS accounts, workloads, and logs for malicious activity and anomalous behavior.   
+- AWS Config: Tracks, records, and evaluates AWS resource configurations and changes over time against desired settings.   
+- AWS Artifact: Self-service portal for on-demand access to AWS security and compliance reports and legal agreements. 
+ - AWS Artifact Reports: Provides downloadable AWS compliance and security documents.
+ - AWS Artifact Agreements: Lets you review, accept, and track legal and regulatory agreements for your account or AWS organization.
+- AWS Compliance Center: Hub for researching cloud-related regulatory and compliance requirements.
+- AWS Security Hub: Aggregates and displays a central view of your security posture and compliance status.
+- AWS Audit Manager: Helps continuously audit AWS usage to simplify compliance and risk assessments.
+
+## AWS License Service:
+- AWS License Manager: Powerful tool designed to help organizations manage their software licenses across AWS and on-premises environments. It also provide builtin dashboards.
+
