@@ -1329,3 +1329,462 @@ Snow family > Create new job, Name it, Choose Job type > Next, Select the Snow d
 ## AWS License Service:
 - AWS License Manager: Powerful tool designed to help organizations manage their software licenses across AWS and on-premises environments. It also provide builtin dashboards.
 
+# AWS Security – Short Notes
+
+AWS Security focuses on protecting cloud resources, applications, data, identities, and networks from unauthorized access, attacks, and data breaches.
+
+## 1. AWS Security Monitoring and Threat Detection
+
+### 1.1 AWS Security Hub
+**Definition:** AWS Security Hub is a centralized security service that collects security findings from multiple AWS services and provides a single view of your cloud security posture.
+
+**Key Features:**
+- Centralized security monitoring.
+- Automated security and compliance checks.
+- Aggregates findings from services like GuardDuty and Inspector.
+- Supports automated remediation.
+- Can integrate with SIEM tools like Splunk.
+
+**Remember:** Security Hub = One dashboard for AWS security.
+
+### 1.2 Amazon GuardDuty
+**Definition:** Amazon GuardDuty is an intelligent threat detection service that continuously monitors AWS environments to identify suspicious activities and potential security threats.
+
+**Data Sources:**
+- CloudTrail logs.
+- VPC Flow Logs.
+- DNS logs.
+
+**Detects:**
+- Compromised credentials.
+- Unauthorized cryptocurrency mining.
+- Malware activity.
+- Unusual login patterns.
+- Suspicious network traffic.
+
+**Remember:** GuardDuty = Detects threats and suspicious activities.
+
+### 1.3 Amazon Inspector
+**Definition:** Amazon Inspector is an automated vulnerability management service that continuously scans AWS workloads for software vulnerabilities and unintended network exposure.
+
+**Key Features:**
+- Scans EC2 instances.
+- Scans container images.
+- Identifies software vulnerabilities.
+- Detects network exposure.
+
+**Remember:** Inspector = Finds vulnerabilities.
+
+### 1.4 AWS Shield
+**Definition:** AWS Shield is a managed DDoS protection service that protects AWS applications and resources against Distributed Denial of Service attacks.
+
+**Types:**
+
+| Feature | Shield Standard | Shield Advanced |
+|---|---|---|
+| Cost | Free | Paid |
+| Protection | Basic DDoS protection | Enhanced DDoS protection |
+| Monitoring | Automatic | Advanced monitoring |
+| Support | Standard AWS support | 24/7 Shield Response Team (SRT) access |
+| Integration | AWS services | AWS WAF and other services |
+
+- **Shield Standard:** Automatically protects supported AWS services against common DDoS attacks.
+- **Shield Advanced:** Provides enhanced protection, attack visibility, cost protection, and access to specialized response support.
+
+**Remember:** Shield = Protects against DDoS attacks.
+
+---
+
+## 2. AWS Services for Capturing Logs
+
+| AWS Service | Easy Definition |
+|---|---|
+| AWS CloudTrail | Records API calls and user activities across AWS accounts. |
+| Amazon CloudWatch Logs | Collects and monitors logs from AWS resources and applications. |
+| AWS X-Ray | Traces requests across distributed applications to identify performance issues. |
+| VPC Flow Logs | Captures information about IP traffic flowing through a VPC. |
+| AWS Config | Tracks configuration changes and checks resource compliance. |
+| AWS Security Hub | Collects security findings from multiple AWS services. |
+| Amazon S3 Server Access Logs | Records requests made to objects stored in S3 buckets. |
+| AWS Lambda Logs | Captures Lambda function execution logs, typically through CloudWatch Logs. |
+
+**Easy memorization:**
+- CloudTrail = Who did what?
+- CloudWatch = What is happening?
+- X-Ray = Where is the application slow?
+- VPC Flow Logs = What network traffic is flowing?
+- Config = What configuration changed?
+- Security Hub = What security problems exist?
+- S3 Logs = Who accessed my bucket?
+- Lambda Logs = What happened during function execution?
+
+---
+
+## 3. AWS Audit and Compliance Services
+
+### 3.1 AWS CloudTrail
+**Definition:** AWS CloudTrail records user activities and API calls made through the AWS Management Console, CLI, and SDKs.
+
+**Uses:**
+- Security auditing.
+- Tracking user activities.
+- Monitoring API usage.
+- Troubleshooting operational issues.
+- Compliance monitoring.
+
+**Remember:** CloudTrail = Audit trail of AWS activities.
+
+### 3.2 AWS Config
+**Definition:** AWS Config continuously monitors and records changes in AWS resource configurations to help maintain security and compliance.
+
+**Key Features:**
+- Configuration tracking.
+- Compliance validation.
+- Continuous monitoring.
+- Automated remediation.
+- Audit and reporting.
+
+**Remember:** Config = Tracks configuration changes.
+
+### 3.3 AWS Audit Manager
+**Definition:** AWS Audit Manager helps organizations continuously collect and organize evidence to simplify audits and demonstrate compliance.
+
+**Key Features:**
+1. Prebuilt and custom compliance frameworks.
+2. Automated evidence collection.
+3. Centralized evidence management.
+4. Compliance monitoring.
+5. Audit-ready reports.
+
+**Remember:** Audit Manager = Collects evidence for audits.
+
+---
+
+# 4. AWS Encryption and Key Management
+
+### 4.1 AWS KMS (Key Management Service)
+**Definition:** AWS KMS is a managed service that allows you to create, manage, and control cryptographic keys used for encryption and decryption.
+
+**Uses:**
+- Encrypting data.
+- Managing encryption keys.
+- Controlling access to keys.
+- Integrating with AWS services.
+
+**Remember:** KMS = Manages encryption keys.
+
+### 4.2 AWS CloudHSM
+**Definition:** AWS CloudHSM provides dedicated hardware security modules (HSMs) to generate and manage cryptographic keys with greater control.
+
+**Remember:** CloudHSM = Dedicated hardware for cryptographic keys.
+
+### 4.3 AWS Encryption SDK
+**Definition:** AWS Encryption SDK is a client-side encryption library that helps developers encrypt and decrypt data within their applications.
+
+**Remember:** Encryption SDK = Encrypt data before sending it to AWS.
+
+### 4.4 AWS Certificate Manager (ACM)
+**Definition:** AWS Certificate Manager manages SSL/TLS certificates used to secure network communication.
+
+**Remember:** ACM = Manages SSL/TLS certificates.
+
+### 4.5 AWS Secrets Manager
+**Definition:** AWS Secrets Manager securely stores, retrieves, and automatically rotates sensitive information such as database passwords and API keys.
+
+**Remember:** Secrets Manager = Protects passwords and secrets.
+
+### Encryption Services – Quick Comparison
+
+| Service | Main Purpose |
+|---|---|
+| AWS KMS | Manage encryption keys. |
+| AWS CloudHSM | Dedicated hardware-based key management. |
+| AWS Encryption SDK | Client-side data encryption. |
+| AWS Certificate Manager | Manage SSL/TLS certificates. |
+| AWS Secrets Manager | Store and rotate passwords and secrets. |
+| SSE-C | S3 server-side encryption using customer-provided encryption keys. |
+
+---
+
+# 5. AWS Identity and Access Management (IAM)
+
+### 5.1 AWS IAM
+**Definition:** AWS Identity and Access Management (IAM) controls who can access AWS resources and what actions they can perform.
+
+**Remember:** IAM = Who can access what?
+
+### 5.2 IAM Users
+**Definition:** An IAM user is an identity created within an AWS account for a person or application that requires AWS access.
+
+**Example:** Creating an IAM user for a developer.
+
+### 5.3 IAM Groups
+**Definition:** IAM groups allow administrators to organize users based on their roles and assign permissions to multiple users together.
+
+**Common Groups:**
+
+| Group | Permission |
+|---|---|
+| Administrator | Full AWS access. |
+| Power Users | Broad AWS access, but generally no IAM administration. |
+| ReadOnly/Auditor | Can view resources but cannot modify them. |
+
+**Remember:** Groups = Manage permissions for multiple users.
+
+### 5.4 IAM Roles
+**Definition:** An IAM role is an identity with specific permissions that trusted users, applications, or AWS services can temporarily assume.
+
+**Example:** An EC2 instance assumes an IAM role to access an S3 bucket without storing permanent access keys.
+
+**Remember:** Role = Temporary AWS permissions.
+
+### 5.5 IAM Policies
+**Definition:** IAM policies are JSON documents that define which AWS actions are allowed or denied.
+
+**Example:** Allowing a user to read objects from an S3 bucket but not delete them.
+
+**Remember:** Policy = Rules of access.
+
+### 5.6 IAM Access Analyzer
+**Definition:** IAM Access Analyzer identifies unintended resource sharing and unused permissions to help maintain least-privilege access.
+
+**Remember:** Access Analyzer = Finds unnecessary access.
+
+### 5.7 IAM Identity Center (AWS SSO)
+**Definition:** IAM Identity Center provides centralized single sign-on (SSO) access to multiple AWS accounts and business applications.
+
+**Remember:** Identity Center = One login for multiple AWS accounts and applications.
+
+### IAM vs IAM Identity Center
+
+| IAM | IAM Identity Center |
+|---|---|
+| Manages identities and permissions within AWS accounts. | Centrally manages workforce access across multiple AWS accounts. |
+| Supports IAM users, groups, and roles. | Supports centralized SSO. |
+| Commonly used for AWS resource access management. | Commonly used for employee access management. |
+
+---
+
+# 6. AWS Authentication and Access Security
+
+### 6.1 AWS Root Account
+**Definition:** The AWS root user is the original identity created when an AWS account is registered and has complete access to that account.
+
+**Important Root Account Activities:**
+- Changing account settings.
+- Selecting or changing support plans.
+- Closing an AWS account.
+- Modifying root user MFA.
+- Restoring certain IAM permissions.
+- Managing consolidated billing.
+- Performing certain account-level operations.
+
+**Security Best Practices:**
+- Enable MFA.
+- Never use the root account for daily activities.
+- Avoid creating root access keys.
+- Use IAM users or roles for regular administration.
+
+**Remember:** Root Account = Complete control over an AWS account.
+
+### 6.2 Password Policy
+**Definition:** An IAM password policy defines rules that users must follow when creating or changing their passwords.
+
+**Common Rules:**
+- Minimum password length.
+- Uppercase and lowercase letters.
+- Numbers and special characters.
+- Password expiration, if configured.
+- Password reuse restrictions.
+
+**Remember:** Password Policy = Rules for strong passwords.
+
+### 6.3 Security Token Service (STS)
+**Definition:** AWS Security Token Service (STS) generates temporary security credentials that allow users and applications to access AWS resources.
+
+**Remember:** STS = Temporary security credentials.
+
+### 6.4 AWS Access Keys
+**Definition:** AWS Access Keys are credentials used to authenticate programmatic requests to AWS through the CLI, SDKs, and APIs.
+
+**Two Components:**
+1. Access Key ID – Identifies the access key.
+2. Secret Access Key – Secret used to sign requests.
+
+**Remember:** Access Keys = Credentials for programmatic AWS access.
+
+### 6.5 AWS Multi-Factor Authentication (MFA)
+**Definition:** MFA adds an additional authentication layer by requiring users to provide another verification method besides their password.
+
+**AWS MFA Options:**
+
+| Type | Easy Explanation |
+|---|---|
+| Passkeys | Passwordless authentication using biometrics or device PIN. |
+| Security Keys | Physical FIDO-compatible authentication devices. |
+| Virtual Authenticator Apps | Mobile apps generating temporary OTP codes. |
+| Hardware Tokens | Physical devices generating OTP codes. |
+
+**Remember:** MFA = Password + Additional verification.
+
+### 6.6 Passkeys
+**Definition:** Passkeys are passwordless authentication credentials based on FIDO standards that use biometrics or a device PIN for secure sign-in.
+
+**Key Benefits:**
+- Phishing-resistant authentication.
+- No traditional password required.
+- Uses fingerprint, face recognition, or device PIN.
+
+**Remember:** Passkeys = Secure login without passwords.
+
+---
+
+# 7. AWS Access Management Concepts
+
+### 7.1 Identity-Based Policies
+**Definition:** Identity-based policies are attached to IAM users, groups, or roles to define what actions they can perform on AWS resources.
+
+**Example:** Allowing an IAM user to access an S3 bucket.
+
+### 7.2 Resource-Based Policies
+**Definition:** Resource-based policies are attached directly to AWS resources and define who can access those resources and what actions they can perform.
+
+**Example:** An S3 bucket policy allowing another AWS account to access the bucket.
+
+**Difference:**
+
+| Identity-Based Policy | Resource-Based Policy |
+|---|---|
+| Attached to IAM identities. | Attached to AWS resources. |
+| Defines what an identity can do. | Defines who can access a resource. |
+| Example: IAM user policy. | Example: S3 bucket policy. |
+
+### 7.3 Cross-Account Roles
+**Definition:** Cross-account roles allow users or services from one AWS account to access resources in another AWS account without creating separate IAM users in both accounts.
+
+**Remember:** Cross-account role = Access another AWS account securely.
+
+### 7.4 Least Privilege Principle
+**Definition:** The principle of least privilege means giving users and services only the minimum permissions required to perform their tasks.
+
+**Example:** A developer who only needs to view S3 files should not receive permission to delete buckets.
+
+**Remember:** Least Privilege = Only the permissions you need.
+
+### 7.5 AWS CloudFormation
+**Definition:** AWS CloudFormation is an Infrastructure as Code (IaC) service that creates and manages AWS resources using templates.
+
+**Security Benefits:**
+- Defines infrastructure consistently.
+- Supports controlled resource creation.
+- Works with IAM permissions to restrict deployment activities.
+- Helps maintain standardized security configurations.
+
+**Remember:** CloudFormation = Create AWS infrastructure using code.
+
+---
+
+# 8. AWS Systems Manager and Configuration Management
+
+### 8.1 AWS Systems Manager (SSM)
+**Definition:** AWS Systems Manager is a centralized service for managing, monitoring, and automating operational tasks across AWS, on-premises, and supported multicloud resources.
+
+**Uses:**
+- Remote server management.
+- Patch management.
+- Automation.
+- Monitoring system configurations.
+- Managing EC2 instances.
+
+**Remember:** Systems Manager = Manage servers from one place.
+
+### 8.2 Systems Manager Parameter Store
+**Definition:** Parameter Store is a centralized service for storing configuration data and secrets in a hierarchical structure.
+
+**Features:**
+- Stores configuration values.
+- Supports plain-text and encrypted parameters.
+- Integrates with AWS KMS.
+- Supports secure retrieval of parameters.
+
+**Remember:** Parameter Store = Stores configuration values and secrets.
+
+### Parameter Store vs Secrets Manager
+
+| Parameter Store | Secrets Manager |
+|---|---|
+| Stores configuration data and secrets. | Primarily stores sensitive secrets. |
+| Supports plain-text and encrypted values. | Provides managed secret storage. |
+| Does not provide built-in automatic secret rotation for all parameters. | Supports automatic secret rotation through configured integrations. |
+| Offers Standard and Advanced parameter tiers. | Designed for sensitive credential lifecycle management. |
+
+---
+
+# 9. Important AWS Security Concepts – Last-Minute Revision
+
+| AWS Service / Concept | One-Line Definition |
+|---|---|
+| Security Hub | Centralized security findings and posture management. |
+| GuardDuty | Detects suspicious activities and threats. |
+| Inspector | Scans for vulnerabilities. |
+| Shield | Protects against DDoS attacks. |
+| CloudTrail | Records API calls and user activities. |
+| CloudWatch | Monitors logs and metrics. |
+| X-Ray | Traces application requests. |
+| VPC Flow Logs | Records network traffic information. |
+| AWS Config | Tracks resource configuration changes. |
+| Audit Manager | Collects evidence for compliance audits. |
+| KMS | Manages encryption keys. |
+| CloudHSM | Provides dedicated hardware security modules. |
+| Encryption SDK | Performs client-side encryption. |
+| Certificate Manager | Manages SSL/TLS certificates. |
+| Secrets Manager | Stores and rotates sensitive credentials. |
+| IAM | Controls access to AWS resources. |
+| IAM User | Identity for a person or application. |
+| IAM Group | Organizes users and permissions. |
+| IAM Role | Provides temporary permissions. |
+| IAM Policy | Defines access permissions. |
+| Access Analyzer | Identifies unintended access. |
+| Identity Center | Provides centralized SSO. |
+| STS | Generates temporary credentials. |
+| MFA | Adds another authentication layer. |
+| Passkeys | Provides passwordless authentication. |
+| Access Keys | Authenticate programmatic AWS requests. |
+| Systems Manager | Manages and automates AWS operations. |
+| Parameter Store | Stores configuration values and secrets. |
+| CloudFormation | Creates infrastructure using code. |
+| Root Account | Has complete account-level access. |
+
+## 10. Five Important Security Principles to Remember
+
+1. **Least Privilege:** Give only the minimum permissions required.
+2. **Defense in Depth:** Use multiple layers of security instead of relying on one.
+3. **Encryption at Rest:** Protect stored data using encryption.
+4. **Encryption in Transit:** Protect data while travelling across networks using TLS.
+5. **Continuous Monitoring:** Continuously monitor AWS resources to detect suspicious activities.
+
+---
+
+### Quick Memory Trick: AWS Security Services
+
+Remember these five groups:
+
+| Group | Services | Purpose |
+|---|---|---|
+| Threat Detection | GuardDuty, Inspector, Security Hub | Detect and investigate threats. |
+| Protection | Shield, WAF | Protect applications and networks. |
+| Monitoring & Logging | CloudTrail, CloudWatch, X-Ray, VPC Flow Logs | Record and monitor activities. |
+| Identity & Access | IAM, STS, Identity Center, MFA | Control who gets access. |
+| Encryption & Secrets | KMS, CloudHSM, Secrets Manager, ACM | Protect data and credentials. |
+
+**Exam tip:** Pay special attention to the differences between:
+- GuardDuty vs Inspector vs Security Hub.
+- CloudTrail vs CloudWatch.
+- IAM User vs IAM Role.
+- IAM vs IAM Identity Center.
+- Identity-Based vs Resource-Based Policies.
+- KMS vs CloudHSM.
+- Parameter Store vs Secrets Manager.
+- Shield Standard vs Shield Advanced.
+
+These comparisons help you understand the services rather than simply memorizing their definitions.
