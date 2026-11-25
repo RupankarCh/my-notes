@@ -1,3 +1,5 @@
+**AMAZON or AWS before Service name:**
+A service that are **core, standalone, or foundational. can be used independently tends to be prefixed with Amazon** like Amazon S3 or Amazon Detective or Amazon Cognito. **Services that are supportive, utility-like, or orchestration tools tend to get the AWS prefix.**
 
 <img width="394" height="568" alt="image" src="https://github.com/user-attachments/assets/bd77e3b5-3aa5-4510-aa7b-6abe2044e48e" />
 
@@ -1881,3 +1883,19 @@ A resource hub that provides answers to frequently asked questions from AWS cust
 
 ## AWS Security Blog:
 An official AWS resource that provides insights, best practices, and technical guidance on cloud security
+
+Here are simple, short definitions for each service:
+
+## **Amazon CloudFront (CDN):** A global **Content Delivery Network** that caches static and dynamic web content (images, videos, APIs, scripts) at edge locations worldwide so users get fast, low-latency delivery closer to them.
+
+## **Amazon Route 53:** A scalable **cloud DNS (Domain Name System)** and traffic-routing service that translates domain names (like `example.com`) into IP addresses and directs user traffic using routing policies and health checks.
+
+## **Amazon Cognito:** An **identity and user-management service** that handles sign-up, sign-in, access control, and social/enterprise login (like Google or SAML) for web and mobile apps.
+
+## **AWS Transit Gateway:** A **central network hub (cloud router)** that connects multiple VPCs, on-premises networks, and VPNs together in one place instead of wiring up dozens of separate point-to-point connections.
+
+## **AWS Site-to-Site VPN:** A **secure, encrypted IPsec connection** over the public internet linking an on-premises network or branch office to an AWS VPC or Transit Gateway.
+
+## **AWS Direct Connect:** A **dedicated, private physical network connection** from an on-premises data center to AWS that bypasses the public internet for more consistent bandwidth and lower latency.
+
+## **Amazon Kinesis:** A **real-time streaming data service** used to collect, buffer, and process high-throughput data streams (like logs, clickstreams, or IoT telemetry) as they arrive.
