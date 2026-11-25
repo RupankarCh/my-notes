@@ -1788,3 +1788,59 @@ Remember these five groups:
 - Shield Standard vs Shield Advanced.
 
 These comparisons help you understand the services rather than simply memorizing their definitions.
+
+
+Here is a clean, study-ready note organizing your AWS firewall concepts along with key architectural details and distinctions.
+
+---
+
+## AWS Firewall & Network Security Notes
+
+AWS uses a **defense-in-depth** model rather than a single firewall product, placing controls across network layers, subnets, instances, and web applications.
+
+### 1. Network Access Control Lists (NACLs)
+
+* **Scope & Layer:** Subnet-level firewall inside a VPC operating at **Layers 3/4** (IPs, ports, protocols).
+* **State & Rules:** **Stateless** (return traffic must be explicitly permitted) and supports both **Allow** and **Deny** rules.
+* **Evaluation Order:** Rules are evaluated in ascending numerical order (lowest rule number first), stopping at the **first match**. A `*` (catch-all) rule at the end denies unmatched traffic.
+* **Association:** Each subnet maps to **one and only one** NACL, though multiple subnets can share the same NACL. Default NACLs allow all traffic; custom NACLs deny all traffic until rules are added.
+
+### 2. Security Groups (SGs)
+
+* **Scope & Layer:** Instance/resource-level virtual firewall operating at **Layers 3/4**, enforced at the hypervisor level on Elastic Network Interfaces (`eth0` and additional ENIs).
+* **State & Rules:** **Stateful** (allowed inbound/outbound connection state is tracked automatically so return traffic is permitted) and **"Allow only"**—there are **no explicit deny rules**.
+* **Evaluation Order:** All applicable rules are evaluated before deciding whether to allow traffic.
+* **Key Advantage:** Can reference other **Security Group IDs** as sources/destinations (ideal for dynamic auto-scaling tiers like web → app → database) rather than static IP CIDRs.
+
+### 3. AWS Network Firewall
+
+* **Scope & Layer:** Managed **VPC-level** stateful network firewall and **Intrusion Detection and Prevention System (IDS/IPS)** deployed via firewall endpoints in dedicated subnets.
+* **Key Capabilities:**
+* Supports both **stateless** and **stateful** rule groups (including Suricata-compatible IPS rules).
+* Performs **domain/FQDN/SNI filtering** and **TLS inspection** (decrypting and re-encrypting HTTPS traffic for deeper inspection).
+* Useful for filtering east-west traffic between VPCs/subnets and north-south egress/ingress traffic.
+
+
+
+### 4. AWS WAF (Web Application Firewall)
+
+* **Scope & Layer:** Protects **Layer 7 (HTTP/HTTPS)** web traffic on resources such as **Application Load Balancers (ALBs)**, **Amazon CloudFront**, **API Gateway**, and **AWS AppSync**.
+* **What It Inspects:** Deep packet/request inspection to mitigate **SQL injection (SQLi)**, **cross-site scripting (XSS)**, request smuggling/forgeries, bots, and volumetric/HTTP flood patterns (often paired with **AWS Shield** for DDoS protection).
+* **Matching Conditions:** IPv4/IPv6 addresses, originating countries (geo-match), headers/cookies/query strings/body, string or regex patterns, request size constraints, and managed rule groups (including SQLi and XSS rules).
+
+### 5. AWS Firewall Manager
+
+* **Role:** Central policy management service built on **AWS Organizations** that enforces firewall rules consistently across multiple AWS accounts and VPCs.
+* **What It Manages:** Common Security Group baselines, **AWS WAF** policies, **AWS Network Firewall** policies, **AWS Shield Advanced** protections, and VPC security controls from a delegated administrator account.
+
+---
+
+#### Quick Comparison
+
+| Service | Primary Scope | Stateful / Stateless | Rule Types | Best For |
+| --- | --- | --- | --- | --- |
+| **NACL** | Subnet (VPC) | Stateless | Allow & Deny (numbered) | Subnet boundary blocks & explicit IP denies |
+| **Security Group** | ENI / Instance | Stateful | Allow only | Fine-grained port/SG-to-SG instance access |
+| **Network Firewall** | VPC (via endpoints) | Both (stateless + stateful) | Pass, Drop, Alert, Reject (Suricata / domains) | VPC IDS/IPS, domain filtering, TLS inspection |
+| **AWS WAF** | HTTP/S apps (ALB, CloudFront, API GW) | HTTP request/session context | Allow, Block, Count, Captcha, Challenge | SQLi, XSS, web exploits, API & bot protection |
+| **Firewall Manager** | Multi-account (AWS Organizations) | Policy orchestration layer | Central compliance policies | Enforcing standards across many accounts |
