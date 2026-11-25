@@ -1,6 +1,11 @@
 
 <img width="394" height="568" alt="image" src="https://github.com/user-attachments/assets/bd77e3b5-3aa5-4510-aa7b-6abe2044e48e" />
 
+**Availability Zone:** two or more data centers.
+**Edge Location:** Point of Presence (PoP) in the AWS global network located close to end users—typically in major cities worldwide—that caches content, terminates connections, and runs lightweight edge logic to reduce latency.
+
+**Right sizing Concept:** the process of optimizing cloud resources by ensuring that instance types and sizes match workload performance and capacity requirements at the lowest possible cost. e.g., tolls CloudWatch, Cost Explorer(Explore right sizing recommendation)
+
 **Value Proposition:**
 - Trading Fixed Expenses for Variable Expenses: Pay for only what you use, On demand pricing.
 - Massive Economies of Scale: AWS can buy hardware and run data centers much more cheaply per unit that a single mid-sized company could never negotiate.
@@ -234,29 +239,37 @@ User Responsible for:
 - Enable MFA on all accounts
 - Rotate all your keys often Use IAM tools to apply appropriate permissions
 - Analyze access patterns & review ermissions
+- Data protection
+- Application security
+- Identity & access management (IAM)
+- Configuration management
+- Patch management
+- Monitoring & logging
 
-## Users and Groups:
+**Best Use:**
+**Users and Groups:**
 - Root account created by default, shouldn't be used or shared
 - Users are people within your organization, and can be grouped
 - Groups only contain users, not other groups
 - Users don't have to belong to a group, and user can belong to multiple group
 
-## IAM Permissions:
+# IAM 
+**IAM Permissions:**
 - Users and Groups can be assigned a JSON documents called policies
 - These policies define the permissions of the users
 - In AWS you apply the least privilege principle: don't give more permissions than a user needs
 **Principal = "Who is allowed to access/use this function?"**
 
-## Multi-Session Support
+**Multi-Session Support**
 It is used to **login to different accounts simultaniously on same window** of a browser.
 
-## IAM Policies
+**IAM Policies**
 - Inline Policies: Policies for a Single user.
 - Group Policies: Policies for users of a perticular group
 
 <img width="1233" height="593" alt="Screenshot 2026-03-23 225741" src="https://github.com/user-attachments/assets/494f9eab-47e6-4a89-88c7-c4f77c187e3f" />
 
-## IAM Password Policy (IAM>Account Settings>Edit Password Policy)
+**IAM Password Policy** (IAM>Account Settings>Edit Password Policy)
 - Strong passwords = higher security for your account
 - In AWS, you can setup a password policy:
     - Set a minimum password length
@@ -269,17 +282,17 @@ It is used to **login to different accounts simultaniously on same window** of a
     - Require users to change their password after some time (password expiration)
     - Prevent password re-use
 
-## Multi Factor Authentication MFA (IAM>Security Credentials)
+**Multi Factor Authentication MFA** (IAM>Security Credentials)
 - Users who have root access to your account and can possibly change configurations or delete resources in your AWS account.To be safe you want to protect your Root Accounts and IAM users, Use MFA = password you know + security device you own. Main benefit of MFA: if a password is stolen or hacked. the account is not compromised
 - MFA Device Options in AWS: Virtual MFA Device(Authy,Google Authenticator), Universal 2nd Factor (U2F) Security Key, Hardware Key Fob MFA Device.
 
-### How can users access AWS ?
+**How can users access AWS?**
 - To access AWS, you have three options:
   - AWS Management Console (protected by password + MFA)
   - AWS Command Line Interface (CLI): protected by access keys
   - AWS Software Developer Kit (SDK) - for code: protected by access keys
 
-## Access Key Generation
+**Access Key Generation**
 - Access Key ID = username
 - Secret Access Key = password
 
@@ -300,15 +313,15 @@ It is used to **login to different accounts simultaniously on same window** of a
  
 
 
-## Create Access Keys:
+**Create Access Keys:**
   IAM>Users>username>Create Access Key
   
-## Configuration of AWS CLI:
+**Configuration of AWS CLI:**
 [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
   on CMD type 'aws configure'
   enter credentials
 
-## Commands AWS CLI
+**Commands AWS CLI**
 ```
 aws --version     #To see the version of AWS CLI
 aws configure     #To configure AWS CLI
@@ -317,7 +330,7 @@ aws iam list-users    #To list all users
 
 **AWS CloudShell** is a browser based terminal provided by AWS to manage AWS console
 
-## IAM Roles and Services: 
+**IAM Roles and Services:**
 - Some AWS service will need to perform actions on your behalf
 - To do so, we will assign permissions to AWS services with IAM Roles
 Common roles:
@@ -325,13 +338,13 @@ Common roles:
 - Lambda Function Roles
 - Roles for CloudFormation
 
-## Creating a Role
+**Creating a Role**
 IAM> Roles> Create Role>AWS Service> Select Service> Next> Attach Policy> Next> Name Role> Create Role
 
-## Attaching a Role to a Instance
+**Attaching a Role to a Instance**
 Select the instance Actions> Security> Modify> Select the Role and Update IAM role
 
-## IAM Security Tools
+**IAM Security Tools**
 - IAM Credentials Report (account-level)
     - a report that lists all your account's users and the status of their various credentials
 
@@ -339,14 +352,34 @@ Select the instance Actions> Security> Modify> Select the Role and Update IAM ro
     - Access advisor shows the service permissions granted to a user and when those services were last accessed.
     - You can use this information to revise your policies.
 
-## Creating a Credential Report
+**Creating a Credential Report**
 
 IAM> Credential Report> Download Credential Report>
 
 
-## Creating IAM Access Advisor
+**Creating IAM Access Advisor**
 
 IAM> users> username> Access Advisor
+
+Summary chart for **AWS IAM**:
+
+| Aspect / Feature | What It Means / Does | Key Detail or Rule |
+| --- | --- | --- |
+| **Service Scope** | Global identity & access control | Enforces authentication & authorization + **Least Privilege** |
+| **Root User** | Account owner identity | Lock down, enable MFA, avoid daily use |
+| **IAM Users & Groups** | Users = people/apps; Groups = collections of users | Groups **cannot** be nested inside other groups |
+| **IAM Roles** | Temporary credentials for services/apps/federation | No static password/keys; used by EC2, Lambda, CloudFormation |
+| **Principal** | Entity making a request or allowed access | User, role, service, or federated identity |
+| **Policies (JSON)** | Define `Effect`, `Principal`, `Action`, `Resource`, `Condition` | **Explicit `Deny` always overrides `Allow**` |
+| **Policy Types** | **Managed** (AWS/Customer reusable) vs. **Inline** (1-to-1 with identity) | Inline policies are deleted with the user/group/role |
+| **Multi-Session Support** | Sign in to multiple AWS identities/accounts at once | Works within the **same browser window** |
+| **Password Policy** | Rules for IAM user passwords | Length, character types, expiry, reuse block, self-change |
+| **MFA** | Password + 2nd factor | Virtual app (Google Authenticator/Authy), U2F key, or hardware fob |
+| **Access Methods** | **Console** (pass + MFA), **CLI** (access keys/STS), **SDK** (code/Boto3), **CloudShell** (browser CLI) | CLI is built on the Python SDK; CloudShell runs in-browser |
+| **CLI Setup & Check** | `aws --version` → `aws configure` → `aws iam list-users` | Access Key ID = username; Secret Access Key = password |
+| **Role Attachment** | Create role (`IAM` → `Roles`) & attach (`EC2` → `Actions` → `Security` → `Modify IAM role`) | Needs `iam:PassRole` when passing roles to services |
+| **Credentials Report** | **Account-level** audit of users & credential status | Shows passwords, MFA status, access key age/rotation |
+| **Access Advisor** | **Principal-level** view of granted vs. last-used services | Helps remove unused permissions over time |
 
 # EC2 (Elastic Compute Cloud/Infrastructure as a Service)
 This is the **core compute service** on AWS. When you launch an EC2 instance, you follow a specific process:
@@ -588,19 +621,20 @@ FSx for NetApp ONTAP
 - FSx for Lustre: High Performance Computing Linux file system
 
 # Containerization and Orchastration
-## ECS = Elastic Container Service
-**Launch Docker containers** on AWS You must **provision & maintain the infrastructure** (the EC2 instances) AWS takes care of starting / stopping containers It Has integrations with the Application Load Balancer.
+## ECS (Elastic Container Service)
+An AWS-managed container orchestration service that lets you deploy, run, scale, and manage containerized applications without managing your own container control plane. Developers can define and run multi-container applications using Docker Compose, making it easy to transition existing workflows to AWS.
 
 ## Fargate
-**Launch Docker containers** on AWS, You **do not provision the infrastructure** (no EC2 instances to manage) — simpler!, Serverless offering, AWS just runs containers for you based on the CPU / RAM you need
+**Launch Docker containers** on AWS, without managing the underlying infrastructure. Serverless offering, AWS just runs containers for you based on the CPU, RAM you need.
 
 ## ECR (Elastic Container Registry)
-Elastic Container Registry, Private Docker Registry on AWS, This is where you store your Docker images so they can be run by ECS or Fargate
+Private Docker Registry on AWS, This is where you store your Docker images so they can be run by ECS or Fargate.
+features: image lifecycle management, image vulnerability scanning, Cross Region/Cross account replication, built in encryption, access control. 
 
 <img width="538" height="326" alt="Screenshot 2026-10-28 232457" src="https://github.com/user-attachments/assets/e48886a4-795f-471e-b3a9-5ff24278a8a4" />
 
-# EKS (Elastic Kubernetes Service)
-Allows you to **launch managed Kubernetes clusters on AWS**, Kubernetes is an **open-source system for management, deployment, and scaling of containerized apps** (Docker)
+## EKS (Elastic Kubernetes Service)
+Allows you to **launch managed Kubernetes clusters on AWS**, Kubernetes is an **open-source system for management, deployment, and scaling of containerized apps** (Docker), EKS supports hybrid and multi-cloud deployments.
 
 # Serverless
 - Serverless is a new paradigm in which the developers don't have to manage servers anymore, They just deploy code/functions
@@ -610,6 +644,9 @@ Allows you to **launch managed Kubernetes clusters on AWS**, Kubernetes is an **
 - e.g., S3, DynamoDB, Fargate, Lambda
 
 ## Lambda
+Function as a service, which executes code and respond to events. 
+
+**Features:**
 - Virtual functions — no servers to manage!
 - Limited by time - short executions
 - Event-Driven: functions get invoked by AWS when needed
@@ -623,10 +660,20 @@ Allows you to **launch managed Kubernetes clusters on AWS**, Kubernetes is an **
 - Easy to get more resources per functions (up to 10GB of RAM!)
 - Increasing RAM will also improve CPU and network!
 
-### Pricing
+**Use case:** 
+- Building Serverless APIs
+- Real time file processing/ streaming data processing 
+- Automative DevOps tasks
+- Data transformation in ETL pipelines
+- Scheduled CRON jobs
+- Mass emailing
+- Event-driven notifications
+- IoT backend processing
+
+**Pricing**
 <img width="762" height="291" alt="image" src="https://github.com/user-attachments/assets/84822098-e801-41e3-be73-a82f8e965124" />
 
-### Lambda Hands on 
+**Lambda Hands on**
 ```
 Visualization of Lambda
 Lambda> Functions> go to URL write begin instead off functions> Select a language Run, Next> Next.  
@@ -1453,7 +1500,7 @@ AWS Security focuses on protecting cloud resources, applications, data, identiti
 **Remember:** Encryption SDK = Encrypt data before sending it to AWS.
 
 ### 4.4 AWS Certificate Manager (ACM)
-**Definition:** AWS Certificate Manager manages SSL/TLS certificates used to secure network communication.
+**Definition:** AWS Certificate Manager manages(provisioning, managing, and deploying) SSL/TLS certificates to secure network communication.
 
 **Remember:** ACM = Manages SSL/TLS certificates.
 
@@ -1813,3 +1860,21 @@ AWS uses a **defense-in-depth** model rather than a single firewall product, pla
 | **Network Firewall** | VPC (via endpoints) | Both (stateless + stateful) | Pass, Drop, Alert, Reject (Suricata / domains) | VPC IDS/IPS, domain filtering, TLS inspection |
 | **AWS WAF** | HTTP/S apps (ALB, CloudFront, API GW) | HTTP request/session context | Allow, Block, Count, Captcha, Challenge | SQLi, XSS, web exploits, API & bot protection |
 | **Firewall Manager** | Multi-account (AWS Organizations) | Policy orchestration layer | Central compliance policies | Enforcing standards across many accounts |
+
+## AWS Trusted Advisor:
+An automated cloud optimization tool that evaluates your AWS environment against best practices and recommends improvements. It does not modify resources directly, instead surfacing actionable insights and status indicators (such as no problem detected, recommended investigation, or recommended action).
+
+## AWS Health Dashboard: 
+Central hub for monitoring the real-time operational status of AWS services and receiving personalized alerts about your cloud resources. It is helpful during outages or maintenance events when verifying whether connectivity issues stem from an AWS service event.
+
+## AWS Security Center: 
+It is not an official AWS service, but AWS provides a comprehensive set of security tools and best practices to protect cloud environments.
+
+## AWS re:Post: 
+A cloud knowledge service designed to assist builders in overcoming technical challenges.
+
+## AWS Knowledge Center: 
+A resource hub that provides answers to frequently asked questions from AWS customers.
+
+## AWS Security Blog:
+An official AWS resource that provides insights, best practices, and technical guidance on cloud security
