@@ -1,13 +1,101 @@
 
 <img width="394" height="568" alt="image" src="https://github.com/user-attachments/assets/bd77e3b5-3aa5-4510-aa7b-6abe2044e48e" />
 
-Value Proposition:
+**Value Proposition:**
 - Trading Fixed Expenses for Variable Expenses: Pay for only what you use, On demand pricing.
 - Massive Economies of Scale: AWS can buy hardware and run data centers much more cheaply per unit that a single mid-sized company could never negotiate.
 - Eliminating Capacity Guesswork: Dynamically scale resources based on actual demand.
 - Increasing Speed and Agility: Instant resource provisioning, Rapid experimentation, Scalability and flexibility, Reduced time-to-market.
 - Reducing Data Center Costs
 - Global Reach in Minutes: Extensive global infrastructure, Rapid deployment, Low latency, Scalability and flexibility.
+
+Advantages of High Availability:
+- Fault tolerance and reliability
+- Minimal downtime and business continuity
+- Scalability and performance optimization
+- Data protection and security
+- Cost efficiency
+- Data protection and security
+
+Advantages of Elasticity:
+- Automatic scaling
+- Cost optimization
+- Improved performance
+- Operational efficiency
+- Business agility
+
+**Advantages of Agility:**
+- Faster time-to-market
+- Flexibility and innovation
+- Scalability and adaptability
+- Cost efficiency
+- Competitive advantage
+
+**AMS Well-Architected Six Pillars:**
+Operational Excellence Design Principles:
+- Organize teams around business outcomes
+- Implement observability for actionable insights
+- Safely automate where possible
+- Make frequent, smalt, reversible changes
+- Refine operations procedures frequently
+- Anticipate failure
+- Learn from all operational events and metrics
+- Use managed services
+
+**Fixed Costs at AWS:**
+- Reserved instances
+- Dedicated hosting
+- Enterprise support plans
+- Licensing fees
+- Storage commitments
+
+**Variable Costs at AWS**
+- On-demand instances
+- Data transfer costs
+- Storage usage
+- Serverless computing
+- Auto Scaling Resources
+
+## Cloud Adoption Framework
+**Cloud Adoption Resources**
+- AWS Professional Services: A global team of AWS experts assist customers.
+- AWS Well-Architected Framework: Helps organizations understand pros and cons of cloud adoption
+- AWS Prescriptive Guidance: recommendation and best practices
+- AWS Migration Acceleration Program (MAP): provides tools, best practices, and financial incentives to help customers migrate to AWS efficiently.
+- AWS Training and Certification: offers courses and certifications to help individuals and teams build cloud expertise.
+- AWS Cloud Adoption Framework (AWS CAF): boost business outcome through use of AWS. CAF groups capabilities in six perspectives: Business. People, Governance, Platform, security, and Operations. 
+
+**CAF four phases:**
+- Envision: Identify and prioritize transformation opportunities in line with your strategic objectives.
+- Align: Identify capability gaps and cross organizational dependencies
+- Launch: Deliver pilots in production and demonstrate incremental business value.
+- Scale: expand pilots and business value to desired scale
+
+Cloud Adoption Strategies
+- Catalyze organizational change
+- Accelerate value realization
+- Mitigate transformation risks
+- Enhance workforce capabilities
+- Align cloud initiatives with business objectives
+- Cultivate a culture of continuous improvement
+
+## Cloud Migration
+Best Cloud Migration Strategies (7Rs):
+- Retire: Decommissioning application that are no longer needed
+- Retain: Keep the applications that are not ready for migration.
+- Rehost: moving applications to aws with minimal changes.
+- Relocate: moving workloads to AWS without making significant modifications, typically at the hypervisor level.
+- Repurchase: replaces existing applications with cloud native alternatives like SAAS
+- Replatform: Optimizing applications while migrating to aws
+- Refactor or Re-Architect: redesigning applications to fully leverage cloud native capabilities.
+
+Common Data Migration Strategies at AWS:
+- Database Migration Service (DMS), which enables continuous replication and supports heterogeneous database migrations
+
+**AWS Migration Services for Licensing Optimization**
+- AWS Migration Hub: Centralizes tracking and management of migration projects.
+- AWS License Manager: Helps enforce licensing rules and track compliance during migration.
+- AWS Snowball DataSync: Assist in migrating large-scale workloads efficiently while maintaining data integrity.
 
 # Server:
 A server consists of Compute, Memory, Storage, Database, Network. 
@@ -48,6 +136,12 @@ What is Cloud Computing?
 
 <img width="1136" height="334" alt="image" src="https://github.com/user-attachments/assets/86ac24fd-c8e9-4f96-9353-99106206cda1" />
 
+
+**AWS Services to maintain Hybrid Cloud Architecture:**
+- AWS Outpost: Delivers fully managed physical AWS hardware racks or servers directly into your on-premises data center so you can run native AWS services locally with consistent APIs and ultra-low latency.
+- VMware Cloud on AWS: Allows you to seamlessly migrate, extend, and manage existing on-premises VMware vSphere workloads directly on dedicated AWS cloud infrastructure using the same VMware tools
+- AWS Local Zones: Places core AWS compute, storage, and database infrastructure in major metro areas close to end users to deliver single-digit millisecond latency without needing your own physical data center
+- AWS Snow Family: Provides rugged, portable physical devices for offline bulk data migration and local edge computing in remote or disconnected environments with limited network connectivity
 
 ### Types of Cloud Computing:
 
@@ -579,295 +673,170 @@ Create internet gateway> Name tag> create > attach to VPC> Auto assign public IP
 ## What is ELASTIC IP (EIP): 
 A static public IPv4 address in AWS that you can associate with an EC2 instance or other supported resources and keep even when the underlying instance is stopped or restarted.
 
-# Database
-Database is a place where data is stored, organized and accessed. 
-<img width="1006" height="601" alt="image" src="https://github.com/user-attachments/assets/6dd7011f-ea48-4ce3-b330-428a93ade820" />
 
-**Benifit of Database compared to EFS, EBS, EC2 Instance Store, S3**
-- Structured data storage
-- You **build indexes to efficiently query** / search through the data.
-- You define **relationships between your datasets.**
-- Quick Provisioning, High Availability,Vertical and Horizontal Scaling
-- Automated Backup & Restore, Operations, Upgrades
-- Operating System Patching is handled by AWS
+---
 
-Advantage over using **managed RDS versus deploying DB on EC2**: (Disadvantage you can't SSH into your database)
-- Automated provisioning, OS patching
-- Continuous backups and restore to specific timestamp (Point in Time Restore)!
-- Monitoring dashboards
-- Read replicas for improved read performance
-- Multi AZ setup for DR (Disaster Recovery)
-- Maintenance windows for upgrades
+# AWS Databases & Storage Notes
 
-## Types of Database based on storage
-- **SQL data is stored in a structure. Features Tables(rows, columns), Fixed Schema, Relationships. e.g., MySQL, PostgreSQL**
-- **NoSQL data is stored in the form of Objects without an structure and relation. Represented in JSON format. e.g., MongoDB, DynamoDB** (for Flexible Large Scale Data)
+A **database** stores, organizes, and retrieves structured or semi-structured data efficiently.
+
+* **Data Access Flow:** `App` → `Firewall / Security Group` → `Database`
+* **Why Databases Beat Raw Storage (S3, EBS, EFS, Instance Store):**
+* Structured/indexed storage for fast querying and searching.
+* Defined relationships and ACID/transactional guarantees (depending on engine).
+* Rapid provisioning, high availability, and vertical/horizontal scaling.
+* Automated backups, restores, upgrades, and AWS-managed OS patching.
 
 
-### SQL Databases Across Cloud (Features-Automated Backups, Scaling, No Server Management)
-- AWS-RDS
-- Azure-Azure SQL Database
-- GCP-Cloud SQL
 
-### NoSQL Databases Across Cloud (Features- Flexible Schema, High Scalability, Used in real-time apps)
-- AWS-DynamoDB
-- Azure-Cosmos DB
-- GCP-Firestore/Bigtable
+### Managed vs. Unmanaged (Self-Managed) Databases
 
-## Data Access Flow
-App>Firewall/Security Group> Database
+* **Unmanaged (DB on EC2):** Full OS/root/SSH access and custom engine control, but you handle installation, OS patching, backups, clustering, and failover manually.
+* **Managed (RDS, Aurora, DynamoDB, etc.):** AWS automates provisioning, OS patching, continuous backups with **Point-in-Time Recovery (PITR)**, CloudWatch/Performance Insights monitoring, Read Replicas, Multi-AZ failover, and maintenance windows. *(Trade-off: no SSH access to the underlying host.)*
 
-## AWS Relational Database Service(RDS): 
-Managed Database service in AWS where **multiple tables are linked together, It uses SQL as a query language**. (Features Multi-AZ, Server setup, Automated Backups, Scaling, Security patches, Monitoring) 
+---
 
-### Supported Engines by AWS:
-MySQL, Postgres, MariaDB, Oracle, Microsoft SQL Server, IVM DB2, Aurora (AWS Proprietary Database)
+## 1. Relational Databases (SQL / OLTP)
 
-## Types of Database Instance
-- Master Database Instance: Read, Write Permission
-- Slave Database Instance: Read Permission
+Data is organized into **tables (rows & columns)** with fixed schemas, primary/foreign keys, and SQL queries.
 
-## How to create a Database 
-RDS> Create Database, Full Configuration, 
+| Cloud Provider | Managed SQL Service |
+| --- | --- |
+| **AWS** | Amazon RDS, Amazon Aurora |
+| **Azure** | Azure SQL Database |
+| **GCP** | Cloud SQL, Cloud Spanner |
 
+### Amazon RDS (Relational Database Service)
 
-## Engine use case based on needs
-| Use Case                 | Good Choice         |
-| ------------------------ | ------------------- |
-| Simple web app           | MySQL               |
-| Complex analytics app    | PostgreSQL          |
-| Enterprise legacy app    | Oracle / SQL Server |
-| High-scale cloud app     | Aurora              |
-| Serverless key-value app | DynamoDB            |
-
-## Amazon Aurora
-- Aurora is a proprietary technology from AWS (not open sourced)
-- PostgreSQL and MySQL are both supported as Aurora DB
-- Aurora is "AWS cloud optimized" and claims 5x performance improvement over MySQL on RDS, over 3x the performance of Postgres on RDS
-- Aurora storage automatically grows in increments of I OGB, up to 256 TB
-- Aurora costs more than RDS (20% more) — but is more efficient
-
-### Amazon Aurora Serverless:
-- Automated database instantiation and auto-scaling based on actual usage
-- PostgreSQL and MySQL are both supported as Aurora Serverless DB
-- No capacity planning needed
-- Least management overhead
-- Pay per second, can be more cost-effective
-- Use cases: good for infrequent, intermittent or unpredictable workloads...
-
-<img width="562" height="556" alt="image" src="https://github.com/user-attachments/assets/4b25d45f-fe28-43dd-a79a-e4f10699e41b" />
-
-## RDS Hands on
-Creating a database
-```
-Aurora and RDS> Databases, Create database> Full Configuration, MySQL, free tier, Self Managed, Provide Password, Create new VPC, name it, Create Database. 
-```
-Snapshot (Sharable, Restorable, Deployable into different region)
-```
-RDS> Databases> Database_name> Actions, Take snapshot> Name it, Take Snapshot.
-
-RDS> Snapshots> snapshot_name> Actions, Restore snapshot
-```
-## RDS Deployments: Read Replicas, Multi-AZ, Multi-Region
-Read Replicas:
-• Scale the read workload of your DB
-• Can create up to 15 Read Replicas
-Multi-AZ:
-• Failover in case of AZ outage (high availability)
-• Data is only read/written to the main database
-• Can only have 1 other AZ as failover
-Multi-Region (Read Replicas)
-• Write operation will be limited to main RDS other replicas can only read
-• Disaster recovery in case of region issue
-• Local performance for global reads
-• Replication cost
-
-## ElastiCache Overview
-Used to get managed Redis or Memcached, Caches are **in-memory databases** with high performance, low latency, Helps reduce load off RDS databases for read intensive workloads. works as the same level of Amazon RDS.
-
-AWS takes care of OS maintenance / patching, optimizations, setup, configuration, monitoring, failure recovery and backups
-
-### DynamoDB(NoSQL)
-• Fully Managed Highly available with replication across 3 AZ
-• NoSQL database - not a relational database
-• Scales to massive workloads, distributed "serverless" database
-• Millions of requests per seconds, trillions of row, 10Os of TB of storage
-• Fast and consistent in performance
-• Single-digit millisecond latency — low latency retrieval
-• Integrated with IAM for security, authorization and administration
-• Low cost and auto scaling capabilities
-• Standard & Infrequent Access (IA) Table Class
-
-### DynamoDB Accelerator -
-• Fully Managed in-memory cache for DynamoDB
-• 10x performance improvement-single-digit millisecond latency to microseconds latency — when accessing your DynamoDB tables
-• Secure, highly scalable & highly available
-• Difference with ElastiCache at the CCP level: DAX is only used for and is integrated with DynamoDB, while ElastiCache can be used for other databases
-
-DynamoDB Hands on:
-```
-Creation of Table 
-DynamoDB> Tables> Create table, Table name, Partition Key, Create table
-
-Adding Data to the Table
-DynamoDB> Tables> DemoTable, View items> Create item, Enter Value, Attribute, Create item
-```
-
-### DynamoDB — Global Tables
-• Make a DynamoDB table accessible with low latency in multiple-regions by having a replication of the previous table. 
-• Active-Active replication (read/write to any AWS Region)
+* **Supported Engines:** MySQL, PostgreSQL, MariaDB, Oracle, Microsoft SQL Server, IBM Db2, and Amazon Aurora.
+* **Instance Roles:** **Primary (Master)** handles reads and writes; **Read Replicas (Standby/Slave)** handle read-only traffic.
+* **Deployment Topologies:**
+* **Multi-AZ (High Availability / DR):** Synchronous replication to a standby instance in another Availability Zone (1 standby for RDS, or 2 readable standbys with Multi-AZ DB Clusters). Automatic failover; no manual read scaling on standard single-standby Multi-AZ.
+* **Read Replicas (Read Scalability):** Asynchronous replication (up to **15** replicas) to offload read-heavy traffic; replicas can be promoted to standalone databases.
+* **Multi-Region Read Replicas:** Cross-region replication for regional disaster recovery and low-latency local global reads (writes still route to the primary region; incurs cross-region data transfer costs).
 
 
-## RedShift(PostgreSQL)
-• It's OLAP — online analytical processing (analytics and data warehousing)
-• Load data once every hour, not every second
-• I Ox better performance than other data warehouses, scale to PBs of data
-• Columnar storage of data (instead of row based)
-• Massively Parallel Query Execution (MPP), highly available
-• Pay as you go based on the instances provisioned
-• Has a SQL interface for performing the queries
-• Bl tools such as AWS Quicksight or Tableau integrate with it
 
-### Redshift Serverless
-• Automatically provisions and scales data warehouse underlying capacity
-• Run analytics workloads without managing data warehouse infrastructure
-• Pay only for what you use (save costs)
-• Use cases: Reporting, dashboarding applications, real-time analytics...
+### Amazon Aurora & Aurora Serverless
 
-## Amazon EMR
-• EMR stands for "Elastic MapReduce"
-• EMR helps creating Hadoop clusters (Big Data) to analyze and process vast amount of data
-• The clusters can be made of hundreds of EC2 instances
-• Also supports Apache Spark, HBase, Presto, Flink...
-• EMR takes care of all the provisioning and configuration
-• Auto-scaling and integrated with Spot instances
-• Use cases: data processing, machine learning, web indexing, big data...
+* **Architecture:** AWS-proprietary, cloud-optimized relational engine compatible with **MySQL** (up to 5x faster than standard RDS MySQL) and **PostgreSQL** (up to 3x faster than standard RDS PostgreSQL).
+* **Storage & Cost:** Distributed, fault-tolerant storage auto-scales in **10 GB** increments up to **256 TB** across 3 AZs (6 copies). Costs roughly ~20% more than standard RDS, often offset by higher throughput.
+* **Aurora Serverless:** Automatically starts up, shuts down, and scales compute capacity per second based on demand—ideal for intermittent, unpredictable, or dev/test workloads with zero capacity planning.
+* **Aurora DSQL:** Serverless, distributed SQL database (PostgreSQL-compatible) designed for virtually unlimited horizontal scale and active-active multi-region strong consistency.
 
-## Amazon Athena
-• Serverless query service to perform analytics against S3 objects
-• Uses standard SQL language to query the files
-• Supports CSV, JSON, ORC, Avro, and Parquet (built on Presto)
-• Pricing: $5.00 per TB of data scanned
-• Use compressed or columnar data for cost-savings (less scan)
-• Use cases: Business intelligence / analytics / reporting, analyze &
-queryVPC Flow Logs, ELB Logs, CloudTrail trails, etc...
-• Exam Tip: analyze data in S3 using serverless SQL, use Athena
+### Engine Selection Cheat Sheet
 
-## Amazon QuickSight
-• Serverless machine learning-powered business intelligence service to
-create interactive dashboards
-• Fast, automatically scalable, embeddable, with per-session pricing
-• Use cases:
-	• Business analytics
-	• Building visualizations
-	• Perform ad-hoc analysis
-	• Get business insights using data
-• Integrated with RDS, Aurora, Athena, Redshift, S3...
+| Workload / Use Case | Recommended Service / Engine |
+| --- | --- |
+| Simple web application | RDS MySQL / MariaDB |
+| Complex queries, geospatial, or vector search (`pgvector`) | RDS PostgreSQL / Aurora PostgreSQL |
+| Enterprise legacy / commercial licensing | RDS Oracle / SQL Server / IBM Db2 |
+| High-scale, cloud-native relational app | Amazon Aurora |
+| Globally distributed active-active SQL | Aurora DSQL |
+| Serverless key-value / predictable high-scale | Amazon DynamoDB |
 
-## DocumentDB
-• Aurora is an "AWS-implementation" of PostgreSQL / MySQL .
-• DocumentDB is the same for MongoDB (which is a NoSQL database)
-• MongoDB is used to store, query, and index JSON data
-• Similar "deployment concepts" as Aurora
-• Fully Managed, highly available with replication across 3 AZ
-• DocumentDB storage automatically grows in increments of I OGB
-• Automatically scales to workloads with millions of requests per seconds
+---
 
-## Amazon Neptune
-• Fully managed graph database
-• A popular graph dataset would be a social network
-• Users have friends Posts have comments
-• Comments have likes from users
-• Users share and like posts...Highly available across 3 AZ, with up to 15 read replicas
-• Build and run applications working with highly connected datasets — optimzed for these complex and hard queries
-• Can store up to billions of relations and query the graph with milliseconds latency
-• Highly available with replications across multiple AZS
-• Great for knowledge graphs (Wikipedia), fraud detection, recommendation engines, social networking
+## 2. NoSQL Databases (Non-Relational)
 
-## Amazon Timestream
-• Fully managed, fast, scalable, serverless time series database
-• Automatically scales up/down to adjust capacity
-• Store and analyze trillions of events per day
-• 1000s times faster & 1/1 0th the cost of relational databases
-• Built-in time series analytics functions (helps you identify patterns in your data in near real-time)
+Flexible schemas (key-value, document, wide-column, graph) built for massive horizontal scale and low-latency access. *(Cross-cloud equivalents: AWS DynamoDB, Azure Cosmos DB, GCP Firestore / Bigtable.)*
 
-## Amazon Managed Blockchain
-• Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority.
-• Amazon Managed Blockchain is a managed service to:
-• Join public blockchain networks
-• Or create your own scalable private network
-• Compatible with the frameworks Hyperledger Fabric & Ethereum
+* **Amazon DynamoDB:**
+* Serverless, fully managed **Key-Value & Document** database replicated across 3 AZs.
+* Delivers consistent **single-digit millisecond latency** at virtually any scale (trillions of rows, millions of requests/sec).
+* Secured via **IAM**; offers **Standard** and **Infrequent Access (IA)** table classes.
+* **DynamoDB Accelerator (DAX):** Fully managed in-memory cache exclusively for DynamoDB, cutting read latency from milliseconds to **microseconds** (10x improvement). *(Unlike ElastiCache, DAX is tightly coupled to DynamoDB.)*
+* **DynamoDB Global Tables:** Multi-region, **active-active** replication allowing local reads and writes in every participating AWS Region.
 
 
-## AWS Glue
-• Managed extract, transform, and load (ETL) service
-• Useful to prepare and transform data for analytics
-• Fully serverless service
-• Glue Data Catalog: catalog of datasets
-• can be used by Athena, Redshift, EMR
+* **Amazon DocumentDB:** Managed JSON document database (**MongoDB-compatible**). Uses Aurora-style decoupled storage that auto-scales in **10 GB** increments across 3 AZs.
+* **Amazon Keyspaces:** Managed, serverless **Apache Cassandra-compatible** wide-column database.
+* **Amazon Neptune:** Managed **Graph** database (replicated across 3 AZs, up to 15 read replicas) optimized for highly connected relationships—social networks, fraud detection, recommendation engines, and knowledge graphs.
 
-## DMS — Database Migration Service
-(Instance needed to run)
-• Quickly and securely migrate databases to AWS, resilient, self healing
-• The source database remains available during the migration
-• Supports:
-• Homogeneous migrations: ex Oracle to Oracle
-• Heterogeneous migrations: ex Microsoft SQL Server to Aurora
+---
 
-## Databases & Analytics Summary in AWS
-• Relational Databases - OLTP: RDS & Aurora (SQL)
-• Differences between Mufti-AZ, Read Replicas, Mufti-Region
-• In-memory Database: ElastiCache
-• Key/Value Database: DynamoDB (serverless) & DAX (cache for DynamoDB)
-• Warehouse - OLAP: Redshift (SQL)
-• Hadoop Cluster. EMR
-• Athena: query data on Amazon S3 (serverless & SQL)
-• QuickSight dashboards on your data (serverless)
-• DocumentDB: "Aurora for MongoDB" (JSON — NoSQL database)
-• Amazon Managed Blockchain: managed Hyperledger Fabric & Ethereum blockchains
-• Glue: Managed ETL (Extract Transform Load) and Data Catalog service
-• Database Migration: DMS
-• Neptune: graph database
-• Timestream: time-series database
+## 3. In-Memory & Caching Services
 
-## Object Storage S3 (Simple Storage Service):
-Unlike traditional file systems that use nested folders, **object storage uses a flat structure. Data is stored as "objects" consisting of the file itself,** a unique key foridentification, and rich metadata, making it infinitely scalable for massive datasets.
+* **Amazon ElastiCache:** Managed **in-memory caching** supporting **Valkey**, **Redis OSS**, and **Memcached**. Offloads read-heavy database queries and stores ephemeral session state with sub-millisecond latency.
+* **Amazon MemoryDB:** Durable, **in-memory primary database** (compatible with Valkey and Redis OSS) that uses a Multi-AZ transactional log so data persists safely across restarts while keeping microsecond read performance.
 
-### Features:
-- Each **bucket name must be grobally unique** across all AWS accounts.
-- Every S3 object contains the **Data (the file)**,  a **Key** (the fullpath/name), and **Metadata** (tags like content-type or custom user-defined data).
-- S3 supports **"Versioning,"** allowing you to **keep, retrieve, and restore every version of every object**.
-- Security is managed through **IAM policies and Bucket Policies** to prevent public data leaks.
-- **S3 Standard replicates data across at least three separate Availability Zones (independent data centers) within a single region.**
-- There is **no limit of storage** to the amount of data you can store in S3, and **individual objects can be as large as 5 Terabytes.**
+---
 
-### Terms: 
-- Cross_Origin Resource sharing: Sharing Resource between multiple buckets.
+## 4. Analytics, Data Warehousing & Specialized Databases
 
-### configuring access permissions
-Product bucket> Bucket Policy> enter a bucket policy from aws given example
+* **Amazon Redshift & Redshift Serverless:**
+* **OLAP** (Online Analytical Processing) petabyte-scale data warehouse using **columnar storage** and **Massively Parallel Processing (MPP)** with a PostgreSQL-based SQL interface.
+* **Redshift Serverless** automatically provisions and scales compute for variable BI/reporting workloads without cluster management.
 
-### Static Website Hosting on S3:
-1. Create a bucket with default settngs
-2. Add the HTML file, and any media folder if there is any in the static website and Upload
-3. Click on that HTML file you will see Object URL where you can access the file
-4. Bucket> Bucket_name> Properties> **Static Website Hosting**> Edit> Enable> Name the Index Document> Save Changes.
-5. Bucket> Permissions> **Uncheck block all public access**> Save Changes
-6. Bucket> Permissions> **Object Ownership**> Edit> **ACLs enabled**>
-7. Select all the objects> **Actions> Make Public using ACL> Make Public**
-or after step 5 enter the add the bucket policy under permissions
-```
+
+* **Amazon Athena:** Serverless interactive SQL query engine (built on Trino/Presto) that queries data directly in **Amazon S3** (CSV, JSON, ORC, Avro, **Parquet**). Priced at **$5.00 per TB scanned**—use columnar/compressed formats like Parquet and partitioning to cut scan costs.
+* **Amazon EMR (Elastic MapReduce):** Managed big-data clusters running **Apache Hadoop, Spark, Hive, HBase, Presto, and Flink** on EC2 (supports Spot Instances & auto-scaling) for large-scale data processing and ML.
+* **AWS Glue:** Serverless **ETL** (Extract, Transform, Load) service and central **Glue Data Catalog** used by Athena, Redshift, and EMR to discover schemas.
+* **Amazon QuickSight:** Serverless, ML-powered **Business Intelligence (BI)** service for interactive dashboards (per-session pricing) integrating with S3, Athena, RDS, Aurora, and Redshift.
+* **Amazon Timestream:** Serverless **time-series database** for IoT telemetry, metrics, and event logs—automatically tiers recent data in memory and historical data to magnetic storage.
+* **Amazon Managed Blockchain:** Managed service to join public networks or build private consortium networks using **Hyperledger Fabric** or **Ethereum**.
+* **AWS Database Migration Service (DMS):** Migrates databases to AWS with minimal downtime (source stays live during migration). Supports **homogeneous** (e.g., Oracle → Oracle) and **heterogeneous** (e.g., SQL Server → Aurora, using the AWS Schema Conversion Tool) migrations.
+
+---
+
+**5. Quick Reference: Database & Analytics Summary**
+
+| Category | AWS Service(s) |
+| --- | --- |
+| **Relational (OLTP)** | Amazon RDS, Amazon Aurora, Aurora DSQL |
+| **Key-Value & Document (NoSQL)** | Amazon DynamoDB (+ DAX), Amazon DocumentDB, Amazon Keyspaces |
+| **Graph & Time-Series** | Amazon Neptune (Graph), Amazon Timestream (Time-Series) |
+| **In-Memory Cache / DB** | Amazon ElastiCache (Cache), Amazon MemoryDB (Durable DB) |
+| **Data Warehouse (OLAP)** | Amazon Redshift / Redshift Serverless |
+| **Big Data & Serverless SQL** | Amazon EMR (Hadoop/Spark), Amazon Athena (SQL on S3) |
+| **ETL, BI & Migration** | AWS Glue (ETL/Catalog), Amazon QuickSight (BI), AWS DMS (Migration) |
+
+---
+
+**6. Hands-On CLI / Console Quick Notes**
+* **RDS Creation & Snapshots:**
+* *Create:* `Aurora and RDS` → `Databases` → `Create database` → choose engine (`MySQL`), template (`Free tier`), credentials, and VPC.
+* *Snapshot:* `Databases` → select DB → `Actions` → `Take snapshot` (snapshots can be shared across accounts, copied to other regions, and restored as new DB instances).
+
+
+* **DynamoDB Table & Items:**
+* *Create:* `DynamoDB` → `Tables` → `Create table` → set Table name + **Partition Key** (and optional Sort Key).
+* *Insert:* `Tables` → select table → `Explore table items` → `Create item` → add attributes.
+
+
+
+---
+
+## 7. Appendix: Amazon S3 (Object Storage) Basics
+
+Unlike hierarchical file systems, **Amazon S3** uses a **flat namespace** where objects sit inside globally uniquely named buckets.
+
+* **Object Anatomy:** **Key** (full object path/name) + **Value/Data** (0 bytes up to **5 TB** per object) + **Metadata** (system & custom key-value tags) + optional **Version ID**.
+* **Durability & Availability:** S3 Standard automatically replicates objects across **at least 3 Availability Zones** within a region (99.999999999% — 11 nines of durability).
+* **Core Features:**
+* **Versioning:** Preserves, retrieves, and restores every version of an object (protects against accidental deletes/overwrites).
+* **Access Control:** Managed via **IAM Policies** (user/role permissions) and **S3 Bucket Policies** (resource-based JSON policies); **Block Public Access** is enabled by default.
+* **CORS (Cross-Origin Resource Sharing):** Browser security mechanism allowing a web page hosted in one origin/bucket to request resources from another origin/bucket.
+
+
+* **Static Website Hosting Steps:**
+1. Create a bucket and upload `index.html` and static assets.
+2. Open `Bucket` → `Properties` → **Static website hosting** → `Enable` → specify `index.html`.
+3. Open `Bucket` → `Permissions` → edit **Block public access** and uncheck *Block all public access*.
+4. Attach a public read **Bucket Policy** (recommended over legacy ACLs):
+```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::BUCKET_NAME/*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::BUCKET_NAME/*"
+    }
+  ]
 }
+
 ```
 
 # AWS CloudWatch (Metrics, Alarms, Dashboards)
@@ -1672,7 +1641,7 @@ AWS Security focuses on protecting cloud resources, applications, data, identiti
 **Remember:** Least Privilege = Only the permissions you need.
 
 ### 7.5 AWS CloudFormation
-**Definition:** AWS CloudFormation is an Infrastructure as Code (IaC) service that creates and manages AWS resources using templates.
+**Definition:** AWS CloudFormation is an Infrastructure as Code (IaC) service that creates and manages AWS resources using using JSON or YAML templates.
 
 **Security Benefits:**
 - Defines infrastructure consistently.
