@@ -174,22 +174,25 @@ What is Cloud Computing?
 - Data transfer OUT of the Cloud: is charged, Data transfer IN is free
 
 ## Billing and Cost Management:
-### to allow it on IAM users:
+AWS savings plans offer up to 72% savings compared to on-demand pricing.
+
+**Practicals:**
+**Allow Billing and Cost Management for IAM user:**
 Billing and Cost Management> Account> IAM user and role access to Billing information (Edit)> Activate IAM Access Update.
 
-### Charges By Service:
+**Charges By Service:**
 Billing and Cost Management> Bills> Charges By Service
 
-### See forecast wether you are going to pass the free tire:
+**See forecast wether you are going to pass the free tire:**
 Billing and Cost Management> Free Tire
 
-### Budget: (Billing and Cost Management> Budget)
+**Budget:** (Billing and Cost Management> Budget)
 It is set to get alert whenever you reach threashold budget.
 
 
 Terms AWS Regions: A region is a **cluster of Datacenters.**
 
-#Scinario Based Questions:
+# Scinario Based Questions:
 
 How to Choose Best Region for your task?
 Based on Factors: 
