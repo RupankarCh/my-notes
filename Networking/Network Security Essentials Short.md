@@ -120,18 +120,27 @@ Router(config-line)# login (Enable login authentication)
 Router(config-line)# transport input telnet (Allow Telnet access)
 ```
 
-## Common Cisco router password recovery techniques include:
-
+## Cisco router password recovery technique:
 - ROMMON Mode: Interrupt the router's boot process using a console connection.
   - Connect a PC to the router's console port using a rollover console cable and a terminal emulator (such as PuTTY etc.
   - Power cycle or reload the router and send a Break sequence (for example, Ctrl+Break on Windows terminals or Ctrl+] followed by send break in Telnet)
   - Enter ROMMON
-  - 
 - Configuration Register: Change the configuration register to 0x2142 so the router ignores the saved startup configuration.(Configuration register is a 16-bit value that controls boot behavior, including console baud rate and whether IOS reads startup-config from NVRAM, Normal value (0x2102): Loads IOS from flash/boot path and reads startup-config from NVRAM.)
   - Recovery value (0x2142): Bit 6 (the 0x0040 mask) is set to ignore startup-config during boot
   - Skipping startup-config boots the router with a blank/default configuration and no enabled secret or login passwords blocking you, while leaving the saved configuration safely untouched in NVRAM. After changing confreg 0x2142, you enter reset in ROMMON to reboot into setup mode
 - Reset Password: Load the original configuration into RAM, configure a new password, restore the register to 0x2102 and save the configuration.
-  - 
+
+**Practical**
+While Booting press Ctrl+c (To enter in rommon mode)
+```
+rommon> confreg 0x2142 (To configure a Cisco router to bypass the startup configuration during its next boot)
+rommon> reset (To reboots the Cisco device directly from the ROM Monitor (ROMMON) mode.)
+copy startup-config running-config
+enable password abc
+wr
+conf t
+(config)#config-register 0x2102 (To boot securely which was not possible after doing confreg 0x2142, and prevent no authentication from next time onwards)
+```
 
 ## Commands
 show cdp neighbors (To display CDP information on a cisco router)
