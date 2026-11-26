@@ -127,8 +127,11 @@ Router(config-line)# transport input telnet (Allow Telnet access)
   - Power cycle or reload the router and send a Break sequence (for example, Ctrl+Break on Windows terminals or Ctrl+] followed by send break in Telnet)
   - Enter ROMMON
   - 
-- Configuration Register: Change the configuration register to 0x2142 so the router ignores the saved startup configuration.
+- Configuration Register: Change the configuration register to 0x2142 so the router ignores the saved startup configuration.(Configuration register is a 16-bit value that controls boot behavior, including console baud rate and whether IOS reads startup-config from NVRAM, Normal value (0x2102): Loads IOS from flash/boot path and reads startup-config from NVRAM.)
+  - Recovery value (0x2142): Bit 6 (the 0x0040 mask) is set to ignore startup-config during boot
+  - Skipping startup-config boots the router with a blank/default configuration and no enabled secret or login passwords blocking you, while leaving the saved configuration safely untouched in NVRAM. After changing confreg 0x2142, you enter reset in ROMMON to reboot into setup mode
 - Reset Password: Load the original configuration into RAM, configure a new password, restore the register to 0x2102 and save the configuration.
+  - 
 
 ## Commands
 show cdp neighbors (To display CDP information on a cisco router)
