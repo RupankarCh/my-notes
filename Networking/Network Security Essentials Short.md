@@ -1,3 +1,6 @@
+# Passive Interface
+Disable routing updates.
+
 # RSPAN (Remote Switched Port Analyzer) 
 A Cisco networking technology that allows to monitor network traffic from remote switches. It copies traffic from a source switch and sends it to a monitoring device through an RSPAN VLAN.
 **Source Switch> Traffic Copying> RSPAN VLAN> Destination Switch> Monitoring Device**
@@ -76,3 +79,24 @@ A tool used in enterprise networking (commonly on Cisco platforms) to filter and
 
 # Dynamic ARP Inspection (DAI) 
 A Layer 2 security feature that prevents ARP spoofing (ARP poisoning) by intercepting, logging, and validating all ARP packets on a network.
+
+
+# Commands
+show cdp neighbors (To display CDP information on a cisco router)
+cdp run (Enables CDP)
+no cdp enable (disable CDP on a specific interface)
+
+ntp server x.x.x.x (Enable NTP on a router)
+
+passive-interface <Interface_name> (command to prevent RIP update from being sent out on a specific interface)
+
+privilege exec level (set a router's privilege level)
+privilege level X (change the privilege level of a Cisco router user)
+
+copy tftp running-config (command to restore configuration from a TFTP server)
+copy flash tftp (backup IOS to TFTP)
+
+service password-encryption (To encrypt all passwords in the running configuration)
+enable secret (setting an encrypted privileged EXEC mode password)
+
+copy running-config startup-config (Saves config permanently)
