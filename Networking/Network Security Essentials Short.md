@@ -112,6 +112,23 @@ Cisco IOS provides 16 privilege levels (0–15).
 3. Level 15: Provides full administrative access to configure and manage the router.
 Levels 2–14 can be customized according to user roles.
 
+**Telnet Configuration:**
+```
+Router(config)# line vty 0 4 (Configure the VTY lines)
+Router(config-line)# password cisco123 (Set password)
+Router(config-line)# login (Enable login authentication)
+Router(config-line)# transport input telnet (Allow Telnet access)
+```
+
+## Common Cisco router password recovery techniques include:
+
+- ROMMON Mode: Interrupt the router's boot process using a console connection.
+  - Connect a PC to the router's console port using a rollover console cable and a terminal emulator (such as PuTTY etc.
+  - Power cycle or reload the router and send a Break sequence (for example, Ctrl+Break on Windows terminals or Ctrl+] followed by send break in Telnet)
+  - Enter ROMMON
+  - 
+- Configuration Register: Change the configuration register to 0x2142 so the router ignores the saved startup configuration.
+- Reset Password: Load the original configuration into RAM, configure a new password, restore the register to 0x2102 and save the configuration.
 
 ## Commands
 show cdp neighbors (To display CDP information on a cisco router)
