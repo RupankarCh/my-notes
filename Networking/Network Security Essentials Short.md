@@ -81,6 +81,8 @@ A tool used in enterprise networking (commonly on Cisco platforms) to filter and
 A Layer 2 security feature that prevents ARP spoofing (ARP poisoning) by intercepting, logging, and validating all ARP packets on a network.
 
 
+---
+
 # Commands
 show cdp neighbors (To display CDP information on a cisco router)
 cdp run (Enables CDP)
@@ -100,3 +102,31 @@ service password-encryption (To encrypt all passwords in the running configurati
 enable secret (setting an encrypted privileged EXEC mode password)
 
 copy running-config startup-config (Saves config permanently)
+
+
+---
+# Network Security:
+
+## Accessing
+**Fixed-time password-based authentication**:
+controls access to network devices using passwords with specific time restrictions. features Password Expiry, Login Timeout, Account Lockout.
+
+
+---
+# Configuration
+**Backup and restore process of an IOS:**
+Backup:
+```
+show flash: (Check the IOS image)
+# copy flash: tftp: (Copy the IOS image from flash memory to a TFTP server)
+```
+Restore:
+```
+# copy tftp: flash: (Copy the IOS image from the TFTP server to flash memory)
+```
+Configure the boot system command and save the configuration.
+
+
+
+
+
