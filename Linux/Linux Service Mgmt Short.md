@@ -50,5 +50,36 @@ Roles:
 - DNS port: 53
 - Package: bind
 
+different types of nameservers used in DNS
+- Root DNS Server: It is the highest level of DNS hierarchy. It directs DNS queries towards the appropriate Top-Level Domain (TLD) servers, such as .com and .org.
+- Primary DNS Server: It maintains the original DNS zone database and contains the main DNS records for a domain.
+- Secondary DNS Server: It obtains DNS information from the primary server through zone transfer. It provides backup DNS services.
+- Caching-Only DNS Server: It does not maintain its own DNS zone database. It stores previously resolved DNS information in its cache to answer repeated queries faster.
+- Forwarding DNS Server: It forwards DNS queries to another designated DNS server to obtain the required information
 
+Usually a DNS zone needs one primary dns server and can have multiple secondary dns servers.
 
+---
+
+DHCP:
+- DHCP configuration file: /etc/dhcp/dhcpd.conf
+- Common system log file on RHEL: /var/log/messages
+- DHCP logging facility can be configured using log-facility.
+- Service name: dhcpd
+
+DHCP Reservation - Assign a fixed IP Address to a specific client by MAC.
+Configuration:
+1. vi /etc/dhcp/dhcpd.conf (Open Configuration file)
+2. Add the following configuration.
+```
+host station1 {
+    option host-name "station1.example.com";
+    hardware ethernet 00:11:1A:2B:3C:AB;
+    fixed-address 192.168.1.100;
+}
+```
+3. dhcpd -t (Check DHCP configuration syntax)
+4. Restart the DHCP service.
+5. Set the client network configuration to use DHCP
+
+   
