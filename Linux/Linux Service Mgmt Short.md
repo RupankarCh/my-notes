@@ -1,3 +1,4 @@
+# M1
 **Disk Quota**: how much disk space and how many files a user or group can use.
 Components:
 - Block Quota: Controls the amount of disk space a user can consume. 1 Block = 1KB
@@ -33,4 +34,21 @@ Classless IP Addressing (CIDR):
 It uses variable-length subnet masks (VLSM) to allocate IP addresses according to network requirements.
 
 --- 
+
+# M2
+
+**Berkeley Internet Name** Domain is used to implement DNS (Domain Name System) on Linux systems
+Roles:
+- Name Resolution (Forward and Reverse Lookup)
+- Make the system work as DNS server
+- maintains DNS zone files
+- It supports primary and secondary DNS servers through zone transfers
+
+- Main configuration file: /etc/named.conf
+- Zone files directory: /var/named/
+- Service name: named
+- DNS port: 53
+- Package: bind
+
+
 
